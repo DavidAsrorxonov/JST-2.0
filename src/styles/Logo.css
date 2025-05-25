@@ -1,0 +1,5 @@
+.gradient-effect {
+  background: linear-gradient(to right, gold, yellow);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

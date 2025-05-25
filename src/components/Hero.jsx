@@ -4,8 +4,8 @@ import GetStartedButton from "./GetStartedButton";
 
 const Hero = () => {
   return (
-    <div className="w-full flex items-center justify-center mt-5">
-      <div className="relatice inline-block w-[70%]">
+    <div className="w-full flex items-center justify-center mt-5 h-screen">
+      <div className="inline-block w-[70%]">
         <img
           src="/images/hero.PNG"
           className="w-[100%] h-[750px] blur-sm rounded-3xl"
