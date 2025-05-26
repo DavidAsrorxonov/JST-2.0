@@ -7,6 +7,7 @@ import Demo from "../components/Demo";
 import { useInView } from "react-intersection-observer";
 import Security from "../components/Security";
 import Contact from "../components/Contact";
+import Footer from "../components/Footer";
 
 const Landing = () => {
   const [activeSections, setActiveSections] = useState("home");
@@ -61,6 +62,7 @@ const Landing = () => {
       <div id="contact" ref={contactRef}>
         <Contact />
       </div>
+      <Footer />
     </div>
   );
 };
