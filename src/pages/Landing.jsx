@@ -5,6 +5,7 @@ import SecondPart from "../components/SecondPart";
 import Offer from "../components/Offer";
 import Demo from "../components/Demo";
 import { useInView } from "react-intersection-observer";
+import Security from "../components/Security";
 
 const Landing = () => {
   const [activeSections, setActiveSections] = useState("home");
@@ -44,6 +45,9 @@ const Landing = () => {
       </div>
       <div id="demo" ref={demoRef}>
         <Demo />
+      </div>
+      <div>
+        <Security />
       </div>
     </div>
   );
