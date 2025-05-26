@@ -38,7 +38,7 @@ const Footer = () => {
           <a href="/terms" className="hover:text-blue-500 transition">
             Terms of Service
           </a>
-          <a href="#" className="hover:text-blue-500 transition">
+          <a href="/privacy" className="hover:text-blue-500 transition">
             Privacy Policy
           </a>
         </div>
