@@ -30,6 +30,10 @@ const Landing = () => {
     ...options,
     onChange: (inView) => inView && setActiveSections("demo"),
   });
+  const [securityRef] = useInView({
+    ...options,
+    onChange: (inView) => inView && setActiveSections("security"),
+  });
 
   return (
     <div>
@@ -46,7 +50,7 @@ const Landing = () => {
       <div id="demo" ref={demoRef}>
         <Demo />
       </div>
-      <div>
+      <div id="security" ref={securityRef}>
         <Security />
       </div>
     </div>
