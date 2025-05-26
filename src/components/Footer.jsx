@@ -1,7 +1,10 @@
 import React from "react";
 import Logo from "./Logo";
+import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
+  const navigate = useNavigate();
+
   return (
     <footer className="w-full shadow-inner py-10 px-6 mt-20">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10 text-gray-700">
@@ -32,7 +35,7 @@ const Footer = () => {
           </form>
         </div>
         <div className="flex flex-col items-center md:items-end gap-2 text-sm underline underline-offset-2">
-          <a href="#" className="hover:text-blue-500 transition">
+          <a href="/terms" className="hover:text-blue-500 transition">
             Terms of Service
           </a>
           <a href="#" className="hover:text-blue-500 transition">

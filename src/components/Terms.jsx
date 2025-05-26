@@ -10,7 +10,7 @@ const Terms = () => {
 
       <section className="mb-10">
         <p>
-          Welcome to JobTrackr ("we", "our", or "us"). These Terms of Service
+          Welcome to JST ("we", "our", or "us"). These Terms of Service
           ("Terms") govern your access to and use of our website and services
           (collectively, the "Service"). By using the Service, you agree to be
           bound by these Terms.
@@ -144,7 +144,7 @@ const Terms = () => {
             href="mailto:support@jobtrackr.com"
             className="text-blue-600 underline"
           >
-            support@jobtrackr.com
+            support@jst.com
           </a>
         </p>
       </section>
