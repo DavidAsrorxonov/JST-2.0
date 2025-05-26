@@ -6,6 +6,7 @@ import Offer from "../components/Offer";
 import Demo from "../components/Demo";
 import { useInView } from "react-intersection-observer";
 import Security from "../components/Security";
+import Contact from "../components/Contact";
 
 const Landing = () => {
   const [activeSections, setActiveSections] = useState("home");
@@ -34,6 +35,10 @@ const Landing = () => {
     ...options,
     onChange: (inView) => inView && setActiveSections("security"),
   });
+  const [contactRef] = useInView({
+    ...options,
+    onChange: (inView) => inView && setActiveSections("contact"),
+  });
 
   return (
     <div>
@@ -52,6 +57,9 @@ const Landing = () => {
       </div>
       <div id="security" ref={securityRef}>
         <Security />
+      </div>
+      <div id="contact" ref={contactRef}>
+        <Contact />
       </div>
     </div>
   );
