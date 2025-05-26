@@ -99,7 +99,7 @@ const Contact = () => {
             </button>
           </form>
         </div>
-        <div className="flex flex-col items-center justify-center bg-yellow-100 text-yellow-500 border border-yellow-400 p-4 rounded-full shadow-lg cursor-pointer hover:bg-yellow-200 transition hover:scale-95">
+        <div className="flex flex-col items-center justify-center bg-yellow-100 text-yellow-500 border border-yellow-400 p-4 rounded-full shadow-lg cursor-pointer hover:bg-yellow-200 transition hover:scale-95 hover:rotate-180">
           <ChevronsLeftRightEllipsis size={40} />
         </div>
         <div className="flex flex-col items-center justify-center w-full mt-12 px-4">
