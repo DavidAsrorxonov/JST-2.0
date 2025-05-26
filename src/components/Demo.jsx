@@ -2,16 +2,19 @@ import { SquareArrowOutUpRight } from "lucide-react";
 import React, { useState } from "react";
 
 const Demo = () => {
-  const [demoClicked, setDemoClicked] = useState(false);
+  const [demoClicked, setDemoClicked] = useState(true);
 
   return (
-    <div className="w-full h-screen flex flex-col items-center justify-center py-20 px-6 text-black">
+    <div
+      className="w-full h-screen flex flex-col items-center justify-center py-20 px-6 text-black"
+      id="demo"
+    >
       <h1 className="text-5xl font-extrabold">Seeing is believing</h1>
       <div className="relative w-full h-full">
         <img
           src="/images/demo.jpg"
           className={`w-full h-full rounded-xl object-cover mt-10 ${
-            demoClicked ? "blur-lg" : ""
+            demoClicked ? "blur-2xl" : ""
           }`}
         />
         <div className="absolute inset-0 flex items-center justify-center">

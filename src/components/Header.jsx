@@ -5,11 +5,11 @@ import SignInButton from "./SignInButton";
 import RegisterButton from "./RegisterButton";
 import GetStartedButton from "./GetStartedButton";
 
-const Header = () => {
+const Header = ({ activeSections }) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [showMenu, setShowMenu] = useState(false);
 
-  const options = ["Home", "About", "Offer", "Contact"];
+  const options = ["home", "about", "offer", "demo", "contact"];
 
   return (
     <div className="flex justify-between shadow-md fixed top-0 left-0 w-full bg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-30 border border-gray-100 z-50">
@@ -22,7 +22,11 @@ const Header = () => {
             <a
               href={`#${option.toLocaleLowerCase()}`}
               key={i}
-              className="text-lg font-bold text-gray-600 hover:text-gray-800"
+              className={`text-lg capitalize font-bold ${
+                activeSections === option
+                  ? "text-blue-600 underline"
+                  : "text-gray-600 hover:text-gray-800"
+              }`}
             >
               {option}
             </a>
