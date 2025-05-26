@@ -12,7 +12,7 @@ const Header = () => {
   const options = ["Home", "About", "Contact"];
 
   return (
-    <div className="flex justify-between shadow-md fixed top-0 left-0 w-full bg-white z-50">
+    <div className="flex justify-between shadow-md fixed top-0 left-0 w-full bg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-30 border border-gray-100 z-50">
       <div>
         <Logo />
       </div>
