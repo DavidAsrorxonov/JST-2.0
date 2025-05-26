@@ -4,7 +4,10 @@ import Card from "./Card";
 
 const SecondPart = () => {
   return (
-    <div className="w-full flex flex-col items-center justify-center mt-10 h-screen">
+    <div
+      className="w-full flex flex-col items-center justify-center mt-10 h-screen"
+      id="about"
+    >
       <h1 className="text-5xl font-bold">About us</h1>
       <div className="w-full h-screen flex flex-col md:flex-row items-center justify-around text-lg font-semibold text-center px-6 py-12 space-y-10 md:space-y-0 gap-4">
         <Card

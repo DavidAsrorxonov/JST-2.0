@@ -16,7 +16,10 @@ const Hero = () => {
   }, []);
 
   return (
-    <div className="w-full flex items-center justify-center mt-5 h-screen relative">
+    <div
+      className="w-full flex items-center justify-center mt-5 h-screen relative"
+      id="home"
+    >
       <div className="w-[70%]">
         <img
           src="/images/hero.PNG"

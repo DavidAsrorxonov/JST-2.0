@@ -9,7 +9,7 @@ const Header = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [showMenu, setShowMenu] = useState(false);
 
-  const options = ["Home", "About", "Contact"];
+  const options = ["Home", "About", "Offer", "Contact"];
 
   return (
     <div className="flex justify-between shadow-md fixed top-0 left-0 w-full bg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-30 border border-gray-100 z-50">
@@ -20,7 +20,7 @@ const Header = () => {
         <div className="flex items-center gap-7">
           {options.map((option, i) => (
             <a
-              href={`/${option.toLocaleLowerCase()}`}
+              href={`#${option.toLocaleLowerCase()}`}
               key={i}
               className="text-lg font-bold text-gray-600 hover:text-gray-800"
             >

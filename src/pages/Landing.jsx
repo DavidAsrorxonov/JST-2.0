@@ -2,6 +2,7 @@ import React from "react";
 import Header from "../components/Header";
 import Hero from "../components/Hero";
 import SecondPart from "../components/SecondPart";
+import Offer from "../components/Offer";
 
 const Landing = () => {
   return (
@@ -9,6 +10,7 @@ const Landing = () => {
       <Header />
       <Hero />
       <SecondPart />
+      <Offer />
     </div>
   );
 };
