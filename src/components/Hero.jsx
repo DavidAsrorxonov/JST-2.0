@@ -17,11 +17,11 @@ const Hero = () => {
 
   return (
     <div
-      className="relative w-full min-h-screen flex items-center justify-center bg-gradient-to-br from-white via-white to-yellow-50 px-6"
+      className="relative w-full min-h-screen flex items-center justify-center bg-gradient-to-br from-white via-white to-blue-50 px-6"
       id="home"
     >
-      <div className="absolute w-96 h-96 bg-yellow-50 opacity-30 rounded-full blur-3xl top-[-100px] left-[-100px] animate-pulse-slow"></div>
-      <div className="absolute w-96 h-96 bg-orange-50 opacity-20 rounded-full blur-3xl bottom-[-100px] right-[-100px] animate-pulse-slow"></div>
+      <div className="absolute w-96 h-96 bg-blue-50 opacity-30 rounded-full blur-3xl top-[-100px] left-[-100px] animate-pulse-slow"></div>
+      <div className="absolute w-96 h-96 bg-blue-50 opacity-20 rounded-full blur-3xl bottom-[-100px] right-[-100px] animate-pulse-slow"></div>
 
       <div className="z-10 max-w-4xl text-center">
         <h1 className="text-5xl md:text-6xl font-extrabold text-gray-900 leading-tight">

@@ -44,11 +44,11 @@ const Contact = () => {
   ];
 
   return (
-    <div className="w-full h-screen flex flex-col items-center justify-center py-20 px-6 text-black">
+    <div className="w-full min-h-screen flex flex-col items-center justify-center py-20 px-6 text-black">
       <h1 className="text-4xl md:text-5xl font-extrabold text-center tracking-tight mb-16">
         Reach out to us
       </h1>
-      <div className="flex items-center justify-around w-full h-screen">
+      <div className="w-full min-h-screen flex flex-col md:flex-row items-center justify-around px-6 py-12 space-y-10 md:space-y-0 gap-4">
         <div className="flex flex-col items-center justify-center w-full">
           <form className="flex flex-col gap-5 w-full max-w-md bg-white p-8 rounded-2xl shadow-xl border border-gray-200">
             <h1 className="text-3xl font-extrabold text-gray-800 mb-4 text-center">

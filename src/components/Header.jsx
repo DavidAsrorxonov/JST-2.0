@@ -4,10 +4,12 @@ import { Menu, X } from "lucide-react";
 import SignInButton from "./SignInButton";
 import RegisterButton from "./RegisterButton";
 import GetStartedButton from "./GetStartedButton";
+import { useNavigate } from "react-router-dom";
 
 const Header = ({ activeSections }) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [showMenu, setShowMenu] = useState(false);
+  const navigate = useNavigate();
 
   const options = ["home", "about", "offer", "demo", "security", "contact"];
 
@@ -33,13 +35,22 @@ const Header = ({ activeSections }) => {
           ))}
 
           <div className="flex gap-4 mr-4">
-            <SignInButton content={"Sign In"} />
-            <RegisterButton content={"Register"} />
+            {/* <div onClick={() => navigate("/auth/login")}>
+              <SignInButton content={"Sign In"} />
+            </div>
+            <div onClick={() => navigate("/auth/register")}>
+              <RegisterButton content={"Register"} />
+            </div> */}
+            <div onClick={() => navigate("/auth")}>
+              <GetStartedButton />
+            </div>
           </div>
         </div>
       ) : (
         <div className="flex gap-4 items-center justify-center">
-          <GetStartedButton />
+          <div onClick={() => navigate("/auth")}>
+            <GetStartedButton />
+          </div>
           <div
             className="flex items-center justify-center cursor-pointer px-2 py-2 bg-gray-300 hover:bg-gray-400 rounded-full transition-all duration-300"
             onClick={() => setShowMenu(!showMenu)}
