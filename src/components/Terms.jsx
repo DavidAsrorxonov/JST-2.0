@@ -1,6 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { addToast } from "@heroui/toast";
 
 const Terms = () => {
+  const [checked, setChecked] = useState(false);
+  const [saveButtonVisible, setSaveButtonVisible] = useState(false);
+
+  useEffect(() => {
+    const handleBeforeUnload = (e) => {
+      if (!checked) {
+        e.preventDefault();
+        e.returnValue = ""; // Required for Chrome to show confirmation
+      }
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, [checked]);
+
   return (
     <div className="max-w-4xl mx-auto px-6 py-16 text-gray-800">
       <h1 className="text-4xl font-bold mb-6 text-center">Terms of Service</h1>
@@ -148,6 +167,43 @@ const Terms = () => {
           </a>
         </p>
       </section>
+
+      <p className="text-center text-sm text-gray-500 mt-8">
+        Last updated: May 24, 2025
+      </p>
+      <div className="w-full flex items-start justify-center mt-6 px-4">
+        <label className="flex items-start gap-3 max-w-2xl">
+          <input
+            type="checkbox"
+            className="mt-1 accent-blue-600 w-5 h-5 cursor-pointer"
+            checked={checked}
+            onChange={(e) => {
+              setChecked(e.target.checked);
+              setSaveButtonVisible(e.target.checked);
+            }}
+          />
+          <p className="text-sm text-gray-600 leading-relaxed">
+            After carefully reading the Terms, I acknowledge that I have read,
+            understood, and agree to be bound by these Terms of Service.
+          </p>
+        </label>
+      </div>
+      {saveButtonVisible && (
+        <div
+          className="w-full flex items-center justify-center mt-6 px-4"
+          onClick={() =>
+            addToast({
+              title: "Terms Accepted",
+              description: "Thank you for accepting the terms of service.",
+              color: "success",
+            })
+          }
+        >
+          <button className="w-fit px-4 py-2 bg-blue-100 text-blue-500 border border-blue-300 rounded-lg hover:bg-blue-200 transition-colors">
+            Save the changes
+          </button>
+        </div>
+      )}
     </div>
   );
 };

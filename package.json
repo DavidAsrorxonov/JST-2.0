@@ -12,8 +12,9 @@
   "dependencies": {
     "@heroui/system": "^2.4.15",
     "@heroui/theme": "^2.4.15",
+    "@heroui/toast": "^2.0.9",
     "@heroui/tooltip": "^2.2.16",
-    "framer-motion": "^12.12.2",
+    "framer-motion": "^12.14.0",
     "gsap": "^3.13.0",
     "lucide-react": "^0.511.0",
     "react": "^19.1.0",

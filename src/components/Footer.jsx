@@ -35,10 +35,18 @@ const Footer = () => {
           </form>
         </div>
         <div className="flex flex-col items-center md:items-end gap-2 text-sm underline underline-offset-2">
-          <a href="/terms" className="hover:text-blue-500 transition">
+          <a
+            href="/terms"
+            className="hover:text-blue-500 transition"
+            target="_blank"
+          >
             Terms of Service
           </a>
-          <a href="/privacy" className="hover:text-blue-500 transition">
+          <a
+            href="/privacy"
+            className="hover:text-blue-500 transition"
+            target="_blank"
+          >
             Privacy Policy
           </a>
         </div>

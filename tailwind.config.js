@@ -4,7 +4,7 @@ export default {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
-    "./node_modules/@heroui/theme/dist/components/popover.js"
+    "./node_modules/@heroui/theme/dist/components/(toast|popover|spinner).js"
   ],
   theme: {
     extend: {
