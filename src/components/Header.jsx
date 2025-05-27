@@ -41,9 +41,7 @@ const Header = ({ activeSections }) => {
             <div onClick={() => navigate("/auth/register")}>
               <RegisterButton content={"Register"} />
             </div> */}
-            <div onClick={() => navigate("/auth")}>
-              <GetStartedButton />
-            </div>
+            <GetStartedButton />
           </div>
         </div>
       ) : (
