@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import Logo from "./Logo";
 import { Menu, X } from "lucide-react";
-import SignInButton from "./SignInButton";
-import RegisterButton from "./RegisterButton";
 import GetStartedButton from "./GetStartedButton";
 import { useNavigate } from "react-router-dom";
 
@@ -35,12 +33,6 @@ const Header = ({ activeSections }) => {
           ))}
 
           <div className="flex gap-4 mr-4">
-            {/* <div onClick={() => navigate("/auth/login")}>
-              <SignInButton content={"Sign In"} />
-            </div>
-            <div onClick={() => navigate("/auth/register")}>
-              <RegisterButton content={"Register"} />
-            </div> */}
             <GetStartedButton />
           </div>
         </div>
