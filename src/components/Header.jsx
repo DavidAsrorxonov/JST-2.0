@@ -50,19 +50,23 @@ const Header = ({ activeSections }) => {
       )}
 
       {showMenu && (
-        <div className="absolute top-0 left-0 w-full h-fit bg-gray-700 rounded-b-lg bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-10 border border-gray-100 z-50">
+        <div className="absolute top-0 left-0 w-full h-fit bg-gray-200 rounded-b-[30px] border border-gray-100 z-50">
           <div className="flex flex-col justify-center items-center gap-4 p-4 font-bold text-2xl">
             <div
-              className="flex items-center ml-auto w-fit p-2 bg-gray-200 rounded-full cursor-pointer hover:bg-gray-300 transition-all duration-300"
+              className="flex items-center ml-auto w-fit p-2 bg-gray-300 rounded-full cursor-pointer hover:bg-gray-400 transition-all duration-300"
               onClick={() => setShowMenu(false)}
             >
               <X />
             </div>
             {options.map((option, i) => (
               <a
-                href={`/${option.toLocaleLowerCase()}`}
+                href={`#${option.toLocaleLowerCase()}`}
                 key={i}
-                className="flex justify-center items-center text-gray-600 hover:text-gray-800 py-2 w-full rounded-lg"
+                className={`flex capitalize justify-center items-center ${
+                  activeSections === option
+                    ? "text-blue-600 underline"
+                    : "text-gray-600 hover:text-gray-800"
+                }  py-2 w-full rounded-lg`}
               >
                 {option}
               </a>
