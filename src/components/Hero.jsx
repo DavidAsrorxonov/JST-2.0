@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import "../styles/Hero.css";
 import GetStartedButton from "./GetStartedButton";
 import { ChevronsDown } from "lucide-react";
 
@@ -17,44 +16,37 @@ const Hero = () => {
 
   return (
     <div
-      className="w-full flex items-center justify-center mt-5 h-screen relative"
+      className="relative w-full h-screen flex items-center justify-center bg-gradient-to-br from-white via-amber-50 to-yellow-100 overflow-hidden px-6"
       id="home"
     >
-      <div className="w-[70%]">
-        <img
-          src="/images/hero.PNG"
-          className="w-full h-[750px] blur-sm rounded-3xl"
-          alt="Hero"
-        />
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 gap-4 px-4">
-          <div className="text-white text-6xl font-bold text-center">
-            Track Your Job Applications{" "}
-            <span className="glowing">Effortlessly</span>
-          </div>
-          <span className="text-white text-xl text-center flex mt-10">
-            Stay organized and on top of your job search with our intuitive
-            application tracker. Manage your applications, track progress, and
-            never miss an opportunity.
+      {/* Background blobs */}
+      <div className="absolute w-96 h-96 bg-yellow-300 opacity-30 rounded-full blur-3xl top-[-100px] left-[-100px] animate-pulse-slow"></div>
+      <div className="absolute w-96 h-96 bg-orange-200 opacity-20 rounded-full blur-3xl bottom-[-100px] right-[-100px] animate-pulse-slow"></div>
+
+      <div className="z-10 max-w-4xl text-center">
+        <h1 className="text-5xl md:text-6xl font-extrabold text-gray-900 leading-tight">
+          Track Your Job Applications{" "}
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600">
+            Effortlessly
           </span>
-          <div className="flex items-center justify-center mt-10">
-            <div className="w-[20%]">
-              <GetStartedButton />
-            </div>
+        </h1>
+        <p className="mt-6 text-lg md:text-xl text-gray-800 animate-fade-in">
+          Stay organized and on top of your job search with our smart
+          application tracker. Visualize progress, manage tasks, and never miss
+          an opportunity.
+        </p>
+        <div className="mt-10 flex justify-center animate-fade-in">
+          <div className="w-40">
+            <GetStartedButton />
           </div>
         </div>
       </div>
 
       {showScrollIndicator && (
-        <div className="absolute bottom-16 w-full flex justify-center">
-          <div className="flex flex-col items-center gap-2 animate-pulse text-white">
-            <div className="relative">
-              <div className="absolute inset-0 rounded-full bg-white opacity-10 blur-xl w-20 h-20" />
-              <ChevronsDown
-                size={60}
-                className="text-white drop-shadow-lg animate-bounce"
-              />
-            </div>
-            <span className="text-sm tracking-wide uppercase text-black/90">
+        <div className="absolute bottom-16 w-full flex justify-center z-20">
+          <div className="flex flex-col items-center gap-2 animate-pulse text-gray-800">
+            <ChevronsDown size={48} className="text-gray-700 animate-bounce" />
+            <span className="text-sm tracking-wide uppercase text-gray-700">
               Scroll to Explore
             </span>
           </div>
