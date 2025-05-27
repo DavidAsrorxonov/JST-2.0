@@ -1,25 +1,30 @@
 import React, { useEffect, useState } from "react";
 import { addToast } from "@heroui/toast";
+import ExitConfirmation from "./ExitConfirmation";
 
 const Terms = () => {
   const [checked, setChecked] = useState(false);
   const [saveButtonVisible, setSaveButtonVisible] = useState(false);
+  const [showExitModal, setIsShowExitModal] = useState(false);
 
-  useEffect(() => {
-    const handleBeforeUnload = (e) => {
-      if (!checked) {
-        e.preventDefault();
-        e.returnValue = ""; // Required for Chrome to show confirmation
-      }
-    };
+  const handleCheckboxChange = (e) => {
+    const isTryingToUncheck = !e.target.checked;
+    if (isTryingToUncheck) {
+      setIsShowExitModal(true);
+    } else {
+      setChecked(e.target.checked);
+      setSaveButtonVisible(e.target.checked);
+    }
+  };
 
-    window.addEventListener("beforeunload", handleBeforeUnload);
-
-    return () => {
-      window.removeEventListener("beforeunload", handleBeforeUnload);
-    };
-  }, [checked]);
-
+  const handleModalCancel = () => {
+    setIsShowExitModal(false);
+  };
+  const handleModalConfirm = () => {
+    setChecked(false);
+    setSaveButtonVisible(false);
+    setIsShowExitModal(false);
+  };
   return (
     <div className="max-w-4xl mx-auto px-6 py-16 text-gray-800">
       <h1 className="text-4xl font-bold mb-6 text-center">Terms of Service</h1>
@@ -177,10 +182,7 @@ const Terms = () => {
             type="checkbox"
             className="mt-1 accent-blue-600 w-5 h-5 cursor-pointer"
             checked={checked}
-            onChange={(e) => {
-              setChecked(e.target.checked);
-              setSaveButtonVisible(e.target.checked);
-            }}
+            onChange={handleCheckboxChange}
           />
           <p className="text-sm text-gray-600 leading-relaxed">
             After carefully reading the Terms, I acknowledge that I have read,
@@ -203,6 +205,13 @@ const Terms = () => {
             Save the changes
           </button>
         </div>
+      )}
+
+      {showExitModal && (
+        <ExitConfirmation
+          onCancel={handleModalCancel}
+          onConfirm={handleModalConfirm}
+        />
       )}
     </div>
   );
