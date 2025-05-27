@@ -94,10 +94,10 @@ const Offer = () => {
 
   return (
     <div
-      className="w-full min-h-screen flex flex-col items-center justify-center py-20 px-6 text-black bg-gradient-to-br from-white via-slate-50 to-white"
+      className="w-full min-h-screen flex flex-col items-center justify-center py-20 px-6 text-black bg-gradient-to-br from-white via-slate-50 to-white mt-10"
       id="offer"
     >
-      <h1 className="text-4xl md:text-5xl font-extrabold text-center mb-4 tracking-tight">
+      <h1 className="text-4xl md:text-5xl font-extrabold text-center tracking-tight">
         What We Offer
       </h1>
       <p className="text-center max-w-2xl mb-16 text-gray-600 text-lg">

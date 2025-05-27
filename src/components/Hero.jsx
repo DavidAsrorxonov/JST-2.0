@@ -17,16 +17,16 @@ const Hero = () => {
 
   return (
     <div
-      className="relative w-full h-screen flex items-center justify-center bg-gradient-to-br from-white via-amber-50 to-yellow-100 overflow-hidden px-6"
+      className="relative w-full min-h-screen flex items-center justify-center bg-gradient-to-br from-white via-white to-yellow-50 px-6"
       id="home"
     >
-      <div className="absolute w-96 h-96 bg-yellow-300 opacity-30 rounded-full blur-3xl top-[-100px] left-[-100px] animate-pulse-slow"></div>
-      <div className="absolute w-96 h-96 bg-orange-200 opacity-20 rounded-full blur-3xl bottom-[-100px] right-[-100px] animate-pulse-slow"></div>
+      <div className="absolute w-96 h-96 bg-yellow-50 opacity-30 rounded-full blur-3xl top-[-100px] left-[-100px] animate-pulse-slow"></div>
+      <div className="absolute w-96 h-96 bg-orange-50 opacity-20 rounded-full blur-3xl bottom-[-100px] right-[-100px] animate-pulse-slow"></div>
 
       <div className="z-10 max-w-4xl text-center">
         <h1 className="text-5xl md:text-6xl font-extrabold text-gray-900 leading-tight">
           Track Your Job Applications{" "}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-amber-400">
+          <span className="glowing text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-amber-400">
             Effortlessly
           </span>
         </h1>

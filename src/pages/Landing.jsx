@@ -47,10 +47,10 @@ const Landing = () => {
       <div id="home" ref={homeRef}>
         <Hero />
       </div>
-      <div id="about" ref={aboutRef}>
+      <div id="about" ref={aboutRef} className="w-full block">
         <SecondPart />
       </div>
-      <div id="offer" ref={offerRef}>
+      <div id="offer" ref={offerRef} className="w-full block">
         <Offer />
       </div>
       <div id="demo" ref={demoRef}>
