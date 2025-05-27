@@ -12,7 +12,7 @@ import Register from "./components/Register";
 const App = () => {
   return (
     <HeroUIProvider>
-      <ToastProvider />
+      <ToastProvider placement="top-center" />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Landing />} />
