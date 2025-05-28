@@ -55,7 +55,7 @@ const Register = () => {
 
   return (
     <div className="flex flex-col items-center justify-center py-20 px-6 text-black">
-      <div className="w-[50%] h-full flex flex-col items-center justify-center py-10 px-6 rounded-lg shadow-lg border border-gray-200">
+      <div className="w-full md:w-[50%] h-full flex flex-col items-center justify-center py-10 px-6 rounded-lg shadow-lg border border-gray-200">
         <NavigationButtons />
         <h1 className="text-4xl font-extrabold mb-10">Create Account</h1>
         <div className="flex gap-4 w-full max-w-sm mb-4">

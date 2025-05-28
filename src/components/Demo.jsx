@@ -9,12 +9,14 @@ const Demo = () => {
       className="w-full h-screen flex flex-col items-center justify-center py-20 px-6 text-black"
       id="demo"
     >
-      <h1 className="text-4xl font-extrabold">Seeing is believing</h1>
+      <h1 className="text-4xl md:text-5xl font-extrabold">
+        Seeing is believing
+      </h1>
       <div className="relative w-full h-full">
         <img
           src="/images/demo.jpg"
           className={`w-full h-full rounded-xl object-cover mt-10 ${
-            demoClicked ? "blur-2xl" : ""
+            demoClicked ? "blur-2xl rounded-xl" : ""
           }`}
         />
         <div className="absolute inset-0 flex items-center justify-center">

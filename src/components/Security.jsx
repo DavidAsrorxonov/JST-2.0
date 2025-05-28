@@ -43,7 +43,7 @@ const Security = () => {
 
   return (
     <div
-      className="w-full min-h-screen flex flex-col items-center justify-center py-20 px-6 text-black bg-gradient-to-br from-white via-slate-50 to-white"
+      className="w-full min-h-screen flex flex-col items-center justify-center py-20 px-6 text-black"
       id="security"
     >
       <h1 className="text-4xl md:text-5xl font-extrabold text-center mb-4 tracking-tight">
