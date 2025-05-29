@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { CircleHelp, Eye, EyeOff } from "lucide-react";
+import { CircleHelp, Eye, EyeOff, TriangleAlert } from "lucide-react";
 import { addToast } from "@heroui/toast";
 import NavigationButtons from "./NavigationButtons";
 import axios from "axios";
@@ -107,6 +107,14 @@ const Register = () => {
     <div className="flex flex-col items-center justify-center py-20 px-6 text-black">
       <div className="w-full md:w-[50%] h-full flex flex-col items-center justify-center py-10 px-6 rounded-lg shadow-lg border border-gray-200">
         <NavigationButtons />
+        <div className="flex items-center gap-2 p-3 rounded-md bg-yellow-100 border border-yellow-300 text-yellow-800 text-sm font-semibold">
+          <TriangleAlert size={20} className="text-yellow-600" />
+          <span>
+            Please enter a valid email address. We’ll send important updates
+            there.
+          </span>
+        </div>
+
         <h1 className="text-4xl font-extrabold mb-10">Create Account</h1>
         <div className="flex flex-col w-full max-w-sm space-y-4 mb-4">
           <label className="font-bold">Full Name</label>
