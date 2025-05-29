@@ -6,6 +6,7 @@ import axios from "axios";
 import getPasswordStrength from "../lib/utils/passwordStrength";
 import PasswordDetails from "../lib/utils/PasswordDetails";
 import validatePassword from "../lib/utils/passwordValidator";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [firstName, setFirstName] = useState("");
@@ -18,6 +19,8 @@ const Register = () => {
   const [passwordErrors, setPasswordErrors] = useState([]);
 
   const strength = getPasswordStrength(password);
+
+  const navigate = useNavigate();
 
   const payload = {
     firstName,
@@ -72,6 +75,21 @@ const Register = () => {
           timeout: 2000,
           shouldShowTimeoutProgress: true,
         });
+
+        setTimeout(() => {
+          addToast({
+            title: "Redirecting",
+            description:
+              "You will be redirected to the login page in 3 seconds.",
+            color: "primary",
+            timeout: 3000,
+            shouldShowTimeoutProgress: true,
+          });
+
+          setTimeout(() => {
+            navigate("/auth/login");
+          }, 3000);
+        }, 2000);
       }
     } catch (error) {
       if (error.response && error.response.status === 409) {
