@@ -26,9 +26,7 @@ const Register = () => {
     password,
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
+  const handleSubmit = async () => {
     try {
       if (!firstName || !lastName || !email || !password || !confirmPassword) {
         addToast({
@@ -74,7 +72,9 @@ const Register = () => {
           timeout: 2000,
           shouldShowTimeoutProgress: true,
         });
-      } else if (response.status === 409) {
+      }
+    } catch (error) {
+      if (error.response && error.response.status === 409) {
         addToast({
           title: "Error",
           description: "Email is already registered.",
@@ -82,10 +82,25 @@ const Register = () => {
           timeout: 2000,
           shouldShowTimeoutProgress: true,
         });
+      } else {
+        addToast({
+          title: "Error",
+          description: "An error occurred during registration.",
+          color: "danger",
+          timeout: 2000,
+          shouldShowTimeoutProgress: true,
+        });
       }
-    } catch (error) {
       console.log(error);
     }
+  };
+
+  const resetFields = () => {
+    setFirstName("");
+    setLastName("");
+    setEmail("");
+    setPassword("");
+    setConfirmPassword("");
   };
 
   return (
@@ -93,6 +108,9 @@ const Register = () => {
       <div className="w-full md:w-[50%] h-full flex flex-col items-center justify-center py-10 px-6 rounded-lg shadow-lg border border-gray-200">
         <NavigationButtons />
         <h1 className="text-4xl font-extrabold mb-10">Create Account</h1>
+        <div className="flex flex-col w-full max-w-sm space-y-4 mb-4">
+          <label className="font-bold">Full Name</label>
+        </div>
         <div className="flex gap-4 w-full max-w-sm mb-4">
           <input
             value={firstName}
@@ -198,7 +216,10 @@ const Register = () => {
         </div>
         <button
           className="p-3 w-full max-w-sm bg-blue-100 border border-blue-500 text-black rounded-lg font-bold hover:bg-blue-200 transition-all duration-300"
-          onClick={handleSubmit}
+          onClick={() => {
+            handleSubmit();
+            resetFields();
+          }}
         >
           Register
         </button>
