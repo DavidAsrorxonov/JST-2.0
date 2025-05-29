@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 import { addToast } from "@heroui/toast";
 import NavigationButtons from "./NavigationButtons";
+import axios from "axios";
 
 const getPasswordStrength = (password) => {
   if (password.length < 6) return { label: "Weak", color: "text-red-500" };
@@ -25,32 +26,63 @@ const Register = () => {
 
   const strength = getPasswordStrength(password);
 
-  const handleSubmit = (e) => {
+  const payload = {
+    firstName,
+    lastName,
+    email,
+    password,
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!firstName || !lastName || !email || !password || !confirmPassword) {
-      addToast({
-        title: "Error",
-        description: "Please fill in all fields.",
-        color: "danger",
-        timeout: 2000,
-        shouldShowTimeoutProgress: true,
-      });
-      return;
-    }
+    try {
+      if (!firstName || !lastName || !email || !password || !confirmPassword) {
+        addToast({
+          title: "Error",
+          description: "Please fill in all fields.",
+          color: "danger",
+          timeout: 2000,
+          shouldShowTimeoutProgress: true,
+        });
+        return;
+      }
 
-    if (password !== confirmPassword) {
-      addToast({
-        title: "Error",
-        description: "Passwords do not match.",
-        color: "danger",
-        timeout: 2000,
-        shouldShowTimeoutProgress: true,
-      });
-      return;
-    }
+      if (password !== confirmPassword) {
+        addToast({
+          title: "Error",
+          description: "Passwords do not match.",
+          color: "danger",
+          timeout: 2000,
+          shouldShowTimeoutProgress: true,
+        });
+        return;
+      }
+      const response = await axios.post(
+        "http://localhost:3000/auth/register",
+        payload
+      );
 
-    console.log("Registering:", { firstName, lastName, email, password });
+      if (response.status === 201) {
+        addToast({
+          title: "Success",
+          description: "User registered successfully.",
+          color: "success",
+          timeout: 2000,
+          shouldShowTimeoutProgress: true,
+        });
+      } else if (response.status === 409) {
+        addToast({
+          title: "Error",
+          description: "Email is already registered.",
+          color: "danger",
+          timeout: 2000,
+          shouldShowTimeoutProgress: true,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -113,7 +145,7 @@ const Register = () => {
             )}
           </div>
           <p className={`text-sm font-semibold ${strength.color}`}>
-            {password !== "" && <p>Strength: {strength.label}</p>}
+            {password !== "" && <div>Strength: {strength.label}</div>}
           </p>
         </div>
         <div className="flex flex-col w-full max-w-sm space-y-4 mb-8">
