@@ -50,8 +50,8 @@ const Security = () => {
         Security & Privacy
       </h1>
       <p className="text-center max-w-2xl mb-16 text-gray-600 text-lg">
-        Your trust is our top priority. We've built JobTrackr with security and
-        data protection at its core to give you complete peace of mind.
+        Your trust is our top priority. We've built JST with security and data
+        protection at its core to give you complete peace of mind.
       </p>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-5xl mx-auto">
         {cardsInfo.map((card, idx) => (
