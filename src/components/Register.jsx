@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { CircleHelp, Eye, EyeOff, TriangleAlert } from "lucide-react";
+import { CircleHelp, Eye, EyeOff, MoveLeft, TriangleAlert } from "lucide-react";
 import { addToast } from "@heroui/toast";
 import NavigationButtons from "./NavigationButtons";
 import axios from "axios";
@@ -107,7 +107,7 @@ const Register = () => {
     <div className="flex flex-col items-center justify-center py-20 px-6 text-black">
       <div className="w-full md:w-[50%] h-full flex flex-col items-center justify-center py-10 px-6 rounded-lg shadow-lg border border-gray-200">
         <NavigationButtons />
-        <div className="flex items-center gap-2 p-3 rounded-md bg-yellow-100 border border-yellow-300 text-yellow-800 text-sm font-semibold">
+        <div className="flex items-center gap-2 p-3 rounded-md bg-yellow-100 border border-yellow-300 text-yellow-800 text-sm font-semibold mb-2">
           <TriangleAlert size={20} className="text-yellow-600" />
           <span>
             Please enter a valid email address. We’ll send important updates
@@ -154,11 +154,12 @@ const Register = () => {
               Password
             </label>
             <div
-              className="relative"
+              className="relative flex items-center gap-4"
               onMouseEnter={() => setPasswordDetails(true)}
               onMouseLeave={() => setPasswordDetails(false)}
             >
               <CircleHelp size={15} className="cursor-pointer" />
+              <MoveLeft size={15} className="cursor-pointer animate-wiggleX" />
               {passwordDetails && (
                 <div className="absolute top-full left-1 mt-2 z-10 bg-white border border-gray-300 shadow-lg rounded-md p-3 w-96">
                   <PasswordDetails />
