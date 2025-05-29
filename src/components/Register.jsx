@@ -1,20 +1,11 @@
 import React, { useState } from "react";
-import { Eye, EyeOff } from "lucide-react";
+import { CircleHelp, Eye, EyeOff } from "lucide-react";
 import { addToast } from "@heroui/toast";
 import NavigationButtons from "./NavigationButtons";
 import axios from "axios";
-
-const getPasswordStrength = (password) => {
-  if (password.length < 6) return { label: "Weak", color: "text-red-500" };
-  if (
-    password.match(/[A-Z]/) &&
-    password.match(/[0-9]/) &&
-    password.length >= 8
-  ) {
-    return { label: "Strong", color: "text-green-500" };
-  }
-  return { label: "Medium", color: "text-yellow-500" };
-};
+import getPasswordStrength from "../lib/utils/passwordStrength";
+import PasswordDetails from "../lib/utils/PasswordDetails";
+import validatePassword from "../lib/utils/passwordValidator";
 
 const Register = () => {
   const [firstName, setFirstName] = useState("");
@@ -23,6 +14,8 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [passwordDetails, setPasswordDetails] = useState(false);
+  const [passwordErrors, setPasswordErrors] = useState([]);
 
   const strength = getPasswordStrength(password);
 
@@ -52,6 +45,16 @@ const Register = () => {
         addToast({
           title: "Error",
           description: "Passwords do not match.",
+          color: "danger",
+          timeout: 2000,
+          shouldShowTimeoutProgress: true,
+        });
+        return;
+      }
+      if (passwordErrors.length > 0) {
+        addToast({
+          title: "Error",
+          description: "Password requirements not met.",
           color: "danger",
           timeout: 2000,
           shouldShowTimeoutProgress: true,
@@ -120,13 +123,33 @@ const Register = () => {
           />
         </div>
         <div className="flex flex-col w-full max-w-sm space-y-2 mb-4">
-          <label htmlFor="password" className="font-bold">
-            Password
-          </label>
+          <div className="relative flex items-center gap-1">
+            <label htmlFor="password" className="font-bold">
+              Password
+            </label>
+            <div
+              className="relative"
+              onMouseEnter={() => setPasswordDetails(true)}
+              onMouseLeave={() => setPasswordDetails(false)}
+            >
+              <CircleHelp size={15} className="cursor-pointer" />
+              {passwordDetails && (
+                <div className="absolute top-full left-1 mt-2 z-10 bg-white border border-gray-300 shadow-lg rounded-md p-3 w-96">
+                  <PasswordDetails />
+                </div>
+              )}
+            </div>
+          </div>
           <div className="relative">
             <input
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => {
+                const value = e.target.value;
+                setPassword(value);
+
+                const result = validatePassword(value);
+                setPasswordErrors(Array.isArray(result) ? result : []);
+              }}
               type={isPasswordVisible ? "text" : "password"}
               name="password"
               placeholder="Create a password"
@@ -144,11 +167,18 @@ const Register = () => {
               />
             )}
           </div>
-          <p className={`text-sm font-semibold ${strength.color}`}>
+          <div className={`text-sm font-semibold ${strength.color}`}>
             {password !== "" && <div>Strength: {strength.label}</div>}
-          </p>
+            {passwordErrors.length > 0 && (
+              <ul className="text-sm text-red-500 font-medium space-y-1 mt-1">
+                {passwordErrors.map((err, idx) => (
+                  <li key={idx}>• {err}</li>
+                ))}
+              </ul>
+            )}
+          </div>
         </div>
-        <div className="flex flex-col w-full max-w-sm space-y-4 mb-8">
+        <div className="flex flex-col w-full max-w-sm space-y-2 mb-8">
           <label htmlFor="confirmPassword" className="font-bold">
             Confirm Password
           </label>
@@ -160,6 +190,11 @@ const Register = () => {
             placeholder="Re-enter your password"
             className="p-3 rounded-lg bg-blue-50 border border-blue-300 outline-blue-500 focus:outline-blue-500 transition-all duration-300"
           />
+          {password.length > 0 && password !== confirmPassword && (
+            <div className="text-red-500 text-sm font-semibold">
+              Passwords do not match
+            </div>
+          )}
         </div>
         <button
           className="p-3 w-full max-w-sm bg-blue-100 border border-blue-500 text-black rounded-lg font-bold hover:bg-blue-200 transition-all duration-300"
