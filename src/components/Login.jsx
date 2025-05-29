@@ -2,6 +2,7 @@ import { Eye, EyeOff } from "lucide-react";
 import React, { useState } from "react";
 import { addToast } from "@heroui/toast";
 import NavigationButtons from "./NavigationButtons";
+import axios from "axios";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -9,8 +10,12 @@ const Login = () => {
   const [remembersPassword, setRemembersPassword] = useState(false);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const payload = {
+    email,
+    password,
+  };
+
+  const handleSubmit = async () => {
     if (!email || !password) {
       addToast({
         title: "Error",
@@ -21,6 +26,46 @@ const Login = () => {
         shouldShowTimeoutProgress: true,
       });
       return;
+    }
+
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/auth/login",
+        payload
+      );
+
+      if (response.status === 200) {
+        addToast({
+          title: "Success",
+          description: "Login successful",
+          color: "success",
+          variant: "flat",
+          timeout: 2000,
+          shouldShowTimeoutProgress: true,
+        });
+      }
+    } catch (error) {
+      if (error.response) {
+        if (error.response.status === 401) {
+          addToast({
+            title: "Error",
+            description: "Invalid email or password",
+            color: "danger",
+            variant: "flat",
+            timeout: 2000,
+            shouldShowTimeoutProgress: true,
+          });
+        } else if (error.response.status === 429) {
+          addToast({
+            title: "Error",
+            description: "Too many wrong attemps, please try again later",
+            color: "danger",
+            variant: "flat",
+            timeout: 2000,
+            shouldShowTimeoutProgress: true,
+          });
+        }
+      }
     }
 
     console.log("Email and Password", email, password);
