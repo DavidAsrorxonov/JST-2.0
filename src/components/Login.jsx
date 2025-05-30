@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import { addToast } from "@heroui/toast";
 import NavigationButtons from "./NavigationButtons";
 import axios from "axios";
+import { useUser } from "../context/userContext";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -10,10 +12,8 @@ const Login = () => {
   const [remembersPassword, setRemembersPassword] = useState(false);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
-  const payload = {
-    email,
-    password,
-  };
+  const { login } = useUser();
+  const navigate = useNavigate();
 
   const handleSubmit = async () => {
     if (!email || !password) {
@@ -28,43 +28,47 @@ const Login = () => {
       return;
     }
 
-    try {
-      const response = await axios.post(
-        "http://localhost:3000/auth/login",
-        payload
-      );
+    const response = await login(email, password);
 
-      if (response.status === 200) {
+    if (response.success) {
+      addToast({
+        title: "Success",
+        description: "Login successful",
+        color: "success",
+        variant: "flat",
+        timeout: 2000,
+        shouldShowTimeoutProgress: true,
+      });
+
+      navigate("/dashboard");
+    } else {
+      if (response.status === 401) {
         addToast({
-          title: "Success",
-          description: "Login successful",
-          color: "success",
+          title: "Error",
+          description: "Invalid email or password",
+          color: "danger",
           variant: "flat",
           timeout: 2000,
           shouldShowTimeoutProgress: true,
         });
-      }
-    } catch (error) {
-      if (error.response) {
-        if (error.response.status === 401) {
-          addToast({
-            title: "Error",
-            description: "Invalid email or password",
-            color: "danger",
-            variant: "flat",
-            timeout: 2000,
-            shouldShowTimeoutProgress: true,
-          });
-        } else if (error.response.status === 429) {
-          addToast({
-            title: "Error",
-            description: "Too many wrong attemps, please try again later",
-            color: "danger",
-            variant: "flat",
-            timeout: 2000,
-            shouldShowTimeoutProgress: true,
-          });
-        }
+      } else if (response.status === 429) {
+        addToast({
+          title: "Error",
+          description: "Too many wrong attempts, please try again later",
+          color: "danger",
+          variant: "flat",
+          timeout: 2000,
+          shouldShowTimeoutProgress: true,
+        });
+      } else {
+        addToast({
+          title: "Error",
+          description: result.message || "Something went wrong",
+          color: "danger",
+          variant: "flat",
+          timeout: 2000,
+          shouldShowTimeoutProgress: true,
+        });
       }
     }
 
