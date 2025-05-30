@@ -1,4 +1,4 @@
-import React from "react";
+import DashboardHeader from "../components/dashboard/DashboardHeader";
 import { useUser } from "../context/userContext";
 
 const Dashboard = () => {
@@ -7,9 +7,7 @@ const Dashboard = () => {
 
   return (
     <div>
-      Welcome back,{" "}
-      {user?.firstName ? user.firstName : JSON.parse(backupUser).firstName}{" "}
-      {user?.lastName ? user.lastName : JSON.parse(backupUser).lastName}!
+      <DashboardHeader />
     </div>
   );
 };
