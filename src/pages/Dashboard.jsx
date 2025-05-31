@@ -1,3 +1,4 @@
+import DashboardBody from "../components/dashboard/DashboardBody";
 import DashboardHeader from "../components/dashboard/DashboardHeader";
 import { useUser } from "../context/userContext";
 
@@ -8,6 +9,7 @@ const Dashboard = () => {
   return (
     <div>
       <DashboardHeader />
+      <DashboardBody />
     </div>
   );
 };

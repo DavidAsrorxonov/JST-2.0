@@ -4,7 +4,7 @@ import React from "react";
 const Input = () => {
   return (
     <div className="w-full flex items-center justify-center">
-      <div className="relative w-full max-w-md">
+      <div className="relative w-full">
         <Search
           size={25}
           className="absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-600"
