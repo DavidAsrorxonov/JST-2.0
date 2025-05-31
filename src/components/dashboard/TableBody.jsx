@@ -46,6 +46,7 @@ const TableBody = () => {
     try {
       const jobsWithUserId = newRow.map((row) => ({
         ...row,
+        website_url: row.website_url || null,
         user_id: id,
       }));
 
@@ -92,7 +93,9 @@ const TableBody = () => {
             <td className="p-3">{applied_at.split("T")[0]}</td>
             <td className="p-3">{job_status}</td>
             <td className="p-3">{job_type}</td>
-            <td className="p-3">{website_url}</td>
+            <td className="p-3">
+              {website_url ? website_url : "Not provided"}
+            </td>
           </tr>
         )
       )}
@@ -129,7 +132,7 @@ const TableBody = () => {
                 handleInputChange(index, "applied_at", e.target.value)
               }
               className="px-2 py-1 w-full"
-              placeholder="YYYY/MM/DD"
+              placeholder="YYYY-MM-DD"
             />
           </td>
           <td>
