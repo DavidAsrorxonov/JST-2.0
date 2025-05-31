@@ -7,12 +7,12 @@ const Input = () => {
       <div className="relative w-full">
         <Search
           size={25}
-          className="absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-600"
+          className="absolute top-1/2 left-3 transform -translate-y-1/2 text-[#47569E]"
         />
         <input
           type="text"
           placeholder="Search"
-          className="w-full p-2 pl-10 rounded-xl bg-gray-100 outline-none"
+          className="w-full p-2 pl-10 rounded-xl bg-[#E7E9F4] outline-none placeholder:text-[#47569E]"
         />
       </div>
     </div>
