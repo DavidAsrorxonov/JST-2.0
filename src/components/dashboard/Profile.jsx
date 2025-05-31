@@ -1,76 +1,81 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useUser } from "../../context/userContext";
-import axios from "axios";
 
 const Profile = () => {
   const [userDetailModalOpen, setUserDetailModalOpen] = useState(false);
-  const [selectedBgColor, setSelectedBgColor] = useState("");
-  //   const [file, setFile] = useState(null);
+  const [selectedBgColor, setSelectedBgColor] = useState("#F3F4F6");
+  const [imageURL, setImageURL] = useState(null);
 
   const { user } = useUser();
   const backupUser = localStorage.getItem("user");
+
   const profileName = user
     ? user.firstName[0].toUpperCase()
     : JSON.parse(backupUser).firstName[0].toUpperCase();
 
   const colors = [
-    "bg-red-100",
-    "bg-yellow-100",
-    "bg-green-100",
-    "bg-blue-100",
-    "bg-indigo-100",
+    { name: "Red", value: "#fee2e2" },
+    { name: "Yellow", value: "#fef9c3" },
+    { name: "Green", value: "#dcfce7" },
+    { name: "Blue", value: "#dbeafe" },
+    { name: "Indigo", value: "#e0e7ff" },
   ];
 
-  //   const handleFileChange = (e) => {
-  //     setFile(e.target.files[0]);
-  //   };
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const imageURL = URL.createObjectURL(file);
+      setImageURL(imageURL);
+      setSelectedBgColor("");
+      localStorage.setItem("profileImage", imageURL);
+      localStorage.removeItem("profileBgColor");
+    }
+  };
 
-  //   const handleUpload = async () => {
-  //     if (!file) return;
+  const handleColorChange = (color) => {
+    setSelectedBgColor(color);
+    setImageURL(null);
+    localStorage.setItem("profileBgColor", color);
+    localStorage.removeItem("profileImage");
+  };
 
-  //     const formData = new FormData();
-  //     formData.append("profile", file);
-
-  //     try {
-  //       const response = await axios.post(
-  //         "http://localhost:3000/uploads/photoUpload",
-  //         formData,
-  //         {
-  //           headers: {
-  //             "Content-Type": "multipart/form-data",
-  //           },
-  //         }
-  //       );
-
-  //       console.log("Uploaded", response.data);
-  //     } catch (error) {
-  //       console.log("Failed", error);
-  //     }
-  //   };
+  useEffect(() => {
+    const savedImageURL = localStorage.getItem("profileImage");
+    const savedColor = localStorage.getItem("profileBgColor");
+    if (savedImageURL) setImageURL(savedImageURL);
+    else if (savedColor) setSelectedBgColor(savedColor);
+  }, []);
 
   return (
     <>
       <div
-        className={`flex items-center justify-center w-12 h-12 ${
-          selectedBgColor ? selectedBgColor : "bg-gray-100"
-        } rounded-full p-5 cursor-pointer select-none`}
+        className={`flex items-center justify-center w-20 h-12 rounded-full cursor-pointer bg-center bg-cover bg-no-repeat`}
+        style={{
+          backgroundColor: imageURL ? "transparent" : selectedBgColor,
+          backgroundImage: imageURL ? `url(${imageURL})` : "none",
+        }}
         onClick={() => setUserDetailModalOpen(!userDetailModalOpen)}
       >
-        {profileName}
+        {!imageURL && (
+          <span className="text-black font-bold">{profileName}</span>
+        )}
       </div>
 
       {userDetailModalOpen && (
-        <div className="absolute top-16 right-5 bg-white shadow-xl rounded-xl p-5 w-72">
+        <div className="absolute top-16 right-5 bg-white shadow-xl rounded-xl p-5 w-72 z-50">
           <div className="flex items-center gap-4">
             <div
-              className={`${
-                selectedBgColor ? selectedBgColor : "bg-gray-100"
-              } text-black font-bold rounded-full w-12 h-12 flex items-center justify-center text-xl`}
+              className="w-14 h-14 rounded-full bg-center bg-cover bg-no-repeat flex items-center justify-center text-xl font-bold text-black"
+              style={{
+                backgroundColor: imageURL ? "transparent" : selectedBgColor,
+                backgroundImage: imageURL ? `url(${imageURL})` : "none",
+              }}
             >
-              {user
-                ? user.firstName.charAt(0) + user.lastName.charAt(0)
-                : JSON.parse(backupUser).firstName.charAt(0) +
-                  JSON.parse(backupUser).lastName.charAt(0)}
+              {!imageURL &&
+                (user
+                  ? user.firstName[0] + user.lastName[0]
+                  : JSON.parse(backupUser).firstName[0] +
+                    JSON.parse(backupUser).lastName[0])}
             </div>
             <div className="flex flex-col">
               <span className="text-lg font-semibold text-gray-800">
@@ -85,32 +90,40 @@ const Profile = () => {
               </span>
             </div>
           </div>
+
           <h1 className="text-lg font-semibold text-gray-800 mt-5">Theme</h1>
           <div className="flex items-center justify-between mt-2">
             {colors.map((color, idx) => (
-              <div key={idx} className="items-center gap-2">
-                <button
-                  value={color}
-                  onClick={() => setSelectedBgColor(color)}
-                  className={`w-8 h-8 rounded-full ${color} cursor-pointer`}
-                />
-              </div>
+              <button
+                key={idx}
+                onClick={() => handleColorChange(color.value)}
+                className={`w-8 h-8 rounded-full cursor-pointer`}
+                style={{ backgroundColor: color.value }}
+              />
             ))}
           </div>
-          <hr />
-          <span className="flex items-center justify-center text-sm text-gray-600">
-            or
-          </span>
-          <hr />
-          {/* <div className="flex flex-col gap-4">
-            <input type="file" onChange={handleFileChange} accept="image/*" />
-            <button
-              onClick={handleUpload}
-              className="bg-blue-500 text-white p-2 rounded"
+
+          <div className="flex items-center justify-between my-3">
+            <hr className="w-1/4" />
+            <span className="text-sm text-gray-500">or</span>
+            <hr className="w-1/4" />
+          </div>
+
+          <div className="flex items-center gap-2 mt-4">
+            <label
+              htmlFor="profile-upload"
+              className="cursor-pointer bg-blue-100 hover:bg-blue-200 border-blue-500 border text-blue-600 px-4 py-2 rounded-lg text-sm transition"
             >
-              Upload
-            </button>
-          </div> */}
+              Upload Profile Picture
+            </label>
+            <input
+              id="profile-upload"
+              type="file"
+              accept="image/*"
+              onChange={handleImageChange}
+              className="hidden"
+            />
+          </div>
         </div>
       )}
     </>
