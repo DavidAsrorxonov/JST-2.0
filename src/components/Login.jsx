@@ -71,8 +71,6 @@ const Login = () => {
         });
       }
     }
-
-    console.log("Email and Password", email, password);
   };
 
   return (
