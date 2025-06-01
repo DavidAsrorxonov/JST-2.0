@@ -1,10 +1,36 @@
 import { ArrowDownUp, ChevronRight, Funnel, Search, X } from "lucide-react";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useSearch } from "../../context/searchContext";
+import useSearchCommand from "../../lib/commands/searchCommand";
 
 const Input = () => {
   const { setSearchTerm } = useSearch();
   const [filteringModal, setFilteringModal] = useState(false);
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      const input = inputRef.current;
+
+      // Ctrl+K or Cmd+K to focus input
+      if ((event.ctrlKey || event.metaKey) && event.key === "k") {
+        event.preventDefault();
+        if (input) input.focus();
+      }
+
+      // Escape to clear and unfocus input
+      if (event.key === "Escape") {
+        if (input) {
+          input.value = "";
+          input.blur();
+          setSearchTerm("");
+        }
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [setSearchTerm]);
 
   return (
     <div className="w-[50%] flex items-center justify-center">
@@ -14,10 +40,11 @@ const Input = () => {
           className="absolute top-1/2 left-3 transform -translate-y-1/2 text-[#47569E]"
         />
         <input
+          ref={inputRef}
           type="text"
           placeholder="Search"
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full p-2 pl-10 rounded-xl bg-[#E7E9F4] outline-none placeholder:text-[#47569E] search-input"
+          className="w-full p-2 pl-10 rounded-xl bg-[#E7E9F4] outline-none placeholder:text-[#47569E]"
         />
       </div>
       <div className="ml-3 px-2 w-10 h-10 rounded-xl flex items-center justify-center bg-[#E7E9F4] hover:bg-[#D0D2E9] transition-colors cursor-pointer relative">
