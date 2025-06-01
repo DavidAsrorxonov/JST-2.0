@@ -4,8 +4,8 @@ import SaveButton from "./SaveButton";
 
 const Table = () => {
   return (
-    <div className="overflow-x-auto flex flex-col justify-center items-center">
-      <div className="min-w-[90%] border-2 border-[#CED2E9] border-b-0 rounded-t-lg overflow-hidden shadow-sm mt-10">
+    <div className="overflow-x-auto flex flex-col justify-center items-center mx-10">
+      <div className="min-w-full border-2 border-[#CED2E9] border-b-0 rounded-t-lg overflow-hidden shadow-sm mt-10">
         <table className="w-full table-auto">
           <thead className="text-black">
             <TableHead />

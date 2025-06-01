@@ -13,7 +13,10 @@ const TableHead = () => {
   return (
     <tr>
       {tableHead.map((item, index) => (
-        <th key={index} className="p-3 border border-b-[#CED2E9]">
+        <th
+          key={index}
+          className="p-3 border-b-2 border-r-1 border-b-gray-500 border-r-gray-500 last:border-r-0"
+        >
           {item}
         </th>
       ))}
