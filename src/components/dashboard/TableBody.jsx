@@ -2,14 +2,21 @@ import React, { useState } from "react";
 import { useJob } from "../../context/jobContext";
 import { SquareArrowOutUpRight } from "lucide-react";
 import "../../styles/TableBody.css";
+import { useSearch } from "../../context/searchContext";
+import { highlightMatch } from "../../lib/utils/highlightingText";
 
 const TableBody = () => {
   const { jobs, fetchJobs } = useJob();
   const { id } = JSON.parse(localStorage.getItem("user"));
+  const { searchTerm } = useSearch();
+
+  const filteredJobs = jobs.filter((job) =>
+    job.job_title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <>
-      {jobs.map(
+      {filteredJobs.map(
         ({
           id,
           job_title,

@@ -18,7 +18,7 @@ const DashboardHeader = () => {
         ))}
       </div>
       <div className="flex items-center gap-10 mr-5">
-        <Input />
+        {/* <Input /> */}
         <Notification />
         <Profile />
       </div>

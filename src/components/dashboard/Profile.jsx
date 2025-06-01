@@ -49,7 +49,7 @@ const Profile = () => {
   return (
     <>
       <div
-        className={`flex items-center justify-center w-20 h-12 rounded-full cursor-pointer bg-center bg-cover bg-no-repeat`}
+        className={`flex items-center justify-center w-14 h-14 rounded-full cursor-pointer bg-center bg-cover bg-no-repeat`}
         style={{
           backgroundColor: imageURL ? "transparent" : selectedBgColor,
           backgroundImage: imageURL ? `url(${imageURL})` : "none",

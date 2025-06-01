@@ -4,12 +4,15 @@ import "./index.css";
 import App from "./App.jsx";
 import { UserProvider } from "./context/userContext.jsx";
 import { JobProvider } from "./context/jobContext.jsx";
+import { SearchProvider } from "./context/searchContext.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <UserProvider>
       <JobProvider>
-        <App />
+        <SearchProvider>
+          <App />
+        </SearchProvider>
       </JobProvider>
     </UserProvider>
   </StrictMode>
