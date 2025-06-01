@@ -43,6 +43,14 @@ const Input = () => {
           onChange={(e) => setSearchTerm(e.target.value)}
           className="w-full p-2 pl-10 rounded-xl bg-[#E7E9F4] outline-none placeholder:text-[#47569E]"
         />
+        <div className="absolute right-3 top-1/2 transform -translate-y-1/2 text-sm text-[#47569E] hidden md:flex items-center space-x-1">
+          <kbd className="bg-white/70 border border-[#B0B3D6] px-1.5 py-0.5 rounded text-xs font-mono shadow-sm">
+            {navigator.platform.includes("Mac") ? "⌘" : "Ctrl"}
+          </kbd>
+          <kbd className="bg-white/70 border border-[#B0B3D6] px-1.5 py-0.5 rounded text-xs font-mono shadow-sm">
+            K
+          </kbd>
+        </div>
       </div>
       <div className="ml-3 px-2 w-10 h-10 rounded-xl flex items-center justify-center bg-[#E7E9F4] hover:bg-[#D0D2E9] transition-colors cursor-pointer relative">
         <Funnel
