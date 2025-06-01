@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { useJob } from "../../context/jobContext";
-import { Plus, SquareArrowOutUpRight } from "lucide-react";
-import { addToast } from "@heroui/toast";
-import axios from "axios";
+import { SquareArrowOutUpRight } from "lucide-react";
+import "../../styles/TableBody.css";
 
 const TableBody = () => {
   const { jobs, fetchJobs } = useJob();
@@ -37,10 +36,10 @@ const TableBody = () => {
               />
             </td>
             <td className="p-3 border-r border-gray-500 last:border-r-0">
-              {applied_at.split("T")[0]}
+              <div>{applied_at.split("T")[0]}</div>
             </td>
             <td className="border-r border-gray-500 last:border-r-0">
-              <select className="py-0.5 px-3 focus:outline-blue-300">
+              <select className="custom-select">
                 <option value="Applied" selected={job_status === "Applied"}>
                   Applied
                 </option>
@@ -56,7 +55,7 @@ const TableBody = () => {
               </select>
             </td>
             <td className="border-r border-gray-500 last:border-r-0">
-              <select className="py-0.5 px-3 focus:outline-blue-300">
+              <select className="custom-select">
                 <option value="Full-time" selected={job_type === "Full-time"}>
                   Full-time
                 </option>
@@ -77,7 +76,15 @@ const TableBody = () => {
                   defaultValue={website_url}
                   className="py-0.5 px-3 focus:outline-blue-300 cursor-text w-[90%]"
                 />
-                <a href={website_url}>
+                <a
+                  href={
+                    website_url && website_url.startsWith("http")
+                      ? website_url
+                      : `https://${website_url}`
+                  }
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <SquareArrowOutUpRight size={20} />
                 </a>
               </div>
