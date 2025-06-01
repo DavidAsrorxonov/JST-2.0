@@ -1,7 +1,6 @@
-import { ArrowDownUp, ChevronRight, Funnel, Search, X } from "lucide-react";
-import React, { useEffect, useRef, useState } from "react";
+import { Funnel, Search, X } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import { useSearch } from "../../context/searchContext";
-import useSearchCommand from "../../lib/commands/searchCommand";
 
 const Input = () => {
   const { setSearchTerm } = useSearch();
@@ -12,13 +11,11 @@ const Input = () => {
     const handleKeyDown = (event) => {
       const input = inputRef.current;
 
-      // Ctrl+K or Cmd+K to focus input
       if ((event.ctrlKey || event.metaKey) && event.key === "k") {
         event.preventDefault();
         if (input) input.focus();
       }
 
-      // Escape to clear and unfocus input
       if (event.key === "Escape") {
         if (input) {
           input.value = "";
