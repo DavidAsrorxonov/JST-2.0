@@ -10,9 +10,12 @@ const DashboardHeader = () => {
   return (
     <div className="flex shadow-lg">
       <Logo />
-      <div className="flex items-center justify-center mr-auto ml-10 gap-7 text-gray-600 hover:text-gray-800">
+      <div className="flex items-center justify-center mr-auto ml-10 gap-7 text-gray-600">
         {options.map((option, idx) => (
-          <div key={idx} className="text-lg font-bold cursor-pointer">
+          <div
+            key={idx}
+            className="text-lg font-bold cursor-pointer hover:text-gray-800"
+          >
             {option}
           </div>
         ))}

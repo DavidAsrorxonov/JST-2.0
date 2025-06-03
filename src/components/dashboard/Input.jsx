@@ -1,11 +1,11 @@
-import { Funnel, Search, X } from "lucide-react";
+import { Funnel, Search, X, ChevronDown } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useSearch } from "../../context/searchContext";
 import { useJob } from "../../context/jobContext";
+import { Listbox } from "@headlessui/react";
 
 const Input = () => {
   const { jobs } = useJob();
-
   const { setSearchTerm, jobStatus, setJobStatus, jobType, setJobType } =
     useSearch();
   const [filteringModal, setFilteringModal] = useState(false);
@@ -14,12 +14,10 @@ const Input = () => {
   useEffect(() => {
     const handleKeyDown = (event) => {
       const input = inputRef.current;
-
       if ((event.ctrlKey || event.metaKey) && event.key === "k") {
         event.preventDefault();
         if (input) input.focus();
       }
-
       if (event.key === "Escape") {
         if (input) {
           input.value = "";
@@ -32,6 +30,9 @@ const Input = () => {
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [setSearchTerm]);
+
+  const statuses = ["all", "Applied", "Interview", "Offer", "Rejected"];
+  const types = ["all", "Full-time", "Part-time", "Internship", "Contract"];
 
   return (
     <div className="w-[50%] flex items-center justify-center">
@@ -56,6 +57,7 @@ const Input = () => {
           </kbd>
         </div>
       </div>
+
       <div className="ml-3 px-2 w-10 h-10 rounded-xl flex items-center justify-center bg-[#E7E9F4] hover:bg-[#D0D2E9] transition-colors cursor-pointer relative">
         <Funnel
           size={25}
@@ -73,49 +75,74 @@ const Input = () => {
               <X
                 size={25}
                 onClick={() => setFilteringModal(false)}
-                className="hover:text-red-500 transition-all"
+                className="hover:text-red-500 transition-all cursor-pointer"
               />
             </div>
-            <div className="flex items-center justify-between mb-2">
-              <label className="text-sm">Job Type:</label>
-              <select
-                className="border rounded px-2 py-1"
-                value={jobType}
-                onChange={(e) => setJobType(e.target.value)}
-              >
-                <option value="all">All</option>
-                <option value="Full-time">Full-time</option>
-                <option value="Part-time">Part-time</option>
-                <option value="Internship">Internship</option>
-                <option value="Contract">Contract</option>
-              </select>
+
+            <div className="mb-3">
+              <label className="text-sm block mb-1">Job Type:</label>
+              <Listbox value={jobType} onChange={setJobType}>
+                <div className="relative">
+                  <Listbox.Button className="w-full border rounded px-3 py-2 flex justify-between items-center bg-white shadow-sm text-sm">
+                    {jobType}
+                    <ChevronDown className="w-4 h-4 ml-2" />
+                  </Listbox.Button>
+                  <Listbox.Options className="absolute mt-1 w-full max-h-60 overflow-auto rounded-md bg-white py-1 shadow-lg z-50">
+                    {types.map((type, index) => (
+                      <Listbox.Option
+                        key={index}
+                        value={type}
+                        className={({ active }) =>
+                          `cursor-pointer px-3 py-1 ${
+                            active ? "bg-blue-100 text-blue-800" : "text-black"
+                          }`
+                        }
+                      >
+                        {type}
+                      </Listbox.Option>
+                    ))}
+                  </Listbox.Options>
+                </div>
+              </Listbox>
             </div>
-            <div className="flex items-center justify-between mb-2">
-              <label className="text-sm">Status:</label>
-              <select
-                className="border rounded px-2 py-1"
-                value={jobStatus}
-                onChange={(e) => setJobStatus(e.target.value)}
-              >
-                <option value="all">All</option>
-                <option value="Applied">Applied</option>
-                <option value="Interview">Interview</option>
-                <option value="Offer">Offer</option>
-                <option value="Rejected">Rejected</option>
-              </select>
+
+            {/* Job Status Dropdown */}
+            <div className="mb-3">
+              <label className="text-sm block mb-1">Status:</label>
+              <Listbox value={jobStatus} onChange={setJobStatus}>
+                <div className="relative">
+                  <Listbox.Button className="w-full border rounded px-3 py-2 flex justify-between items-center bg-white shadow-sm text-sm">
+                    {jobStatus}
+                    <ChevronDown className="w-4 h-4 ml-2" />
+                  </Listbox.Button>
+                  <Listbox.Options className="absolute mt-1 w-full max-h-60 overflow-auto rounded-md bg-white py-1 shadow-lg z-50">
+                    {statuses.map((status, index) => (
+                      <Listbox.Option
+                        key={index}
+                        value={status}
+                        className={({ active }) =>
+                          `cursor-pointer px-3 py-1 ${
+                            active ? "bg-blue-100 text-blue-800" : "text-black"
+                          }`
+                        }
+                      >
+                        {status}
+                      </Listbox.Option>
+                    ))}
+                  </Listbox.Options>
+                </div>
+              </Listbox>
             </div>
-            <button
+
+            {/* <button
               onClick={() => setFilteringModal(false)}
               className="mt-2 w-full bg-blue-500 text-white py-1 rounded hover:bg-blue-600 transition"
             >
               Apply Filters
-            </button>
+            </button> */}
           </div>
         )}
       </div>
-      {/* <div className="ml-3 px-2 w-10 h-10 rounded-xl flex items-center justify-center bg-[#E7E9F4] hover:bg-[#D0D2E9] transition-colors cursor-pointer">
-        <ArrowDownUp size={25} />
-      </div> */}
     </div>
   );
 };

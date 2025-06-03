@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@headlessui/react": "^2.2.4",
     "@heroui/select": "^2.4.19",
     "@heroui/system": "^2.4.15",
     "@heroui/theme": "^2.4.15",
