@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CircleHelp, Eye, EyeOff, MoveLeft, TriangleAlert } from "lucide-react";
 import { addToast } from "@heroui/toast";
 import NavigationButtons from "./NavigationButtons";
@@ -17,6 +17,8 @@ const Register = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [passwordDetails, setPasswordDetails] = useState(false);
   const [passwordErrors, setPasswordErrors] = useState([]);
+
+  const [allFieldsFilled, setAllFieldsFilled] = useState(false);
 
   const strength = getPasswordStrength(password);
 
@@ -120,6 +122,19 @@ const Register = () => {
     setPassword("");
     setConfirmPassword("");
   };
+
+  useEffect(() => {
+    const fieldsFilled =
+      firstName.trim() &&
+      lastName.trim() &&
+      email.trim() &&
+      password &&
+      confirmPassword &&
+      password === confirmPassword &&
+      passwordErrors.length === 0;
+
+    setAllFieldsFilled(fieldsFilled);
+  }, [firstName, lastName, email, password, confirmPassword, passwordErrors]);
 
   return (
     <div className="flex flex-col items-center justify-center py-20 px-6 text-black">
@@ -242,11 +257,18 @@ const Register = () => {
           )}
         </div>
         <button
-          className="p-3 w-full max-w-sm bg-blue-100 border border-blue-500 text-black rounded-lg font-bold hover:bg-blue-200 transition-all duration-300"
+          className={`p-3 w-full max-w-sm font-bold rounded-lg transition-all duration-300 border ${
+            allFieldsFilled
+              ? "bg-blue-100 border-blue-500 text-black hover:bg-blue-200 cursor-pointer"
+              : "bg-gray-100 border-gray-300 text-gray-400 cursor-not-allowed"
+          }`}
           onClick={() => {
-            handleSubmit();
-            resetFields();
+            if (allFieldsFilled) {
+              handleSubmit();
+              resetFields();
+            }
           }}
+          disabled={!allFieldsFilled}
         >
           Register
         </button>

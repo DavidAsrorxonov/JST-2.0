@@ -55,7 +55,6 @@ const CompaniesHeader = () => {
         Job Application Board
       </h1>
 
-      {/* Kanban-style columns */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 border-t border-gray-200 pt-6">
         {statusColumns.map((status) => (
           <div

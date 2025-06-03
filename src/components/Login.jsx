@@ -1,5 +1,5 @@
 import { Eye, EyeOff } from "lucide-react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { addToast } from "@heroui/toast";
 import NavigationButtons from "./NavigationButtons";
 import axios from "axios";
@@ -11,6 +11,8 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [remembersPassword, setRemembersPassword] = useState(false);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+
+  const [allFieldsFilled, setAllFieldsFilled] = useState(false);
 
   const { login } = useUser();
   const navigate = useNavigate();
@@ -73,6 +75,14 @@ const Login = () => {
     }
   };
 
+  useEffect(() => {
+    if (email && password) {
+      setAllFieldsFilled(true);
+    } else {
+      setAllFieldsFilled(false);
+    }
+  });
+
   return (
     <div className="flex flex-col items-center justify-center py-20 px-6 text-black">
       <div className="w-full md:w-[50%] h-full flex flex-col items-center justify-center py-10 px-6 rounded-lg shadow-lg border border-gray-200">
@@ -130,8 +140,13 @@ const Login = () => {
 
         <div className="flex flex-col w-full max-w-sm space-y-4 mt-10">
           <button
-            className="p-3 bg-blue-100 border border-blue-500 text-black rounded-lg font-bold cursor-pointer hover:bg-blue-200 transition-all duration-300"
+            className={`p-3 w-full max-w-sm font-bold rounded-lg transition-all duration-300 border ${
+              allFieldsFilled
+                ? "bg-blue-100 border-blue-500 text-black hover:bg-blue-200 cursor-pointer"
+                : "bg-gray-100 border-gray-300 text-gray-400 cursor-not-allowed hover:bg-gray-100"
+            }`}
             onClick={handleSubmit}
+            disabled={!allFieldsFilled}
           >
             Log In
           </button>
