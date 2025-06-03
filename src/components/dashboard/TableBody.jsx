@@ -8,11 +8,16 @@ import { highlightMatch } from "../../lib/utils/highlightingText";
 const TableBody = () => {
   const { jobs, fetchJobs } = useJob();
   const { id } = JSON.parse(localStorage.getItem("user"));
-  const { searchTerm } = useSearch();
+  const { searchTerm, jobStatus, jobType } = useSearch();
 
-  const filteredJobs = jobs.filter((job) =>
-    job.job_title.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredJobs = jobs.filter((job) => {
+    const matchesSearch = job.job_title
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase());
+    const matchesStatus = job.job_status === jobStatus || jobStatus === "all";
+    const matchesType = job.job_type === jobType || jobType === "all";
+    return matchesSearch && matchesStatus && matchesType;
+  });
 
   return (
     <>

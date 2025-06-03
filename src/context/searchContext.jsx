@@ -4,9 +4,20 @@ const SearchContext = createContext();
 
 export const SearchProvider = ({ children }) => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [jobStatus, setJobStatus] = useState("all");
+  const [jobType, setJobType] = useState("all");
 
   return (
-    <SearchContext.Provider value={{ searchTerm, setSearchTerm }}>
+    <SearchContext.Provider
+      value={{
+        searchTerm,
+        setSearchTerm,
+        jobStatus,
+        setJobStatus,
+        jobType,
+        setJobType,
+      }}
+    >
       {children}
     </SearchContext.Provider>
   );

@@ -1,9 +1,13 @@
 import { Funnel, Search, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useSearch } from "../../context/searchContext";
+import { useJob } from "../../context/jobContext";
 
 const Input = () => {
-  const { setSearchTerm } = useSearch();
+  const { jobs } = useJob();
+
+  const { setSearchTerm, jobStatus, setJobStatus, jobType, setJobType } =
+    useSearch();
   const [filteringModal, setFilteringModal] = useState(false);
   const inputRef = useRef(null);
 
@@ -55,7 +59,10 @@ const Input = () => {
       <div className="ml-3 px-2 w-10 h-10 rounded-xl flex items-center justify-center bg-[#E7E9F4] hover:bg-[#D0D2E9] transition-colors cursor-pointer relative">
         <Funnel
           size={25}
-          onClick={() => setFilteringModal(true)}
+          onClick={() => {
+            setFilteringModal(true);
+            console.log(jobs);
+          }}
           className={`${filteringModal ? "text-blue-500 transition-all" : ""}`}
         />
 
@@ -71,21 +78,30 @@ const Input = () => {
             </div>
             <div className="flex items-center justify-between mb-2">
               <label className="text-sm">Job Type:</label>
-              <select className="border rounded px-2 py-1">
+              <select
+                className="border rounded px-2 py-1"
+                value={jobType}
+                onChange={(e) => setJobType(e.target.value)}
+              >
                 <option value="all">All</option>
-                <option value="full-time">Full-time</option>
-                <option value="part-time">Part-time</option>
-                <option value="internship">Internship</option>
+                <option value="Full-time">Full-time</option>
+                <option value="Part-time">Part-time</option>
+                <option value="Internship">Internship</option>
+                <option value="Contract">Contract</option>
               </select>
             </div>
             <div className="flex items-center justify-between mb-2">
               <label className="text-sm">Status:</label>
-              <select className="border rounded px-2 py-1">
+              <select
+                className="border rounded px-2 py-1"
+                value={jobStatus}
+                onChange={(e) => setJobStatus(e.target.value)}
+              >
                 <option value="all">All</option>
-                <option value="applied">Applied</option>
-                <option value="interview">Interview</option>
-                <option value="offer">Offer</option>
-                <option value="rejected">Rejected</option>
+                <option value="Applied">Applied</option>
+                <option value="Interview">Interview</option>
+                <option value="Offer">Offer</option>
+                <option value="Rejected">Rejected</option>
               </select>
             </div>
             <button

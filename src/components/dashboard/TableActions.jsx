@@ -85,13 +85,11 @@ const TableActions = () => {
 
       {addNewJobModal && (
         <>
-          {/* Overlay */}
           <div
             className="fixed inset-0 bg-black bg-opacity-50 z-40"
             onClick={() => setAddNewJobModal(false)}
           ></div>
 
-          {/* Modal */}
           <div className="fixed z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-md shadow-lg p-6 w-[90%] max-w-md">
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-xl font-semibold">Add New Job</h2>
