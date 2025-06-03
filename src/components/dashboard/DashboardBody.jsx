@@ -3,6 +3,7 @@ import Input from "./Input";
 import Table from "./Table";
 import DashboardIntro from "./DashboardIntro";
 import TableActions from "./TableActions";
+import EditingInfo from "../EditingInfo";
 
 const DashboardBody = () => {
   return (
@@ -13,6 +14,7 @@ const DashboardBody = () => {
       </div>
       <TableActions />
       <Table />
+      <EditingInfo />
     </>
   );
 };

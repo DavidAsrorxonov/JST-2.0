@@ -43,7 +43,9 @@ const TableBody = () => {
               />
             </td>
             <td className="p-3 border-r border-gray-500 last:border-r-0">
-              <div>{applied_at.split("T")[0]}</div>
+              <div className="px-3 py-0.5 bg-yellow-100 border border-yellow-500 rounded-md">
+                {applied_at.split("T")[0]}
+              </div>
             </td>
             <td className="border-r border-gray-500 last:border-r-0">
               <select className="custom-select">
