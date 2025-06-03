@@ -3,8 +3,11 @@ import Logo from "../Logo";
 import Input from "./Input";
 import Notification from "./Notification";
 import Profile from "./Profile";
+import { useNavigate } from "react-router-dom";
 
 const DashboardHeader = () => {
+  const navigate = useNavigate();
+
   const options = ["Dashboard", "Applications", "Companies"];
 
   return (
@@ -15,6 +18,7 @@ const DashboardHeader = () => {
           <div
             key={idx}
             className="text-lg font-bold cursor-pointer hover:text-gray-800"
+            onClick={() => navigate(`/${option.toLowerCase()}`)}
           >
             {option}
           </div>
