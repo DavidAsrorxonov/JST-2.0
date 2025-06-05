@@ -1,131 +1,83 @@
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import { useUser } from "../../context/userContext";
+import {
+  Drawer,
+  DrawerContent,
+  DrawerBody,
+  DrawerFooter,
+  DrawerHeader,
+} from "@heroui/drawer";
+import { useDisclosure } from "@heroui/react";
+import { UserRound } from "lucide-react";
 
 const Profile = () => {
-  const [userDetailModalOpen, setUserDetailModalOpen] = useState(false);
-  const [selectedBgColor, setSelectedBgColor] = useState("#F3F4F6");
   const [imageURL, setImageURL] = useState(null);
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
-  const { user } = useUser();
-  const backupUser = localStorage.getItem("user");
-
-  const profileName = user
-    ? user.firstName[0].toUpperCase()
-    : JSON.parse(backupUser).firstName[0].toUpperCase();
-
-  const colors = [
-    { name: "Red", value: "#fee2e2" },
-    { name: "Yellow", value: "#fef9c3" },
-    { name: "Green", value: "#dcfce7" },
-    { name: "Blue", value: "#dbeafe" },
-    { name: "Indigo", value: "#e0e7ff" },
-  ];
-
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const imageURL = URL.createObjectURL(file);
-      setImageURL(imageURL);
-      setSelectedBgColor("");
-      localStorage.setItem("profileImage", imageURL);
-      localStorage.removeItem("profileBgColor");
-    }
-  };
-
-  const handleColorChange = (color) => {
-    setSelectedBgColor(color);
-    setImageURL(null);
-    localStorage.setItem("profileBgColor", color);
-    localStorage.removeItem("profileImage");
-  };
-
-  useEffect(() => {
-    const savedImageURL = localStorage.getItem("profileImage");
-    const savedColor = localStorage.getItem("profileBgColor");
-    if (savedImageURL) setImageURL(savedImageURL);
-    else if (savedColor) setSelectedBgColor(savedColor);
-  }, []);
+  const user = JSON.parse(localStorage.getItem("user"));
+  const userInitials = user.firstName[0] + user.lastName[0];
+  const userFullName = `${user.firstName} ${user.lastName}`;
+  const userEmail = user.email;
 
   return (
     <>
       <div
-        className={`flex items-center justify-center w-14 h-14 rounded-full cursor-pointer bg-center bg-cover bg-no-repeat select-none`}
-        style={{
-          backgroundColor: imageURL ? "transparent" : selectedBgColor,
-          backgroundImage: imageURL ? `url(${imageURL})` : "none",
-        }}
-        onClick={() => setUserDetailModalOpen(!userDetailModalOpen)}
+        className={`flex items-center justify-center w-14 h-14 rounded-full cursor-pointer bg-gray-200 select-none`}
+        onClick={onOpen}
       >
-        {!imageURL && (
-          <span className="text-black font-bold">{profileName}</span>
-        )}
+        <span className="text-black font-bold">{userInitials}</span>
       </div>
-
-      {userDetailModalOpen && (
-        <div className="absolute top-16 right-5 bg-white shadow-xl rounded-xl p-5 w-72 z-50">
-          <div className="flex items-center gap-4">
-            <div
-              className="w-14 h-14 rounded-full bg-center bg-cover bg-no-repeat flex items-center justify-center text-xl font-bold text-black"
-              style={{
-                backgroundColor: imageURL ? "transparent" : selectedBgColor,
-                backgroundImage: imageURL ? `url(${imageURL})` : "none",
-              }}
-            >
-              {!imageURL &&
-                (user
-                  ? user.firstName[0] + user.lastName[0]
-                  : JSON.parse(backupUser).firstName[0] +
-                    JSON.parse(backupUser).lastName[0])}
-            </div>
-            <div className="flex flex-col">
-              <span className="text-lg font-semibold text-gray-800">
-                {user
-                  ? `${user.firstName} ${user.lastName}`
-                  : `${JSON.parse(backupUser).firstName} ${
-                      JSON.parse(backupUser).lastName
-                    }`}
-              </span>
-              <span className="text-sm text-gray-600">
-                {user ? user.email : JSON.parse(backupUser).email}
-              </span>
-            </div>
-          </div>
-
-          <h1 className="text-lg font-semibold text-gray-800 mt-5">Theme</h1>
-          <div className="flex items-center justify-between mt-2">
-            {colors.map((color, idx) => (
-              <button
-                key={idx}
-                onClick={() => handleColorChange(color.value)}
-                className={`w-8 h-8 rounded-full cursor-pointer`}
-                style={{ backgroundColor: color.value }}
-              />
-            ))}
-          </div>
-
-          <div className="flex items-center justify-between my-3">
-            <hr className="w-1/4" />
-            <span className="text-sm text-gray-500">or</span>
-            <hr className="w-1/4" />
-          </div>
-
-          <div className="flex items-center gap-2 mt-4">
-            <label
-              htmlFor="profile-upload"
-              className="cursor-pointer bg-blue-100 hover:bg-blue-200 border-blue-500 border text-blue-600 px-4 py-2 rounded-lg text-sm transition"
-            >
-              Upload Profile Picture
-            </label>
-            <input
-              id="profile-upload"
-              type="file"
-              accept="image/*"
-              onChange={handleImageChange}
-              className="hidden"
-            />
-          </div>
-        </div>
-      )}
+      <Drawer
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+        size="lg"
+        backdrop="opaque"
+      >
+        <DrawerContent>
+          {(onClose) => (
+            <>
+              <DrawerHeader className="flex flex-col gap-1">
+                <div className="w-full flex items-center gap-4">
+                  <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center">
+                    <UserRound className="" size={30} />
+                  </div>
+                  <div className="flex flex-col gap-1">
+                    <div className="font-bold text-2xl">{userFullName}</div>
+                    <div className="font-normal text-sm">{userEmail}</div>
+                  </div>
+                  <div className="px-4 py-1 bg-green-100 border border-green-500 text-green-600 rounded-full text-sm flex items-center justify-center ml-auto">
+                    User
+                  </div>
+                </div>
+              </DrawerHeader>
+              <DrawerBody>
+                <div className="flex items-center gap-2 mt-4">
+                  <label
+                    htmlFor="profile-upload"
+                    className="cursor-pointer bg-blue-100 hover:bg-blue-200 border-blue-500 border text-blue-600 px-4 py-2 rounded-lg text-sm transition"
+                  >
+                    Upload Profile Picture
+                  </label>
+                  <input
+                    id="profile-upload"
+                    type="file"
+                    accept="image/*"
+                    className="hidden"
+                  />
+                </div>
+              </DrawerBody>
+              <DrawerFooter>
+                <button
+                  onClick={onClose}
+                  className="px-4 py-2 bg-red-100 border border-red-500 text-red-600 rounded-full"
+                >
+                  Close
+                </button>
+              </DrawerFooter>
+            </>
+          )}
+        </DrawerContent>
+      </Drawer>
     </>
   );
 };
