@@ -56,12 +56,11 @@ const Profile = () => {
                   </div>
                 </div>
               </DrawerHeader>
-              <DrawerBody className="space-y-2">
+              <DrawerBody>
                 <hr />
                 <h1 className="text-xl font-bold text-center">
                   Account Information and Settings
                 </h1>
-                {/* User Role */}
                 <div>
                   <h4 className="text-lg text-center font-bold">
                     Authorization
@@ -116,16 +115,17 @@ const Profile = () => {
                   </div>
                 </div>
 
-                <div className="pt-4 border-t">
-                  <h4 className="text-sm font-semibold text-gray-700 mb-2">
-                    Security
-                  </h4>
-                  <button className="w-full text-left text-red-600 hover:underline text-sm mb-1">
-                    Logout from all devices
-                  </button>
-                  <button className="w-full text-left text-blue-600 hover:underline text-sm">
+                <hr />
+
+                <h1 className="text-xl font-bold text-center">Security</h1>
+                <div className="flex flex-col gap-2">
+                  <button className="text-yellow-500 underline">
                     Change Password
                   </button>
+                  <button className="text-green-500 underline">
+                    Two-Factor Authentication
+                  </button>
+                  <button className="text-red-500 underline">Logout</button>
                 </div>
 
                 {/* Device Info */}
