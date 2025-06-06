@@ -7,9 +7,11 @@ import {
   DrawerFooter,
   DrawerHeader,
 } from "@heroui/drawer";
-import { useDisclosure } from "@heroui/react";
+import { useDisclosure, Switch, Select, SelectItem } from "@heroui/react";
 import { UserRound, UserRoundPen } from "lucide-react";
 import ProfileCalendar from "./ProfileCalendar";
+import { MoonIcon } from "../../../public/icons/MoonIcon";
+import { SunIcon } from "../../../public/icons/SunIcon";
 
 const Profile = () => {
   const [imageURL, setImageURL] = useState(null);
@@ -20,6 +22,8 @@ const Profile = () => {
   const userFullName = `${user.firstName} ${user.lastName}`;
   const userEmail = user.email;
   const userId = user.id;
+
+  const languages = ["English", "O'zbekcha", "Русский"];
 
   return (
     <>
@@ -88,13 +92,30 @@ const Profile = () => {
 
                 <h1 className="text-xl font-bold text-center">Accessibility</h1>
                 <div className="space-y-2">
-                  <div>
-                    <div>Mode: </div>
-                    <div></div>
+                  <div className="flex items-center justify-between">
+                    <div className="font-bold">Mode: </div>
+                    <div>
+                      <Switch
+                        defaultSelected
+                        color="primary"
+                        endContent={<MoonIcon />}
+                        size="md"
+                        startContent={<SunIcon />}
+                      />
+                    </div>
+                  </div>
+                  <div className="flex items-center">
+                    <div className="font-bold">Language:</div>
+                    <div className="ml-auto w-[50%]">
+                      <Select>
+                        {languages.map((language, idx) => (
+                          <SelectItem key={idx}>{language}</SelectItem>
+                        ))}
+                      </Select>
+                    </div>
                   </div>
                 </div>
 
-                {/* Security & Logout */}
                 <div className="pt-4 border-t">
                   <h4 className="text-sm font-semibold text-gray-700 mb-2">
                     Security
