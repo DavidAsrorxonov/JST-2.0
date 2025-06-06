@@ -1,4 +1,4 @@
-import React, { use, useEffect, useState } from "react";
+import { useState } from "react";
 import { useUser } from "../../context/userContext";
 import {
   Drawer,
@@ -8,7 +8,8 @@ import {
   DrawerHeader,
 } from "@heroui/drawer";
 import { useDisclosure } from "@heroui/react";
-import { UserRound } from "lucide-react";
+import { UserRound, UserRoundPen } from "lucide-react";
+import ProfileCalendar from "./ProfileCalendar";
 
 const Profile = () => {
   const [imageURL, setImageURL] = useState(null);
@@ -18,6 +19,7 @@ const Profile = () => {
   const userInitials = user.firstName[0] + user.lastName[0];
   const userFullName = `${user.firstName} ${user.lastName}`;
   const userEmail = user.email;
+  const userId = user.id;
 
   return (
     <>
@@ -38,34 +40,97 @@ const Profile = () => {
             <>
               <DrawerHeader className="flex flex-col gap-1">
                 <div className="w-full flex items-center gap-4">
-                  <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center">
-                    <UserRound className="" size={30} />
+                  <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center border-2 border-gray-400">
+                    <UserRound className="text-gray-600" size={30} />
                   </div>
                   <div className="flex flex-col gap-1">
                     <div className="font-bold text-2xl">{userFullName}</div>
                     <div className="font-normal text-sm">{userEmail}</div>
                   </div>
-                  <div className="px-4 py-1 bg-green-100 border border-green-500 text-green-600 rounded-full text-sm flex items-center justify-center ml-auto">
-                    User
+                  <div className="px-6 py-1 bg-purple-100 border border-purple-500 text-purple-600 rounded-full text-sm flex items-center justify-center ml-auto cursor-pointer">
+                    Edit
                   </div>
                 </div>
               </DrawerHeader>
-              <DrawerBody>
-                <div className="flex items-center gap-2 mt-4">
-                  <label
-                    htmlFor="profile-upload"
-                    className="cursor-pointer bg-blue-100 hover:bg-blue-200 border-blue-500 border text-blue-600 px-4 py-2 rounded-lg text-sm transition"
-                  >
-                    Upload Profile Picture
-                  </label>
-                  <input
-                    id="profile-upload"
-                    type="file"
-                    accept="image/*"
-                    className="hidden"
-                  />
+              <DrawerBody className="space-y-2">
+                <hr />
+                <h1 className="text-xl font-bold text-center">
+                  Account Information and Settings
+                </h1>
+                {/* User Role */}
+                <div>
+                  <h4 className="text-lg text-center font-bold">
+                    Authorization
+                  </h4>
+                  <div className="space-y-2">
+                    <div>
+                      <span className="font-bold">Account Owner:</span>{" "}
+                      {userFullName}
+                    </div>
+                    <div>
+                      <span className="font-bold">Associated User ID:</span>{" "}
+                      {userId}
+                    </div>
+                  </div>
+                  <div className="mt-2">
+                    <span className="font-bold">Authority:</span>{" "}
+                    <span className="px-4 py-1 bg-yellow-100 border border-yellow-500 text-yellow-600 rounded-full">
+                      User
+                    </span>{" "}
+                    |{" "}
+                    <span className="px-4 py-1 bg-green-100 border border-green-500 text-green-600 rounded-full">
+                      Active
+                    </span>
+                  </div>
+                </div>
+
+                <hr />
+
+                <h1 className="text-xl font-bold text-center">Accessibility</h1>
+                <div className="space-y-2">
+                  <div>
+                    <div>Mode: </div>
+                    <div></div>
+                  </div>
+                </div>
+
+                {/* Security & Logout */}
+                <div className="pt-4 border-t">
+                  <h4 className="text-sm font-semibold text-gray-700 mb-2">
+                    Security
+                  </h4>
+                  <button className="w-full text-left text-red-600 hover:underline text-sm mb-1">
+                    Logout from all devices
+                  </button>
+                  <button className="w-full text-left text-blue-600 hover:underline text-sm">
+                    Change Password
+                  </button>
+                </div>
+
+                {/* Device Info */}
+                <div className="pt-4 border-t">
+                  <h4 className="text-sm font-semibold text-gray-700 mb-2">
+                    Device Info
+                  </h4>
+                  <div className="text-sm text-gray-500">
+                    Browser: {navigator.userAgent.split(")")[0]})
+                  </div>
+                </div>
+
+                {/* Deactivate/Delete Account */}
+                <div className="pt-4 border-t">
+                  <h4 className="text-sm font-semibold text-gray-700 mb-2">
+                    Account Options
+                  </h4>
+                  <button className="w-full text-left text-yellow-600 hover:underline text-sm mb-1">
+                    Deactivate Account
+                  </button>
+                  <button className="w-full text-left text-red-600 hover:underline text-sm">
+                    Delete Account Permanently
+                  </button>
                 </div>
               </DrawerBody>
+
               <DrawerFooter>
                 <button
                   onClick={onClose}
