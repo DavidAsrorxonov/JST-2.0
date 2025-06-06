@@ -4,6 +4,7 @@ import Input from "./Input";
 import Notification from "./Notification";
 import Profile from "./Profile";
 import { useNavigate } from "react-router-dom";
+import Events from "./Events";
 
 const DashboardHeader = () => {
   const navigate = useNavigate();
@@ -25,6 +26,7 @@ const DashboardHeader = () => {
         ))}
       </div>
       <div className="flex items-center gap-10 mr-5">
+        <Events />
         {/* <Input /> */}
         <Notification />
         <Profile />

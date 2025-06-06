@@ -30,7 +30,7 @@ const Profile = () => {
       <Drawer
         isOpen={isOpen}
         onOpenChange={onOpenChange}
-        size="lg"
+        size="md"
         backdrop="opaque"
       >
         <DrawerContent>
