@@ -128,13 +128,18 @@ const Profile = () => {
                   <button className="text-red-500 underline">Logout</button>
                 </div>
 
-                {/* Device Info */}
                 <div className="pt-4 border-t">
                   <h4 className="text-sm font-semibold text-gray-700 mb-2">
                     Device Info
                   </h4>
                   <div className="text-sm text-gray-500">
                     Browser: {navigator.userAgent.split(")")[0]})
+                  </div>
+                  <div className="text-sm text-gray-500">
+                    OS: {navigator.platform}
+                  </div>
+                  <div className="text-sm text-gray-500">
+                    Timezone: {Intl.DateTimeFormat().resolvedOptions().timeZone}
                   </div>
                 </div>
 
