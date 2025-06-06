@@ -143,7 +143,6 @@ const Profile = () => {
                   </div>
                 </div>
 
-                {/* Deactivate/Delete Account */}
                 <div className="pt-4 border-t">
                   <h4 className="text-sm font-semibold text-gray-700 mb-2">
                     Account Options
