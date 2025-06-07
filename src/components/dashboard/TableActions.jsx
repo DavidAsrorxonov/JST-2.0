@@ -1,6 +1,6 @@
 import { addToast } from "@heroui/toast";
 import axios from "axios";
-import { PlusCircle, TrashIcon, X } from "lucide-react";
+import { CirclePlus, Plus, PlusCircle, TrashIcon, X } from "lucide-react";
 import React, { useState } from "react";
 import { useJob } from "../../context/jobContext";
 import { useSearch } from "../../context/searchContext";
@@ -18,7 +18,7 @@ const TableActions = () => {
 
   const { sortingType, jobType, jobStatus } = useSearch();
 
-  const { fetchJobs } = useJob();
+  const { fetchJobs, jobs } = useJob();
 
   const payload = {
     job_title: newJobTitle,
@@ -215,6 +215,20 @@ const TableActions = () => {
           </div>
         </>
       )}
+
+      {jobs && jobs.length === 0 ? (
+        <div className="absolute flex items-center justify-center gap-3 bottom-3 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+          <div className=" bg-blue-100 px-4 rounded-md border border-blue-500 text-blue-600">
+            <div className="text-xl">No jobs found</div>
+          </div>
+          <div
+            className="bg-blue-100 p-2 rounded-full border border-blue-500 text-blue-600 cursor-pointer"
+            onClick={() => setAddNewJobModal(true)}
+          >
+            <Plus />
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 };
