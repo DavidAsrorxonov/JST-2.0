@@ -1,4 +1,4 @@
-import { Check, ChevronDown, ListFilter } from "lucide-react";
+import { Check, ChevronDown, CircleX, ListFilter } from "lucide-react";
 import React, { useState } from "react";
 import { useSearch } from "../../context/searchContext";
 
@@ -42,6 +42,18 @@ const Filtering = () => {
             }
             selectedJobStatusOrType={jobType}
           />
+          {jobStatus !== "all" || jobType !== "all" ? (
+            <div
+              className="flex items-center gap-2 bg-blue-100 px-2 rounded-full border border-blue-600 text-blue-700 cursor-pointer"
+              onClick={() => {
+                setJobStatus("all");
+                setJobType("all");
+              }}
+            >
+              <CircleX size={15} />
+              Clear
+            </div>
+          ) : null}
         </div>
       )}
 
