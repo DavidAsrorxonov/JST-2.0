@@ -1,14 +1,9 @@
-import { Funnel, Search, X, ChevronDown, ListFilter } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { Search } from "lucide-react";
+import { useEffect, useRef } from "react";
 import { useSearch } from "../../context/searchContext";
-import { useJob } from "../../context/jobContext";
-import { Listbox } from "@headlessui/react";
 
 const Input = () => {
-  const { jobs } = useJob();
-  const { setSearchTerm, jobStatus, setJobStatus, jobType, setJobType } =
-    useSearch();
-  const [filteringModal, setFilteringModal] = useState(false);
+  const { setSearchTerm } = useSearch();
   const inputRef = useRef(null);
 
   useEffect(() => {
