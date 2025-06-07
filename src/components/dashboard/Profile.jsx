@@ -23,6 +23,8 @@ const Profile = () => {
   const userEmail = user.email;
   const userId = user.id;
 
+  const { logout } = useUser();
+
   const languages = [
     {
       value: "en",
@@ -144,7 +146,9 @@ const Profile = () => {
                   <button className="text-green-500 underline">
                     Two-Factor Authentication
                   </button>
-                  <button className="text-red-500 underline">Logout</button>
+                  <button className="text-red-500 underline" onClick={logout}>
+                    Logout
+                  </button>
                 </div>
 
                 <div className="pt-4 border-t">
