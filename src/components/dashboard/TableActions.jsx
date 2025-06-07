@@ -99,14 +99,14 @@ const TableActions = () => {
       <div className="flex items-center justify-center ml-2">
         {jobType && jobType !== "all" ? (
           <div className="bg-blue-100 border border-blue-500 px-6 py-1 rounded-md">
-            Selected: <span className="font-bold">{jobType}</span>
+            Selected JT: <span className="font-bold">{jobType}</span>
           </div>
         ) : null}
       </div>
       <div className="flex items-center justify-center ml-2">
         {jobStatus && jobStatus !== "all" ? (
           <div className="bg-blue-100 border border-blue-500 px-6 py-1 rounded-md">
-            Selected: <span className="font-bold">{jobStatus}</span>
+            Selected JS: <span className="font-bold">{jobStatus}</span>
           </div>
         ) : null}
       </div>

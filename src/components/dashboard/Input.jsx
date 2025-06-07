@@ -38,7 +38,7 @@ const Input = () => {
           type="text"
           placeholder="Search"
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full p-2 pl-10 rounded-xl bg-[#E7E9F4] outline-none placeholder:text-[#47569E]"
+          className="w-full p-2 pl-10 rounded-xl bg-[#E7E9F4] outline-none focus:outline-blue-300 placeholder:text-[#47569E]"
         />
         <div className="absolute right-3 top-1/2 transform -translate-y-1/2 text-sm text-[#47569E] hidden md:flex items-center space-x-1">
           <kbd className="bg-white/70 border border-[#B0B3D6] px-1.5 py-0.5 rounded text-xs font-mono shadow-sm">
