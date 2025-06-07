@@ -23,7 +23,23 @@ const Profile = () => {
   const userEmail = user.email;
   const userId = user.id;
 
-  const languages = ["English", "O'zbekcha", "Русский"];
+  const languages = [
+    {
+      value: "en",
+      label: "English",
+      flag: "🇬🇧",
+    },
+    {
+      value: "ru",
+      label: "Русский",
+      flag: "🇷🇺",
+    },
+    {
+      value: "uz",
+      label: "O'zbek",
+      flag: "🇺🇿",
+    },
+  ];
 
   return (
     <>
@@ -105,12 +121,15 @@ const Profile = () => {
                   </div>
                   <div className="flex items-center">
                     <div className="font-bold">Language:</div>
-                    <div className="ml-auto w-[50%]">
-                      <Select>
-                        {languages.map((language, idx) => (
-                          <SelectItem key={idx}>{language}</SelectItem>
-                        ))}
-                      </Select>
+                    <div className="flex gap-2 ml-auto">
+                      {languages.map(({ label, flag }, idx) => (
+                        <div key={idx}>
+                          <div className="border border-gray-300 px-2 rounded-md cursor-pointer">
+                            <span>{flag}</span>
+                            <span>{label}</span>
+                          </div>
+                        </div>
+                      ))}
                     </div>
                   </div>
                 </div>
