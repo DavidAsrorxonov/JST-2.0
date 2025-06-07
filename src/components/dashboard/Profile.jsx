@@ -112,7 +112,7 @@ const Profile = () => {
                     <div>
                       <Switch
                         defaultSelected
-                        color="primary"
+                        color="default"
                         endContent={<MoonIcon />}
                         size="md"
                         startContent={<SunIcon />}
