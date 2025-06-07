@@ -3,6 +3,7 @@ import axios from "axios";
 import { PlusCircle, TrashIcon, X } from "lucide-react";
 import React, { useState } from "react";
 import { useJob } from "../../context/jobContext";
+import { useSearch } from "../../context/searchContext";
 
 const TableActions = () => {
   const [addNewJobModal, setAddNewJobModal] = useState(false);
@@ -14,6 +15,8 @@ const TableActions = () => {
   const [websiteUrl, setWebsiteUrl] = useState("");
 
   const { id } = JSON.parse(localStorage.getItem("user"));
+
+  const { sortingType } = useSearch();
 
   const { fetchJobs } = useJob();
 
@@ -81,6 +84,17 @@ const TableActions = () => {
       >
         <PlusCircle size={20} />
         Add a new job
+      </div>
+      <div className="flex items-center justify-center ml-2">
+        {sortingType && sortingType === "asc" ? (
+          <div className="bg-blue-100 border border-blue-500 px-6 py-1 rounded-md">
+            Selected: <span className="font-bold">Ascending</span>
+          </div>
+        ) : sortingType && sortingType === "desc" ? (
+          <div className="bg-blue-100 border border-blue-500 px-6 py-1 rounded-md">
+            Selected: <span className="font-bold">Descending</span>
+          </div>
+        ) : null}
       </div>
 
       {addNewJobModal && (

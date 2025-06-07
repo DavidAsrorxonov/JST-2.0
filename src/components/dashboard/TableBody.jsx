@@ -8,7 +8,7 @@ import { highlightMatch } from "../../lib/utils/highlightingText";
 const TableBody = () => {
   const { jobs, fetchJobs } = useJob();
   const { id } = JSON.parse(localStorage.getItem("user"));
-  const { searchTerm, jobStatus, jobType } = useSearch();
+  const { searchTerm, jobStatus, jobType, sortingType } = useSearch();
 
   const filteredJobs = jobs.filter((job) => {
     const matchesSearch = job.job_title
@@ -19,9 +19,19 @@ const TableBody = () => {
     return matchesSearch && matchesStatus && matchesType;
   });
 
+  const sortedJobs = [...filteredJobs].sort((a, b) => {
+    if (sortingType === "asc") {
+      return a.job_title.localeCompare(b.job_title);
+    } else if (sortingType === "desc") {
+      return b.job_title.localeCompare(a.job_title);
+    } else {
+      return 0;
+    }
+  });
+
   return (
     <>
-      {filteredJobs.map(
+      {sortedJobs.map(
         ({
           id,
           job_title,
