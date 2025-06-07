@@ -10,6 +10,7 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Dashboard from "./pages/Dashboard";
 import CompaniesPage from "./pages/CompaniesPage";
+import EventsPage from "./pages/EventsPage";
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
           <Route path="/auth/register" element={<Register />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/companies" element={<CompaniesPage />} />
+          <Route path="/events" element={<EventsPage />} />
         </Routes>
       </BrowserRouter>
     </HeroUIProvider>

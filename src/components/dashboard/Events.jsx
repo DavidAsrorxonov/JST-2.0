@@ -83,6 +83,12 @@ const Events = () => {
                         <button className="px-4 py-1 bg-blue-100 hover:bg-blue-200 transition-all border border-blue-500 text-blue-600 rounded-md">
                           Create
                         </button>
+                        <button
+                          className="px-4 py-1 bg-red-100 hover:bg-red-200 transition-all border border-red-500 text-red-600 rounded-md"
+                          onClick={() => setIsDateChosen(false)}
+                        >
+                          Cancel
+                        </button>
                       </div>
                     </>
                   )}

@@ -9,7 +9,7 @@ import Events from "./Events";
 const DashboardHeader = () => {
   const navigate = useNavigate();
 
-  const options = ["Dashboard", "Applications", "Companies"];
+  const options = ["Dashboard", "Applications", "Companies", "Events"];
 
   return (
     <div className="flex shadow-lg">
