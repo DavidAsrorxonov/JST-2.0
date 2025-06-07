@@ -10,13 +10,13 @@ const TableActions = () => {
   const [newJobTitle, setNewJobTitle] = useState("");
   const [newCompany, setNewCompany] = useState("");
   const [appliedAt, setAppliedAt] = useState("");
-  const [jobStatus, setJobStatus] = useState("");
-  const [jobType, setJobType] = useState("");
+  const [newJobStatus, setNewJobStatus] = useState("");
+  const [newJobType, setNewJobType] = useState("");
   const [websiteUrl, setWebsiteUrl] = useState("");
 
   const { id } = JSON.parse(localStorage.getItem("user"));
 
-  const { sortingType } = useSearch();
+  const { sortingType, jobType, jobStatus } = useSearch();
 
   const { fetchJobs } = useJob();
 
@@ -24,8 +24,8 @@ const TableActions = () => {
     job_title: newJobTitle,
     company: newCompany,
     applied_at: appliedAt,
-    job_status: jobStatus,
-    job_type: jobType,
+    job_status: newJobStatus,
+    job_type: newJobType,
     website_url: websiteUrl,
     user_id: id,
   };
@@ -35,8 +35,8 @@ const TableActions = () => {
       !newJobTitle ||
       !newCompany ||
       !appliedAt ||
-      !jobStatus ||
-      !jobType ||
+      !newJobStatus ||
+      !newJobType ||
       !websiteUrl
     ) {
       addToast({
@@ -96,6 +96,20 @@ const TableActions = () => {
           </div>
         ) : null}
       </div>
+      <div className="flex items-center justify-center ml-2">
+        {jobType && jobType !== "all" ? (
+          <div className="bg-blue-100 border border-blue-500 px-6 py-1 rounded-md">
+            Selected: <span className="font-bold">{jobType}</span>
+          </div>
+        ) : null}
+      </div>
+      <div className="flex items-center justify-center ml-2">
+        {jobStatus && jobStatus !== "all" ? (
+          <div className="bg-blue-100 border border-blue-500 px-6 py-1 rounded-md">
+            Selected: <span className="font-bold">{jobStatus}</span>
+          </div>
+        ) : null}
+      </div>
 
       {addNewJobModal && (
         <>
@@ -148,8 +162,8 @@ const TableActions = () => {
                 <label className="block mb-1 font-medium">Job Status</label>
                 <select
                   className="w-full p-2 border border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-                  value={jobStatus}
-                  onChange={(e) => setJobStatus(e.target.value)}
+                  value={newJobStatus}
+                  onChange={(e) => setNewJobStatus(e.target.value)}
                 >
                   <option value="" disabled selected>
                     Select status
@@ -165,8 +179,8 @@ const TableActions = () => {
                 <label className="block mb-1 font-medium">Job Type</label>
                 <select
                   className="w-full p-2 border border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-                  value={jobType}
-                  onChange={(e) => setJobType(e.target.value)}
+                  value={newJobType}
+                  onChange={(e) => setNewJobType(e.target.value)}
                 >
                   <option value="" disabled selected>
                     Select type
