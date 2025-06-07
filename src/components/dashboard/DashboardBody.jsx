@@ -5,6 +5,7 @@ import DashboardIntro from "./DashboardIntro";
 import TableActions from "./TableActions";
 import EditingInfo from "../EditingInfo";
 import Filtering from "./Filtering";
+import Sorting from "./Sorting";
 
 const DashboardBody = () => {
   return (
@@ -12,7 +13,10 @@ const DashboardBody = () => {
       <DashboardIntro />
       <div className="w-[50%] m-10">
         <Input />
-        <Filtering />
+        <div className="w-full flex items-center">
+          <Filtering />
+          <Sorting />
+        </div>
       </div>
       <TableActions />
       <Table />
