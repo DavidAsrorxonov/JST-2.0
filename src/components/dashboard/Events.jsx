@@ -67,6 +67,9 @@ const Events = () => {
           shouldShowTimeoutProgress: true,
         });
       }
+      setEventName("");
+      setEventDescription("");
+      setIsDateChosen(false);
     } catch (error) {
       console.error("Error adding event:", error);
     }
