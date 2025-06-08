@@ -6,16 +6,20 @@ import {
   DrawerFooter,
   DrawerHeader,
 } from "@heroui/drawer";
-import { useDisclosure } from "@heroui/react";
+import { addToast, useDisclosure } from "@heroui/react";
 import ProfileCalendar from "./ProfileCalendar";
 import { useState } from "react";
 import { parseDate } from "@internationalized/date";
+import axios from "axios";
 
 const Events = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const parsedDate = new Date().toISOString().split("T")[0];
   const [date, setDate] = useState(parseDate(parsedDate));
   const [isDateChosen, setIsDateChosen] = useState(false);
+  const [eventName, setEventName] = useState("");
+  const [eventDescription, setEventDescription] = useState("");
+  const { id } = JSON.parse(localStorage.getItem("user"));
 
   const newFormatted =
     date.year +
@@ -23,6 +27,50 @@ const Events = () => {
     date.month.toString().padStart(2, "0") +
     "-" +
     date.day.toString().padStart(2, "0");
+
+  const payload = {
+    event_name: eventName,
+    event_description: eventDescription,
+    event_date: newFormatted,
+    user_id: id,
+  };
+
+  const handleAddEvent = async () => {
+    if (!eventName || !eventDescription || !isDateChosen) {
+      addToast({
+        title: "Error",
+        description: "All fields are required",
+        color: "danger",
+        timeout: 2000,
+        shouldShowTimeoutProgress: true,
+      });
+    }
+
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/api/events",
+        payload,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+
+      if (response.status === 201) {
+        addToast({
+          title: "Success",
+          description: "Event added successfully",
+          color: "success",
+          timeout: 2000,
+          shouldShowTimeoutProgress: true,
+        });
+      }
+    } catch (error) {
+      console.error("Error adding event:", error);
+    }
+  };
 
   return (
     <>
@@ -44,7 +92,12 @@ const Events = () => {
           {(onClose) => (
             <>
               <DrawerHeader>
-                <h1 className="text-4xl font-bold">Events</h1>
+                <h1
+                  className="text-4xl font-bold"
+                  onClick={() => console.log(typeof newFormatted)}
+                >
+                  Events
+                </h1>
               </DrawerHeader>
               <DrawerBody>
                 <h1 className="font-semibold text-xl">Create an event</h1>
@@ -72,15 +125,22 @@ const Events = () => {
                           type="text"
                           placeholder="Event title"
                           className="w-full p-2 border border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                          value={eventName}
+                          onChange={(e) => setEventName(e.target.value)}
                         />
 
                         <label>Event description</label>
                         <textarea
                           className="w-full p-2 border border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
                           placeholder="Event description"
+                          value={eventDescription}
+                          onChange={(e) => setEventDescription(e.target.value)}
                         />
 
-                        <button className="px-4 py-1 bg-blue-100 hover:bg-blue-200 transition-all border border-blue-500 text-blue-600 rounded-md">
+                        <button
+                          className="px-4 py-1 bg-blue-100 hover:bg-blue-200 transition-all border border-blue-500 text-blue-600 rounded-md"
+                          onClick={handleAddEvent}
+                        >
                           Create
                         </button>
                         <button
