@@ -11,6 +11,7 @@ import Register from "./components/Register";
 import Dashboard from "./pages/Dashboard";
 import CompaniesPage from "./pages/CompaniesPage";
 import EventsPage from "./pages/EventsPage";
+import SupportPage from "./pages/SupportPage";
 
 const App = () => {
   return (
@@ -28,6 +29,7 @@ const App = () => {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/companies" element={<CompaniesPage />} />
           <Route path="/events" element={<EventsPage />} />
+          <Route path="/support" element={<SupportPage />} />
         </Routes>
       </BrowserRouter>
     </HeroUIProvider>
