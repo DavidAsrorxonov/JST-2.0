@@ -9,11 +9,15 @@ const Sorting = () => {
 
   return (
     <div className="flex items-center mt-5">
-      <div className="hover:bg-gray-100 p-2 rounded-full transition-all">
+      <div
+        className="flex items-center justify-center gap-2 hover:bg-gray-100 border border-gray-300 px-4 py-1 rounded-full transition-all cursor-pointer"
+        onClick={() => setSortingChosen(!sortingChosen)}
+      >
         <ArrowDownUp
-          onClick={() => setSortingChosen(!sortingChosen)}
-          className={`cursor-pointer ${sortingChosen ? "text-blue-600" : ""}`}
+          className={`${sortingChosen ? "text-blue-600" : ""}`}
+          size={20}
         />
+        Sort
       </div>
 
       {sortingChosen && (
