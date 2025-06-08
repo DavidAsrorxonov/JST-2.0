@@ -15,6 +15,7 @@ import { SunIcon } from "../../../public/icons/SunIcon";
 
 const Profile = () => {
   const [imageURL, setImageURL] = useState(null);
+  const [logoutConfirmationModal, setLogoutConfirmationModal] = useState(false);
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   const user = JSON.parse(localStorage.getItem("user"));
@@ -146,7 +147,10 @@ const Profile = () => {
                   <button className="text-green-500 underline">
                     Two-Factor Authentication
                   </button>
-                  <button className="text-red-500 underline" onClick={logout}>
+                  <button
+                    className="text-red-500 underline"
+                    onClick={() => setLogoutConfirmationModal(true)}
+                  >
                     Logout
                   </button>
                 </div>
@@ -191,6 +195,12 @@ const Profile = () => {
           )}
         </DrawerContent>
       </Drawer>
+
+      {logoutConfirmationModal && (
+        <div className="absolute top-1/2 left-1/2">
+          Are you sure you want to logout?
+        </div>
+      )}
     </>
   );
 };
