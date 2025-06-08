@@ -12,7 +12,6 @@ const SupportBody = () => {
     if (input.trim()) {
       setMessages([...messages, { text: input, sender: "user" }]);
       setInput("");
-      // Simulate bot reply (optional)
       setTimeout(() => {
         setMessages((prev) => [
           ...prev,
@@ -32,7 +31,6 @@ const SupportBody = () => {
       </div>
       <NavigationButtons />
 
-      {/* Chat Messages */}
       <div className="flex-1 overflow-y-auto p-4 space-y-3">
         {messages.map((msg, idx) => (
           <div
@@ -48,7 +46,6 @@ const SupportBody = () => {
         ))}
       </div>
 
-      {/* Input Bar */}
       <form
         onSubmit={handleSend}
         className="flex items-center gap-2 p-3 border-t bg-gray-50"
