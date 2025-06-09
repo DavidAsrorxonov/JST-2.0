@@ -1,52 +1,80 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useEvent } from "../../context/eventContext";
 import NavigationButtons from "../NavigationButtons";
+import { Ellipsis } from "lucide-react";
 
 const EventBodyRight = () => {
+  const [ellipsisOpen, setEllipsisOpen] = useState(null);
+  const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 });
+
   const { events, fetchEvents } = useEvent();
   const { id, firstName } = JSON.parse(localStorage.getItem("user"));
+
+  const handleEllipsisClick = (e, idx) => {
+    e.stopPropagation();
+    const rect = e.target.getBoundingClientRect();
+    setModalPosition({
+      top: rect.bottom + window.scrollY - 80,
+      left: rect.left + window.scrollX - 150,
+    });
+    setEllipsisOpen((prev) => (prev === idx ? null : idx));
+  };
 
   useEffect(() => {
     fetchEvents();
   }, []);
 
+  useEffect(() => {
+    const handleClickOutside = () => setEllipsisOpen(null);
+    document.addEventListener("click", handleClickOutside);
+    return () => document.removeEventListener("click", handleClickOutside);
+  });
+
   return (
-    <div className="max-w-4xl mx-auto px-6 py-8 bg-white border border-gray-100 rounded-2xl shadow-sm mt-10">
-      <header className="flex items-center justify-between mb-8 border-b pb-4">
-        <h1 className="text-3xl font-bold text-neutral-800">
-          Hello, {firstName}
-        </h1>
-      </header>
+    <>
+      <div className="max-w-4xl mx-3 relative">
+        <h1 className="text-2xl font-semibold mb-4">Your recorded events</h1>
 
-      <NavigationButtons />
-
-      <div className="text-sm text-neutral-400 mb-10">User ID: {id}</div>
-
-      <section className="grid gap-6">
-        {events.length === 0 ? (
-          <div className="text-center text-neutral-400 border border-dashed border-neutral-300 py-12 rounded-lg">
-            No events available at the moment.
-          </div>
-        ) : (
-          events.map(({ event_name, event_description, event_date }, idx) => (
-            <article
+        <div className="border border-gray-200 rounded-lg max-h-[80vh] overflow-y-scroll p-3 shadow-inner bg-white">
+          {events.map(({ event_name, event_description, event_date }, idx) => (
+            <div
               key={idx}
-              className="p-6 bg-neutral-50 border border-neutral-200 rounded-xl hover:shadow-md transition duration-200"
+              className="bg-gray-50 hover:bg-gray-100 transition-colors duration-200 p-4 rounded-xl shadow-sm mb-3"
             >
-              <h2 className="text-xl font-semibold text-neutral-800">
+              <p className="flex items-center justify-center text-lg font-medium text-gray-800 mb-1">
+                📌 <span className="font-semibold">Event name:</span>{" "}
                 {event_name}
-              </h2>
-              <p className="text-sm text-neutral-600 mt-2 leading-relaxed">
+                <div className="ml-auto p-1 hover:bg-gray-200 rounded-md cursor-pointer transition-all">
+                  <Ellipsis onClick={(e) => handleEllipsisClick(e, idx)} />
+                </div>
+              </p>
+              <p className="text-sm text-gray-600 mb-1">
+                📝 <span className="font-medium">Description:</span>{" "}
                 {event_description}
               </p>
-              <time className="block text-xs text-neutral-500 mt-4">
-                📅 {event_date}
-              </time>
-            </article>
-          ))
-        )}
-      </section>
-    </div>
+              <p className="text-sm text-gray-500">
+                📅 <span className="font-medium">Date:</span> {event_date}
+              </p>
+              {ellipsisOpen === idx && (
+                <div
+                  className="absolute bg-white border rounded-md shadow-md p-2 w-40 z-10"
+                  style={{ top: modalPosition.top, left: modalPosition.left }}
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <p className="text-sm hover:bg-gray-100 px-2 py-1 cursor-pointer rounded">
+                    Edit
+                  </p>
+                  <p className="text-sm hover:bg-gray-100 px-2 py-1 cursor-pointer rounded">
+                    Delete
+                  </p>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+      <NavigationButtons />
+    </>
   );
 };
 

@@ -2,7 +2,7 @@ import { CalendarDays } from "lucide-react";
 
 const EventBodyLeft = () => {
   return (
-    <div className="p-4">
+    <div className="mt-2">
       <h2 className="text-lg font-semibold flex items-center gap-2">
         <CalendarDays size={18} /> Upcoming Events
       </h2>
