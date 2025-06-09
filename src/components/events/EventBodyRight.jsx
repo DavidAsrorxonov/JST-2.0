@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useEvent } from "../../context/eventContext";
 import NavigationButtons from "../NavigationButtons";
 import { Bell, Ellipsis } from "lucide-react";
-import { addToast } from "@heroui/toast";
+import { Tooltip } from "@heroui/tooltip";
 
 const EventBodyRight = () => {
   const [ellipsisOpen, setEllipsisOpen] = useState(null);
@@ -47,16 +47,9 @@ const EventBodyRight = () => {
                 {event_name}
                 <div className="ml-auto flex gap-1 items-center justify-center">
                   <div className="hover:bg-gray-200 rounded-md cursor-pointer transition-all px-2 py-1">
-                    <Bell
-                      onClick={() => {
-                        return addToast({
-                          title: "Event",
-                          description: `Notifications for ${event_name} will be sent to ${firstName}`,
-                          timeout: 2000,
-                          shouldShowTimeoutProgress: true,
-                        });
-                      }}
-                    />
+                    <Tooltip content="Set reminder" showArrow={true}>
+                      <Bell />
+                    </Tooltip>
                   </div>
                   <div className="hover:bg-gray-200 rounded-md cursor-pointer transition-all px-2 py-1">
                     <Ellipsis onClick={(e) => handleEllipsisClick(e, idx)} />
