@@ -53,7 +53,7 @@ const EventBodyRight = () => {
               className="bg-gray-50 hover:bg-gray-100 transition-colors duration-200 p-4 rounded-xl shadow-sm mb-3"
             >
               <p className="flex items-center justify-center text-lg font-medium text-gray-800 mb-1">
-                📌 <span className="font-semibold">Event name:</span>{" "}
+                📌 <span className="font-semibold">Event name:</span> &nbsp;
                 {event_name}
                 <div className="ml-auto flex gap-1 items-center justify-center">
                   <div className="hover:bg-gray-200 rounded-md cursor-pointer transition-all px-2 py-1">
