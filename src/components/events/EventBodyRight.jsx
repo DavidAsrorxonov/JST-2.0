@@ -62,10 +62,7 @@ const EventBodyRight = () => {
                   onClick={(e) => e.stopPropagation()}
                 >
                   <p className="text-sm hover:bg-gray-100 px-2 py-1 cursor-pointer rounded">
-                    Edit
-                  </p>
-                  <p className="text-sm hover:bg-gray-100 px-2 py-1 cursor-pointer rounded">
-                    Delete
+                    Mark as completed
                   </p>
                 </div>
               )}
