@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useEvent } from "../../context/eventContext";
 import NavigationButtons from "../NavigationButtons";
-import { Bell, Ellipsis } from "lucide-react";
+import { Bell, Check, Ellipsis } from "lucide-react";
 import { Tooltip } from "@heroui/tooltip";
+import { addToast } from "@heroui/toast";
 
 const EventBodyRight = () => {
   const [ellipsisOpen, setEllipsisOpen] = useState(null);
   const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 });
+  const [customReminderModal, setCustomReminderModal] = useState(false);
 
   const { events, fetchEvents } = useEvent();
   const { id, firstName } = JSON.parse(localStorage.getItem("user"));
@@ -31,6 +33,14 @@ const EventBodyRight = () => {
     return () => document.removeEventListener("click", handleClickOutside);
   });
 
+  const handleBellClick = () => {
+    setCustomReminderModal(true);
+
+    setTimeout(() => {
+      setCustomReminderModal(false);
+    }, 3000);
+  };
+
   return (
     <>
       <div className="max-w-4xl mx-3 relative select-none">
@@ -48,7 +58,10 @@ const EventBodyRight = () => {
                 <div className="ml-auto flex gap-1 items-center justify-center">
                   <div className="hover:bg-gray-200 rounded-md cursor-pointer transition-all px-2 py-1">
                     <Tooltip content="Set reminder" showArrow={true}>
-                      <Bell />
+                      <Bell
+                        onClick={handleBellClick}
+                        className="outline-none focus:outline-none"
+                      />
                     </Tooltip>
                   </div>
                   <div className="hover:bg-gray-200 rounded-md cursor-pointer transition-all px-2 py-1">
@@ -79,6 +92,15 @@ const EventBodyRight = () => {
         </div>
       </div>
       <NavigationButtons />
+
+      {customReminderModal && (
+        <div className="absolute top-16 left-1/2 transform -translate-x-1/2 z-50 px-6 py-4 rounded-lg shadow-lg border border-blue-300 bg-blue-50 text-black text-sm max-w-xs w-fit">
+          <div className="flex items-center gap-2">
+            <Check size={25} className="text-blue-600" />
+            Reminder set
+          </div>
+        </div>
+      )}
     </>
   );
 };
