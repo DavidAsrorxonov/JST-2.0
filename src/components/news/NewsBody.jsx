@@ -1,79 +1,127 @@
 import React, { useEffect, useState } from "react";
+import NavigationButtons from "../NavigationButtons";
 
-const NewsBody = () => {
-  const [articles, setArticles] = useState([]);
+const NewsPage = () => {
+  const [allArticles, setAllArticles] = useState([]);
+  const [filteredArticles, setFilteredArticles] = useState([]);
+  const [selectedTag, setSelectedTag] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("https://dev.to/api/articles?per_page=4")
+    fetch("https://dev.to/api/articles?per_page=20")
       .then((res) => res.json())
-      .then((data) => setArticles(data))
-      .catch((err) => console.error("Error fetching articles:", err));
+      .then((data) => {
+        setAllArticles(data);
+        setFilteredArticles(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Error fetching articles:", err);
+        setLoading(false);
+      });
   }, []);
 
-  if (!articles.length)
+  const handleTagClick = (tag) => {
+    if (selectedTag === tag) {
+      setSelectedTag(null); // toggle off
+      setFilteredArticles(allArticles);
+    } else {
+      setSelectedTag(tag);
+      const filtered = allArticles.filter((article) =>
+        article.tag_list.includes(tag)
+      );
+      setFilteredArticles(filtered);
+    }
+  };
+
+  const uniqueTags = [...new Set(allArticles.flatMap((a) => a.tag_list))];
+
+  if (loading) {
     return (
       <div className="flex justify-center items-center h-64">
         <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
       </div>
     );
+  }
 
   return (
-    <div className="max-w-6xl mx-auto mt-10 px-4 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {articles.map((article) => (
-        <div
-          key={article.id}
-          className="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-xl transition"
-        >
-          <a href={article.url} target="_blank" rel="noopener noreferrer">
-            <img
-              src={article.cover_image || article.social_image}
-              alt={article.title}
-              className="w-full h-48 object-cover"
-            />
-          </a>
+    <div className="max-w-7xl mx-auto p-4">
+      {/* Tag filter */}
+      <div className="mb-6 flex flex-wrap gap-2">
+        {uniqueTags.map((tag) => (
+          <button
+            key={tag}
+            onClick={() => handleTagClick(tag)}
+            className={`px-3 py-1 text-sm rounded-full border transition ${
+              selectedTag === tag
+                ? "bg-blue-600 text-white"
+                : "bg-gray-100 text-gray-800 hover:bg-blue-100"
+            }`}
+          >
+            #{tag}
+          </button>
+        ))}
+      </div>
+      <NavigationButtons />
 
-          <div className="p-4">
-            <h2 className="text-lg font-semibold hover:text-blue-600">
-              <a href={article.url} target="_blank" rel="noopener noreferrer">
-                {article.title}
-              </a>
-            </h2>
-
-            <p className="text-sm text-gray-600 mt-1">{article.description}</p>
-
-            <div className="flex items-center mt-3">
+      {/* Article cards */}
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {filteredArticles.map((article) => (
+          <div
+            key={article.id}
+            className="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-xl transition"
+          >
+            <a href={article.url} target="_blank" rel="noopener noreferrer">
               <img
-                src={article.user.profile_image}
-                alt={article.user.name}
-                className="w-8 h-8 rounded-full"
+                src={article.cover_image || article.social_image}
+                alt={article.title}
+                className="w-full h-48 object-cover"
               />
-              <div className="ml-2 text-sm">
-                <p className="font-medium">{article.user.name}</p>
-                <p className="text-gray-400">{article.readable_publish_date}</p>
+            </a>
+            <div className="p-4">
+              <h2 className="text-lg font-semibold hover:text-blue-600">
+                <a href={article.url} target="_blank" rel="noopener noreferrer">
+                  {article.title}
+                </a>
+              </h2>
+              <p className="text-sm text-gray-600 mt-1">
+                {article.description}
+              </p>
+              <div className="flex items-center mt-3">
+                <img
+                  src={article.user.profile_image}
+                  alt={article.user.name}
+                  className="w-8 h-8 rounded-full"
+                />
+                <div className="ml-2 text-sm">
+                  <p className="font-medium">{article.user.name}</p>
+                  <p className="text-gray-400">
+                    {article.readable_publish_date}
+                  </p>
+                </div>
+              </div>
+              <div className="flex justify-between text-xs text-gray-500 mt-3">
+                <span>🗨️ {article.comments_count}</span>
+                <span>❤️ {article.public_reactions_count}</span>
+                <span>⏱ {article.reading_time_minutes} min</span>
+              </div>
+              <div className="mt-2">
+                {article.tag_list.map((tag) => (
+                  <span
+                    key={tag}
+                    onClick={() => handleTagClick(tag)}
+                    className="text-xs inline-block bg-gray-100 text-gray-700 px-2 py-1 rounded mr-2 cursor-pointer hover:bg-gray-200"
+                  >
+                    #{tag}
+                  </span>
+                ))}
               </div>
             </div>
-
-            <div className="flex justify-between text-xs text-gray-500 mt-3">
-              <span>🗨️ {article.comments_count}</span>
-              <span>❤️ {article.public_reactions_count}</span>
-              <span>⏱ {article.reading_time_minutes} min</span>
-            </div>
-
-            <div className="mt-2">
-              {article.tag_list.map((tag) => (
-                <span
-                  key={tag}
-                  className="text-xs inline-block bg-gray-100 text-gray-700 px-2 py-1 rounded mr-2"
-                >
-                  #{tag}
-                </span>
-              ))}
-            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 };
 
-export default NewsBody;
+export default NewsPage;
