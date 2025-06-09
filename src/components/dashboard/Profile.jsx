@@ -16,8 +16,6 @@ import {
   LogOut,
   Lock,
   Trash2,
-  Sun,
-  Moon,
   Globe,
   Smartphone,
 } from "lucide-react";
@@ -105,8 +103,8 @@ const Profile = () => {
                     <div className="font-medium">Theme Mode</div>
                     <Switch
                       defaultSelected
-                      endContent={<Moon />}
-                      startContent={<Sun />}
+                      endContent={<MoonIcon />}
+                      startContent={<SunIcon />}
                     />
                   </div>
                   <div className="mt-3">
