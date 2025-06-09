@@ -1,25 +1,31 @@
 import React, { useEffect, useState } from "react";
 import NavigationButtons from "../NavigationButtons";
+import axios from "axios";
 
 const NewsPage = () => {
   const [allArticles, setAllArticles] = useState([]);
   const [filteredArticles, setFilteredArticles] = useState([]);
   const [selectedTag, setSelectedTag] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [numberOfArticles, setNumberOfArticles] = useState(20);
 
   useEffect(() => {
-    fetch("https://dev.to/api/articles?per_page=20")
-      .then((res) => res.json())
-      .then((data) => {
-        setAllArticles(data);
-        setFilteredArticles(data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error("Error fetching articles:", err);
-        setLoading(false);
-      });
+    fetchArticles();
   }, []);
+
+  const fetchArticles = async () => {
+    try {
+      const response = await axios.get(
+        `https://dev.to/api/articles?per_page=${numberOfArticles}`
+      );
+      setAllArticles(response.data);
+      setFilteredArticles(response.data);
+      setLoading(false);
+    } catch (error) {
+      console.log("Error fetching", error);
+      setLoading(false);
+    }
+  };
 
   const handleTagClick = (tag) => {
     if (selectedTag === tag) {
@@ -60,6 +66,19 @@ const NewsPage = () => {
             #{tag}
           </button>
         ))}
+        <div className="flex items-center justify-center bg-blue-100 border border-blue-500 text-blue-600 cursor-pointer px-4 py-1 rounded-full">
+          <div>Showing {numberOfArticles} articles</div>
+        </div>
+        <div className="flex items-center justify-center bg-blue-100 border border-blue-500 text-blue-600 cursor-pointer px-4 py-1 rounded-full">
+          <div
+            onClick={() => {
+              setNumberOfArticles(numberOfArticles + 10);
+              fetchArticles();
+            }}
+          >
+            Click to add more
+          </div>
+        </div>
       </div>
       <NavigationButtons />
 
