@@ -91,6 +91,8 @@ const Profile = () => {
                     <div>
                       <strong>Status:</strong>{" "}
                       <span className="text-green-600 font-medium">Active</span>
+                      {" | "}
+                      <span className="text-blue-600 font-medium">User</span>
                     </div>
                   </div>
                 </div>
