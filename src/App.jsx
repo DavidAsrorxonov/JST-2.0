@@ -12,6 +12,7 @@ import Dashboard from "./pages/Dashboard";
 import CompaniesPage from "./pages/CompaniesPage";
 import EventsPage from "./pages/EventsPage";
 import SupportPage from "./pages/SupportPage";
+import NewsPage from "./pages/NewsPage";
 
 const App = () => {
   return (
@@ -30,6 +31,7 @@ const App = () => {
           <Route path="/companies" element={<CompaniesPage />} />
           <Route path="/events" element={<EventsPage />} />
           <Route path="/support" element={<SupportPage />} />
+          <Route path="/news" element={<NewsPage />} />
         </Routes>
       </BrowserRouter>
     </HeroUIProvider>

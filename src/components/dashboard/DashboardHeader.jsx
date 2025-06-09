@@ -5,6 +5,7 @@ import Notification from "./Notification";
 import Profile from "./Profile";
 import { useNavigate } from "react-router-dom";
 import Events from "./Events";
+import NewsIcons from "../news/NewsIcons";
 
 const DashboardHeader = () => {
   const navigate = useNavigate();
@@ -32,8 +33,8 @@ const DashboardHeader = () => {
         ))}
       </div>
       <div className="flex items-center gap-10 mr-5">
+        <NewsIcons />
         <Events />
-        {/* <Input /> */}
         <Notification />
         <Profile />
       </div>
