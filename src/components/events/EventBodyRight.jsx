@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useEvent } from "../../context/eventContext";
 import NavigationButtons from "../NavigationButtons";
-import { Ellipsis } from "lucide-react";
+import { Bell, Ellipsis } from "lucide-react";
+import { addToast } from "@heroui/toast";
 
 const EventBodyRight = () => {
   const [ellipsisOpen, setEllipsisOpen] = useState(null);
@@ -32,7 +33,7 @@ const EventBodyRight = () => {
 
   return (
     <>
-      <div className="max-w-4xl mx-3 relative">
+      <div className="max-w-4xl mx-3 relative select-none">
         <h1 className="text-2xl font-semibold mb-4">Your recorded events</h1>
 
         <div className="border border-gray-200 rounded-lg max-h-[80vh] overflow-y-scroll p-3 shadow-inner bg-white">
@@ -44,8 +45,22 @@ const EventBodyRight = () => {
               <p className="flex items-center justify-center text-lg font-medium text-gray-800 mb-1">
                 📌 <span className="font-semibold">Event name:</span>{" "}
                 {event_name}
-                <div className="ml-auto p-1 hover:bg-gray-200 rounded-md cursor-pointer transition-all">
-                  <Ellipsis onClick={(e) => handleEllipsisClick(e, idx)} />
+                <div className="ml-auto flex gap-1 items-center justify-center">
+                  <div className="hover:bg-gray-200 rounded-md cursor-pointer transition-all px-2 py-1">
+                    <Bell
+                      onClick={() => {
+                        return addToast({
+                          title: "Event",
+                          description: `Notifications for ${event_name} will be sent to ${firstName}`,
+                          timeout: 2000,
+                          shouldShowTimeoutProgress: true,
+                        });
+                      }}
+                    />
+                  </div>
+                  <div className="hover:bg-gray-200 rounded-md cursor-pointer transition-all px-2 py-1">
+                    <Ellipsis onClick={(e) => handleEllipsisClick(e, idx)} />
+                  </div>
                 </div>
               </p>
               <p className="text-sm text-gray-600 mb-1">
