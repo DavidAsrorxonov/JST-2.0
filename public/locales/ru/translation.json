@@ -40,6 +40,11 @@
   "Ascending": "A-Z (по возрастанию)",
   "Descending": "Z-A (по убыванию)",
   "Clear sorting": "Очистить сортировку",
+  "You can edit the rows by just clicking onto them": "Вы можете редактировать строки просто нажав на них",
+  "Add a new job": "Добавить новую работу",
+  "Selected": "Выбрано",
+  "Selected JT": "Разобрано по ВР",
+  "Selected JS": "Разобрано по СР",
   "Manage your job applications and track your progress": "Управляйте своими заявками на работу и следите за прогрессом",
   "Search": "Поиск"
 }

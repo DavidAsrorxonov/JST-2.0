@@ -4,6 +4,7 @@ import { CirclePlus, Plus, PlusCircle, TrashIcon, X } from "lucide-react";
 import React, { useState } from "react";
 import { useJob } from "../../context/jobContext";
 import { useSearch } from "../../context/searchContext";
+import { useTranslation } from "react-i18next";
 
 const TableActions = () => {
   const [addNewJobModal, setAddNewJobModal] = useState(false);
@@ -13,6 +14,8 @@ const TableActions = () => {
   const [newJobStatus, setNewJobStatus] = useState("");
   const [newJobType, setNewJobType] = useState("");
   const [websiteUrl, setWebsiteUrl] = useState("");
+
+  const { t } = useTranslation();
 
   const { id } = JSON.parse(localStorage.getItem("user"));
 
@@ -83,30 +86,31 @@ const TableActions = () => {
         onClick={() => setAddNewJobModal(true)}
       >
         <PlusCircle size={20} />
-        Add a new job
+        {t("Add a new job")}
       </div>
       <div className="flex items-center justify-center ml-2">
         {sortingType && sortingType === "asc" ? (
           <div className="bg-blue-100 border border-blue-500 px-6 py-1 rounded-md">
-            Selected: <span className="font-bold">Ascending</span>
+            {t("Selected")}: <span className="font-bold">{t("Ascending")}</span>
           </div>
         ) : sortingType && sortingType === "desc" ? (
           <div className="bg-blue-100 border border-blue-500 px-6 py-1 rounded-md">
-            Selected: <span className="font-bold">Descending</span>
+            {t("Selected")}:{" "}
+            <span className="font-bold">{t("Descending")}</span>
           </div>
         ) : null}
       </div>
       <div className="flex items-center justify-center ml-2">
         {jobType && jobType !== "all" ? (
           <div className="bg-blue-100 border border-blue-500 px-6 py-1 rounded-md">
-            Selected JT: <span className="font-bold">{jobType}</span>
+            {t("Selected JT")}: <span className="font-bold">{jobType}</span>
           </div>
         ) : null}
       </div>
       <div className="flex items-center justify-center ml-2">
         {jobStatus && jobStatus !== "all" ? (
           <div className="bg-blue-100 border border-blue-500 px-6 py-1 rounded-md">
-            Selected JS: <span className="font-bold">{jobStatus}</span>
+            {t("Selected JS")}: <span className="font-bold">{jobStatus}</span>
           </div>
         ) : null}
       </div>

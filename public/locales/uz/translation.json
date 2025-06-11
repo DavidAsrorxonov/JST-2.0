@@ -40,6 +40,11 @@
   "Ascending": "A-Z bo'ylab",
   "Descending": "Z-A bo'ylab",
   "Clear sorting": "Saralashni tozalash",
+  "You can edit the rows by just clicking onto them": "O'zgartirish uchun qatorlarni ustiga bosing",
+  "Add a new job": "Yangi ish qo'shish",
+  "Selected": "Tanlandi",
+  "Selected JT": "IT bo'yicha tanlandi",
+  "Selected JS": "IH bo'yicha tanlandi",
   "Manage your job applications and track your progress": "Ish arizalaringizni boshqaring va yutuqlaringizni kuzatib boring",
   "Search": "Qidirish"
 }

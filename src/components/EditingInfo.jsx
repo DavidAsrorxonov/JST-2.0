@@ -1,10 +1,13 @@
 import { CircleX } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
+import { useTranslation } from "react-i18next";
 
 const EditingInfo = () => {
   const [turnedOn, setTurnedOn] = useState(false);
   const divRef = useRef(null);
+
+  const { t } = useTranslation();
 
   useEffect(() => {
     setTurnedOn(true);
@@ -28,7 +31,7 @@ const EditingInfo = () => {
           ref={divRef}
         >
           <div className="flex items-center gap-2">
-            You can edit the rows by just clicking onto them
+            {t("You can edit the rows by just clicking onto them")}
             <CircleX
               size={15}
               className="cursor-pointer"
