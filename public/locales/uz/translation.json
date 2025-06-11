@@ -24,6 +24,14 @@
   "Delete Account Permanently": "Hisobni butunga o'chirish",
   "Close": "Yopish",
   "Edit": "O'zgartirish",
+  "Create an event": "Hodisa yaratish",
+  "Choose a specific date to create an event": "Hodisa yaratish uchun sana tanlang",
+  "Create an event for": "Hodisa yaratish uchun tanlangan sana:",
+  "Event name": "Hodisa",
+  "Event title": "Hodisa sarlavhasi",
+  "Event description": "Hodisa tavfsifi",
+  "Create": "Yaratish",
+  "Cancel": "Bekor qilish",
   "Manage your job applications and track your progress": "Ish arizalaringizni boshqaring va yutuqlaringizni kuzatib boring",
   "Search": "Qidirish"
 }

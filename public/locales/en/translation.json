@@ -24,6 +24,14 @@
   "Delete Account Permanently": "Delete Account Permanently",
   "Close": "Close",
   "Edit": "Edit",
+  "Create an event": "Create an event",
+  "Choose a specific date to create an event": "Choose a specific date to create an event",
+  "Create an event for": "Create an event for",
+  "Event name": "Event name",
+  "Event title": "Event title",
+  "Event description": "Event description",
+  "Create": "Create",
+  "Cancel": "Cancel",
   "Manage your job applications and track your progress": "Manage your job applications and track your progress",
   "Search": "Search"
 }

@@ -106,8 +106,10 @@ const Events = () => {
                 </h1>
               </DrawerHeader>
               <DrawerBody>
-                <h1 className="font-semibold text-xl">Create an event</h1>
-                <span>Choose a specific date to create an event</span>
+                <h1 className="font-semibold text-xl">
+                  {t("Create an event")}
+                </h1>
+                <span>{t("Choose a specific date to create an event")}</span>
                 <div className="flex items-center justify-center">
                   <ProfileCalendar
                     date={date}
@@ -120,25 +122,25 @@ const Events = () => {
                   {isDateChosen && (
                     <>
                       <div className="font-semibold text-center text-md">
-                        Create an event for:{" "}
+                        {t("Create an event for")}:{" "}
                       </div>
                       <span className="flex items-center justify-center font-bold text-xl">
                         {newFormatted}
                       </span>
                       <div className="mt-4 flex flex-col space-y-4">
-                        <label>Event name</label>
+                        <label>{t("Event name")}</label>
                         <input
                           type="text"
-                          placeholder="Event title"
+                          placeholder={t("Event title")}
                           className="w-full p-2 border border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
                           value={eventName}
                           onChange={(e) => setEventName(e.target.value)}
                         />
 
-                        <label>Event description</label>
+                        <label>{t("Event description")}</label>
                         <textarea
                           className="w-full p-2 border border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-                          placeholder="Event description"
+                          placeholder={t("Event description")}
                           value={eventDescription}
                           onChange={(e) => setEventDescription(e.target.value)}
                         />
@@ -147,13 +149,13 @@ const Events = () => {
                           className="px-4 py-1 bg-blue-100 hover:bg-blue-200 transition-all border border-blue-500 text-blue-600 rounded-md"
                           onClick={handleAddEvent}
                         >
-                          Create
+                          {t("Create")}
                         </button>
                         <button
                           className="px-4 py-1 bg-red-100 hover:bg-red-200 transition-all border border-red-500 text-red-600 rounded-md"
                           onClick={() => setIsDateChosen(false)}
                         >
-                          Cancel
+                          {t("Cancel")}
                         </button>
                       </div>
                     </>
@@ -165,7 +167,7 @@ const Events = () => {
                   onClick={onClose}
                   className="px-4 py-2 bg-red-100 border border-red-500 text-red-600 rounded-full"
                 >
-                  Close
+                  {t("Close")}
                 </button>
               </DrawerFooter>
             </>

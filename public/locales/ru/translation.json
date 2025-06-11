@@ -24,6 +24,14 @@
   "Delete Account Permanently": "Удалить аккаунт навсегда",
   "Close": "Закрыть",
   "Edit": "Редактировать",
+  "Create an event": "Создать событие",
+  "Choose a specific date to create an event": "Выберите дату для создания события",
+  "Create an event for": "Создать событие на:",
+  "Event name": "Название события",
+  "Event title": "Заголовок события",
+  "Event description": "Описание события",
+  "Create": "Создать",
+  "Cancel": "Отменить",
   "Manage your job applications and track your progress": "Управляйте своими заявками на работу и следите за прогрессом",
   "Search": "Поиск"
 }
