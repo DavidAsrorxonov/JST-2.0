@@ -6,6 +6,7 @@ import { UserProvider } from "./context/userContext.jsx";
 import { JobProvider } from "./context/jobContext.jsx";
 import { SearchProvider } from "./context/searchContext.jsx";
 import { EventProvider } from "./context/eventContext.jsx";
+import "./translation/i18n";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>

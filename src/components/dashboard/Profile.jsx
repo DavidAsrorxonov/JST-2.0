@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 import { MoonIcon } from "../../../public/icons/MoonIcon";
 import { SunIcon } from "../../../public/icons/SunIcon";
+import { useTranslation } from "react-i18next";
 
 const Profile = () => {
   const [imageURL, setImageURL] = useState(null);
@@ -33,6 +34,8 @@ const Profile = () => {
   const userId = user.id;
 
   const { logout } = useUser();
+
+  const { t, i18n } = useTranslation();
 
   const languages = [
     { value: "en", label: "English", flag: "🇬🇧" },
@@ -114,10 +117,12 @@ const Profile = () => {
                       <Languages size={18} /> Language
                     </div>
                     <div className="flex gap-2">
-                      {languages.map(({ flag, label }, idx) => (
+                      {languages.map(({ flag, label, value }, idx) => (
                         <div
                           key={idx}
                           className="flex items-center gap-1 px-2 py-1 border border-gray-300 rounded-md text-sm hover:bg-gray-100 cursor-pointer"
+                          onClick={() => i18n.changeLanguage(value)}
+                          onChange={localStorage.setItem("lang", value)}
                         >
                           <span>{flag}</span>
                           <span>{label}</span>

@@ -1,10 +1,12 @@
 import { Search } from "lucide-react";
 import { useEffect, useRef } from "react";
 import { useSearch } from "../../context/searchContext";
+import { useTranslation } from "react-i18next";
 
 const Input = () => {
   const { setSearchTerm } = useSearch();
   const inputRef = useRef(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -36,7 +38,7 @@ const Input = () => {
         <input
           ref={inputRef}
           type="text"
-          placeholder="Search"
+          placeholder={t("Search")}
           onChange={(e) => setSearchTerm(e.target.value)}
           className="w-full p-2 pl-10 rounded-full bg-[#E7E9F4] outline-none focus:outline-blue-300 placeholder:text-[#47569E]"
         />

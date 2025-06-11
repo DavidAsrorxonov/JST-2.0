@@ -6,9 +6,11 @@ import Profile from "./Profile";
 import { useNavigate } from "react-router-dom";
 import Events from "./Events";
 import NewsIcons from "../news/NewsIcons";
+import { useTranslation } from "react-i18next";
 
 const DashboardHeader = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const options = [
     "Dashboard",
@@ -28,7 +30,7 @@ const DashboardHeader = () => {
             className="text-lg font-bold cursor-pointer hover:text-gray-800"
             onClick={() => navigate(`/${option.toLowerCase()}`)}
           >
-            {option}
+            {t(option)}
           </div>
         ))}
       </div>
