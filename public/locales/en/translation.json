@@ -18,6 +18,12 @@
   "Change Password": "Change Password",
   "Two-Factor Authentication": "Two-Factor Authentication",
   "Logout": "Logout",
+  "Device Info": "Device Info",
+  "Account Options": "Account Options",
+  "Deactivate Account": "Deactivate Account",
+  "Delete Account Permanently": "Delete Account Permanently",
+  "Close": "Close",
+  "Edit": "Edit",
   "Manage your job applications and track your progress": "Manage your job applications and track your progress",
   "Search": "Search"
 }

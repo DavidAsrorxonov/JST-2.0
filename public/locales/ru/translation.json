@@ -18,6 +18,12 @@
   "Change Password": "Сменить пароль",
   "Two-Factor Authentication": "Двухэтапная аутентификация",
   "Logout": "Выход",
+  "Device Info": "Информация об устройстве",
+  "Account Options": "Настройки аккаунта",
+  "Deactivate Account": "Отключить аккаунт",
+  "Delete Account Permanently": "Удалить аккаунт навсегда",
+  "Close": "Закрыть",
+  "Edit": "Редактировать",
   "Manage your job applications and track your progress": "Управляйте своими заявками на работу и следите за прогрессом",
   "Search": "Поиск"
 }

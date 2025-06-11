@@ -76,7 +76,7 @@ const Profile = () => {
                   </div>
                   <div className="ml-auto text-purple-600 hover:underline flex items-center gap-1 cursor-pointer">
                     <UserRoundPen size={16} />
-                    Edit
+                    {t("Edit")}
                   </div>
                 </div>
               </DrawerHeader>
@@ -164,7 +164,7 @@ const Profile = () => {
 
                 <div className="pt-4 border-t">
                   <h4 className="text-sm font-semibold text-gray-700 mb-2 flex items-center gap-1">
-                    <Smartphone size={16} /> Device Info
+                    <Smartphone size={16} /> {t("Device Info")}
                   </h4>
                   <div className="text-sm text-gray-500">
                     Browser: {navigator.userAgent.split(")")[0]})
@@ -179,13 +179,13 @@ const Profile = () => {
 
                 <div className="pt-4 border-t">
                   <h4 className="text-sm font-semibold text-gray-700 mb-2">
-                    Account Options
+                    {t("Account Options")}
                   </h4>
                   <button className="flex items-center gap-2 text-yellow-600 hover:underline text-sm">
-                    <ShieldCheck size={16} /> Deactivate Account
+                    <ShieldCheck size={16} /> {t("Deactivate Account")}
                   </button>
                   <button className="flex items-center gap-2 text-red-600 hover:underline text-sm">
-                    <Trash2 size={16} /> Delete Account Permanently
+                    <Trash2 size={16} /> {t("Delete Account Permanently")}
                   </button>
                 </div>
               </DrawerBody>
@@ -195,7 +195,7 @@ const Profile = () => {
                   onClick={onClose}
                   className="px-4 py-2 border border-gray-400 text-gray-600 rounded-md hover:bg-gray-100 transition"
                 >
-                  Close
+                  {t("Close")}
                 </button>
               </DrawerFooter>
             </>
