@@ -32,6 +32,9 @@
   "Event description": "Event description",
   "Create": "Create",
   "Cancel": "Cancel",
+  "Filter": "Filter",
+  "Filter by": "Filter by",
+  "Clear": "Clear",
   "Manage your job applications and track your progress": "Manage your job applications and track your progress",
   "Search": "Search"
 }

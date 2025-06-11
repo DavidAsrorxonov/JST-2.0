@@ -32,6 +32,9 @@
   "Event description": "Описание события",
   "Create": "Создать",
   "Cancel": "Отменить",
+  "Filter": "Фильтровать",
+  "Filter by": "Фильтровать по",
+  "Clear": "Очистить",
   "Manage your job applications and track your progress": "Управляйте своими заявками на работу и следите за прогрессом",
   "Search": "Поиск"
 }

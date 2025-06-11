@@ -1,10 +1,13 @@
 import { Check, ChevronDown, CircleX, ListFilter } from "lucide-react";
 import React, { useState } from "react";
 import { useSearch } from "../../context/searchContext";
+import { useTranslation } from "react-i18next";
 
 const Filtering = () => {
   const [filteringChosen, setFilteringChosen] = useState(false);
   const [activeModal, setActiveModal] = useState("");
+
+  const { t } = useTranslation();
 
   const { jobStatus, setJobStatus, jobType, setJobType } = useSearch();
 
@@ -24,12 +27,12 @@ const Filtering = () => {
           className={`${filteringChosen ? "text-blue-600" : ""}`}
           size={20}
         />{" "}
-        Filter
+        {t("Filter")}
       </div>
 
       {filteringChosen && (
         <div className="flex gap-2">
-          <div>Filter by:</div>
+          <div>{t("Filter by")}:</div>
           <FilteringModal
             title={"Job Status"}
             icon={<ChevronDown size={20} />}
@@ -55,7 +58,7 @@ const Filtering = () => {
               }}
             >
               <CircleX size={15} />
-              Clear
+              {t("Clear")}
             </div>
           ) : null}
         </div>
