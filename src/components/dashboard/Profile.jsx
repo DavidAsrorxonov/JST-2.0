@@ -33,6 +33,8 @@ const Profile = () => {
   const userEmail = user.email;
   const userId = user.id;
 
+  const chosenLanguage = localStorage.getItem("i18nextLng");
+
   const { logout } = useUser();
 
   const { t, i18n } = useTranslation();
@@ -106,10 +108,10 @@ const Profile = () => {
 
                 <div>
                   <h2 className="text-lg font-semibold flex items-center gap-2">
-                    <Globe size={18} /> Accessibility
+                    <Globe size={18} /> {t("Accessibility")}
                   </h2>
                   <div className="flex items-center justify-between mt-2">
-                    <div className="font-medium">Theme Mode</div>
+                    <div className="font-medium">{t("Theme Mode")}</div>
                     <Switch
                       defaultSelected
                       endContent={<MoonIcon />}
@@ -118,13 +120,17 @@ const Profile = () => {
                   </div>
                   <div className="mt-3">
                     <div className="font-medium mb-1 flex items-center gap-2">
-                      <Languages size={18} /> Language
+                      <Languages size={18} /> {t("Language")}
                     </div>
                     <div className="flex gap-2">
                       {languages.map(({ flag, label, value }, idx) => (
                         <div
                           key={idx}
-                          className="flex items-center gap-1 px-2 py-1 border border-gray-300 rounded-md text-sm hover:bg-gray-100 cursor-pointer"
+                          className={`flex items-center gap-1 px-2 py-1 border border-gray-300 rounded-md text-sm cursor-pointer ${
+                            value === chosenLanguage
+                              ? "bg-blue-100 text-blue-600 border border-blue-500 hover:bg-blue-200 transition-all"
+                              : ""
+                          }`}
                           onClick={() => i18n.changeLanguage(value)}
                           onChange={localStorage.setItem("lang", value)}
                         >
