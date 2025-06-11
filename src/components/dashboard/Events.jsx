@@ -11,6 +11,7 @@ import ProfileCalendar from "./ProfileCalendar";
 import { useState } from "react";
 import { parseDate } from "@internationalized/date";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 
 const Events = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -20,6 +21,8 @@ const Events = () => {
   const [eventName, setEventName] = useState("");
   const [eventDescription, setEventDescription] = useState("");
   const { id } = JSON.parse(localStorage.getItem("user"));
+
+  const { t } = useTranslation();
 
   const newFormatted =
     date.year +
@@ -82,7 +85,7 @@ const Events = () => {
         onClick={onOpen}
       >
         <CalendarDays size={25} className="text-gray-600" />
-        <div className="text-gray-600">Events</div>
+        <div className="text-gray-600">{t("Events")}</div>
       </div>
 
       <Drawer
@@ -99,7 +102,7 @@ const Events = () => {
                   className="text-4xl font-bold"
                   onClick={() => console.log(typeof newFormatted)}
                 >
-                  Events
+                  {t("Events")}
                 </h1>
               </DrawerHeader>
               <DrawerBody>

@@ -82,20 +82,24 @@ const Profile = () => {
               <DrawerBody className="space-y-6 text-gray-700">
                 <div>
                   <h2 className="text-lg font-semibold flex items-center gap-2">
-                    <ShieldCheck size={18} /> Account Info
+                    <ShieldCheck size={18} /> {t("Account Info")}
                   </h2>
                   <div className="mt-2 space-y-1 text-sm">
                     <div>
-                      <strong>Account Owner:</strong> {userFullName}
+                      <strong>{t("Account owner")}:</strong> {userFullName}
                     </div>
                     <div>
-                      <strong>User ID:</strong> {userId}
+                      <strong>{t("User ID")}:</strong> {userId}
                     </div>
                     <div>
-                      <strong>Status:</strong>{" "}
-                      <span className="text-green-600 font-medium">Active</span>
+                      <strong>{t("Status")}:</strong>{" "}
+                      <span className="text-green-600 font-medium">
+                        {t("Active")}
+                      </span>
                       {" | "}
-                      <span className="text-blue-600 font-medium">User</span>
+                      <span className="text-blue-600 font-medium">
+                        {t("User")}
+                      </span>
                     </div>
                   </div>
                 </div>

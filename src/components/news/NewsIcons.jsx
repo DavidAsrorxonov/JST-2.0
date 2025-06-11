@@ -1,9 +1,11 @@
 import { Newspaper } from "lucide-react";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const NewsIcons = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   return (
     <div
@@ -11,7 +13,7 @@ const NewsIcons = () => {
       onClick={() => navigate("/news")}
     >
       <Newspaper size={25} className="text-gray-600" />
-      <div className="text-gray-600">Latest Dev News</div>
+      <div className="text-gray-600">{t("Latest Dev News")}</div>
     </div>
   );
 };
