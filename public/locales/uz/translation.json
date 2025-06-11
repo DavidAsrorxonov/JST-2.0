@@ -35,6 +35,11 @@
   "Filter": "Filtrlamoq",
   "Filter by": "Filtrlamoq",
   "Clear": "Tozalash",
+  "Sort": "Saralash",
+  "Sort by": "Saralash",
+  "Ascending": "A-Z bo'ylab",
+  "Descending": "Z-A bo'ylab",
+  "Clear sorting": "Saralashni tozalash",
   "Manage your job applications and track your progress": "Ish arizalaringizni boshqaring va yutuqlaringizni kuzatib boring",
   "Search": "Qidirish"
 }

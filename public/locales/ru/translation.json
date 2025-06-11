@@ -35,6 +35,11 @@
   "Filter": "Фильтровать",
   "Filter by": "Фильтровать по",
   "Clear": "Очистить",
+  "Sort": "Разбирать",
+  "Sort by": "Разбирать по",
+  "Ascending": "A-Z (по возрастанию)",
+  "Descending": "Z-A (по убыванию)",
+  "Clear sorting": "Очистить сортировку",
   "Manage your job applications and track your progress": "Управляйте своими заявками на работу и следите за прогрессом",
   "Search": "Поиск"
 }
