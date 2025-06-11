@@ -144,20 +144,20 @@ const Profile = () => {
 
                 <div>
                   <h2 className="text-lg font-semibold flex items-center gap-2">
-                    <Lock size={18} /> Security
+                    <Lock size={18} /> {t("Security")}
                   </h2>
                   <div className="mt-2 flex flex-col gap-2 text-sm">
                     <button className="flex items-center gap-2 text-gray-700 hover:text-yellow-600 transition">
-                      <Lock size={16} /> Change Password
+                      <Lock size={16} /> {t("Change Password")}
                     </button>
                     <button className="flex items-center gap-2 text-gray-700 hover:text-green-600 transition">
-                      <ShieldCheck size={16} /> Two-Factor Authentication
+                      <ShieldCheck size={16} /> {t("Two-Factor Authentication")}
                     </button>
                     <button
                       onClick={logout}
                       className="flex items-center gap-2 text-gray-700 hover:text-red-600 transition"
                     >
-                      <LogOut size={16} /> Logout
+                      <LogOut size={16} /> {t("Logout")}
                     </button>
                   </div>
                 </div>

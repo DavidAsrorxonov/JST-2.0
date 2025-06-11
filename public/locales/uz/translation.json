@@ -14,6 +14,10 @@
   "Accessibility": "Moslashtirish",
   "Theme Mode": "Ko'rinish",
   "Language": "Til",
+  "Security": "Xafvsizlik",
+  "Change Password": "Parolni o'zgartirish",
+  "Two-Factor Authentication": "Ikki-etapli ximoya",
+  "Logout": "Chiqish",
   "Manage your job applications and track your progress": "Ish arizalaringizni boshqaring va yutuqlaringizni kuzatib boring",
   "Search": "Qidirish"
 }

@@ -14,6 +14,10 @@
   "Accessibility": "Доступность",
   "Theme Mode": "Режим темы",
   "Language": "Язык",
+  "Security": "Безопасность",
+  "Change Password": "Сменить пароль",
+  "Two-Factor Authentication": "Двухэтапная аутентификация",
+  "Logout": "Выход",
   "Manage your job applications and track your progress": "Управляйте своими заявками на работу и следите за прогрессом",
   "Search": "Поиск"
 }
