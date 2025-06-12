@@ -4,6 +4,7 @@ import axios from "axios";
 import { Briefcase, Calendar, Link as LinkIcon, ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { getTimeOfDay } from "../../lib/utils/getTimeOfDay";
+import { useTranslation } from "react-i18next";
 
 const statusColumns = ["Applied", "Interview", "Offer", "Rejected"];
 
@@ -13,6 +14,8 @@ const CompaniesHeader = () => {
   const user = JSON.parse(localStorage.getItem("user"));
   const { firstName, lastName, id: userId } = user || {};
   const navigate = useNavigate();
+
+  const { t } = useTranslation();
 
   useEffect(() => {
     const getJobs = async () => {
@@ -30,7 +33,6 @@ const CompaniesHeader = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 py-10 px-6 md:px-12">
-      {/* Header */}
       <div className="flex justify-between items-center mb-12">
         <Logo />
         <div className="text-right">
@@ -48,11 +50,11 @@ const CompaniesHeader = () => {
         className="inline-flex items-center px-4 py-2 text-sm font-medium text-blue-600 bg-blue-100 hover:bg-blue-200 border border-blue-500 rounded-full mb-10"
       >
         <ArrowLeft className="mr-2" size={18} />
-        Back to Dashboard
+        {t("Back to Dashboard")}
       </button>
 
       <h1 className="text-3xl font-bold text-gray-900 mb-6">
-        Job Application Board
+        {t("Job Application Board")}
       </h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 border-t border-gray-200 pt-6">
