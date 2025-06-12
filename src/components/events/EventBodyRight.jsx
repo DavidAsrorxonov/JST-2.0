@@ -4,6 +4,7 @@ import NavigationButtons from "../NavigationButtons";
 import { Bell, Check, Ellipsis } from "lucide-react";
 import { Tooltip } from "@heroui/tooltip";
 import { addToast } from "@heroui/toast";
+import { useTranslation } from "react-i18next";
 
 const EventBodyRight = () => {
   const [ellipsisOpen, setEllipsisOpen] = useState(null);
@@ -13,6 +14,8 @@ const EventBodyRight = () => {
 
   const { events, fetchEvents } = useEvent();
   const { id, firstName } = JSON.parse(localStorage.getItem("user"));
+
+  const { t } = useTranslation();
 
   const handleEllipsisClick = (e, idx) => {
     e.stopPropagation();
@@ -47,7 +50,9 @@ const EventBodyRight = () => {
   return (
     <>
       <div className="max-w-4xl mx-3 relative select-none">
-        <h1 className="text-2xl font-semibold mb-4">Your recorded events</h1>
+        <h1 className="text-2xl font-semibold mb-4">
+          {t("Your recorded events")}
+        </h1>
 
         <div className="border border-gray-200 rounded-lg max-h-[80vh] overflow-y-scroll p-3 shadow-inner bg-white">
           {events.map(({ event_name, event_description, event_date }, idx) => (
@@ -56,7 +61,8 @@ const EventBodyRight = () => {
               className="bg-gray-50 hover:bg-gray-100 transition-colors duration-200 p-4 rounded-xl shadow-sm mb-3"
             >
               <p className="flex items-center justify-center text-lg font-medium text-gray-800 mb-1">
-                📌 <span className="font-semibold">Event name:</span> &nbsp;
+                📌 <span className="font-semibold">{t("Event name")}:</span>{" "}
+                &nbsp;
                 {event_name}
                 <div className="ml-auto flex gap-1 items-center justify-center">
                   <div className="hover:bg-gray-200 rounded-md cursor-pointer transition-all px-2 py-1">
@@ -75,11 +81,12 @@ const EventBodyRight = () => {
                 </div>
               </p>
               <p className="text-sm text-gray-600 mb-1">
-                📝 <span className="font-medium">Description:</span>{" "}
+                📝 <span className="font-medium">{t("Description")}:</span>{" "}
                 {event_description}
               </p>
               <p className="text-sm text-gray-500">
-                📅 <span className="font-medium">Date:</span> {event_date}
+                📅 <span className="font-medium">{t("Date")}:</span>{" "}
+                {event_date}
               </p>
               {ellipsisOpen === idx && (
                 <div
@@ -88,7 +95,7 @@ const EventBodyRight = () => {
                   onClick={(e) => e.stopPropagation()}
                 >
                   <p className="text-sm hover:bg-gray-100 px-2 py-1 cursor-pointer rounded">
-                    Mark as completed
+                    {t("Mark as completed")}
                   </p>
                 </div>
               )}

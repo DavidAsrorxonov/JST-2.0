@@ -1,9 +1,12 @@
 import React from "react";
 import Logo from "../Logo";
 import { getTimeOfDay } from "../../lib/utils/getTimeOfDay";
+import { useTranslation } from "react-i18next";
 
 const EventHeader = () => {
   const user = JSON.parse(localStorage.getItem("user"));
+
+  const { t } = useTranslation();
 
   return (
     <header className="w-full border-b border-gray-200 bg-white px-6 py-4 shadow-sm">
@@ -12,10 +15,11 @@ const EventHeader = () => {
           <Logo />
           <div>
             <h1 className="text-lg font-semibold text-gray-800">
-              Event Manager
+              {t("Event Manager")}
             </h1>
             <p className="text-sm text-gray-500">
-              {getTimeOfDay()}, {user?.firstName}. Manage your events below.
+              {getTimeOfDay()}, {user?.firstName}.{" "}
+              {t("Manage your events below")}.
             </p>
           </div>
         </div>
