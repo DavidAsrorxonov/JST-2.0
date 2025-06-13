@@ -126,7 +126,7 @@ const Profile = () => {
                       {languages.map(({ flag, label, value }, idx) => (
                         <div
                           key={idx}
-                          className={`flex items-center gap-1 px-2 py-1 border border-gray-300 rounded-md text-sm cursor-pointer ${
+                          className={`flex items-center gap-1 px-2 py-1 border border-blue-500 rounded-md text-sm cursor-pointer ${
                             value === chosenLanguage
                               ? "bg-blue-100 text-blue-600 border border-blue-500 hover:bg-blue-200 transition-all"
                               : ""

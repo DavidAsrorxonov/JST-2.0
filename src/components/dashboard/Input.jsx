@@ -29,24 +29,24 @@ const Input = () => {
   }, [setSearchTerm]);
 
   return (
-    <div className="w-[50%] flex items-center justify-center">
+    <div className="w-full md:w-[50%] flex items-center justify-center px-4">
       <div className="relative w-full">
         <Search
           size={25}
-          className="absolute top-1/2 left-3 transform -translate-y-1/2 text-[#47569E]"
+          className="absolute top-1/2 left-3 transform -translate-y-1/2 text-blue-600"
         />
         <input
           ref={inputRef}
           type="text"
           placeholder={t("Search")}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full p-2 pl-10 rounded-full bg-[#E7E9F4] outline-none focus:outline-blue-300 placeholder:text-[#47569E]"
+          className="w-full py-2.5 pl-12 pr-20 rounded-xl bg-white/20 text-[#2F2E41] placeholder:text-[#888] shadow-inner border border-[#cdd3f0] focus:ring-2 focus:ring-blue-400 outline-none transition-all duration-200"
         />
-        <div className="absolute right-3 top-1/2 transform -translate-y-1/2 text-sm text-[#47569E] hidden md:flex items-center space-x-1">
-          <kbd className="bg-white/70 border border-[#B0B3D6] px-1.5 py-0.5 rounded text-xs font-mono shadow-sm">
+        <div className="absolute right-4 top-1/2 transform -translate-y-1/2 text-xs hidden md:flex items-center gap-1 text-blue-600 font-medium">
+          <kbd className="bg-white/60 border border-[#B0B3D6] px-2 py-0.5 rounded-lg font-mono shadow-sm">
             {navigator.platform.includes("Mac") ? "⌘" : "Ctrl"}
           </kbd>
-          <kbd className="bg-white/70 border border-[#B0B3D6] px-1.5 py-0.5 rounded text-xs font-mono shadow-sm">
+          <kbd className="bg-white/60 border border-[#B0B3D6] px-2 py-0.5 rounded-lg font-mono shadow-sm">
             K
           </kbd>
         </div>
