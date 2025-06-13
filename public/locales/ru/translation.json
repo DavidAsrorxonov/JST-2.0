@@ -60,5 +60,11 @@
   "Description": "Описание",
   "Date": "Дата",
   "Mark as completed": "Отметить как выполненное",
-  "Keep track of your job search progress": "Следите за прогрессом вашего поиска работы"
+  "Keep track of your job search progress": "Следите за прогрессом вашего поиска работы",
+  "Applications per Day": "Заявки в день",
+  "Applications": "Заявки",
+  "Applications by Status": "Заявки по статусу",
+  "Applications by Type": "Заявки по типу",
+  "Count": "Количество",
+  "Type": "Тип"
 }

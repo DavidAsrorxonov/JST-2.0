@@ -60,5 +60,11 @@
   "Description": "Description",
   "Date": "Date",
   "Mark as completed": "Mark as completed",
-  "Keep track of your job search progress": "Keep track of your job search progress"
+  "Keep track of your job search progress": "Keep track of your job search progress",
+  "Applications per Day": "Applications per Day",
+  "Applications": "Applications",
+  "Applications by Status": "Applications by Status",
+  "Applications by Type": "Applications by Type",
+  "Count": "Count",
+  "Type": "Type"
 }

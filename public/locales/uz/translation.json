@@ -60,5 +60,11 @@
   "Description": "Tavsif",
   "Date": "Sana",
   "Mark as completed": "Tugatildan deb belgilash",
-  "Keep track of your job search progress": "Ish izlash jarayoningizni kuzating"
+  "Keep track of your job search progress": "Ish izlash jarayoningizni kuzating",
+  "Applications per Day": "Kunlik ish arizalari",
+  "Applications": "Ish arizalari",
+  "Applications by Status": "Ish arizalari holati bo'yicha",
+  "Applications by Type": "Ish arizalari turi bo'yicha",
+  "Count": "Soni",
+  "Type": "Turi"
 }

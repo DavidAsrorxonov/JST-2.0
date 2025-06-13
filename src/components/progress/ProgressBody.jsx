@@ -14,6 +14,7 @@ import { useJob } from "../../context/jobContext";
 import { getDailyJobData } from "../../lib/utils/getDailyJobData";
 import { getCategoryCounts } from "../../lib/utils/getCategoryCounts";
 import NavigationButtons from "../NavigationButtons";
+import { useTranslation } from "react-i18next";
 
 const ChartCard = ({ title, children }) => (
   <div className="bg-white dark:bg-gray-900 p-6 rounded-2xl shadow-md border border-gray-100 dark:border-gray-800">
@@ -27,6 +28,8 @@ const ChartCard = ({ title, children }) => (
 const ProgressBody = () => {
   const { jobs, fetchJobs } = useJob();
 
+  const { t } = useTranslation();
+
   useEffect(() => {
     fetchJobs();
   }, []);
@@ -38,7 +41,7 @@ const ProgressBody = () => {
   return (
     <div className="space-y-8">
       <NavigationButtons />
-      <ChartCard title="Applications per Day">
+      <ChartCard title={t("Applications per Day")}>
         <ResponsiveContainer width="100%" height={300}>
           <LineChart data={dailyJobs}>
             <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
@@ -47,7 +50,7 @@ const ProgressBody = () => {
               allowDecimals={false}
               stroke="#2563eb"
               label={{
-                value: "Applications",
+                value: `${t("Applications")}`,
                 angle: -90,
                 position: "insideLeft",
                 offset: 10,
@@ -67,7 +70,7 @@ const ProgressBody = () => {
       </ChartCard>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <ChartCard title="Applications by Status">
+        <ChartCard title={t("Applications by Status")}>
           <ResponsiveContainer width="100%" height={250}>
             <BarChart data={statusData}>
               <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
@@ -75,7 +78,7 @@ const ProgressBody = () => {
                 dataKey="name"
                 stroke="#6b7280"
                 label={{
-                  value: "Status",
+                  value: `${t("Status")}`,
                   position: "insideBottom",
                   offset: -5,
                   fill: "#6b7280",
@@ -85,7 +88,7 @@ const ProgressBody = () => {
                 allowDecimals={false}
                 stroke="#6b7280"
                 label={{
-                  value: "Count",
+                  value: `${t("Count")}`,
                   angle: -90,
                   position: "insideLeft",
                   fill: "#6b7280",
@@ -97,7 +100,7 @@ const ProgressBody = () => {
           </ResponsiveContainer>
         </ChartCard>
 
-        <ChartCard title="Applications by Type">
+        <ChartCard title={t("Applications by Type")}>
           <ResponsiveContainer width="100%" height={250}>
             <BarChart data={typeData}>
               <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
@@ -105,7 +108,7 @@ const ProgressBody = () => {
                 dataKey="name"
                 stroke="#6b7280"
                 label={{
-                  value: "Type",
+                  value: `${t("Type")}`,
                   position: "insideBottom",
                   offset: -5,
                   fill: "#6b7280",
@@ -115,7 +118,7 @@ const ProgressBody = () => {
                 allowDecimals={false}
                 stroke="#6b7280"
                 label={{
-                  value: "Count",
+                  value: `${t("Count")}`,
                   angle: -90,
                   position: "insideLeft",
                   fill: "#6b7280",
