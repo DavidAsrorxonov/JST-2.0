@@ -12,16 +12,10 @@ const DashboardHeader = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
 
-  const options = [
-    "Dashboard",
-    "Applications",
-    "Companies",
-    "Events",
-    "Support",
-  ];
+  const options = ["Dashboard", "Progress", "Companies", "Events", "Support"];
 
   return (
-    <div className="flex shadow-lg">
+    <div className="flex shadow-lg sticky top-0 z-50 bg-white items-center">
       <Logo />
       <div className="flex items-center justify-center mr-auto ml-10 gap-7 text-gray-600">
         {options.map((option, idx) => (

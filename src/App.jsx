@@ -13,6 +13,7 @@ import CompaniesPage from "./pages/CompaniesPage";
 import EventsPage from "./pages/EventsPage";
 import SupportPage from "./pages/SupportPage";
 import NewsPage from "./pages/NewsPage";
+import ApplicationPage from "./pages/ProgressPage";
 
 const App = () => {
   return (
@@ -32,6 +33,7 @@ const App = () => {
           <Route path="/events" element={<EventsPage />} />
           <Route path="/support" element={<SupportPage />} />
           <Route path="/news" element={<NewsPage />} />
+          <Route path="/progress" element={<ApplicationPage />} />
         </Routes>
       </BrowserRouter>
     </HeroUIProvider>
