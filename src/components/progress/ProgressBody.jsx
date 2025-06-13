@@ -42,10 +42,10 @@ const ProgressBody = () => {
         <ResponsiveContainer width="100%" height={300}>
           <LineChart data={dailyJobs}>
             <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
-            <XAxis dataKey="date" stroke="#6b7280" />
+            <XAxis dataKey="date" stroke="#2563eb" />
             <YAxis
               allowDecimals={false}
-              stroke="#6b7280"
+              stroke="#2563eb"
               label={{
                 value: "Applications",
                 angle: -90,
@@ -56,9 +56,9 @@ const ProgressBody = () => {
             />
             <Tooltip />
             <Line
-              type="monotone"
+              type={"natural"}
               dataKey="applications"
-              stroke="#6366f1"
+              stroke="#2563eb"
               strokeWidth={3}
               dot={{ r: 4 }}
             />
