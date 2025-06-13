@@ -29,7 +29,7 @@ const Input = () => {
   }, [setSearchTerm]);
 
   return (
-    <div className="w-full md:w-[50%] flex items-center justify-center px-4">
+    <div className="w-full md:w-[50%] flex items-center justify-center">
       <div className="relative w-full">
         <Search
           size={25}
