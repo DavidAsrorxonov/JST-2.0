@@ -49,6 +49,10 @@ const Input = () => {
           <kbd className="bg-white/60 border border-[#B0B3D6] px-2 py-0.5 rounded-lg font-mono shadow-sm">
             K
           </kbd>
+          <span> | </span>
+          <kbd className="bg-white/60 border border-[#B0B3D6] px-2 py-0.5 rounded-lg font-mono shadow-sm">
+            Esc
+          </kbd>
         </div>
       </div>
     </div>
