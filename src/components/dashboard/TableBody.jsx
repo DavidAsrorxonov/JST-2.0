@@ -3,12 +3,13 @@ import { useJob } from "../../context/jobContext";
 import { SquareArrowOutUpRight } from "lucide-react";
 import "../../styles/TableBody.css";
 import { useSearch } from "../../context/searchContext";
-import { highlightMatch } from "../../lib/utils/highlightingText";
+import { Checkbox } from "@heroui/checkbox";
 
 const TableBody = () => {
   const { jobs, fetchJobs } = useJob();
   const { id } = JSON.parse(localStorage.getItem("user"));
   const { searchTerm, jobStatus, jobType, sortingType } = useSearch();
+  const [selectedJobId, setSelectedJobId] = useState([]);
 
   const filteredJobs = jobs.filter((job) => {
     const matchesSearch = job.job_title
@@ -29,6 +30,12 @@ const TableBody = () => {
     }
   });
 
+  const changeTheBgOfSelectedRow = (idx) => {
+    setSelectedJobId((prev) =>
+      prev.includes(idx) ? prev.filter((id) => id !== idx) : [...prev, idx]
+    );
+  };
+
   return (
     <>
       {sortedJobs.map(
@@ -43,18 +50,30 @@ const TableBody = () => {
         }) => (
           <tr
             key={id}
-            className="text-black border-b-1.5 border-gray-500 border-r-gray-500 last:border-r-0"
+            className={`text-black border-b-1.5 border-gray-500 border-r-gray-500 last:border-r-0 ${
+              selectedJobId.includes(id) ? "bg-blue-100" : ""
+            }`}
           >
+            <td className="border-r border-gray-500 last:border-r-0">
+              <Checkbox
+                checked={selectedJobId.includes(id)}
+                onChange={() => changeTheBgOfSelectedRow(id)}
+              />
+            </td>
             <td className="border-r border-gray-500 last:border-r-0 relative group">
               <input
                 defaultValue={job_title}
-                className="px-3 py-0.5 focus:outline-blue-300 w-[90%] cursor-text"
+                className={`px-3 py-0.5 focus:outline-blue-300 w-[90%] cursor-text ${
+                  selectedJobId.includes(id) ? "bg-blue-100" : ""
+                }`}
               />
             </td>
             <td className="border-r border-gray-500 last:border-r-0">
               <input
                 defaultValue={company}
-                className="py-0.5 px-3 focus:outline-blue-300 cursor-text w-[90%]"
+                className={`py-0.5 px-3 focus:outline-blue-300 cursor-text w-[90%] ${
+                  selectedJobId.includes(id) ? "bg-blue-100" : ""
+                }`}
               />
             </td>
             <td className="p-3 border-r border-gray-500 last:border-r-0">
@@ -98,7 +117,9 @@ const TableBody = () => {
               <div className="flex items-center justify-between">
                 <input
                   defaultValue={website_url}
-                  className="py-0.5 px-3 focus:outline-blue-300 cursor-text w-[90%]"
+                  className={`py-0.5 px-3 focus:outline-blue-300 cursor-text w-[90%] ${
+                    selectedJobId.includes(id) ? "bg-blue-100" : ""
+                  }`}
                 />
                 <a
                   href={

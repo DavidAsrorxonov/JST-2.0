@@ -2,6 +2,7 @@ import React from "react";
 
 const TableHead = () => {
   const tableHead = [
+    "#",
     "Job Title",
     "Company",
     "Application Date",
