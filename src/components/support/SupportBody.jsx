@@ -1,11 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import NavigationButtons from "../NavigationButtons";
+import SpeechRecognition, {
+  useSpeechRecognition,
+} from "react-speech-recognition";
+import { Mic, Square } from "lucide-react";
 
 const SupportBody = () => {
   const [messages, setMessages] = useState([
     { text: "Hi there! How can we help you today?", sender: "bot" },
   ]);
   const [input, setInput] = useState("");
+
+  const {
+    transcript,
+    listening,
+    resetTranscript,
+    browserSupportsSpeechRecognition,
+  } = useSpeechRecognition();
+
+  useEffect(() => {
+    if (transcript && listening) {
+      setInput(transcript);
+    }
+  }, [transcript, listening]);
 
   const handleSend = (e) => {
     e.preventDefault();
@@ -21,6 +38,23 @@ const SupportBody = () => {
           },
         ]);
       }, 800);
+    }
+  };
+
+  const handleMicClick = () => {
+    if (!browserSupportsSpeechRecognition) {
+      alert("Your browser does not support speech recognition.");
+      return;
+    }
+
+    if (listening) {
+      SpeechRecognition.stopListening();
+    } else {
+      resetTranscript();
+      SpeechRecognition.startListening({
+        continuous: true,
+        language: "en-US",
+      });
     }
   };
 
@@ -55,11 +89,22 @@ const SupportBody = () => {
           placeholder="Type your message..."
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          className="flex-1 px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="flex-1 px-4 py-2 rounded-full bg-blue-100 border border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 placeholder:text-blue-500"
         />
         <button
+          type="button"
+          onClick={handleMicClick}
+          className={`px-4 py-2 rounded-full border transition ${
+            listening
+              ? "bg-red-100 text-red-600 border-red-400 hover:bg-red-200"
+              : "bg-green-100 text-green-600 border-green-400 hover:bg-green-200"
+          }`}
+        >
+          {listening ? <Square /> : <Mic />}
+        </button>
+        <button
           type="submit"
-          className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition"
+          className="bg-blue-100 border border-blue-500 text-blue-600 px-4 py-2 hover:bg-blue-200 rounded-full transition"
         >
           Send
         </button>
