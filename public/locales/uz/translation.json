@@ -66,5 +66,11 @@
   "Applications by Status": "Ish arizalari holati bo'yicha",
   "Applications by Type": "Ish arizalari turi bo'yicha",
   "Count": "Soni",
-  "Type": "Turi"
+  "Type": "Turi",
+  "Keyboard Shortcuts": "Klaviaturada qo'llanma",
+  "Go to Progress": "O'sish bo'limiga o'tish",
+  "Go to Events": "Hodisalar bo'limiga o'tish",
+  "Go to Support": "Yordam bo'limiga o'tish",
+  "Go to Dashboard": "Asosiy panelga o'tish",
+  "Go to Companies": "Kompaniyalar bo'limiga o'tish"
 }

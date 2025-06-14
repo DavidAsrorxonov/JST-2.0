@@ -66,5 +66,11 @@
   "Applications by Status": "Заявки по статусу",
   "Applications by Type": "Заявки по типу",
   "Count": "Количество",
-  "Type": "Тип"
+  "Type": "Тип",
+  "Keyboard Shortcuts": "Горячие клавиши",
+  "Go to Progress": "Перейти в отдел Прогресс",
+  "Go to Events": "Перейти в отдел События",
+  "Go to Support": "Перейти в отдел Поддержка",
+  "Go to Dashboard": "Перейти в панель управления",
+  "Go to Companies": "Перейти в отдел Компании"
 }

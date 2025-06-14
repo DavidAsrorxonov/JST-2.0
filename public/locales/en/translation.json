@@ -66,5 +66,11 @@
   "Applications by Status": "Applications by Status",
   "Applications by Type": "Applications by Type",
   "Count": "Count",
-  "Type": "Type"
+  "Type": "Type",
+  "Keyboard Shortcuts": "Keyboard Shortcuts",
+  "Go to Progress": "Go to Progress",
+  "Go to Events": "Go to Events",
+  "Go to Support": "Go to Support",
+  "Go to Dashboard": "Go to Dashboard",
+  "Go to Companies": "Go to Companies"
 }
