@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { act, useEffect, useRef, useState } from "react";
 import { CircleHelp, X } from "lucide-react";
 import gsap from "gsap";
 import { useTranslation } from "react-i18next";
@@ -14,6 +14,9 @@ const ShortcutHelp = () => {
     { keys: ["⌘", "Shift", "s"], action: "Go to Support" },
     { keys: ["⌘", "Shift", "b"], action: "Go to Dashboard" },
     { keys: ["⌘", "Shift", "o"], action: "Go to Companies" },
+    { keys: ["⌘", "<"], action: "Go to previous page" },
+    { keys: ["⌘", ">"], action: "Go to next page" },
+    { keys: ["⌘", "k"], action: "Search" },
   ];
 
   useEffect(() => {
@@ -60,7 +63,7 @@ const ShortcutHelp = () => {
               {shortcuts.map((shortcut, idx) => (
                 <li
                   key={idx}
-                  className="flex items-center font-mono justify-between bg-gray-50 hover:bg-gray-100 p-3 rounded-lg transition"
+                  className="flex items-center font-mono justify-between bg-blue-50 hover:bg-blue-100 border border-blue-500 p-3 rounded-lg transition"
                 >
                   <div className="flex items-center gap-1">
                     {shortcut.keys.map((key, i) => (
