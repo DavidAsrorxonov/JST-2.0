@@ -9,11 +9,11 @@ const ShortcutHelp = () => {
   const { t } = useTranslation();
 
   const shortcuts = [
-    { keys: ["⌘", "⇧", "p"], action: "Go to Progress" },
-    { keys: ["⌘", "⇧", "e"], action: "Go to Events" },
-    { keys: ["⌘", "⇧", "s"], action: "Go to Support" },
-    { keys: ["⌘", "⇧", "b"], action: "Go to Dashboard" },
-    { keys: ["⌘", "⇧", "o"], action: "Go to Companies" },
+    { keys: ["⌘", "Shift", "p"], action: "Go to Progress" },
+    { keys: ["⌘", "Shift", "e"], action: "Go to Events" },
+    { keys: ["⌘", "Shift", "s"], action: "Go to Support" },
+    { keys: ["⌘", "Shift", "b"], action: "Go to Dashboard" },
+    { keys: ["⌘", "Shift", "o"], action: "Go to Companies" },
   ];
 
   useEffect(() => {
