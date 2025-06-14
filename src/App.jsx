@@ -14,8 +14,15 @@ import EventsPage from "./pages/EventsPage";
 import SupportPage from "./pages/SupportPage";
 import NewsPage from "./pages/NewsPage";
 import ApplicationPage from "./pages/ProgressPage";
+import { useEffect } from "react";
+import { handleShortcut } from "./lib/commands/ShortcutCommands";
 
 const App = () => {
+  useEffect(() => {
+    window.addEventListener("keydown", handleShortcut);
+    return () => window.removeEventListener("keydown", handleShortcut);
+  }, []);
+
   return (
     <HeroUIProvider>
       <ToastProvider placement="top-center" />

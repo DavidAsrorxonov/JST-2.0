@@ -6,6 +6,7 @@ import TableActions from "./TableActions";
 import EditingInfo from "../EditingInfo";
 import Filtering from "./Filtering";
 import Sorting from "./Sorting";
+import ShortcutHelp from "../../lib/commands/ShortcutHelp";
 
 const DashboardBody = () => {
   return (
@@ -21,6 +22,7 @@ const DashboardBody = () => {
       <TableActions />
       <Table />
       <EditingInfo />
+      <ShortcutHelp />
     </>
   );
 };
