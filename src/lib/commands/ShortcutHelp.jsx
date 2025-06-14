@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { CircleHelp, X } from "lucide-react";
+import gsap from "gsap";
 
 const ShortcutHelp = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const modalRef = useRef(null);
 
   const shortcuts = [
     { keys: ["⌘", "⇧", "p"], action: "Go to Progress" },
@@ -11,6 +13,14 @@ const ShortcutHelp = () => {
     { keys: ["⌘", "⇧", "b"], action: "Go to Dashboard" },
     { keys: ["⌘", "⇧", "o"], action: "Go to Companies" },
   ];
+
+  useEffect(() => {
+    gsap.fromTo(
+      modalRef.current,
+      { opacity: 0, y: -20 },
+      { opacity: 1, y: 0, duration: 0.5 }
+    );
+  });
 
   const Key = ({ children }) => (
     <kbd className="bg-white/60 border border-[#B0B3D6] px-2 py-0.5 rounded-md font-mono text-sm shadow-sm text-blue-600">
@@ -28,7 +38,10 @@ const ShortcutHelp = () => {
       </div>
 
       {isOpen && (
-        <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50">
+        <div
+          className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50"
+          ref={modalRef}
+        >
           <div className="bg-white rounded-2xl shadow-2xl w-full max-w-lg p-6 relative border border-gray-200">
             <button
               onClick={() => setIsOpen(false)}
