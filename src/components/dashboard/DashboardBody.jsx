@@ -7,6 +7,7 @@ import EditingInfo from "../EditingInfo";
 import Filtering from "./Filtering";
 import Sorting from "./Sorting";
 import ShortcutHelp from "../../lib/commands/ShortcutHelp";
+import CheckboxSelected from "./CheckboxSelected";
 
 const DashboardBody = () => {
   return (
@@ -19,6 +20,7 @@ const DashboardBody = () => {
           <Sorting />
         </div>
       </div>
+      <CheckboxSelected />
       <TableActions />
       <Table />
       <EditingInfo />

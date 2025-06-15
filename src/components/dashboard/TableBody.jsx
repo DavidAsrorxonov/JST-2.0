@@ -3,7 +3,6 @@ import { SquareArrowOutUpRight } from "lucide-react";
 import "../../styles/TableBody.css";
 import { useSearch } from "../../context/searchContext";
 import { useSelectedJobId } from "../../context/selectedJobIdContext";
-import { useRef } from "react";
 
 const TableBody = () => {
   const { jobs, fetchJobs } = useJob();
