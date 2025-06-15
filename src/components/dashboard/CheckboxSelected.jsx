@@ -7,13 +7,17 @@ import { addToast } from "@heroui/toast";
 import { useRef } from "react";
 import { useEffect } from "react";
 import gsap from "gsap";
+import JobEditModal from "./JobEditModal";
 
 const CheckboxSelected = () => {
   const { selectedJobId, setSelectedJobId } = useSelectedJobId();
-  const { fetchJobs } = useJob();
+  const { fetchJobs, jobs } = useJob();
   const [isDeleting, setIsDeleting] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false);
   const confirmDeleteRef = useRef(null);
+
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [jobToEdit, setJobToEdit] = useState(null);
 
   const deleteSelectedJob = async () => {
     if (selectedJobId.length === 0) return;
@@ -44,6 +48,32 @@ const CheckboxSelected = () => {
 
   const deselectAll = () => {
     setSelectedJobId([]);
+  };
+
+  const handleEditClick = () => {
+    const job = jobs.find((job) => job.id === selectedJobId[0]);
+    setJobToEdit(job);
+    setShowEditModal(true);
+  };
+
+  const handleSaveEdit = async (updatedJob) => {
+    try {
+      await axios.patch(
+        `http://localhost:3000/api/jobs/${updatedJob.id}`,
+        updatedJob
+      );
+
+      addToast({
+        title: "Success",
+        description: "Job updated successfully",
+        color: "success",
+        timeout: 2000,
+        shouldShowTimeoutProgress: true,
+      });
+      setSelectedJobId([]);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
@@ -94,7 +124,10 @@ const CheckboxSelected = () => {
             </button>
             <div className="w-px h-4 bg-gray-400"></div>
             {selectedJobId.length === 1 ? (
-              <button className="text-blue-500 hover:text-blue-700 transition">
+              <button
+                className="text-blue-500 hover:text-blue-700 transition"
+                onClick={handleEditClick}
+              >
                 Edit
               </button>
             ) : (
@@ -111,6 +144,14 @@ const CheckboxSelected = () => {
             </div>
           </div>
         </div>
+      )}
+
+      {showEditModal && jobToEdit && (
+        <JobEditModal
+          job={jobToEdit}
+          onSave={handleSaveEdit}
+          onClose={() => setShowEditModal(false)}
+        />
       )}
 
       {confirmDelete && (
