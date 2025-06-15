@@ -7,6 +7,7 @@ import { JobProvider } from "./context/jobContext.jsx";
 import { SearchProvider } from "./context/searchContext.jsx";
 import { EventProvider } from "./context/eventContext.jsx";
 import "./translation/i18n";
+import { SelectJobIdProvider } from "./context/selectedJobIdContext.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -14,7 +15,9 @@ createRoot(document.getElementById("root")).render(
       <JobProvider>
         <SearchProvider>
           <EventProvider>
-            <App />
+            <SelectJobIdProvider>
+              <App />
+            </SelectJobIdProvider>
           </EventProvider>
         </SearchProvider>
       </JobProvider>

@@ -1,15 +1,15 @@
-import React, { useState } from "react";
 import { useJob } from "../../context/jobContext";
 import { SquareArrowOutUpRight } from "lucide-react";
 import "../../styles/TableBody.css";
 import { useSearch } from "../../context/searchContext";
-import { Checkbox } from "@heroui/checkbox";
+import { useSelectedJobId } from "../../context/selectedJobIdContext";
+import { useRef } from "react";
 
 const TableBody = () => {
   const { jobs, fetchJobs } = useJob();
   const { id } = JSON.parse(localStorage.getItem("user"));
   const { searchTerm, jobStatus, jobType, sortingType } = useSearch();
-  const [selectedJobId, setSelectedJobId] = useState([]);
+  const { selectedJobId, setSelectedJobId } = useSelectedJobId();
 
   const filteredJobs = jobs.filter((job) => {
     const matchesSearch = job.job_title
@@ -55,7 +55,9 @@ const TableBody = () => {
             }`}
           >
             <td className="border-r border-gray-500 last:border-r-0">
-              <Checkbox
+              <input
+                type="checkbox"
+                className="cursor-pointer w-4 h-4"
                 checked={selectedJobId.includes(id)}
                 onChange={() => changeTheBgOfSelectedRow(id)}
               />
