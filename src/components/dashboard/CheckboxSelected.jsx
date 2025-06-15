@@ -4,11 +4,16 @@ import { Trash2 } from "lucide-react";
 import { useJob } from "../../context/jobContext";
 import axios from "axios";
 import { addToast } from "@heroui/toast";
+import { useRef } from "react";
+import { useEffect } from "react";
+import gsap from "gsap";
 
 const CheckboxSelected = () => {
   const { selectedJobId, setSelectedJobId } = useSelectedJobId();
   const { fetchJobs } = useJob();
   const [isDeleting, setIsDeleting] = useState(false);
+  const [confirmDelete, setConfirmDelete] = useState(false);
+  const confirmDeleteRef = useRef(null);
 
   const deleteSelectedJob = async () => {
     if (selectedJobId.length === 0) return;
@@ -37,6 +42,18 @@ const CheckboxSelected = () => {
     }
   };
 
+  const deselectAll = () => {
+    setSelectedJobId([]);
+  };
+
+  useEffect(() => {
+    gsap.fromTo(
+      confirmDeleteRef.current,
+      { opacity: 0, y: -20 },
+      { opacity: 1, y: 0, duration: 0.5 }
+    );
+  });
+
   return (
     <>
       {selectedJobId.length > 0 && (
@@ -45,9 +62,10 @@ const CheckboxSelected = () => {
             <span className="font-medium text-blue-600">
               {selectedJobId.length} selected
             </span>
+            <div className="w-px h-4 bg-gray-400"></div>
             <button
               className="text-red-500 hover:text-red-700 transition"
-              onClick={deleteSelectedJob}
+              onClick={() => setConfirmDelete(true)}
               disabled={isDeleting}
             >
               {isDeleting ? (
@@ -74,6 +92,7 @@ const CheckboxSelected = () => {
                 "Delete Selected"
               )}
             </button>
+            <div className="w-px h-4 bg-gray-400"></div>
             {selectedJobId.length === 1 ? (
               <button className="text-blue-500 hover:text-blue-700 transition">
                 Edit
@@ -81,6 +100,46 @@ const CheckboxSelected = () => {
             ) : (
               <span className="text-gray-400">Can't edit multiple jobs</span>
             )}
+            <div className="w-px h-4 bg-gray-400"></div>
+            <div className="ml-auto">
+              <button
+                className="text-blue-500 hover:text-blue-700 transition"
+                onClick={deselectAll}
+              >
+                Deselect All
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {confirmDelete && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center z-50"
+          ref={confirmDeleteRef}
+        >
+          <div className="bg-white rounded-xl p-6 shadow-lg w-[300px] text-center">
+            <h2 className="text-lg font-semibold mb-4">Are you sure?</h2>
+            <p className="text-sm text-gray-600 mb-6">
+              This action will permanently delete the selected job(s).
+            </p>
+            <div className="flex justify-center gap-4">
+              <button
+                onClick={() => {
+                  deleteSelectedJob();
+                  setConfirmDelete(false);
+                }}
+                className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md"
+              >
+                Confirm
+              </button>
+              <button
+                onClick={() => setConfirmDelete(false)}
+                className="bg-gray-200 hover:bg-gray-300 text-gray-700 px-4 py-2 rounded-md"
+              >
+                Cancel
+              </button>
+            </div>
           </div>
         </div>
       )}
