@@ -13,7 +13,7 @@ const DashboardBody = () => {
   return (
     <>
       <DashboardIntro />
-      <div className="w-[90%] m-10">
+      <div className="w-full m-10">
         <Input />
         <div className="w-full flex items-center gap-2">
           <Filtering />

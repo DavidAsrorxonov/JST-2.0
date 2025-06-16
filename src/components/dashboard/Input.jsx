@@ -2,6 +2,8 @@ import { Search } from "lucide-react";
 import { useEffect, useRef } from "react";
 import { useSearch } from "../../context/searchContext";
 import { useTranslation } from "react-i18next";
+import { GrSearchAdvanced } from "react-icons/gr";
+import { Tooltip } from "@heroui/tooltip";
 
 const Input = () => {
   const { setSearchTerm } = useSearch();
@@ -29,7 +31,7 @@ const Input = () => {
   }, [setSearchTerm]);
 
   return (
-    <div className="w-full md:w-[50%] flex items-center justify-center">
+    <div className="w-full md:w-[30%] flex items-center justify-center gap-2">
       <div className="relative w-full">
         <Search
           size={25}
@@ -40,7 +42,7 @@ const Input = () => {
           type="text"
           placeholder={t("Search")}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full py-2.5 pl-12 pr-20 rounded-xl bg-white/20 text-[#2F2E41] placeholder:text-[#888] shadow-inner border border-[#cdd3f0] focus:ring-2 focus:ring-blue-400 outline-none transition-all duration-200"
+          className="w-full py-2.5 pl-12 pr-20 rounded-full bg-white/20 text-[#2F2E41] placeholder:text-[#888] shadow-inner border border-[#cdd3f0] focus:ring-2 focus:ring-blue-400 outline-none transition-all duration-200"
         />
         <div className="absolute right-4 top-1/2 transform -translate-y-1/2 text-xs hidden md:flex items-center gap-1 text-blue-600 font-medium">
           <kbd className="bg-white/60 border border-[#B0B3D6] px-2 py-0.5 rounded-lg font-mono shadow-sm">
@@ -55,6 +57,11 @@ const Input = () => {
           </kbd>
         </div>
       </div>
+      <Tooltip content="Advanced Search" showArrow={true}>
+        <div className="p-2.5 rounded-full cursor-pointer shadow-inner bg-white/20 text-[#2F2E41] placeholder:text-[#888] border border-[#cdd3f0]">
+          <GrSearchAdvanced size={25} className="text-blue-600" />
+        </div>
+      </Tooltip>
     </div>
   );
 };
