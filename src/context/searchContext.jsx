@@ -7,6 +7,7 @@ export const SearchProvider = ({ children }) => {
   const [jobStatus, setJobStatus] = useState("all");
   const [jobType, setJobType] = useState("all");
   const [sortingType, setSortingType] = useState(null);
+  const [advancedSearchTerm, setAdvancedSearchTerm] = useState("");
 
   return (
     <SearchContext.Provider
@@ -19,6 +20,8 @@ export const SearchProvider = ({ children }) => {
         setJobType,
         sortingType,
         setSortingType,
+        advancedSearchTerm,
+        setAdvancedSearchTerm,
       }}
     >
       {children}

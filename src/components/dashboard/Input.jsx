@@ -7,11 +7,11 @@ import { Tooltip } from "@heroui/tooltip";
 import { motion, AnimatePresence } from "framer-motion";
 
 const Input = () => {
-  const { setSearchTerm } = useSearch();
+  const { setSearchTerm, advancedSearchTerm, setAdvancedSearchTerm } =
+    useSearch();
   const inputRef = useRef(null);
   const { t } = useTranslation();
   const [expandAdvancedSearch, setExpandAdvancedSearch] = useState(false);
-  const [advancedSearchTerm, setAdvancedSearchTerm] = useState("");
 
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -35,7 +35,6 @@ const Input = () => {
 
   return (
     <div className="w-full md:w-[80%] flex items-center gap-2">
-      {/* Basic Search */}
       <div className="w-[40%] flex items-center">
         <div className="relative w-full">
           <Search
