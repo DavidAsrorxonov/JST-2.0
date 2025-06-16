@@ -78,20 +78,14 @@ const TableBody = () => {
                 />
               </td>
               <td className="border-r border-gray-500 last:border-r-0 relative group">
-                <input
-                  defaultValue={job_title}
-                  className={`px-3 py-0.5 focus:outline-blue-300 w-[90%] cursor-text ${
-                    selectedJobId.includes(id) ? "bg-blue-100" : ""
-                  }`}
-                />
+                <div className={`px-3 py-0.5 w-[90%] cursor-text`}>
+                  {job_title}
+                </div>
               </td>
               <td className="border-r border-gray-500 last:border-r-0">
-                <input
-                  defaultValue={company}
-                  className={`py-0.5 px-3 focus:outline-blue-300 cursor-text w-[90%] ${
-                    selectedJobId.includes(id) ? "bg-blue-100" : ""
-                  }`}
-                />
+                <div className={`py-0.5 px-3 cursor-text w-[90%]`}>
+                  {company}
+                </div>
               </td>
               <td className="p-3 border-r border-gray-500 last:border-r-0">
                 <div className="px-3 py-0.5 bg-yellow-100 border border-yellow-500 rounded-md">

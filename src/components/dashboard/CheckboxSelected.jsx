@@ -62,6 +62,7 @@ const CheckboxSelected = () => {
         `http://localhost:3000/api/jobs/${updatedJob.id}`,
         updatedJob
       );
+      await fetchJobs();
 
       addToast({
         title: "Success",
