@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import Events from "./Events";
 import NewsIcons from "../news/NewsIcons";
 import { useTranslation } from "react-i18next";
+import ToDo from "./ToDo";
 
 const DashboardHeader = () => {
   const navigate = useNavigate();
@@ -28,7 +29,8 @@ const DashboardHeader = () => {
           </div>
         ))}
       </div>
-      <div className="flex items-center gap-10 mr-5">
+      <div className="flex items-center gap-5 mr-5">
+        <ToDo />
         <NewsIcons />
         <Events />
         <Notification />

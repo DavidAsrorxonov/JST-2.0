@@ -77,7 +77,7 @@ const Security = () => {
       <p className="text-center text-sm text-gray-500 mt-16 max-w-lg">
         Have more questions? Reach out to our team at{" "}
         <a
-          href="mailto:privacy@jobtrackr.com"
+          href="mailto:dovudxon.asrorxonov@icloud.com"
           className="text-blue-500 underline"
         >
           privacy@jst.com
