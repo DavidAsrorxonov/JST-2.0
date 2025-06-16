@@ -7,16 +7,22 @@ import { useSelectedJobId } from "../../context/selectedJobIdContext";
 const TableBody = () => {
   const { jobs, fetchJobs } = useJob();
   const { id } = JSON.parse(localStorage.getItem("user"));
-  const { searchTerm, jobStatus, jobType, sortingType } = useSearch();
+  const { searchTerm, jobStatus, jobType, sortingType, advancedSearchTerm } =
+    useSearch();
   const { selectedJobId, setSelectedJobId } = useSelectedJobId();
 
   const filteredJobs = jobs.filter((job) => {
     const matchesSearch = job.job_title
       .toLowerCase()
       .includes(searchTerm.toLowerCase());
+
+    const matchesCompany = job.company
+      .toLowerCase()
+      .includes(advancedSearchTerm.toLowerCase());
+
     const matchesStatus = job.job_status === jobStatus || jobStatus === "all";
     const matchesType = job.job_type === jobType || jobType === "all";
-    return matchesSearch && matchesStatus && matchesType;
+    return matchesSearch && matchesCompany && matchesStatus && matchesType;
   });
 
   const sortedJobs = [...filteredJobs].sort((a, b) => {
