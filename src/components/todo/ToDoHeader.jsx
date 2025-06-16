@@ -1,5 +1,6 @@
 import React from "react";
 import Logo from "../Logo";
+import { Check } from "lucide-react";
 
 const ToDoHeader = () => {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -10,7 +11,10 @@ const ToDoHeader = () => {
         <div className="flex items-center gap-3">
           <Logo />
           <div>
-            <h1 className="text-lg font-semibold text-gray-800">To-Do</h1>
+            <div className="flex items-center gap-1">
+              <h1 className="text-lg font-semibold text-gray-800">To-Do</h1>
+              <Check size={20} />
+            </div>
             <p className="text-sm text-gray-500">
               Keep track of your job search progress.
             </p>
