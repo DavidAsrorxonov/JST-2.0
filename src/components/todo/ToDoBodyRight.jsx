@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import Dropdown from "./Dropdown";
+import { addToast } from "@heroui/toast";
+import axios from "axios";
 
 const ToDoBodyRight = () => {
   const [clickedYes, setClickedYes] = useState(false);
@@ -9,6 +11,7 @@ const ToDoBodyRight = () => {
   const [taskCategory, setTaskCategory] = useState("");
   const [taskPriority, setTaskPriority] = useState("");
   const [taskStatus, setTaskStatus] = useState("");
+  const { id } = JSON.parse(localStorage.getItem("user"));
 
   const payload = {
     todo_title: taskTitle,
@@ -17,13 +20,46 @@ const ToDoBodyRight = () => {
     todo_status: taskStatus,
     todo_category: taskCategory,
     is_important: clickedYes,
+    user_id: id,
   };
 
   const priority = ["Low", "Medium", "High"];
   const status = ["Not started", "In progress", "Completed"];
 
-  const handleAddTask = () => {
-    console.log("Task added:", payload);
+  const handleAddTask = async () => {
+    if (
+      !taskTitle ||
+      !taskDate ||
+      !taskTime ||
+      !taskCategory ||
+      !taskPriority ||
+      !taskStatus
+    ) {
+      addToast({
+        description: "All fields are required",
+        color: "danger",
+        timeout: 2000,
+        shouldShowTimeoutProgress: true,
+      });
+    }
+
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/api/todos",
+        payload
+      );
+
+      if (response.status === 201) {
+        addToast({
+          description: "Task added successfully",
+          color: "success",
+          timeout: 2000,
+          shouldShowTimeoutProgress: true,
+        });
+      }
+    } catch (error) {
+      console.error("Error adding task:", error);
+    }
   };
 
   return (
