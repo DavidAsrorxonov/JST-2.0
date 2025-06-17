@@ -2,7 +2,7 @@ import { ChevronsUpDown } from "lucide-react";
 import React, { useRef, useState, useEffect } from "react";
 import gsap from "gsap";
 
-const Dropdown = ({ options, defaultValue }) => {
+const Dropdown = ({ options, defaultValue, onSelect }) => {
   const [optionModalOpen, setOptionModalOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(defaultValue);
   const dropdownRef = useRef(null);
@@ -36,6 +36,7 @@ const Dropdown = ({ options, defaultValue }) => {
   const handleOptionClick = (option) => {
     setSelectedOption(option);
     setOptionModalOpen(false);
+    if (onSelect) onSelect(option);
   };
 
   return (
@@ -56,7 +57,7 @@ const Dropdown = ({ options, defaultValue }) => {
           ref={dropdownRef}
         >
           <div className="bg-white rounded-xl shadow-lg border border-gray-200 px-6 py-4 w-64">
-            <h1 className="text-2xl font-bold">{selectedOption}</h1>
+            <h1 className="text-2xl font-bold">{defaultValue}</h1>
             {options.map((item, idx) => (
               <div
                 key={idx}

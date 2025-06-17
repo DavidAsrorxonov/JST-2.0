@@ -1,9 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import Dropdown from "./Dropdown";
 
 const ToDoBodyRight = () => {
+  const [clickedYes, setClickedYes] = useState(false);
+  const [taskTitle, setTaskTitle] = useState("");
+  const [taskDate, setTaskDate] = useState("");
+  const [taskTime, setTaskTime] = useState("");
+  const [taskCategory, setTaskCategory] = useState("");
+  const [taskPriority, setTaskPriority] = useState("");
+  const [taskStatus, setTaskStatus] = useState("");
+
+  const payload = {
+    todo_title: taskTitle,
+    todo_duetime: taskDate + " " + taskTime,
+    todo_priority: taskPriority,
+    todo_status: taskStatus,
+    todo_category: taskCategory,
+    is_important: clickedYes,
+  };
+
   const priority = ["Low", "Medium", "High"];
   const status = ["Not started", "In progress", "Completed"];
+
+  const handleAddTask = () => {
+    console.log("Task added:", payload);
+  };
 
   return (
     <div className="w-full m-4">
@@ -11,17 +32,23 @@ const ToDoBodyRight = () => {
       <div className="flex justify-center flex-col mt-4 gap-10">
         <input
           type="text"
+          value={taskTitle}
+          onChange={(e) => setTaskTitle(e.target.value)}
           placeholder="Title of the task"
           className="w-[70%] p-3 outline-none border-1 border-gray-400 rounded-lg shadow-inner focus:ring-1 focus:ring-blue-500 transition duration-300"
         />
 
         <div className="flex gap-4 w-[70%]">
           <input
+            value={taskDate}
+            onChange={(e) => setTaskDate(e.target.value)}
             type="date"
             className="flex-1 p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 transition duration-300"
             placeholder="YYYY-MM-DD"
           />
           <input
+            value={taskTime}
+            onChange={(e) => setTaskTime(e.target.value)}
             type="time"
             className="flex-1 p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 transition duration-300"
             placeholder="HH:MM"
@@ -29,14 +56,24 @@ const ToDoBodyRight = () => {
         </div>
 
         <div className="w-[70%]">
-          <Dropdown defaultValue={"Priority"} options={priority} />
+          <Dropdown
+            defaultValue={"Priority"}
+            options={priority}
+            onSelect={(priority) => setTaskPriority(priority)}
+          />
         </div>
 
         <div className="w-[70%]">
-          <Dropdown defaultValue={"Status"} options={status} />
+          <Dropdown
+            defaultValue={"Status"}
+            options={status}
+            onSelect={(status) => setTaskStatus(status)}
+          />
         </div>
 
         <input
+          value={taskCategory}
+          onChange={(e) => setTaskCategory(e.target.value)}
           type="text"
           placeholder="Category... e.g. Work, Personal, Home"
           className="w-[70%] p-3 outline-none border-1 border-gray-400 rounded-lg shadow-inner focus:ring-1 focus:ring-blue-500 transition duration-300"
@@ -45,10 +82,24 @@ const ToDoBodyRight = () => {
         <div className="flex justify-between items-center w-[70%]">
           <div className="">Is important</div>
           <div className="flex gap-2">
-            <div className="px-4 py-1 border border-gray-400 rounded-lg cursor-pointer">
+            <div
+              className={`${
+                clickedYes
+                  ? "bg-blue-100 text-blue-600 border border-blue-500"
+                  : "border border-gray-400"
+              } px-4 py-1 rounded-lg cursor-pointer`}
+              onClick={() => setClickedYes(true)}
+            >
               Yes
             </div>
-            <div className="px-4 py-1 border border-gray-400 rounded-lg cursor-pointer">
+            <div
+              className={`${
+                !clickedYes
+                  ? "bg-blue-100 text-blue-600 border border-blue-500"
+                  : "border border-gray-400"
+              } px-4 py-1 rounded-lg cursor-pointer`}
+              onClick={() => setClickedYes(false)}
+            >
               No
             </div>
           </div>
@@ -57,6 +108,7 @@ const ToDoBodyRight = () => {
         <button
           type="submit"
           className="w-[70%] p-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300"
+          onClick={handleAddTask}
         >
           Add task
         </button>
