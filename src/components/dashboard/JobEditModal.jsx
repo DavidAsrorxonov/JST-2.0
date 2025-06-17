@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import Dropdown from "../todo/Dropdown";
 
 const JobEditModal = ({ job, onSave, onClose }) => {
   const [editedJob, setEditedJob] = useState({ ...job });
@@ -13,6 +14,9 @@ const JobEditModal = ({ job, onSave, onClose }) => {
     onSave(editedJob);
     onClose();
   };
+
+  const jobtypes = ["Full-time", "Part-time", "Internship", "Contract"];
+  const jobstatuses = ["Applied", "Interview", "Offer", "Rejected"];
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center z-50">
@@ -32,31 +36,21 @@ const JobEditModal = ({ job, onSave, onClose }) => {
           placeholder="Company"
           className="w-full p-2 border mb-2"
         />
-        <select
-          value={editedJob.job_status}
-          onChange={(e) =>
-            setEditedJob({ ...editedJob, job_status: e.target.value })
+        <Dropdown
+          defaultValue={"Type"}
+          options={jobtypes}
+          onSelect={(jobtype) =>
+            setEditedJob({ ...editedJob, job_type: jobtype })
           }
-          className="border px-3 py-2 rounded-md w-full"
-        >
-          <option value="Applied">Applied</option>
-          <option value="Interview">Interview</option>
-          <option value="Offer">Offer</option>
-          <option value="Rejected">Rejected</option>
-        </select>
+        />
 
-        <select
-          value={editedJob.job_type}
-          onChange={(e) =>
-            setEditedJob({ ...editedJob, job_type: e.target.value })
+        <Dropdown
+          defaultValue={"Status"}
+          options={jobstatuses}
+          onSelect={(jobstatus) =>
+            setEditedJob({ ...editedJob, job_status: jobstatus })
           }
-          className="border px-3 py-2 rounded-md w-full mt-4"
-        >
-          <option value="Full-time">Full-time</option>
-          <option value="Part-time">Part-time</option>
-          <option value="Internship">Internship</option>
-          <option value="Contract">Contract</option>
-        </select>
+        />
         <input
           name="website_url"
           value={editedJob.website_url}
