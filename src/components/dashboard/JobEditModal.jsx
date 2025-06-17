@@ -27,36 +27,40 @@ const JobEditModal = ({ job, onSave, onClose }) => {
           value={editedJob.job_title}
           onChange={handleChange}
           placeholder="Job Title"
-          className="w-full p-2 border mb-2"
+          className="w-full p-3 border border-gray-400 mb-2 rounded-lg"
         />
         <input
           name="company"
           value={editedJob.company}
           onChange={handleChange}
           placeholder="Company"
-          className="w-full p-2 border mb-2"
-        />
-        <Dropdown
-          defaultValue={"Type"}
-          options={jobtypes}
-          onSelect={(jobtype) =>
-            setEditedJob({ ...editedJob, job_type: jobtype })
-          }
+          className="w-full p-3 border border-gray-400 mb-2 rounded-lg"
         />
 
-        <Dropdown
-          defaultValue={"Status"}
-          options={jobstatuses}
-          onSelect={(jobstatus) =>
-            setEditedJob({ ...editedJob, job_status: jobstatus })
-          }
-        />
+        <div className="flex flex-col gap-2">
+          <Dropdown
+            defaultValue={"Type"}
+            options={jobtypes}
+            onSelect={(jobtype) =>
+              setEditedJob({ ...editedJob, job_type: jobtype })
+            }
+          />
+
+          <Dropdown
+            defaultValue={"Status"}
+            options={jobstatuses}
+            onSelect={(jobstatus) =>
+              setEditedJob({ ...editedJob, job_status: jobstatus })
+            }
+          />
+        </div>
+
         <input
           name="website_url"
           value={editedJob.website_url}
           onChange={handleChange}
           placeholder="Website URL"
-          className="w-full p-2 border mb-2"
+          className="w-full p-3 border border-gray-400 mb-2 rounded-lg mt-2"
         />
         <div className="flex justify-end gap-3 mt-4">
           <button
