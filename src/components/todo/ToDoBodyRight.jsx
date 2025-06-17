@@ -15,11 +15,18 @@ const ToDoBodyRight = () => {
           className="w-[70%] p-3 outline-none border-1 border-gray-400 rounded-lg shadow-inner focus:ring-1 focus:ring-blue-500 transition duration-300"
         />
 
-        <input
-          type="date"
-          placeholder="Due time"
-          className="w-[70%] p-3 outline-none border-1 border-gray-400 rounded-lg shadow-inner focus:ring-1 focus:ring-blue-500 transition duration-300"
-        />
+        <div className="flex gap-4 w-[70%]">
+          <input
+            type="date"
+            className="flex-1 p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 transition duration-300"
+            placeholder="YYYY-MM-DD"
+          />
+          <input
+            type="time"
+            className="flex-1 p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 transition duration-300"
+            placeholder="HH:MM"
+          />
+        </div>
 
         <div className="w-[70%]">
           <Dropdown defaultValue={"Priority"} options={priority} />
