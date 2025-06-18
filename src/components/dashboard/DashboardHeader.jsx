@@ -13,7 +13,14 @@ const DashboardHeader = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
 
-  const options = ["Dashboard", "Progress", "Companies", "Events", "Support"];
+  const options = [
+    "Dashboard",
+    "Progress",
+    "Companies",
+    "Events",
+    "Support",
+    "Archive",
+  ];
 
   return (
     <div className="flex shadow-lg sticky top-0 z-50 bg-white items-center">
