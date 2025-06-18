@@ -1,9 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useToDo } from "../../context/todoContext";
-import { Clock, Tag, Loader } from "lucide-react";
+import { Clock, Tag, Loader, Ellipsis, EllipsisVertical } from "lucide-react";
 
 const ToDoBodyLeft = () => {
   const { todos, fetchToDos } = useToDo();
+  const [ellipsisClicked, setEllipsisClicked] = useState(false);
+  const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 });
 
   const priorityColors = {
     High: "bg-red-100 text-red-600",
@@ -31,6 +33,16 @@ const ToDoBodyLeft = () => {
   useEffect(() => {
     fetchToDos();
   }, []);
+
+  const handleEllipsisClick = (e, idx) => {
+    e.stopPropagation();
+    const rect = e.target.getBoundingClientRect();
+    setModalPosition({
+      top: rect.bottom + window.scrollY - 80,
+      left: rect.left + window.scrollX - 150,
+    });
+    setEllipsisClicked((prev) => (prev === idx ? null : idx));
+  };
 
   return (
     <div className="w-full flex flex-col items-start justify-start gap-2 mt-4">
@@ -70,13 +82,26 @@ const ToDoBodyLeft = () => {
                     " " +
                     todo_duetime.split("T")[1].split(".")[0]}
                 </div>
-                <div className="flex items-center gap-2">
-                  <div className="flex items-center justify-center gap-1 px-2 py-1 rounded-lg bg-red-100 text-red-600 border border-red-500 cursor-pointer">
-                    Delete
-                  </div>
-                  <div className="flex items-center justify-center gap-1 px-2 py-1 rounded-lg bg-purple-100 text-purple-600 border border-purple-500 cursor-pointer">
-                    Archive
-                  </div>
+                <div className="relative flex items-center gap-2 cursor-pointer">
+                  <Ellipsis
+                    size={20}
+                    onClick={(e) => handleEllipsisClick(e, idx)}
+                  />
+                  {ellipsisClicked === idx && (
+                    <div className="absolute top-0 right-6 z-10">
+                      <div className="bg-white border border-gray-200 rounded-lg shadow-sm w-36 py-1 text-sm">
+                        <button className="w-full text-left px-4 py-2 hover:bg-gray-50 text-gray-800">
+                          Mark as Done
+                        </button>
+                        <button className="w-full text-left px-4 py-2 hover:bg-gray-50 text-gray-800">
+                          Archive
+                        </button>
+                        <button className="w-full text-left px-4 py-2 hover:bg-gray-50 text-red-500">
+                          Delete
+                        </button>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
 
