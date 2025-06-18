@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Dropdown from "./Dropdown";
 import { addToast } from "@heroui/toast";
 import axios from "axios";
+import NavigationButtons from "../NavigationButtons";
 
 const ToDoBodyRight = () => {
   const [clickedYes, setClickedYes] = useState(false);
@@ -64,6 +65,7 @@ const ToDoBodyRight = () => {
 
   return (
     <div className="w-full m-4">
+      <NavigationButtons />
       <div className="text-5xl font-bold">Add a task</div>
       <div className="flex justify-center flex-col mt-4 gap-10">
         <input

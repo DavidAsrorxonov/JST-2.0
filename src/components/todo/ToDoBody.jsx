@@ -4,11 +4,11 @@ import ToDoBodyRight from "./ToDoBodyRight";
 
 const ToDoBody = () => {
   return (
-    <div className="w-full flex items-center justify-center gap-2">
-      <div className="w-[35%]">
+    <div className="flex w-full h-[calc(100vh-80px)] overflow-hidden">
+      <div className="w-[35%] h-full border-r border-gray-200 overflow-y-auto p-4">
         <ToDoBodyRight />
       </div>
-      <div className="w-[65%]">
+      <div className="w-[65%] h-full overflow-y-auto p-4">
         <ToDoBodyLeft />
       </div>
     </div>
