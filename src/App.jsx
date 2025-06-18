@@ -17,6 +17,7 @@ import ApplicationPage from "./pages/ProgressPage";
 import { useEffect } from "react";
 import { handleShortcut } from "./lib/commands/ShortcutCommands";
 import ToDoPage from "./pages/ToDoPage";
+import ArchivePage from "./pages/ArchivePage";
 
 const App = () => {
   useEffect(() => {
@@ -43,6 +44,7 @@ const App = () => {
           <Route path="/news" element={<NewsPage />} />
           <Route path="/progress" element={<ApplicationPage />} />
           <Route path="/todos" element={<ToDoPage />} />
+          <Route path="/archive" element={<ArchivePage />} />
         </Routes>
       </BrowserRouter>
     </HeroUIProvider>
