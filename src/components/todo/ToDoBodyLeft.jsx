@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useToDo } from "../../context/todoContext";
 import { Clock, Tag, Loader, Ellipsis, EllipsisVertical } from "lucide-react";
+import axios from "axios";
+import { addToast } from "@heroui/toast";
 
 const ToDoBodyLeft = () => {
   const { todos, fetchToDos } = useToDo();
@@ -34,6 +36,24 @@ const ToDoBodyLeft = () => {
     fetchToDos();
   }, []);
 
+  const deleteToDo = async (id) => {
+    if (!id) return;
+    const response = await axios.delete(
+      `http://localhost:3000/api/todos/${id}`
+    );
+    fetchToDos();
+    addToast({
+      description: "Task deleted successfully",
+      color: "success",
+      timeout: 2000,
+      shouldShowTimeoutProgress: true,
+    });
+    try {
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const handleEllipsisClick = (e, idx) => {
     e.stopPropagation();
     const rect = e.target.getBoundingClientRect();
@@ -50,6 +70,7 @@ const ToDoBodyLeft = () => {
       {todos.map(
         (
           {
+            id,
             todo_title,
             todo_duetime,
             todo_priority,
@@ -96,7 +117,10 @@ const ToDoBodyLeft = () => {
                         <button className="w-full text-left px-4 py-2 hover:bg-gray-50 text-gray-800">
                           Archive
                         </button>
-                        <button className="w-full text-left px-4 py-2 hover:bg-gray-50 text-red-500">
+                        <button
+                          className="w-full text-left px-4 py-2 hover:bg-gray-50 text-red-500"
+                          onClick={() => deleteToDo(id)}
+                        >
                           Delete
                         </button>
                       </div>
