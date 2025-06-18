@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useToDo } from "../../context/todoContext";
-import { Star, StarOff, Clock, Tag, Loader, Pen } from "lucide-react";
+import { Clock, Tag, Loader } from "lucide-react";
 
 const ToDoBodyLeft = () => {
   const { todos, fetchToDos } = useToDo();
@@ -70,8 +70,13 @@ const ToDoBodyLeft = () => {
                     " " +
                     todo_duetime.split("T")[1].split(".")[0]}
                 </div>
-                <div>
-                  <input type="radio" className="w-6 h-6 cursor-pointer" />
+                <div className="flex items-center gap-2">
+                  <div className="flex items-center justify-center gap-1 px-2 py-1 rounded-lg bg-red-100 text-red-600 border border-red-500 cursor-pointer">
+                    Delete
+                  </div>
+                  <div className="flex items-center justify-center gap-1 px-2 py-1 rounded-lg bg-purple-100 text-purple-600 border border-purple-500 cursor-pointer">
+                    Archive
+                  </div>
                 </div>
               </div>
 
