@@ -3,6 +3,7 @@ import Dropdown from "./Dropdown";
 import { addToast } from "@heroui/toast";
 import axios from "axios";
 import NavigationButtons from "../NavigationButtons";
+import { useToDo } from "../../context/todoContext";
 
 const ToDoBodyRight = () => {
   const [clickedYes, setClickedYes] = useState(false);
@@ -13,6 +14,8 @@ const ToDoBodyRight = () => {
   const [taskPriority, setTaskPriority] = useState("");
   const [taskStatus, setTaskStatus] = useState("");
   const { id } = JSON.parse(localStorage.getItem("user"));
+
+  const { fetchToDos } = useToDo();
 
   const payload = {
     todo_title: taskTitle,
@@ -58,6 +61,8 @@ const ToDoBodyRight = () => {
           shouldShowTimeoutProgress: true,
         });
       }
+
+      await fetchToDos();
     } catch (error) {
       console.error("Error adding task:", error);
     }
