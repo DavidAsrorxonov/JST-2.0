@@ -66,7 +66,7 @@ const ToDoBodyLeft = () => {
 
   return (
     <div className="w-full flex flex-col items-start justify-start gap-2 mt-4">
-      <h1 className="text-4xl font-bold">To-Dos</h1>
+      <h1 className="text-5xl font-bold">To-Dos</h1>
       {todos.map(
         (
           {

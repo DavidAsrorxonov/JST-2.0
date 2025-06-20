@@ -6,7 +6,10 @@ export const highlightMatch = (text, searchTerm) => {
 
   return parts.map((part, idx) =>
     regex.test(part) ? (
-      <span key={idx} className="bg-yellow-200 font-semibold">
+      <span
+        key={idx}
+        className="bg-yellow-200 py-0.5 px-0 rounded-lg font-semibold"
+      >
         {part}
       </span>
     ) : (

@@ -3,6 +3,7 @@ import { SquareArrowOutUpRight } from "lucide-react";
 import "../../styles/TableBody.css";
 import { useSearch } from "../../context/searchContext";
 import { useSelectedJobId } from "../../context/selectedJobIdContext";
+import { highlightMatch } from "../../lib/utils/highlightingText";
 
 const TableBody = () => {
   const { jobs, fetchJobs } = useJob();
@@ -79,12 +80,12 @@ const TableBody = () => {
               </td>
               <td className="border-r border-gray-500 last:border-r-0 relative group">
                 <div className={`px-3 py-0.5 w-[90%] cursor-text`}>
-                  {job_title}
+                  {highlightMatch(job_title, searchTerm)}
                 </div>
               </td>
               <td className="border-r border-gray-500 last:border-r-0">
                 <div className={`py-0.5 px-3 cursor-text w-[90%]`}>
-                  {company}
+                  {highlightMatch(company, advancedSearchTerm)}
                 </div>
               </td>
               <td className="p-3 border-r border-gray-500 last:border-r-0">
