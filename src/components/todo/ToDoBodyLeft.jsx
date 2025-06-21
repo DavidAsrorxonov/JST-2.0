@@ -3,34 +3,16 @@ import { useToDo } from "../../context/todoContext";
 import { Clock, Tag, Loader, Ellipsis, EllipsisVertical } from "lucide-react";
 import axios from "axios";
 import { addToast } from "@heroui/toast";
+import {
+  priorityColors,
+  statusColors,
+  categoryColors,
+} from "../../constants/colors";
 
 const ToDoBodyLeft = () => {
   const { todos, fetchToDos } = useToDo();
   const [ellipsisClicked, setEllipsisClicked] = useState(false);
   const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 });
-
-  const priorityColors = {
-    High: "bg-red-100 text-red-600",
-    Medium: "bg-yellow-100 text-yellow-600",
-    Low: "bg-green-100 text-green-600",
-  };
-  const statusColors = {
-    "Not started": "bg-gray-100 text-gray-600",
-    "In progress": "bg-blue-100 text-blue-600",
-    Completed: "bg-green-100 text-green-600",
-    Pending: "bg-blue-100 text-blue-600",
-  };
-
-  const categoryColors = [
-    "bg-blue-100 text-blue-600",
-    "bg-green-100 text-green-600",
-    "bg-yellow-100 text-yellow-600",
-    "bg-red-100 text-red-600",
-    "bg-gray-100 text-gray-600",
-    "bg-pink-100 text-pink-600",
-    "bg-purple-100 text-purple-600",
-    "bg-orange-100 text-orange-600",
-  ];
 
   useEffect(() => {
     fetchToDos();
