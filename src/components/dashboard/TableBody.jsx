@@ -89,47 +89,19 @@ const TableBody = () => {
                 </div>
               </td>
               <td className="p-3 border-r border-gray-500 last:border-r-0">
-                <div className="px-3 py-0.5 bg-yellow-100 border border-yellow-500 rounded-md">
+                <div className="px-3 py-0.5 cursor-text w-[90%]">
                   {applied_at.split("T")[0]}
                 </div>
               </td>
               <td className="border-r border-gray-500 last:border-r-0">
-                <select className="custom-select">
-                  <option value="Applied" selected={job_status === "Applied"}>
-                    Applied
-                  </option>
-                  <option
-                    value="Interview"
-                    selected={job_status === "Interview"}
-                  >
-                    Interview
-                  </option>
-                  <option value="Offer" selected={job_status === "Offer"}>
-                    Offer
-                  </option>
-                  <option value="Rejected" selected={job_status === "Rejected"}>
-                    Rejected
-                  </option>
-                </select>
+                <div className="py-0.5 px-3 cursor-text w-[90%]">
+                  {job_status}
+                </div>
               </td>
               <td className="border-r border-gray-500 last:border-r-0">
-                <select className="custom-select">
-                  <option value="Full-time" selected={job_type === "Full-time"}>
-                    Full-time
-                  </option>
-                  <option value="Part-time" selected={job_type === "Part-time"}>
-                    Part-time
-                  </option>
-                  <option
-                    value="Internship"
-                    selected={job_type === "Internship"}
-                  >
-                    Internship
-                  </option>
-                  <option value="Contract" selected={job_type === "Contract"}>
-                    Contract
-                  </option>
-                </select>
+                <div className="py-0.5 px-3 cursor-text w-[90%]">
+                  {job_type}
+                </div>
               </td>
               <td className="p-3">
                 <div className="flex items-center justify-between">
