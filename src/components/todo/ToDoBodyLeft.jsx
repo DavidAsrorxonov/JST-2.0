@@ -46,6 +46,27 @@ const ToDoBodyLeft = () => {
     setEllipsisClicked((prev) => (prev === idx ? null : idx));
   };
 
+  const handleArchive = async (todoId) => {
+    try {
+      await axios.post(`http://localhost:3000/api/archive/todos/${todoId}`);
+      addToast({
+        description: "Task archived successfully",
+        color: "success",
+        timeout: 2000,
+        shouldShowTimeoutProgress: true,
+      });
+      fetchToDos();
+    } catch (error) {
+      console.log(error);
+      addToast({
+        description: "Error archiving task",
+        color: "danger",
+        timeout: 2000,
+        shouldShowTimeoutProgress: true,
+      });
+    }
+  };
+
   return (
     <div className="w-full flex flex-col items-start justify-start gap-2 mt-4">
       <h1 className="text-5xl font-bold">To-Dos</h1>
@@ -96,9 +117,19 @@ const ToDoBodyLeft = () => {
                         <button className="w-full text-left px-4 py-2 hover:bg-gray-50 text-gray-800">
                           Mark as Done
                         </button>
-                        <button className="w-full text-left px-4 py-2 hover:bg-gray-50 text-gray-800">
-                          Archive
-                        </button>
+                        {todo_status !== "Completed" ? (
+                          <button
+                            className="w-full text-left px-4 py-2 hover:bg-gray-50 text-gray-800"
+                            onClick={() => handleArchive(id)}
+                          >
+                            Archive
+                          </button>
+                        ) : (
+                          <button className="w-full text-left px-4 py-2 hover:bg-gray-50 text-gray-800 cursor-not-allowed">
+                            Can't archive
+                          </button>
+                        )}
+
                         <button
                           className="w-full text-left px-4 py-2 hover:bg-gray-50 text-red-500"
                           onClick={() => deleteToDo(id)}
