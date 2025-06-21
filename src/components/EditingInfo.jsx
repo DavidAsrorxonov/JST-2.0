@@ -31,7 +31,7 @@ const EditingInfo = () => {
           ref={divRef}
         >
           <div className="flex items-center gap-2">
-            {t("You can edit the rows by just clicking onto them")}
+            {t("You can edit jobs by checking them")}
             <CircleX
               size={15}
               className="cursor-pointer"

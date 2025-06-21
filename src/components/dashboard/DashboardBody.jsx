@@ -23,7 +23,7 @@ const DashboardBody = () => {
       <CheckboxSelected />
       <TableActions />
       <Table />
-      {/* <EditingInfo /> */}
+      <EditingInfo />
       <ShortcutHelp />
     </>
   );

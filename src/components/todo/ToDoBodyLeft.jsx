@@ -1,6 +1,14 @@
 import { useEffect, useState } from "react";
 import { useToDo } from "../../context/todoContext";
-import { Clock, Tag, Loader, Ellipsis, EllipsisVertical } from "lucide-react";
+import {
+  Clock,
+  Tag,
+  Loader,
+  Ellipsis,
+  EllipsisVertical,
+  BookOpen,
+  ArrowLeft,
+} from "lucide-react";
 import axios from "axios";
 import { addToast } from "@heroui/toast";
 import {
@@ -69,105 +77,116 @@ const ToDoBodyLeft = () => {
   return (
     <div className="w-full flex flex-col items-start justify-start gap-2 mt-4">
       <h1 className="text-5xl font-bold">To-Dos</h1>
-      {todos.map(
-        (
-          {
-            id,
-            todo_title,
-            todo_duetime,
-            todo_priority,
-            todo_status,
-            todo_category,
-            is_important,
-          },
-          idx
-        ) => (
-          <div key={idx} className="w-full flex items-start gap-3">
-            <div className="border border-gray-300 shadow-inner rounded-xl p-4 w-full bg-white space-y-2">
-              <div className="flex items-center justify-between">
-                <div className="text-2xl font-semibold text-gray-800">
-                  {todo_title}
-                </div>
-                <div>
-                  {is_important ? (
-                    <div className="px-2 rounded-lg bg-red-100 text-red-600 border border-red-500 font-semibold">
-                      Important
-                    </div>
-                  ) : (
-                    ""
-                  )}
-                </div>
-              </div>
-              <div className="flex items-center justify-between">
-                <div className="text-sm text-gray-500">
-                  Due:{" "}
-                  {todo_duetime.split("T")[0] +
-                    " " +
-                    todo_duetime.split("T")[1].split(".")[0]}
-                </div>
-                <div className="relative flex items-center gap-2 cursor-pointer">
-                  <Ellipsis
-                    size={20}
-                    onClick={(e) => handleEllipsisClick(e, idx)}
-                  />
-                  {ellipsisClicked === idx && (
-                    <div className="absolute top-0 right-6 z-10">
-                      <div className="bg-white border border-gray-200 rounded-lg shadow-sm w-36 py-1 text-sm">
-                        <button className="w-full text-left px-4 py-2 hover:bg-gray-50 text-gray-800">
-                          Mark as Done
-                        </button>
-                        {todo_status !== "Completed" ? (
-                          <button
-                            className="w-full text-left px-4 py-2 hover:bg-gray-50 text-gray-800"
-                            onClick={() => handleArchive(id)}
-                          >
-                            Archive
-                          </button>
-                        ) : (
-                          <button className="w-full text-left px-4 py-2 hover:bg-gray-50 text-gray-800 cursor-not-allowed">
-                            Can't archive
-                          </button>
-                        )}
-
-                        <button
-                          className="w-full text-left px-4 py-2 hover:bg-gray-50 text-red-500"
-                          onClick={() => deleteToDo(id)}
-                        >
-                          Delete
-                        </button>
+      {todos && todos.length > 0 ? (
+        todos.map(
+          (
+            {
+              id,
+              todo_title,
+              todo_duetime,
+              todo_priority,
+              todo_status,
+              todo_category,
+              is_important,
+            },
+            idx
+          ) => (
+            <div key={idx} className="w-full flex items-start gap-3">
+              <div className="border border-gray-300 shadow-inner rounded-xl p-4 w-full bg-white space-y-2">
+                <div className="flex items-center justify-between">
+                  <div className="text-2xl font-semibold text-gray-800">
+                    {todo_title}
+                  </div>
+                  <div>
+                    {is_important ? (
+                      <div className="px-2 rounded-lg bg-red-100 text-red-600 border border-red-500 font-semibold">
+                        Important
                       </div>
-                    </div>
-                  )}
+                    ) : (
+                      ""
+                    )}
+                  </div>
                 </div>
-              </div>
+                <div className="flex items-center justify-between">
+                  <div className="text-sm text-gray-500">
+                    Due:{" "}
+                    {todo_duetime.split("T")[0] +
+                      " " +
+                      todo_duetime.split("T")[1].split(".")[0]}
+                  </div>
+                  <div className="relative flex items-center gap-2 cursor-pointer">
+                    <Ellipsis
+                      size={20}
+                      onClick={(e) => handleEllipsisClick(e, idx)}
+                    />
+                    {ellipsisClicked === idx && (
+                      <div className="absolute top-0 right-6 z-10">
+                        <div className="bg-white border border-gray-200 rounded-lg shadow-sm w-36 py-1 text-sm">
+                          <button className="w-full text-left px-4 py-2 hover:bg-gray-50 text-gray-800">
+                            Mark as Done
+                          </button>
+                          {todo_status !== "Completed" ? (
+                            <button
+                              className="w-full text-left px-4 py-2 hover:bg-gray-50 text-gray-800"
+                              onClick={() => handleArchive(id)}
+                            >
+                              Archive
+                            </button>
+                          ) : (
+                            <button className="w-full text-left px-4 py-2 hover:bg-gray-50 text-gray-800 cursor-not-allowed">
+                              Can't archive
+                            </button>
+                          )}
 
-              <div className="flex flex-wrap gap-4 text-sm text-gray-700 items-center pt-2">
-                <div
-                  className={`flex items-center gap-1 px-2 py-1 rounded-full ${statusColors[todo_status]}`}
-                >
-                  <Loader size={16} />
-                  <span>{todo_status}</span>
+                          <button
+                            className="w-full text-left px-4 py-2 hover:bg-gray-50 text-red-500"
+                            onClick={() => deleteToDo(id)}
+                          >
+                            Delete
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                  </div>
                 </div>
-                <div
-                  className={`flex items-center gap-1 px-2 py-1 rounded-full ${priorityColors[todo_priority]}`}
-                >
-                  <Clock size={16} />
-                  <span>{todo_priority}</span>
-                </div>
-                <div
-                  className={`flex items-center gap-1 px-2 py-1 rounded-full ${
-                    categoryColors[
-                      Math.floor(Math.random() * categoryColors.length)
-                    ]
-                  }`}
-                >
-                  <Tag size={16} />
-                  <span>{todo_category}</span>
+
+                <div className="flex flex-wrap gap-4 text-sm text-gray-700 items-center pt-2">
+                  <div
+                    className={`flex items-center gap-1 px-2 py-1 rounded-full ${statusColors[todo_status]}`}
+                  >
+                    <Loader size={16} />
+                    <span>{todo_status}</span>
+                  </div>
+                  <div
+                    className={`flex items-center gap-1 px-2 py-1 rounded-full ${priorityColors[todo_priority]}`}
+                  >
+                    <Clock size={16} />
+                    <span>{todo_priority}</span>
+                  </div>
+                  <div
+                    className={`flex items-center gap-1 px-2 py-1 rounded-full ${
+                      categoryColors[
+                        Math.floor(Math.random() * categoryColors.length)
+                      ]
+                    }`}
+                  >
+                    <Tag size={16} />
+                    <span>{todo_category}</span>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          )
         )
+      ) : (
+        <div className="w-full py-20 flex flex-col items-center justify-center text-gray-500">
+          <BookOpen size={150} />
+          <p className="text-xl font-medium">No To-Dos Found</p>
+          <p className="text-sm text-gray-400 mt-1">You're all caught up!</p>
+          <div className="flex items-center gap-2 mt-4 cursor-pointer bg-gray-100 px-4 py-2 rounded-full text-gray-700">
+            <ArrowLeft /> Add a To-Do
+          </div>
+        </div>
       )}
     </div>
   );
