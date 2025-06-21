@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Logo from "./Logo";
 import { Menu, X } from "lucide-react";
-import GetStartedButton from "./GetStartedButton";
+import GetStartedButton from "./ui/GetStartedButton";
 import { useNavigate } from "react-router-dom";
 
 const Header = ({ activeSections }) => {

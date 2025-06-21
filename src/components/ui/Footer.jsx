@@ -1,10 +1,6 @@
-import React from "react";
-import Logo from "./Logo";
-import { useNavigate } from "react-router-dom";
+import Logo from "../Logo";
 
 const Footer = () => {
-  const navigate = useNavigate();
-
   return (
     <footer className="w-full shadow-inner py-10 px-6 mt-20">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10 text-gray-700">

@@ -1,6 +1,6 @@
 import { ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import NavigationButtons from "../components/NavigationButtons";
+import NavigationButtons from "../components/ui/NavigationButtons";
 
 const AuthPage = () => {
   const navigate = useNavigate();

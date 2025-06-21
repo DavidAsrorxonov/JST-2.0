@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useEvent } from "../../context/eventContext";
-import NavigationButtons from "../NavigationButtons";
 import EventBodyRight from "./EventBodyRight";
 import EventBodyLeft from "./EventBodyLeft";
 

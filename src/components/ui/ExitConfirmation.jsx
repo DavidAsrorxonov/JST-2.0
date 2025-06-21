@@ -1,5 +1,5 @@
 // components/ExitConfirmation.js
-import React, { useState } from "react";
+import { useState } from "react";
 
 const ExitConfirmation = ({ onCancel, onConfirm }) => {
   const [name, setName] = useState("");

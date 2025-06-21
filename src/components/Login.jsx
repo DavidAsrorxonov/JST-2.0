@@ -1,7 +1,7 @@
 import { Eye, EyeOff } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { addToast } from "@heroui/toast";
-import NavigationButtons from "./NavigationButtons";
+import NavigationButtons from "../components/ui/NavigationButtons";
 import axios from "axios";
 import { useUser } from "../context/userContext";
 import { useNavigate } from "react-router-dom";

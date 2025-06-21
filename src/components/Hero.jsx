@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import GetStartedButton from "./GetStartedButton";
+import GetStartedButton from "./ui/GetStartedButton";
 import { ChevronsDown } from "lucide-react";
 import "../styles/Hero.css";
 

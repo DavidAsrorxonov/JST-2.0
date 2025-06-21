@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { CircleHelp, Eye, EyeOff, MoveLeft, TriangleAlert } from "lucide-react";
 import { addToast } from "@heroui/toast";
-import NavigationButtons from "./NavigationButtons";
+import NavigationButtons from "../components/ui/NavigationButtons";
 import axios from "axios";
 import getPasswordStrength from "../lib/utils/passwordStrength";
 import PasswordDetails from "../lib/utils/PasswordDetails";

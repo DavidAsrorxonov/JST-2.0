@@ -1,6 +1,6 @@
 import React from "react";
 import "../styles/Logo.css";
-import Card from "./Card";
+import Card from "./ui/Card";
 
 const SecondPart = () => {
   return (

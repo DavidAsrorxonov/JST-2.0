@@ -7,7 +7,7 @@ import Demo from "../components/Demo";
 import { useInView } from "react-intersection-observer";
 import Security from "../components/Security";
 import Contact from "../components/Contact";
-import Footer from "../components/Footer";
+import Footer from "../components/ui/Footer";
 
 const Landing = () => {
   const [activeSections, setActiveSections] = useState("home");

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useEvent } from "../../context/eventContext";
-import NavigationButtons from "../NavigationButtons";
+import NavigationButtons from ".././ui/NavigationButtons";
 import { Bell, Check, Ellipsis } from "lucide-react";
 import { Tooltip } from "@heroui/tooltip";
 import { addToast } from "@heroui/toast";

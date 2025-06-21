@@ -3,7 +3,7 @@ import Input from "./Input";
 import Table from "./Table";
 import DashboardIntro from "./DashboardIntro";
 import TableActions from "./TableActions";
-import EditingInfo from "../EditingInfo";
+import EditingInfo from "../ui/EditingInfo";
 import Filtering from "./Filtering";
 import Sorting from "./Sorting";
 import ShortcutHelp from "../../lib/commands/ShortcutHelp";

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Dropdown from "./Dropdown";
 import { addToast } from "@heroui/toast";
 import axios from "axios";
-import NavigationButtons from "../NavigationButtons";
+import NavigationButtons from ".././ui/NavigationButtons";
 import { useToDo } from "../../context/todoContext";
 import { API_URL } from "../../constants/api";
 

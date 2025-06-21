@@ -13,7 +13,7 @@ import {
 import { useJob } from "../../context/jobContext";
 import { getDailyJobData } from "../../lib/utils/getDailyJobData";
 import { getCategoryCounts } from "../../lib/utils/getCategoryCounts";
-import NavigationButtons from "../NavigationButtons";
+import NavigationButtons from ".././ui/NavigationButtons";
 import { useTranslation } from "react-i18next";
 
 const ChartCard = ({ title, children }) => (

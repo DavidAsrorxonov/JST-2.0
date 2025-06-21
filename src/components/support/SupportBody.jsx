@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import NavigationButtons from "../NavigationButtons";
+import NavigationButtons from ".././ui/NavigationButtons";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";

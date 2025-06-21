@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { addToast } from "@heroui/toast";
-import ExitConfirmation from "./ExitConfirmation";
+import ExitConfirmation from "./ui/ExitConfirmation";
 
 const Terms = () => {
   const [checked, setChecked] = useState(false);
