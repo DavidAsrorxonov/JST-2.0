@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   priorityColors,
   statusColors,
@@ -29,10 +29,13 @@ const ArchiveLeft = () => {
     }
   };
 
+  useEffect(() => {
+    fetchArchivedToDos();
+  }, []);
+
   return (
     <div>
-      <h1 className="text-4xl font-bold text-gray-800">Archived To-Dos</h1>
-      <div onClick={fetchArchivedToDos}>Click to fetch</div>
+      <h1 className="text-4xl font-bold text-gray-800 mb-4">Archived To-Dos</h1>
 
       {archivedToDos &&
         archivedToDos.map(
