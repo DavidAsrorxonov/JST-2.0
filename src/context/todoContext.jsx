@@ -1,6 +1,7 @@
 import { createContext, useState, useContext } from "react";
 import axios from "axios";
 import { addToast } from "@heroui/toast";
+import { API_URL } from "../constants/api";
 
 const ToDoContext = createContext();
 
@@ -24,7 +25,7 @@ export const ToDoProvider = ({ children }) => {
       return;
     }
 
-    const response = await axios.get("http://localhost:3000/api/todos", {
+    const response = await axios.get(`${API_URL}/api/todos`, {
       params: {
         user_id: id,
       },

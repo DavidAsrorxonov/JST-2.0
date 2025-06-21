@@ -1,6 +1,7 @@
 import React, { createContext, useState, useContext } from "react";
 import axios from "axios";
 import { addToast } from "@heroui/toast";
+import { API_URL } from "../constants/api";
 
 const JobContext = createContext();
 
@@ -24,7 +25,7 @@ export const JobProvider = ({ children }) => {
       return;
     }
 
-    const response = await axios.get("http://localhost:3000/api/jobs", {
+    const response = await axios.get(`${API_URL}/api/jobs`, {
       params: {
         user_id: id,
       },

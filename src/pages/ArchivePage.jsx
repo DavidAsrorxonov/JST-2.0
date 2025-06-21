@@ -1,4 +1,3 @@
-import React from "react";
 import ArchiveHeader from "../components/archive/ArchiveHeader";
 import ArchiveBody from "../components/archive/ArchiveBody";
 

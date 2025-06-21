@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import { useJob } from "../../context/jobContext";
 import { useSearch } from "../../context/searchContext";
 import { useTranslation } from "react-i18next";
+import { API_URL } from "../../constants/api";
 
 const TableActions = () => {
   const [addNewJobModal, setAddNewJobModal] = useState(false);
@@ -52,16 +53,12 @@ const TableActions = () => {
     }
 
     try {
-      const response = await axios.post(
-        "http://localhost:3000/api/jobs",
-        payload,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        }
-      );
+      const response = await axios.post(`${API_URL}/api/jobs`, payload, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
 
       if (response.status === 201) {
         addToast({

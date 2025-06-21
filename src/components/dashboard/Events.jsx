@@ -12,6 +12,7 @@ import { useState } from "react";
 import { parseDate } from "@internationalized/date";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
+import { API_URL } from "../../constants/api";
 
 const Events = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -50,16 +51,12 @@ const Events = () => {
     }
 
     try {
-      const response = await axios.post(
-        "http://localhost:3000/api/events",
-        payload,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        }
-      );
+      const response = await axios.post(`${API_URL}/api/events`, payload, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
 
       if (response.status === 201) {
         addToast({

@@ -1,5 +1,6 @@
 import React, { createContext, useState, useContext } from "react";
 import axios from "axios";
+import { API_URL } from "../constants/api";
 
 const UserContext = createContext();
 
@@ -13,10 +14,7 @@ export const UserProvider = ({ children }) => {
     };
 
     try {
-      const response = await axios.post(
-        "http://localhost:3000/auth/login",
-        payload
-      );
+      const response = await axios.post(`${API_URL}/auth/login`, payload);
 
       const userData = response.data.user;
       setUser(userData);

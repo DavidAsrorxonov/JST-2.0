@@ -8,6 +8,7 @@ import { useRef } from "react";
 import { useEffect } from "react";
 import gsap from "gsap";
 import JobEditModal from "./JobEditModal";
+import { API_URL } from "../../constants/api";
 
 const CheckboxSelected = () => {
   const { selectedJobId, setSelectedJobId } = useSelectedJobId();
@@ -26,9 +27,7 @@ const CheckboxSelected = () => {
 
     try {
       await Promise.all(
-        selectedJobId.map((id) =>
-          axios.delete(`http://localhost:3000/api/jobs/${id}`)
-        )
+        selectedJobId.map((id) => axios.delete(`${API_URL}/api/jobs/${id}`))
       );
       fetchJobs();
       setSelectedJobId([]);
@@ -58,10 +57,7 @@ const CheckboxSelected = () => {
 
   const handleSaveEdit = async (updatedJob) => {
     try {
-      await axios.patch(
-        `http://localhost:3000/api/jobs/${updatedJob.id}`,
-        updatedJob
-      );
+      await axios.patch(`${API_URL}/api/jobs/${updatedJob.id}`, updatedJob);
       await fetchJobs();
 
       addToast({

@@ -5,6 +5,7 @@ import { Briefcase, Calendar, Link as LinkIcon, ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { getTimeOfDay } from "../../lib/utils/getTimeOfDay";
 import { useTranslation } from "react-i18next";
+import { API_URL } from "../../constants/api";
 
 const statusColumns = ["Applied", "Interview", "Offer", "Rejected"];
 
@@ -20,7 +21,7 @@ const CompaniesHeader = () => {
   useEffect(() => {
     const getJobs = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/jobs", {
+        const response = await axios.get(`${API_URL}/api/jobs`, {
           params: { user_id: userId },
         });
         setJobs(response.data);

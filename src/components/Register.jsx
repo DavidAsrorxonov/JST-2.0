@@ -7,6 +7,7 @@ import getPasswordStrength from "../lib/utils/passwordStrength";
 import PasswordDetails from "../lib/utils/PasswordDetails";
 import validatePassword from "../lib/utils/passwordValidator";
 import { useNavigate } from "react-router-dom";
+import { API_URL } from "../constants/api";
 
 const Register = () => {
   const [firstName, setFirstName] = useState("");
@@ -64,10 +65,7 @@ const Register = () => {
         });
         return;
       }
-      const response = await axios.post(
-        "http://localhost:3000/auth/register",
-        payload
-      );
+      const response = await axios.post(`${API_URL}/auth/register`, payload);
 
       if (response.status === 201) {
         addToast({

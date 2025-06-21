@@ -8,6 +8,7 @@ import {
   statusColors,
   categoryColors,
 } from "../../constants/colors";
+import { API_URL } from "../../constants/api";
 
 const ToDoBodyLeft = () => {
   const { todos, fetchToDos } = useToDo();
@@ -20,9 +21,7 @@ const ToDoBodyLeft = () => {
 
   const deleteToDo = async (id) => {
     if (!id) return;
-    const response = await axios.delete(
-      `http://localhost:3000/api/todos/${id}`
-    );
+    const response = await axios.delete(`${API_URL}/api/todos/${id}`);
     fetchToDos();
     addToast({
       description: "Task deleted successfully",
@@ -48,7 +47,7 @@ const ToDoBodyLeft = () => {
 
   const handleArchive = async (todoId) => {
     try {
-      await axios.post(`http://localhost:3000/api/archive/todos/${todoId}`);
+      await axios.post(`${API_URL}/api/archive/todos/${todoId}`);
       addToast({
         description: "Task archived successfully",
         color: "success",

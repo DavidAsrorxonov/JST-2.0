@@ -6,6 +6,7 @@ import {
   categoryColors,
 } from "../../constants/colors";
 import { Clock, Loader, Tag } from "lucide-react";
+import { API_URL } from "../../constants/api";
 
 const ArchiveLeft = () => {
   const [archivedToDos, setArchivedToDos] = useState([]);
@@ -14,14 +15,11 @@ const ArchiveLeft = () => {
 
   const fetchArchivedToDos = async () => {
     try {
-      const response = await axios.get(
-        "http://localhost:3000/api/archive/todos",
-        {
-          params: {
-            user_id: id,
-          },
-        }
-      );
+      const response = await axios.get(`${API_URL}/api/archive/todos`, {
+        params: {
+          user_id: id,
+        },
+      });
 
       setArchivedToDos(response.data);
     } catch (error) {

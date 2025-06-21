@@ -4,6 +4,7 @@ import { addToast } from "@heroui/toast";
 import axios from "axios";
 import NavigationButtons from "../NavigationButtons";
 import { useToDo } from "../../context/todoContext";
+import { API_URL } from "../../constants/api";
 
 const ToDoBodyRight = () => {
   const [clickedYes, setClickedYes] = useState(false);
@@ -48,10 +49,7 @@ const ToDoBodyRight = () => {
     }
 
     try {
-      const response = await axios.post(
-        "http://localhost:3000/api/todos",
-        payload
-      );
+      const response = await axios.post(`${API_URL}/api/todos`, payload);
 
       if (response.status === 201) {
         addToast({
