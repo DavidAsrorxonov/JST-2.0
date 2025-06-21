@@ -17,6 +17,7 @@ import {
   categoryColors,
 } from "../../constants/colors";
 import { API_URL } from "../../constants/api";
+import EmptyState from "../ui/EmptyState";
 
 const ToDoBodyLeft = () => {
   const { todos, fetchToDos } = useToDo();
@@ -179,14 +180,12 @@ const ToDoBodyLeft = () => {
           )
         )
       ) : (
-        <div className="w-full py-20 flex flex-col items-center justify-center text-gray-500">
-          <BookOpen size={150} />
-          <p className="text-xl font-medium">No To-Dos Found</p>
-          <p className="text-sm text-gray-400 mt-1">You're all caught up!</p>
-          <div className="flex items-center gap-2 mt-4 cursor-pointer bg-gray-100 px-4 py-2 rounded-full text-gray-700">
-            <ArrowLeft /> Add a To-Do
-          </div>
-        </div>
+        <EmptyState
+          title={"No To-Dos Found"}
+          subtitle={"You're all caught up!"}
+          actionText={"Add a To-Do"}
+          icon={<ArrowLeft />}
+        />
       )}
     </div>
   );
