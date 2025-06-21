@@ -1,13 +1,4 @@
-import {
-  ChevronsLeftRightEllipsis,
-  Facebook,
-  Github,
-  Instagram,
-  Mail,
-  Send,
-  Twitter,
-} from "lucide-react";
-import React from "react";
+import { Facebook, Github, Instagram, Mail, Send, Twitter } from "lucide-react";
 
 const Contact = () => {
   const connectInfo = [

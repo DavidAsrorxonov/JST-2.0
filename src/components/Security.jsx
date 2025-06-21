@@ -1,5 +1,4 @@
 import { Lock, ShieldCheck, KeyRound, EyeOff } from "lucide-react";
-import React from "react";
 
 const Security = () => {
   const cardsInfo = [

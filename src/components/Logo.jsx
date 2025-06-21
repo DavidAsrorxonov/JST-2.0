@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { Tooltip } from "@heroui/tooltip";
 
 const Logo = () => {

@@ -1,4 +1,3 @@
-import React from "react";
 import "../styles/Logo.css";
 import Card from "./ui/Card";
 

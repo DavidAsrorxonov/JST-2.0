@@ -1,5 +1,5 @@
 import { SquareArrowOutUpRight } from "lucide-react";
-import React, { useState } from "react";
+import { useState } from "react";
 
 const Demo = () => {
   const [demoClicked, setDemoClicked] = useState(true);

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { CircleHelp, Eye, EyeOff, MoveLeft, TriangleAlert } from "lucide-react";
 import { addToast } from "@heroui/toast";
 import NavigationButtons from "../components/ui/NavigationButtons";
