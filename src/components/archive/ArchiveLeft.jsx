@@ -49,7 +49,7 @@ const ArchiveLeft = () => {
             },
             idx
           ) => (
-            <div key={idx} className="w-full flex items-start gap-3">
+            <div key={idx} className="w-full flex items-start gap-3 mb-4">
               <div className="border border-gray-300 shadow-inner rounded-xl p-4 w-full bg-white space-y-2">
                 <div className="flex items-center justify-between">
                   <div className="text-2xl font-semibold text-gray-800">
