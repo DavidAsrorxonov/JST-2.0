@@ -1,6 +1,5 @@
 import TableHead from "./TableHead";
 import TableBody from "./TableBody";
-import SaveButton from "./SaveButton";
 
 const Table = () => {
   return (

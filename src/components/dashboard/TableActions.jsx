@@ -1,7 +1,7 @@
 import { addToast } from "@heroui/toast";
 import axios from "axios";
-import { CirclePlus, Plus, PlusCircle, TrashIcon, X } from "lucide-react";
-import React, { useState } from "react";
+import { Plus, PlusCircle, X } from "lucide-react";
+import { useState } from "react";
 import { useJob } from "../../context/jobContext";
 import { useSearch } from "../../context/searchContext";
 import { useTranslation } from "react-i18next";

@@ -1,6 +1,5 @@
 import { ArrowDownAZ, ArrowDownUp, ArrowUpAZ, CircleX } from "lucide-react";
-import React, { useState } from "react";
-import { useJob } from "../../context/jobContext";
+import { useState } from "react";
 import { useSearch } from "../../context/searchContext";
 import { useTranslation } from "react-i18next";
 

@@ -1,4 +1,3 @@
-import React from "react";
 import ToDoBodyLeft from "./ToDoBodyLeft";
 import ToDoBodyRight from "./ToDoBodyRight";
 

@@ -1,4 +1,4 @@
-import React, { act, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CircleHelp, X } from "lucide-react";
 import gsap from "gsap";
 import { useTranslation } from "react-i18next";

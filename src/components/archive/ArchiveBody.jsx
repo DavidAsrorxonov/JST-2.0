@@ -1,4 +1,3 @@
-import React from "react";
 import ArchiveLeft from "./ArchiveLeft";
 import ArchiveRight from "./ArchiveRight";
 

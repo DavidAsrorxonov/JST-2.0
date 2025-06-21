@@ -1,4 +1,3 @@
-import React from "react";
 import ProgressHeader from "../components/progress/ProgressHeader";
 import ProgressBody from "../components/progress/ProgressBody";
 

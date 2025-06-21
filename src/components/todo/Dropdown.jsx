@@ -1,5 +1,5 @@
 import { ChevronsUpDown } from "lucide-react";
-import React, { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
 import gsap from "gsap";
 
 const Dropdown = ({ options, defaultValue, onSelect }) => {

@@ -1,7 +1,5 @@
-import React from "react";
 import NavigationButtons from "../ui/NavigationButtons";
 import EmptyState from "../ui/EmptyState";
-import { ArrowBigDown } from "lucide-react";
 
 const ArchiveRight = () => {
   return (

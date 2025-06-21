@@ -1,14 +1,6 @@
 import { useEffect, useState } from "react";
 import { useToDo } from "../../context/todoContext";
-import {
-  Clock,
-  Tag,
-  Loader,
-  Ellipsis,
-  EllipsisVertical,
-  BookOpen,
-  ArrowLeft,
-} from "lucide-react";
+import { Clock, Tag, Loader, Ellipsis, ArrowLeft } from "lucide-react";
 import axios from "axios";
 import { addToast } from "@heroui/toast";
 import {

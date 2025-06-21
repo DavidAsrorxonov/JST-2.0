@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useSelectedJobId } from "../../context/selectedJobIdContext";
-import { Trash2 } from "lucide-react";
 import { useJob } from "../../context/jobContext";
 import axios from "axios";
 import { addToast } from "@heroui/toast";

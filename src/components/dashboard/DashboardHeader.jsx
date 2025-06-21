@@ -1,6 +1,4 @@
-import React from "react";
 import Logo from "../Logo";
-import Input from "./Input";
 import Notification from "./Notification";
 import Profile from "./Profile";
 import { useNavigate } from "react-router-dom";

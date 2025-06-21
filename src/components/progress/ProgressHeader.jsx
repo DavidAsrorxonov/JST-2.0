@@ -1,4 +1,3 @@
-import React from "react";
 import Logo from "../Logo";
 import { ChartNoAxesCombined } from "lucide-react";
 import { useTranslation } from "react-i18next";

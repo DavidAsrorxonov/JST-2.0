@@ -1,5 +1,5 @@
 import { Bell } from "lucide-react";
-import React, { useState } from "react";
+import { useState } from "react";
 
 const Notification = () => {
   const [notificationModal, setNotificationModal] = useState(false);

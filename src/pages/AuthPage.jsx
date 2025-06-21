@@ -1,4 +1,3 @@
-import { ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import NavigationButtons from "../components/ui/NavigationButtons";
 

@@ -1,4 +1,3 @@
-import React from "react";
 import SupportHeader from "../components/support/SupportHeader";
 import SupportBody from "../components/support/SupportBody";
 

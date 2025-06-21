@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useEvent } from "../../context/eventContext";
 import NavigationButtons from ".././ui/NavigationButtons";
 import { Bell, Check, Ellipsis } from "lucide-react";
 import { Tooltip } from "@heroui/tooltip";
-import { addToast } from "@heroui/toast";
 import { useTranslation } from "react-i18next";
 
 const EventBodyRight = () => {

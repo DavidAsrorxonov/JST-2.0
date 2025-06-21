@@ -1,4 +1,3 @@
-import React from "react";
 import Logo from "../Logo";
 import { getTimeOfDay } from "../../lib/utils/getTimeOfDay";
 import { useTranslation } from "react-i18next";

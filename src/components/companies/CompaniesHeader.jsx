@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Logo from "../Logo";
 import axios from "axios";
 import { Briefcase, Calendar, Link as LinkIcon, ArrowLeft } from "lucide-react";

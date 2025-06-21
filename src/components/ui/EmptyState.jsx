@@ -1,5 +1,4 @@
-import React from "react";
-import { BookOpen, ArrowLeft } from "lucide-react";
+import { BookOpen } from "lucide-react";
 
 export default function EmptyState({ title, subtitle, actionText, icon }) {
   return (

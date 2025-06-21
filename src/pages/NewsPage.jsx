@@ -1,4 +1,3 @@
-import React from "react";
 import NewsBody from "../components/news/NewsBody";
 import NewsHeader from "../components/news/NewsHeader";
 

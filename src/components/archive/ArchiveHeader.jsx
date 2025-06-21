@@ -1,6 +1,5 @@
-import React from "react";
 import Logo from "../Logo";
-import { ArchiveIcon, Check } from "lucide-react";
+import { ArchiveIcon } from "lucide-react";
 
 const ArchiveHeader = () => {
   return (

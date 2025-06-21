@@ -1,6 +1,4 @@
 import { Calendar } from "@heroui/calendar";
-import React, { useState } from "react";
-import { parseDate } from "@internationalized/date";
 
 const ProfileCalendar = ({ date, setDate, setDateChosen }) => {
   const handleChange = (newDate) => {

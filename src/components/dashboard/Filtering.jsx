@@ -1,5 +1,5 @@
-import { Check, ChevronDown, CircleX, ListFilter } from "lucide-react";
-import React, { useState } from "react";
+import { ChevronDown, CircleX, ListFilter } from "lucide-react";
+import { useState } from "react";
 import { useSearch } from "../../context/searchContext";
 import { useTranslation } from "react-i18next";
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import NavigationButtons from ".././ui/NavigationButtons";
 import SpeechRecognition, {
   useSpeechRecognition,
