@@ -36,6 +36,29 @@ const ToDoBodyLeft = () => {
     }
   };
 
+  const handleMarkAsDone = async (id) => {
+    if (!id) return;
+    try {
+      await axios.delete(`${API_URL}/api/todos/${id}`);
+
+      fetchToDos();
+      addToast({
+        description: "Task marked as done",
+        color: "success",
+        timeout: 2000,
+        shouldShowTimeoutProgress: true,
+      });
+    } catch (error) {
+      console.log(error);
+      addToast({
+        description: "Error marking task as done",
+        color: "danger",
+        timeout: 2000,
+        shouldShowTimeoutProgress: true,
+      });
+    }
+  };
+
   const handleEllipsisClick = (e, idx) => {
     e.stopPropagation();
     const rect = e.target.getBoundingClientRect();
@@ -115,7 +138,10 @@ const ToDoBodyLeft = () => {
                     {ellipsisClicked === idx && (
                       <div className="absolute top-0 right-6 z-10">
                         <div className="bg-white border border-gray-200 rounded-lg shadow-sm w-36 py-1 text-sm">
-                          <button className="w-full text-left px-4 py-2 hover:bg-gray-50 text-gray-800">
+                          <button
+                            className="w-full text-left px-4 py-2 hover:bg-gray-50 text-gray-800"
+                            onClick={() => handleMarkAsDone(id)}
+                          >
                             Mark as Done
                           </button>
                           {todo_status !== "Completed" ? (

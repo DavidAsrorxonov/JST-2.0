@@ -5,12 +5,13 @@ import {
   statusColors,
   categoryColors,
 } from "../../constants/colors";
-import { Clock, Loader, Tag } from "lucide-react";
+import { Clock, Loader, Tag, Trash2, Undo2 } from "lucide-react";
 import { API_URL } from "../../constants/api";
 
 const ArchiveLeft = () => {
   const [archivedToDos, setArchivedToDos] = useState([]);
   const user = JSON.parse(localStorage.getItem("user"));
+  const [deleteConfirmationId, setDeleteConfirmationId] = useState(null);
   const { id } = user;
 
   const fetchArchivedToDos = async () => {
@@ -39,6 +40,7 @@ const ArchiveLeft = () => {
         archivedToDos.map(
           (
             {
+              id,
               archived_todo_title,
               archived_todo_duetime,
               archived_todo_priority,
@@ -50,7 +52,7 @@ const ArchiveLeft = () => {
             idx
           ) => (
             <div key={idx} className="w-full flex items-start gap-3 mb-4">
-              <div className="border border-gray-300 shadow-inner rounded-xl p-4 w-full bg-white space-y-2">
+              <div className="relative border border-gray-300 shadow-inner rounded-xl p-4 w-full bg-white space-y-2">
                 <div className="flex items-center justify-between">
                   <div className="text-2xl font-semibold text-gray-800">
                     {archived_todo_title}
@@ -72,7 +74,7 @@ const ArchiveLeft = () => {
                   <div>Archived: {new Date(archived_at).toLocaleString()}</div>
                 </div>
 
-                <div className="flex flex-wrap gap-4 text-sm text-gray-700 items-center pt-2">
+                <div className="relative flex flex-wrap gap-4 text-sm text-gray-700 items-center pt-2">
                   <div
                     className={`flex items-center gap-1 px-2 py-1 rounded-full ${statusColors[archived_todo_status]}`}
                   >
@@ -95,7 +97,29 @@ const ArchiveLeft = () => {
                     <Tag size={16} />
                     <span>{archived_todo_category}</span>
                   </div>
+
+                  <div className="ml-auto flex items-center justify-center gap-2">
+                    <div className="text-gray- cursor-pointer">Retrieve</div>
+                    <span>|</span>
+                    <div
+                      className="text-red-600 cursor-pointer"
+                      onClick={() => setDeleteConfirmationId(id)}
+                    >
+                      Delete Permanently
+                    </div>
+                  </div>
                 </div>
+
+                {deleteConfirmationId === id && (
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                    <div className="bg-gray-200">
+                      <button>Delete</button>
+                      <button onClick={() => setDeleteConfirmationId(null)}>
+                        Cancel
+                      </button>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           )
