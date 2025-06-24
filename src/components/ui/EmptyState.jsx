@@ -8,7 +8,8 @@ export default function EmptyState({ title, subtitle, actionText, icon }) {
       <p className="text-sm text-gray-400 mt-1">{subtitle}</p>
       {actionText && (
         <div className="flex items-center gap-2 mt-4 cursor-pointer bg-gray-100 px-4 py-2 rounded-full text-gray-700">
-          {icon && icon} {actionText && actionText}
+          <span className=" animate-wiggleX">{icon && icon}</span>{" "}
+          {actionText && actionText}
         </div>
       )}
     </div>

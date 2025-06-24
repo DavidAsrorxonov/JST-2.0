@@ -30,6 +30,7 @@ const ToDoBodyRight = () => {
 
   const priority = ["Low", "Medium", "High"];
   const status = ["Not started", "In progress", "Completed"];
+  const category = ["Work", "Personal", "Home", "Leisure", "Urgent", "Misc"];
 
   const handleAddTask = async () => {
     if (
@@ -64,6 +65,16 @@ const ToDoBodyRight = () => {
     } catch (error) {
       console.error("Error adding task:", error);
     }
+  };
+
+  const resetFields = () => {
+    setTaskTitle("");
+    setTaskDate("");
+    setTaskTime("");
+    setTaskCategory("");
+    setTaskPriority("");
+    setTaskStatus("");
+    setClickedYes(false);
   };
 
   return (
@@ -112,13 +123,13 @@ const ToDoBodyRight = () => {
           />
         </div>
 
-        <input
-          value={taskCategory}
-          onChange={(e) => setTaskCategory(e.target.value)}
-          type="text"
-          placeholder="Category... e.g. Work, Personal, Home"
-          className="w-[70%] p-3 outline-none border-1 border-gray-400 rounded-lg shadow-inner focus:ring-1 focus:ring-blue-500 transition duration-300"
-        />
+        <div className="w-[70%]">
+          <Dropdown
+            defaultValue={"Category"}
+            options={category}
+            onSelect={(category) => setTaskCategory(category)}
+          />
+        </div>
 
         <div className="flex justify-between items-center w-[70%]">
           <div className="">Is important</div>
@@ -149,7 +160,10 @@ const ToDoBodyRight = () => {
         <button
           type="submit"
           className="w-[70%] p-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300"
-          onClick={handleAddTask}
+          onClick={() => {
+            handleAddTask();
+            resetFields();
+          }}
         >
           Add task
         </button>

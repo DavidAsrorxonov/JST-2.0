@@ -99,9 +99,7 @@ const ArchiveLeft = () => {
                   </div>
                   <div
                     className={`flex items-center gap-1 px-2 py-1 rounded-full ${
-                      categoryColors[
-                        Math.floor(Math.random() * categoryColors.length)
-                      ]
+                      categoryColors[archived_todo_category.toLowerCase()]
                     }`}
                   >
                     <Tag size={16} />

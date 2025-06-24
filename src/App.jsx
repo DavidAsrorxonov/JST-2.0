@@ -27,7 +27,7 @@ const App = () => {
 
   return (
     <HeroUIProvider>
-      <ToastProvider placement="top-center" />
+      <ToastProvider placement="top-center" toastProps={{ radius: "full" }} />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Landing />} />
