@@ -77,6 +77,7 @@ const ToDoBodyLeft = () => {
         color: "success",
         timeout: 2000,
         shouldShowTimeoutProgress: true,
+        radius: "full",
       });
       fetchToDos();
     } catch (error) {

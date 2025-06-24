@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   priorityColors,
   statusColors,
@@ -7,12 +7,14 @@ import {
 } from "../../constants/colors";
 import { Clock, Loader, Tag, Trash2, Undo2 } from "lucide-react";
 import { API_URL } from "../../constants/api";
+import gsap from "gsap";
 
 const ArchiveLeft = () => {
   const [archivedToDos, setArchivedToDos] = useState([]);
   const user = JSON.parse(localStorage.getItem("user"));
   const [deleteConfirmationId, setDeleteConfirmationId] = useState(null);
   const { id } = user;
+  const confirmDeleteRef = useRef(null);
 
   const fetchArchivedToDos = async () => {
     try {
@@ -31,6 +33,14 @@ const ArchiveLeft = () => {
   useEffect(() => {
     fetchArchivedToDos();
   }, []);
+
+  useEffect(() => {
+    gsap.fromTo(
+      confirmDeleteRef.current,
+      { opacity: 0, y: -20 },
+      { opacity: 1, y: 0, duration: 0.5 }
+    );
+  }, [deleteConfirmationId]);
 
   return (
     <div>
@@ -52,7 +62,7 @@ const ArchiveLeft = () => {
             idx
           ) => (
             <div key={idx} className="w-full flex items-start gap-3 mb-4">
-              <div className="relative border border-gray-300 shadow-inner rounded-xl p-4 w-full bg-white space-y-2">
+              <div className="border border-gray-300 shadow-inner rounded-xl p-4 w-full bg-white space-y-2">
                 <div className="flex items-center justify-between">
                   <div className="text-2xl font-semibold text-gray-800">
                     {archived_todo_title}
@@ -109,18 +119,38 @@ const ArchiveLeft = () => {
                     </div>
                   </div>
                 </div>
-
-                {deleteConfirmationId === id && (
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                    <div className="bg-gray-200">
-                      <button>Delete</button>
-                      <button onClick={() => setDeleteConfirmationId(null)}>
+              </div>
+              {deleteConfirmationId === id && (
+                <div
+                  className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40"
+                  ref={confirmDeleteRef}
+                >
+                  <div className="bg-white rounded-lg shadow-lg p-6 w-[500px]">
+                    <h2 className="text-lg font-semibold text-gray-800 mb-4">
+                      Confirm Deletion
+                    </h2>
+                    <p className="text-xl text-gray-600 mb-6 text-center">
+                      Are you sure you want to permanently delete the task with
+                      the title of{" "}
+                      <span className="font-semibold">
+                        {archived_todo_title}
+                      </span>
+                      ?
+                    </p>
+                    <div className="flex justify-end gap-3">
+                      <button className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition">
+                        Delete
+                      </button>
+                      <button
+                        className="px-4 py-2 bg-gray-300 text-gray-800 rounded hover:bg-gray-400 transition"
+                        onClick={() => setDeleteConfirmationId(null)}
+                      >
                         Cancel
                       </button>
                     </div>
                   </div>
-                )}
-              </div>
+                </div>
+              )}
             </div>
           )
         )}
