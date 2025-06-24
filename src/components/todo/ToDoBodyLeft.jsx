@@ -108,24 +108,21 @@ const ToDoBodyLeft = () => {
             },
             idx
           ) => (
-            <div key={idx} className="w-full flex items-start gap-3">
+            <div key={idx} className="w-full flex items-start gap-3 mb-4">
               <div className="border border-gray-300 shadow-inner rounded-xl p-4 w-full bg-white space-y-2">
                 <div className="flex items-center justify-between">
                   <div className="text-2xl font-semibold text-gray-800">
                     {todo_title}
                   </div>
-                  <div>
-                    {is_important ? (
-                      <div className="px-2 rounded-lg bg-red-100 text-red-600 border border-red-500 font-semibold">
-                        Important
-                      </div>
-                    ) : (
-                      ""
-                    )}
-                  </div>
+                  {is_important && (
+                    <div className="px-2 rounded-lg bg-red-100 text-red-600 border border-red-500 font-semibold">
+                      Important
+                    </div>
+                  )}
                 </div>
-                <div className="flex items-center justify-between">
-                  <div className="text-sm text-gray-500">
+
+                <div className="flex items-center justify-between text-sm text-gray-500">
+                  <div>
                     Due:{" "}
                     {todo_duetime.split("T")[0] +
                       " " +
