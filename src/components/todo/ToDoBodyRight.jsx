@@ -5,6 +5,7 @@ import axios from "axios";
 import NavigationButtons from ".././ui/NavigationButtons";
 import { useToDo } from "../../context/todoContext";
 import { API_URL } from "../../constants/api";
+import { priority, status, category } from "../../constants/todoConstants";
 
 const ToDoBodyRight = () => {
   const [clickedYes, setClickedYes] = useState(false);
@@ -27,10 +28,6 @@ const ToDoBodyRight = () => {
     is_important: clickedYes,
     user_id: id,
   };
-
-  const priority = ["Low", "Medium", "High"];
-  const status = ["Not started", "In progress", "Completed"];
-  const category = ["Work", "Personal", "Home", "Leisure", "Urgent", "Misc"];
 
   const handleAddTask = async () => {
     if (

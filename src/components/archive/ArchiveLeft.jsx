@@ -8,6 +8,7 @@ import {
 import { Clock, Loader, Tag, Trash2, Undo2 } from "lucide-react";
 import { API_URL } from "../../constants/api";
 import gsap from "gsap";
+import { addToast } from "@heroui/toast";
 
 const ArchiveLeft = () => {
   const [archivedToDos, setArchivedToDos] = useState([]);
@@ -27,6 +28,28 @@ const ArchiveLeft = () => {
       setArchivedToDos(response.data);
     } catch (error) {
       console.error("Error fetching archived To-Dos:", error);
+    }
+  };
+
+  const deleteArchivedToDo = async (id) => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      addToast({
+        description: "You are not logged in",
+        color: "danger",
+        timeout: 2000,
+        shouldShowTimeoutProgress: true,
+      });
+      return;
+    }
+
+    if (!id) return;
+
+    try {
+      await axios.delete(`${API_URL}/api/archive/todos/${id}`);
+    } catch (error) {
+      console.error("Error deleting archived To-Do:", error);
     }
   };
 
@@ -136,7 +159,13 @@ const ArchiveLeft = () => {
                       ?
                     </p>
                     <div className="flex justify-end gap-3">
-                      <button className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition">
+                      <button
+                        className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition"
+                        onClick={() => {
+                          deleteArchivedToDo(id);
+                          setDeleteConfirmationId(null);
+                        }}
+                      >
                         Delete
                       </button>
                       <button

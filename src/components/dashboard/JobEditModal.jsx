@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Dropdown from "../todo/Dropdown";
+import { jobtypes, jobstatuses } from "../../constants/jobConstants";
 
 const JobEditModal = ({ job, onSave, onClose }) => {
   const [editedJob, setEditedJob] = useState({ ...job });
@@ -13,9 +14,6 @@ const JobEditModal = ({ job, onSave, onClose }) => {
     onSave(editedJob);
     onClose();
   };
-
-  const jobtypes = ["Full-time", "Part-time", "Internship", "Contract"];
-  const jobstatuses = ["Applied", "Interview", "Offer", "Rejected"];
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center z-50">

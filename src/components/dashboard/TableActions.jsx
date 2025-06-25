@@ -6,6 +6,8 @@ import { useJob } from "../../context/jobContext";
 import { useSearch } from "../../context/searchContext";
 import { useTranslation } from "react-i18next";
 import { API_URL } from "../../constants/api";
+import Dropdown from "../todo/Dropdown";
+import { jobstatuses, jobtypes } from "../../constants/jobConstants";
 
 const TableActions = () => {
   const [addNewJobModal, setAddNewJobModal] = useState(false);
@@ -161,36 +163,20 @@ const TableActions = () => {
 
               <div>
                 <label className="block mb-1 font-medium">Job Status</label>
-                <select
-                  className="w-full p-2 border border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-                  value={newJobStatus}
-                  onChange={(e) => setNewJobStatus(e.target.value)}
-                >
-                  <option value="" disabled selected>
-                    Select status
-                  </option>
-                  <option value="Applied">Applied</option>
-                  <option value="Interview">Interview</option>
-                  <option value="Offer">Offer</option>
-                  <option value="Rejected">Rejected</option>
-                </select>
+                <Dropdown
+                  defaultValue={"Job Status"}
+                  options={jobstatuses}
+                  onSelect={(e) => setNewJobStatus(e)}
+                />
               </div>
 
               <div>
                 <label className="block mb-1 font-medium">Job Type</label>
-                <select
-                  className="w-full p-2 border border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-                  value={newJobType}
-                  onChange={(e) => setNewJobType(e.target.value)}
-                >
-                  <option value="" disabled selected>
-                    Select type
-                  </option>
-                  <option value="Full-time">Full-time</option>
-                  <option value="Part-time">Part-time</option>
-                  <option value="Internship">Internship</option>
-                  <option value="Contract">Contract</option>
-                </select>
+                <Dropdown
+                  defaultValue={"Job Type"}
+                  options={jobtypes}
+                  onSelect={(e) => setNewJobType(e)}
+                />
               </div>
 
               <div>
