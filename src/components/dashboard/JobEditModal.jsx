@@ -36,7 +36,7 @@ const JobEditModal = ({ job, onSave, onClose }) => {
 
         <div className="flex flex-col gap-2">
           <Dropdown
-            defaultValue={"Type"}
+            defaultValue={editedJob.job_type}
             options={jobtypes}
             onSelect={(jobtype) =>
               setEditedJob({ ...editedJob, job_type: jobtype })
@@ -44,7 +44,7 @@ const JobEditModal = ({ job, onSave, onClose }) => {
           />
 
           <Dropdown
-            defaultValue={"Status"}
+            defaultValue={editedJob.job_status}
             options={jobstatuses}
             onSelect={(jobstatus) =>
               setEditedJob({ ...editedJob, job_status: jobstatus })
