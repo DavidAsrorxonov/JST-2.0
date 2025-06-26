@@ -97,6 +97,14 @@ const TableActions = () => {
             {t("Selected")}:{" "}
             <span className="font-bold">{t("Descending")}</span>
           </div>
+        ) : sortingType && sortingType === "dateAsc" ? (
+          <div className="bg-blue-100 border border-blue-500 px-6 py-1 rounded-md">
+            {t("Selected")}: <span className="font-bold">{t("Earliest")}</span>
+          </div>
+        ) : sortingType && sortingType === "dateDesc" ? (
+          <div className="bg-blue-100 border border-blue-500 px-6 py-1 rounded-md">
+            {t("Selected")}: <span className="font-bold">{t("Latest")}</span>
+          </div>
         ) : null}
       </div>
       <div className="flex items-center justify-center ml-2">
