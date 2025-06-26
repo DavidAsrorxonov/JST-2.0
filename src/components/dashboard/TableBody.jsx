@@ -5,6 +5,7 @@ import { useSearch } from "../../context/searchContext";
 import { useSelectedJobId } from "../../context/selectedJobIdContext";
 import { highlightMatch } from "../../lib/utils/highlightingText";
 import { dateParser } from "../../lib/utils/dateParser";
+import { dateSorting } from "../../lib/utils/dateSoritng";
 
 const TableBody = () => {
   const { jobs, fetchJobs } = useJob();
@@ -32,8 +33,10 @@ const TableBody = () => {
       return a.job_title.localeCompare(b.job_title);
     } else if (sortingType === "desc") {
       return b.job_title.localeCompare(a.job_title);
-    } else {
-      return 0;
+    } else if (sortingType === "dateAsc") {
+      return new Date(a.applied_at) - new Date(b.applied_at);
+    } else if (sortingType === "dateDesc") {
+      return new Date(b.applied_at) - new Date(a.applied_at);
     }
   });
 
@@ -90,7 +93,10 @@ const TableBody = () => {
                 </div>
               </td>
               <td className="p-3 border-r border-gray-500 last:border-r-0">
-                <div className="px-3 py-0.5 cursor-text w-[90%]">
+                <div
+                  className="px-3 py-0.5 cursor-text w-[90%]"
+                  onClick={() => console.log(dateSorting(sortedJobs))}
+                >
                   {dateParser(applied_at)}
                 </div>
               </td>

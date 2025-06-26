@@ -7,6 +7,7 @@ import Filtering from "./Filtering";
 import Sorting from "./Sorting";
 import ShortcutHelp from "../../lib/commands/ShortcutHelp";
 import CheckboxSelected from "./CheckboxSelected";
+import SortingByDate from "./SortingByDate";
 
 const DashboardBody = () => {
   return (
@@ -17,6 +18,7 @@ const DashboardBody = () => {
         <div className="w-full flex items-center gap-2">
           <Filtering />
           <Sorting />
+          <SortingByDate />
         </div>
       </div>
       <CheckboxSelected />
