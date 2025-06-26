@@ -4,6 +4,7 @@ import "../../styles/TableBody.css";
 import { useSearch } from "../../context/searchContext";
 import { useSelectedJobId } from "../../context/selectedJobIdContext";
 import { highlightMatch } from "../../lib/utils/highlightingText";
+import { dateParser } from "../../lib/utils/dateParser";
 
 const TableBody = () => {
   const { jobs, fetchJobs } = useJob();
@@ -90,7 +91,7 @@ const TableBody = () => {
               </td>
               <td className="p-3 border-r border-gray-500 last:border-r-0">
                 <div className="px-3 py-0.5 cursor-text w-[90%]">
-                  {applied_at.split("T")[0]}
+                  {dateParser(applied_at)}
                 </div>
               </td>
               <td className="border-r border-gray-500 last:border-r-0">
