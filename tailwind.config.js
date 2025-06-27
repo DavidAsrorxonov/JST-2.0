@@ -4,12 +4,13 @@ export default {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
-    "./node_modules/@heroui/theme/dist/components/(calendar|checkbox|drawer|select|toggle|toast|popover|button|ripple|spinner|form|modal|listbox|divider|scroll-shadow).js"
+    "./node_modules/@heroui/theme/dist/components/(calendar|checkbox|drawer|select|toggle|toast|popover|button|ripple|spinner|form|modal|listbox|divider|scroll-shadow).js",
   ],
   theme: {
     extend: {
       fontFamily: {
         oswald: ["Oswald", "sans-serif"],
+        exo2: ["Exo 2", "sans-serif"],
       },
       keyframes: {
         wiggleX: {
