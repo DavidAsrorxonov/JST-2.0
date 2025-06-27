@@ -5,7 +5,7 @@ import "../styles/Hero.css";
 import useTypingEffect from "../lib/utils/useTypingEffect";
 
 const Hero = () => {
-  const animatedText = useTypingEffect("Job Site Tracker", 100);
+  const animatedText = useTypingEffect("Job Site Tracker", 300);
   const [showScrollIndicator, setShowScrollIndicator] = useState(true);
 
   useEffect(() => {
@@ -25,8 +25,8 @@ const Hero = () => {
       <div className="absolute w-96 h-96 bg-blue-50 opacity-30 rounded-full blur-3xl top-[-100px] left-[-100px] animate-pulse-slow"></div>
       <div className="absolute w-96 h-96 bg-blue-50 opacity-20 rounded-full blur-3xl bottom-[-100px] right-[-100px] animate-pulse-slow"></div>
 
-      <h1 className="text-7xl md:text-8xl font-bold text-gray-900 w-full text-center m-7">
-        JST | <span>{animatedText}</span>
+      <h1 className="text-7xl md:text-9xl font-bold text-gray-900 w-full text-center m-7">
+        JST | {animatedText}
       </h1>
       <div className="z-10 max-w-4xl text-center">
         <h1 className="text-5xl md:text-6xl font-extrabold text-gray-900 leading-tight">

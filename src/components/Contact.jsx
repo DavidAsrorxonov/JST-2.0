@@ -42,14 +42,9 @@ const Contact = () => {
       <div className="w-full min-h-screen flex flex-col md:flex-row items-center justify-around px-6 py-12 space-y-10 md:space-y-0 gap-4">
         <div className="flex flex-col items-center justify-center w-full">
           <form className="flex flex-col gap-5 w-full max-w-md bg-white p-8 rounded-2xl shadow-xl border border-gray-200">
-            <h1 className="text-3xl font-extrabold text-gray-800 mb-4 text-center">
+            <h1 className="text-5xl font-extrabold text-gray-800 mb-4 text-center">
               Talk to Us
             </h1>
-            <div className="flex items-center justify-center">
-              <div className="flex w-20 h-20 items-center justify-center p-3 rounded-full bg-green-100 text-green-500 border border-green-400 mb-6">
-                <Mail size={50} />
-              </div>
-            </div>
 
             <div className="flex flex-col">
               <label className="mb-1 text-gray-700 font-medium">
