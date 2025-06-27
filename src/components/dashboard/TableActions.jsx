@@ -89,21 +89,13 @@ const TableActions = () => {
         {t("Add a new job")}
       </div>
       <div className="ml-2">
-        <ShowSelectedCategory sortingType={sortingType} />
+        <ShowSelectedCategory selected={sortingType} />
+      </div>
+      <div className="ml-2">
+        <ShowSelectedCategory selected={jobType} />
       </div>
       <div className="flex items-center justify-center ml-2">
-        {jobType && jobType !== "all" ? (
-          <div className="bg-blue-100 border border-blue-500 px-6 py-1 rounded-md">
-            {t("Selected JT")}: <span className="font-bold">{jobType}</span>
-          </div>
-        ) : null}
-      </div>
-      <div className="flex items-center justify-center ml-2">
-        {jobStatus && jobStatus !== "all" ? (
-          <div className="bg-blue-100 border border-blue-500 px-6 py-1 rounded-md">
-            {t("Selected JS")}: <span className="font-bold">{jobStatus}</span>
-          </div>
-        ) : null}
+        <ShowSelectedCategory selected={jobStatus} />
       </div>
 
       {addNewJobModal && (

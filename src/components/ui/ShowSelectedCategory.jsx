@@ -1,23 +1,27 @@
-const ShowSelectedCategory = ({ sortingType }) => {
+const ShowSelectedCategory = ({ selected }) => {
   const styles = "bg-blue-100 border border-blue-500 px-6 py-1 rounded-md";
 
   return (
     <div className="flex items-center justify-center">
-      {sortingType && sortingType === "asc" ? (
+      {selected && selected === "asc" ? (
         <div className={`${styles}`}>
           Selected: <span className="font-bold">Ascending</span>
         </div>
-      ) : sortingType && sortingType === "desc" ? (
+      ) : selected && selected === "desc" ? (
         <div className={`${styles}`}>
           Selected: <span className="font-bold">Descending</span>
         </div>
-      ) : sortingType && sortingType === "dateAsc" ? (
+      ) : selected && selected === "dateAsc" ? (
         <div className={`${styles}`}>
           Selected: <span className="font-bold">Earliest</span>
         </div>
-      ) : sortingType && sortingType === "dateDesc" ? (
+      ) : selected && selected === "dateDesc" ? (
         <div className={`${styles}`}>
           Selected: <span className="font-bold">Latest</span>
+        </div>
+      ) : selected && selected !== "all" ? (
+        <div className={`${styles}`}>
+          Selected: <span className="font-bold">{selected}</span>
         </div>
       ) : null}
     </div>
