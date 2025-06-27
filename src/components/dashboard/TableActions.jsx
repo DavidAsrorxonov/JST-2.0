@@ -47,7 +47,6 @@ const TableActions = () => {
       !websiteUrl
     ) {
       addToast({
-        title: "Error",
         description: "All fields are required",
         color: "danger",
         timeout: 2000,
@@ -65,7 +64,6 @@ const TableActions = () => {
 
       if (response.status === 201) {
         addToast({
-          title: "Success",
           description: "Job added successfully",
           color: "success",
           timeout: 2000,

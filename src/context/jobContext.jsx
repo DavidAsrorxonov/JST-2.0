@@ -16,7 +16,6 @@ export const JobProvider = ({ children }) => {
 
     if (!token) {
       addToast({
-        title: "Error",
         description: "You are not logged in",
         color: "danger",
         timeout: 2000,

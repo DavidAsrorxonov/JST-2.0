@@ -42,7 +42,6 @@ const Events = () => {
   const handleAddEvent = async () => {
     if (!eventName || !eventDescription || !isDateChosen) {
       addToast({
-        title: "Error",
         description: "All fields are required",
         color: "danger",
         timeout: 2000,
@@ -60,7 +59,6 @@ const Events = () => {
 
       if (response.status === 201) {
         addToast({
-          title: "Success",
           description: "Event added successfully",
           color: "success",
           timeout: 2000,

@@ -190,7 +190,6 @@ const Privacy = () => {
           className="w-full flex items-center justify-center mt-6 px-4"
           onClick={() =>
             addToast({
-              title: "Terms Accepted",
               description: "Thank you for accepting the terms of service.",
               color: "success",
             })

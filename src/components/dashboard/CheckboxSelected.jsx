@@ -31,7 +31,6 @@ const CheckboxSelected = () => {
       fetchJobs();
       setSelectedJobId([]);
       addToast({
-        title: "Success",
         description: "Job deleted successfully",
         color: "success",
         timeout: 2000,
@@ -60,7 +59,6 @@ const CheckboxSelected = () => {
       await fetchJobs();
 
       addToast({
-        title: "Success",
         description: "Job updated successfully",
         color: "success",
         timeout: 2000,

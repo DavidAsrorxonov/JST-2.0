@@ -19,7 +19,6 @@ const Login = () => {
   const handleSubmit = async () => {
     if (!email || !password) {
       addToast({
-        title: "Error",
         description: "Please fill in all fields.",
         color: "danger",
         variant: "flat",
@@ -33,7 +32,6 @@ const Login = () => {
 
     if (response.success) {
       addToast({
-        title: "Success",
         description: "Login successful",
         color: "success",
         variant: "flat",
@@ -45,7 +43,6 @@ const Login = () => {
     } else {
       if (response.status === 401) {
         addToast({
-          title: "Error",
           description: "Invalid email or password",
           color: "danger",
           variant: "flat",
@@ -54,7 +51,6 @@ const Login = () => {
         });
       } else if (response.status === 429) {
         addToast({
-          title: "Error",
           description: "Too many wrong attempts, please try again later",
           color: "danger",
           variant: "flat",
@@ -63,7 +59,6 @@ const Login = () => {
         });
       } else {
         addToast({
-          title: "Error",
           description: result.message || "Something went wrong",
           color: "danger",
           variant: "flat",

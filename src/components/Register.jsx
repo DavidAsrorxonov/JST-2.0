@@ -36,7 +36,6 @@ const Register = () => {
     try {
       if (!firstName || !lastName || !email || !password || !confirmPassword) {
         addToast({
-          title: "Error",
           description: "Please fill in all fields.",
           color: "danger",
           timeout: 2000,
@@ -47,7 +46,6 @@ const Register = () => {
 
       if (password !== confirmPassword) {
         addToast({
-          title: "Error",
           description: "Passwords do not match.",
           color: "danger",
           timeout: 2000,
@@ -57,7 +55,6 @@ const Register = () => {
       }
       if (passwordErrors.length > 0) {
         addToast({
-          title: "Error",
           description: "Password requirements not met.",
           color: "danger",
           timeout: 2000,
@@ -69,7 +66,6 @@ const Register = () => {
 
       if (response.status === 201) {
         addToast({
-          title: "Success",
           description: "User registered successfully.",
           color: "success",
           timeout: 2000,
@@ -78,7 +74,6 @@ const Register = () => {
 
         setTimeout(() => {
           addToast({
-            title: "Redirecting",
             description:
               "You will be redirected to the login page in 3 seconds.",
             color: "primary",
@@ -94,7 +89,6 @@ const Register = () => {
     } catch (error) {
       if (error.response && error.response.status === 409) {
         addToast({
-          title: "Error",
           description: "Email is already registered.",
           color: "danger",
           timeout: 2000,
@@ -102,7 +96,6 @@ const Register = () => {
         });
       } else {
         addToast({
-          title: "Error",
           description: "An error occurred during registration.",
           color: "danger",
           timeout: 2000,
