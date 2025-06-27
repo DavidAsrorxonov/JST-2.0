@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { CircleHelp, Eye, EyeOff, MoveLeft, TriangleAlert } from "lucide-react";
-import { addToast } from "@heroui/toast";
 import NavigationButtons from "../components/ui/NavigationButtons";
 import axios from "axios";
 import getPasswordStrength from "../lib/utils/passwordStrength";
@@ -8,6 +7,7 @@ import PasswordDetails from "../lib/utils/PasswordDetails";
 import validatePassword from "../lib/utils/passwordValidator";
 import { useNavigate } from "react-router-dom";
 import { API_URL } from "../constants/api";
+import Toast from "./ui/Toast";
 
 const Register = () => {
   const [firstName, setFirstName] = useState("");
@@ -35,50 +35,40 @@ const Register = () => {
   const handleSubmit = async () => {
     try {
       if (!firstName || !lastName || !email || !password || !confirmPassword) {
-        addToast({
-          description: "Please fill in all fields.",
+        Toast({
+          desciption: "All fields are required",
           color: "danger",
-          timeout: 2000,
-          shouldShowTimeoutProgress: true,
         });
         return;
       }
 
       if (password !== confirmPassword) {
-        addToast({
-          description: "Passwords do not match.",
+        Toast({
+          desciption: "Passwords do not match",
           color: "danger",
-          timeout: 2000,
-          shouldShowTimeoutProgress: true,
         });
         return;
       }
       if (passwordErrors.length > 0) {
-        addToast({
-          description: "Password requirements not met.",
+        Toast({
+          desciption: "Password does not meet requirements",
           color: "danger",
-          timeout: 2000,
-          shouldShowTimeoutProgress: true,
         });
         return;
       }
       const response = await axios.post(`${API_URL}/auth/register`, payload);
 
       if (response.status === 201) {
-        addToast({
-          description: "User registered successfully.",
+        Toast({
+          desciption: "Registration successful",
           color: "success",
-          timeout: 2000,
-          shouldShowTimeoutProgress: true,
         });
 
         setTimeout(() => {
-          addToast({
-            description:
-              "You will be redirected to the login page in 3 seconds.",
+          Toast({
+            desciption: "You will be redirected to login page in 3 seconds",
             color: "primary",
-            timeout: 3000,
-            shouldShowTimeoutProgress: true,
+            duration: 3000,
           });
 
           setTimeout(() => {
@@ -88,18 +78,14 @@ const Register = () => {
       }
     } catch (error) {
       if (error.response && error.response.status === 409) {
-        addToast({
-          description: "Email is already registered.",
+        Toast({
+          desciption: "Email is already registered",
           color: "danger",
-          timeout: 2000,
-          shouldShowTimeoutProgress: true,
         });
       } else {
-        addToast({
-          description: "An error occurred during registration.",
+        Toast({
+          desciption: "An error occurred during registration",
           color: "danger",
-          timeout: 2000,
-          shouldShowTimeoutProgress: true,
         });
       }
       console.log(error);

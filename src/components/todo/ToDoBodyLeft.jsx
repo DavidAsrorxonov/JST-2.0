@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useToDo } from "../../context/todoContext";
 import { Clock, Tag, Loader, Ellipsis, ArrowLeft } from "lucide-react";
 import axios from "axios";
-import { addToast } from "@heroui/toast";
 import {
   priorityColors,
   statusColors,
@@ -10,6 +9,7 @@ import {
 } from "../../constants/colors";
 import { API_URL } from "../../constants/api";
 import EmptyState from "../ui/EmptyState";
+import Toast from "../ui/Toast";
 
 const ToDoBodyLeft = () => {
   const { todos, fetchToDos } = useToDo();
@@ -24,11 +24,9 @@ const ToDoBodyLeft = () => {
     if (!id) return;
     const response = await axios.delete(`${API_URL}/api/todos/${id}`);
     fetchToDos();
-    addToast({
-      description: "Task deleted successfully",
+    Toast({
+      desciption: "Task deleted successfully",
       color: "success",
-      timeout: 2000,
-      shouldShowTimeoutProgress: true,
     });
     try {
     } catch (error) {
@@ -42,19 +40,15 @@ const ToDoBodyLeft = () => {
       await axios.delete(`${API_URL}/api/todos/${id}`);
 
       fetchToDos();
-      addToast({
-        description: "Task marked as done",
+      Toast({
+        desciption: "Task marked as done",
         color: "success",
-        timeout: 2000,
-        shouldShowTimeoutProgress: true,
       });
     } catch (error) {
       console.log(error);
-      addToast({
-        description: "Error marking task as done",
+      Toast({
+        desciption: "Error marking task as done",
         color: "danger",
-        timeout: 2000,
-        shouldShowTimeoutProgress: true,
       });
     }
   };
@@ -72,21 +66,16 @@ const ToDoBodyLeft = () => {
   const handleArchive = async (todoId) => {
     try {
       await axios.post(`${API_URL}/api/archive/todos/${todoId}`);
-      addToast({
-        description: "Task archived successfully",
+      Toast({
+        desciption: "Task archived successfully",
         color: "success",
-        timeout: 2000,
-        shouldShowTimeoutProgress: true,
-        radius: "full",
       });
       fetchToDos();
     } catch (error) {
       console.log(error);
-      addToast({
-        description: "Error archiving task",
+      Toast({
+        desciption: "Error archiving task",
         color: "danger",
-        timeout: 2000,
-        shouldShowTimeoutProgress: true,
       });
     }
   };

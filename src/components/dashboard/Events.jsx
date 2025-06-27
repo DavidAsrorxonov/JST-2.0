@@ -6,13 +6,14 @@ import {
   DrawerFooter,
   DrawerHeader,
 } from "@heroui/drawer";
-import { addToast, useDisclosure } from "@heroui/react";
+import { useDisclosure } from "@heroui/react";
 import ProfileCalendar from "./ProfileCalendar";
 import { useState } from "react";
 import { parseDate } from "@internationalized/date";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
 import { API_URL } from "../../constants/api";
+import Toast from "../ui/Toast";
 
 const Events = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -41,11 +42,9 @@ const Events = () => {
 
   const handleAddEvent = async () => {
     if (!eventName || !eventDescription || !isDateChosen) {
-      addToast({
-        description: "All fields are required",
+      Toast({
+        desciption: "All fields are required",
         color: "danger",
-        timeout: 2000,
-        shouldShowTimeoutProgress: true,
       });
     }
 
@@ -58,11 +57,9 @@ const Events = () => {
       });
 
       if (response.status === 201) {
-        addToast({
-          description: "Event added successfully",
+        Toast({
+          desciption: "Event added successfully",
           color: "success",
-          timeout: 2000,
-          shouldShowTimeoutProgress: true,
         });
       }
       setEventName("");

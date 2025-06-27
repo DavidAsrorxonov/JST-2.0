@@ -1,9 +1,9 @@
 import { Eye, EyeOff } from "lucide-react";
 import { useEffect, useState } from "react";
-import { addToast } from "@heroui/toast";
 import NavigationButtons from "../components/ui/NavigationButtons";
 import { useUser } from "../context/userContext";
 import { useNavigate } from "react-router-dom";
+import Toast from "./ui/Toast";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -18,12 +18,9 @@ const Login = () => {
 
   const handleSubmit = async () => {
     if (!email || !password) {
-      addToast({
-        description: "Please fill in all fields.",
+      Toast({
+        desciption: "All fields are required",
         color: "danger",
-        variant: "flat",
-        timeout: 2000,
-        shouldShowTimeoutProgress: true,
       });
       return;
     }
@@ -31,39 +28,27 @@ const Login = () => {
     const response = await login(email, password);
 
     if (response.success) {
-      addToast({
-        description: "Login successful",
+      Toast({
+        desciption: "Login successful",
         color: "success",
-        variant: "flat",
-        timeout: 2000,
-        shouldShowTimeoutProgress: true,
       });
 
       navigate("/dashboard");
     } else {
       if (response.status === 401) {
-        addToast({
-          description: "Invalid email or password",
+        Toast({
+          desciption: "Invalid credentials",
           color: "danger",
-          variant: "flat",
-          timeout: 2000,
-          shouldShowTimeoutProgress: true,
         });
       } else if (response.status === 429) {
-        addToast({
-          description: "Too many wrong attempts, please try again later",
+        Toast({
+          desciption: "Too many wrong attempts! Please try again later",
           color: "danger",
-          variant: "flat",
-          timeout: 2000,
-          shouldShowTimeoutProgress: true,
         });
       } else {
-        addToast({
-          description: result.message || "Something went wrong",
+        Toast({
+          desciption: "Something went wrong" || response.message,
           color: "danger",
-          variant: "flat",
-          timeout: 2000,
-          shouldShowTimeoutProgress: true,
         });
       }
     }

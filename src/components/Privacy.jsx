@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { addToast } from "@heroui/toast";
+import Toast from "./ui/Toast";
 
 const Privacy = () => {
   const [checked, setChecked] = useState(false);
@@ -189,9 +189,9 @@ const Privacy = () => {
         <div
           className="w-full flex items-center justify-center mt-6 px-4"
           onClick={() =>
-            addToast({
-              description: "Thank you for accepting the terms of service.",
-              color: "success",
+            Toast({
+              message: "Privacy Policy terms accepted",
+              type: "success",
             })
           }
         >

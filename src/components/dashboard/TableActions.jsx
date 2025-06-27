@@ -1,4 +1,3 @@
-import { addToast } from "@heroui/toast";
 import axios from "axios";
 import { Plus, PlusCircle, X } from "lucide-react";
 import { useState } from "react";
@@ -9,6 +8,7 @@ import { API_URL } from "../../constants/api";
 import Dropdown from "../todo/Dropdown";
 import { jobstatuses, jobtypes } from "../../constants/jobConstants";
 import ShowSelectedCategory from "../ui/showSelectedCategory";
+import Toast from "../ui/Toast";
 
 const TableActions = () => {
   const [addNewJobModal, setAddNewJobModal] = useState(false);
@@ -46,11 +46,9 @@ const TableActions = () => {
       !newJobType ||
       !websiteUrl
     ) {
-      addToast({
-        description: "All fields are required",
+      Toast({
+        desciption: "All fields are required",
         color: "danger",
-        timeout: 2000,
-        shouldShowTimeoutProgress: true,
       });
     }
 
@@ -63,11 +61,9 @@ const TableActions = () => {
       });
 
       if (response.status === 201) {
-        addToast({
-          description: "Job added successfully",
+        Toast({
+          desciption: "Job added successfully",
           color: "success",
-          timeout: 2000,
-          shouldShowTimeoutProgress: true,
         });
       }
       await fetchJobs();

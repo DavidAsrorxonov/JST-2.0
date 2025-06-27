@@ -1,7 +1,7 @@
 import { createContext, useState, useContext } from "react";
 import axios from "axios";
-import { addToast } from "@heroui/toast";
 import { API_URL } from "../constants/api";
+import Toast from "../components/ui/Toast";
 
 const JobContext = createContext();
 
@@ -15,11 +15,9 @@ export const JobProvider = ({ children }) => {
     const token = localStorage.getItem("token");
 
     if (!token) {
-      addToast({
-        description: "You are not logged in",
+      Toast({
+        desciption: "You are not logged in",
         color: "danger",
-        timeout: 2000,
-        shouldShowTimeoutProgress: true,
       });
       return;
     }

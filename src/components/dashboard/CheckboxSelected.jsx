@@ -2,12 +2,12 @@ import { useState } from "react";
 import { useSelectedJobId } from "../../context/selectedJobIdContext";
 import { useJob } from "../../context/jobContext";
 import axios from "axios";
-import { addToast } from "@heroui/toast";
 import { useRef } from "react";
 import { useEffect } from "react";
 import gsap from "gsap";
 import JobEditModal from "./JobEditModal";
 import { API_URL } from "../../constants/api";
+import Toast from "../ui/Toast";
 
 const CheckboxSelected = () => {
   const { selectedJobId, setSelectedJobId } = useSelectedJobId();
@@ -30,11 +30,9 @@ const CheckboxSelected = () => {
       );
       fetchJobs();
       setSelectedJobId([]);
-      addToast({
-        description: "Job deleted successfully",
+      Toast({
+        desciption: "Job deleted successfully",
         color: "success",
-        timeout: 2000,
-        shouldShowTimeoutProgress: true,
       });
     } catch (error) {
       console.error("Error deleting job:", error);
@@ -58,11 +56,9 @@ const CheckboxSelected = () => {
       await axios.patch(`${API_URL}/api/jobs/${updatedJob.id}`, updatedJob);
       await fetchJobs();
 
-      addToast({
-        description: "Job updated successfully",
+      Toast({
+        desciption: "Job updated successfully",
         color: "success",
-        timeout: 2000,
-        shouldShowTimeoutProgress: true,
       });
       setSelectedJobId([]);
     } catch (error) {

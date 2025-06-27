@@ -1,11 +1,11 @@
 import { useState } from "react";
 import Dropdown from "./Dropdown";
-import { addToast } from "@heroui/toast";
 import axios from "axios";
 import NavigationButtons from ".././ui/NavigationButtons";
 import { useToDo } from "../../context/todoContext";
 import { API_URL } from "../../constants/api";
 import { priority, status, category } from "../../constants/todoConstants";
+import Toast from "../ui/Toast";
 
 const ToDoBodyRight = () => {
   const [clickedYes, setClickedYes] = useState(false);
@@ -38,11 +38,9 @@ const ToDoBodyRight = () => {
       !taskPriority ||
       !taskStatus
     ) {
-      addToast({
-        description: "All fields are required",
+      Toast({
+        desciption: "All fields are required",
         color: "danger",
-        timeout: 2000,
-        shouldShowTimeoutProgress: true,
       });
     }
 
@@ -50,11 +48,9 @@ const ToDoBodyRight = () => {
       const response = await axios.post(`${API_URL}/api/todos`, payload);
 
       if (response.status === 201) {
-        addToast({
-          description: "Task added successfully",
+        Toast({
+          desciption: "Task added successfully",
           color: "success",
-          timeout: 2000,
-          shouldShowTimeoutProgress: true,
         });
       }
 

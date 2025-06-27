@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { addToast } from "@heroui/toast";
 import ExitConfirmation from "./ui/ExitConfirmation";
+import Toast from "./ui/Toast";
 
 const Terms = () => {
   const [checked, setChecked] = useState(false);
@@ -194,9 +194,9 @@ const Terms = () => {
         <div
           className="w-full flex items-center justify-center mt-6 px-4"
           onClick={() =>
-            addToast({
-              description: "Thank you for accepting the terms of service.",
-              color: "success",
+            Toast({
+              message: "Terms accepted",
+              type: "success",
             })
           }
         >
