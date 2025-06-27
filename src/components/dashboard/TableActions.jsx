@@ -8,6 +8,7 @@ import { useTranslation } from "react-i18next";
 import { API_URL } from "../../constants/api";
 import Dropdown from "../todo/Dropdown";
 import { jobstatuses, jobtypes } from "../../constants/jobConstants";
+import ShowSelectedCategory from "../ui/showSelectedCategory";
 
 const TableActions = () => {
   const [addNewJobModal, setAddNewJobModal] = useState(false);
@@ -87,25 +88,8 @@ const TableActions = () => {
         <PlusCircle size={20} />
         {t("Add a new job")}
       </div>
-      <div className="flex items-center justify-center ml-2">
-        {sortingType && sortingType === "asc" ? (
-          <div className="bg-blue-100 border border-blue-500 px-6 py-1 rounded-md">
-            {t("Selected")}: <span className="font-bold">{t("Ascending")}</span>
-          </div>
-        ) : sortingType && sortingType === "desc" ? (
-          <div className="bg-blue-100 border border-blue-500 px-6 py-1 rounded-md">
-            {t("Selected")}:{" "}
-            <span className="font-bold">{t("Descending")}</span>
-          </div>
-        ) : sortingType && sortingType === "dateAsc" ? (
-          <div className="bg-blue-100 border border-blue-500 px-6 py-1 rounded-md">
-            {t("Selected")}: <span className="font-bold">{t("Earliest")}</span>
-          </div>
-        ) : sortingType && sortingType === "dateDesc" ? (
-          <div className="bg-blue-100 border border-blue-500 px-6 py-1 rounded-md">
-            {t("Selected")}: <span className="font-bold">{t("Latest")}</span>
-          </div>
-        ) : null}
+      <div className="ml-2">
+        <ShowSelectedCategory sortingType={sortingType} />
       </div>
       <div className="flex items-center justify-center ml-2">
         {jobType && jobType !== "all" ? (
