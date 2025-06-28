@@ -5,7 +5,7 @@ import "../styles/Hero.css";
 import useTypingEffect from "../lib/utils/useTypingEffect";
 
 const Hero = () => {
-  const animatedText = useTypingEffect("Job Site Tracker", 300);
+  const animatedText = useTypingEffect("Job Site Tracker", 200);
   const [showScrollIndicator, setShowScrollIndicator] = useState(true);
 
   useEffect(() => {
