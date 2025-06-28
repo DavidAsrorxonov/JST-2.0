@@ -16,12 +16,10 @@ const DashboardBody = () => {
       <div className="w-full">
         <Input />
       </div>
-      <div className="w-full flex items-center gap-2">
-        <div className="mx-10 mb-5 flex items-center gap-2">
-          <Filtering />
-          <Sorting />
-          <SortingByDate />
-        </div>
+      <div className="w-full flex flex-col lg:flex-row items-start gap-2 px-10 mb-5">
+        <Filtering />
+        <Sorting />
+        <SortingByDate />
       </div>
       <CheckboxSelected />
       <TableActions />

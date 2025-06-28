@@ -1,0 +1,41 @@
+import React from "react";
+import Dropdown from "../todo/Dropdown";
+
+const SortingAndFilteringModal = ({
+  onClick,
+  label = [],
+  values = [],
+  filteringType,
+  position,
+  onClear = () => {},
+}) => {
+  if (!onClick) return null;
+
+  return (
+    <div className="relative">
+      <div
+        className="absolute z-50 bg-white p-4 rounded-md shadow-lg border mt-2 w-[400px]"
+        style={{ top: position.top, left: position.left }}
+      >
+        <div className="font-bold text-lg mb-2">{filteringType}</div>
+        <div className="flex flex-col gap-4">
+          {label.map((item, i) => (
+            <div key={i}>
+              <div className="mb-1 text-sm text-gray-700">{item}</div>
+              <Dropdown
+                options={values[i] || []}
+                onSelect={(val) => onClick(i, val)}
+                defaultValue="Select"
+              />
+            </div>
+          ))}
+        </div>
+        <div className="font-bold" onClick={onClear}>
+          Clear selection
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default SortingAndFilteringModal;

@@ -35,7 +35,6 @@ const Input = () => {
 
   return (
     <div className="w-full lg:w-1/2 mt-4 flex flex-col gap-4 px-10 mb-5">
-      {/* Top: Main Search Row */}
       <div className="flex flex-col md:flex-row gap-4 items-stretch md:items-center">
         <div className="relative flex-1">
           <Search
@@ -63,11 +62,14 @@ const Input = () => {
           </div>
         </div>
 
-        {/* Advanced Toggle */}
         <Tooltip content="Advanced Search" showArrow>
           <button
             onClick={() => setExpandAdvancedSearch(!expandAdvancedSearch)}
-            className="flex items-center gap-2 px-4 py-3 rounded-xl border border-blue-200 text-blue-600 bg-white hover:bg-blue-50 transition"
+            className={`flex items-center gap-2 px-4 py-3 rounded-xl border border-blue-200 text-blue-600 ${
+              expandAdvancedSearch
+                ? "bg-blue-100 border border-blue-700"
+                : "bg-white"
+            } transition`}
           >
             <GrSearchAdvanced size={22} />
             <span className="font-medium">Advanced</span>
@@ -75,7 +77,6 @@ const Input = () => {
         </Tooltip>
       </div>
 
-      {/* Advanced Search Input (Animated) */}
       <AnimatePresence>
         {expandAdvancedSearch && (
           <motion.div

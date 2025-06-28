@@ -1,16 +1,36 @@
 import { ArrowDownAZ, ArrowDownUp, ArrowUpAZ, CircleX } from "lucide-react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useSearch } from "../../context/searchContext";
 import { useTranslation } from "react-i18next";
+import SortingAndFilteringModal from "../ui/SortingAndFilteringModal";
 
 const Sorting = () => {
   const [sortingChosen, setSortingChosen] = useState(false);
+  const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 });
+  const [activeModal, setActiveModal] = useState("");
+  const buttonRef = useRef(null);
   const { setSortingType } = useSearch();
+
+  const openModalPosition = (type) => {
+    if (buttonRef.current) {
+      const rect = buttonRef.current.getBoundingClientRect();
+      setModalPosition({
+        top: rect.buttom + window.scrollY,
+        left: rect.left + window.scrollX,
+      });
+    }
+    setActiveModal(type);
+    setSortingChosen(true);
+  };
 
   const { t } = useTranslation();
 
+  const handleSortChange = (_, selectedValue) => {
+    setSortingType(selectedValue);
+  };
+
   return (
-    <div className="flex items-center">
+    <div className="flex items-center" ref={buttonRef}>
       <div
         className="flex items-center justify-center gap-2 hover:bg-gray-100 border border-gray-300 px-4 py-1 rounded-full transition-all cursor-pointer"
         onClick={() => setSortingChosen(!sortingChosen)}
@@ -23,36 +43,14 @@ const Sorting = () => {
       </div>
 
       {sortingChosen && (
-        <div className="flex gap-2">
-          <div>{t("Sort by")}:</div>
-          <div
-            className="flex gap-2 items-center justify-center bg-blue-100 px-2 rounded-full border border-blue-500 text-blue-600 cursor-pointer"
-            onClick={() => setSortingType("asc")}
-          >
-            <span>
-              <ArrowUpAZ size={20} />
-            </span>
-            <span>{t("Ascending")}</span>
-          </div>
-          <div
-            className="flex gap-2 items-center justify-center bg-blue-100 px-2 rounded-full border border-blue-500 text-blue-600 cursor-pointer"
-            onClick={() => setSortingType("desc")}
-          >
-            <span>
-              <ArrowDownAZ size={20} />
-            </span>
-            <span>{t("Descending")}</span>
-          </div>
-          <div
-            className="flex gap-2 items-center justify-center bg-blue-100 px-2 rounded-full border border-blue-500 text-blue-600 cursor-pointer"
-            onClick={() => setSortingType("")}
-          >
-            <span>
-              <CircleX size={20} />
-            </span>
-            {t("Clear sorting")}
-          </div>
-        </div>
+        <SortingAndFilteringModal
+          onClick={handleSortChange}
+          label={["Order"]}
+          values={[["asc", "desc"]]}
+          filteringType="Sorting"
+          position={openModalPosition}
+          onClear={() => setSortingType(null)}
+        />
       )}
     </div>
   );
