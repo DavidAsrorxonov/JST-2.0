@@ -13,9 +13,11 @@ const DashboardBody = () => {
   return (
     <>
       <DashboardIntro />
-      <div className="w-full m-10">
+      <div className="w-full">
         <Input />
-        <div className="w-full flex items-center gap-2">
+      </div>
+      <div className="w-full flex items-center gap-2">
+        <div className="mx-10 mb-5 flex items-center gap-2">
           <Filtering />
           <Sorting />
           <SortingByDate />

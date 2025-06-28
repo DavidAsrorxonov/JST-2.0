@@ -74,7 +74,7 @@ const TableActions = () => {
   };
 
   return (
-    <div className="w-full flex justify-start mx-10">
+    <div className="w-full flex justify-start pl-10">
       <div
         className="w-fit flex items-center gap-2 text-xl bg-blue-100 border border-blue-500 px-6 py-1 rounded-md text-blue-600 hover:bg-blue-200 cursor-pointer transition-all duration-300"
         onClick={() => setAddNewJobModal(true)}

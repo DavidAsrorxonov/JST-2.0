@@ -3,8 +3,8 @@ import { useEffect, useRef, useState } from "react";
 import { useSearch } from "../../context/searchContext";
 import { useTranslation } from "react-i18next";
 import { GrSearchAdvanced } from "react-icons/gr";
-import { Tooltip } from "@heroui/tooltip";
 import { motion, AnimatePresence } from "framer-motion";
+import { Tooltip } from "@heroui/tooltip";
 
 const Input = () => {
   const { setSearchTerm, advancedSearchTerm, setAdvancedSearchTerm } =
@@ -34,57 +34,62 @@ const Input = () => {
   }, [setSearchTerm]);
 
   return (
-    <div className="w-full md:w-[80%] flex items-center gap-2">
-      <div className="w-[40%] flex items-center">
-        <div className="relative w-full">
+    <div className="w-full lg:w-1/2 mt-4 flex flex-col gap-4 px-10 mb-5">
+      {/* Top: Main Search Row */}
+      <div className="flex flex-col md:flex-row gap-4 items-stretch md:items-center">
+        <div className="relative flex-1">
           <Search
-            size={25}
-            className="absolute top-1/2 left-3 transform -translate-y-1/2 text-blue-600"
+            size={22}
+            className="absolute top-1/2 left-4 -translate-y-1/2 text-blue-600"
           />
           <input
             ref={inputRef}
             type="text"
             placeholder={t("Search")}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full py-2.5 pl-12 pr-20 rounded-full bg-white/20 text-[#2F2E41] placeholder:text-[#888] shadow-inner border border-[#cdd3f0] focus:ring-2 focus:ring-blue-400 outline-none transition-all duration-200"
+            className="w-full py-3 pl-12 pr-28 rounded-xl bg-gray-50 text-[#2F2E41] placeholder:text-[#888] border border-blue-200 focus:ring-2 focus:ring-blue-400 outline-none transition-all duration-200"
           />
-          <div className="absolute right-4 top-1/2 transform -translate-y-1/2 text-xs hidden md:flex items-center gap-1 text-blue-600 font-medium">
-            <kbd className="bg-white/60 border border-[#B0B3D6] px-2 py-0.5 rounded-lg font-mono shadow-sm">
-              {navigator.platform.includes("Mac") ? "⌘" : "Ctrl"}
+          <div className="absolute right-4 top-1/2 -translate-y-1/2 hidden md:flex items-center gap-1 text-sm text-gray-500 font-mono">
+            <kbd className="bg-white border border-gray-300 px-2 py-0.5 rounded">
+              ⌘
             </kbd>
-            <kbd className="bg-white/60 border border-[#B0B3D6] px-2 py-0.5 rounded-lg font-mono shadow-sm">
+            <kbd className="bg-white border border-gray-300 px-2 py-0.5 rounded">
               K
             </kbd>
-            <span> | </span>
-            <kbd className="bg-white/60 border border-[#B0B3D6] px-2 py-0.5 rounded-lg font-mono shadow-sm">
+            <span>|</span>
+            <kbd className="bg-white border border-gray-300 px-2 py-0.5 rounded">
               Esc
             </kbd>
           </div>
         </div>
-      </div>
-      <Tooltip content="Advanced Search" showArrow={true}>
-        <div
-          className="p-2.5 rounded-full cursor-pointer shadow-inner bg-white/20 text-[#2F2E41] border border-[#cdd3f0]"
-          onClick={() => setExpandAdvancedSearch(!expandAdvancedSearch)}
-        >
-          <GrSearchAdvanced size={25} className="text-blue-600" />
-        </div>
-      </Tooltip>
 
+        {/* Advanced Toggle */}
+        <Tooltip content="Advanced Search" showArrow>
+          <button
+            onClick={() => setExpandAdvancedSearch(!expandAdvancedSearch)}
+            className="flex items-center gap-2 px-4 py-3 rounded-xl border border-blue-200 text-blue-600 bg-white hover:bg-blue-50 transition"
+          >
+            <GrSearchAdvanced size={22} />
+            <span className="font-medium">Advanced</span>
+          </button>
+        </Tooltip>
+      </div>
+
+      {/* Advanced Search Input (Animated) */}
       <AnimatePresence>
         {expandAdvancedSearch && (
           <motion.div
-            initial={{ opacity: 0, width: 0 }}
-            animate={{ opacity: 1, width: "30%" }}
-            exit={{ opacity: 0, width: 0 }}
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
           >
             <input
               type="text"
-              placeholder="Search 'Company' section"
+              placeholder={t("Search 'Company' section")}
               value={advancedSearchTerm}
               onChange={(e) => setAdvancedSearchTerm(e.target.value)}
-              className="w-full py-2.5 px-4 rounded-full bg-white/20 text-[#2F2E41] placeholder:text-[#888] shadow-inner border border-[#cdd3f0] focus:ring-2 focus:ring-blue-400 outline-none transition-all duration-200 ml-2"
+              className="my-2 w-full py-3 px-4 rounded-xl bg-gray-50 border border-blue-200 text-[#2F2E41] placeholder:text-[#888] focus:ring-2 focus:ring-blue-400 outline-none transition-all duration-200"
             />
           </motion.div>
         )}

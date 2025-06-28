@@ -7,7 +7,7 @@ const SortingByDate = () => {
   const { setSortingType } = useSearch();
 
   return (
-    <div className="flex items-center mt-5">
+    <div className="flex items-center">
       <div
         className="flex items-center justify-center gap-2 hover:bg-gray-100 border border-gray-300 px-4 py-1 rounded-full transition-all cursor-pointer"
         onClick={() => setSortingChosen(!sortingChosen)}
