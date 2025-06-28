@@ -23,10 +23,18 @@ const Sorting = () => {
     setSortingChosen(true);
   };
 
+  const sortingOptions = [
+    { value: "asc", label: "Ascending" },
+    { value: "desc", label: "Descending" },
+  ];
+
   const { t } = useTranslation();
 
   const handleSortChange = (_, selectedValue) => {
-    setSortingType(selectedValue);
+    const selectedOption = sortingOptions.find(
+      (option) => option.label === selectedValue
+    );
+    setSortingType(selectedOption?.value);
   };
 
   return (
@@ -46,7 +54,7 @@ const Sorting = () => {
         <SortingAndFilteringModal
           onClick={handleSortChange}
           label={["Order"]}
-          values={[["asc", "desc"]]}
+          values={[sortingOptions.map((option) => option.label)]}
           filteringType="Sorting"
           position={openModalPosition}
           onClear={() => setSortingType(null)}
