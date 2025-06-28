@@ -3,6 +3,8 @@ import Logo from "./Logo";
 import { Menu, X } from "lucide-react";
 import GetStartedButton from "./ui/GetStartedButton";
 import { useNavigate } from "react-router-dom";
+import GithubLink from "./ui/GithubLink";
+import ThemeToggleUI from "./ui/ThemeToggleUI";
 
 const Header = ({ activeSections }) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
@@ -32,14 +34,26 @@ const Header = ({ activeSections }) => {
             </a>
           ))}
 
-          <div className="flex gap-4 mr-4">
-            <GetStartedButton />
+          <div className="h-6 w-0.5 bg-gray-600"></div>
+          <div className="flex items-center gap-4">
+            <div className="flex">
+              <GetStartedButton />
+            </div>
+            <div>
+              <GithubLink />
+            </div>
+            <div>
+              <ThemeToggleUI />
+            </div>
           </div>
         </div>
       ) : (
         <div className="flex gap-4 items-center justify-center">
-          <div onClick={() => navigate("/auth")}>
-            <GetStartedButton />
+          <div>
+            <GithubLink />
+          </div>
+          <div>
+            <ThemeToggleUI />
           </div>
           <div
             className="flex items-center justify-center cursor-pointer px-2 py-2 bg-gray-300 hover:bg-gray-400 rounded-full transition-all duration-300"
