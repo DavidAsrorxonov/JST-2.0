@@ -48,7 +48,7 @@ const Hero = () => {
       </div>
 
       {showScrollIndicator && (
-        <div className="absolute bottom-16 w-full flex justify-center z-20">
+        <div className="absolute md:bottom-16 bottom-7 w-full flex justify-center z-20">
           <div className="flex flex-col items-center gap-2 animate-pulse text-gray-800">
             <ChevronsDown size={48} className="text-gray-700 animate-bounce" />
             <span className="text-sm tracking-wide uppercase text-gray-700">
