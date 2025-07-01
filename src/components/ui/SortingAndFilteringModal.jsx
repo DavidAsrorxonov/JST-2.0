@@ -33,7 +33,9 @@ const SortingAndFilteringModal = ({
           ))}
         </div>
         <div className="font-bold m-3 cursor-pointer" onClick={onClear}>
-          Clear selection
+          <span className="hover:bg-gray-100 transition-all duration-300 px-4 py-1 rounded-md">
+            Clear selection
+          </span>
         </div>
       </div>
     </div>
