@@ -65,6 +65,7 @@ const Filtering = () => {
             setJobType("all");
           }}
           selectedValues={[jobStatus, jobType]}
+          onClose={() => setFilteringChosen(false)}
         />
       )}
     </div>

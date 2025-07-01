@@ -66,6 +66,7 @@ const Sorting = () => {
           position={openModalPosition}
           onClear={() => setSortingType(null)}
           selectedValues={[getLabelFromValue(sortingType)]}
+          onClose={() => setSortingChosen(false)}
         />
       )}
     </div>
