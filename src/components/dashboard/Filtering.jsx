@@ -20,14 +20,12 @@ const Filtering = () => {
   const handleFilterChange = (label, selectedValue) => {
     if (label === "Job Status") {
       setJobStatus(selectedValue);
-    }
-
-    if (label === "Job Type") {
+    } else if (label === "Job Type") {
       setJobType(selectedValue);
     }
   };
 
-  const openModalPosition = (type) => {
+  const openModalPosition = () => {
     if (buttonRef.current) {
       const rect = buttonRef.current.getBoundingClientRect();
       setModalPosition({
@@ -35,7 +33,6 @@ const Filtering = () => {
         left: rect.left + window.scrollX,
       });
     }
-    setActiveModal(type);
     setFilteringChosen(true);
   };
 
@@ -46,7 +43,7 @@ const Filtering = () => {
         className="flex items-center justify-center gap-2 hover:bg-gray-100 border border-gray-300 px-4 py-1 rounded-full transition-all cursor-pointer"
         onClick={() => {
           setFilteringChosen(!filteringChosen);
-          setActiveModal("");
+          if (!filteringChosen) openModalPosition();
         }}
       >
         <ListFilter
@@ -62,11 +59,12 @@ const Filtering = () => {
           label={["Job Status", "Job Type"]}
           values={[statuses, types]}
           filteringType="Filter by"
-          position={modalPosition}
+          position={openModalPosition}
           onClear={() => {
             setJobStatus("all");
             setJobType("all");
           }}
+          selectedValues={[jobStatus, jobType]}
         />
       )}
     </div>

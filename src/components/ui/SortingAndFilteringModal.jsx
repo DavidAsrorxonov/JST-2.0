@@ -8,6 +8,7 @@ const SortingAndFilteringModal = ({
   filteringType,
   position,
   onClear = () => {},
+  selectedValues = [],
 }) => {
   if (!onClick) return null;
 
@@ -26,6 +27,7 @@ const SortingAndFilteringModal = ({
                 options={values[i] || []}
                 onSelect={(val) => onClick(item, val)}
                 defaultValue="Select"
+                currentValue={selectedValues[i]}
               />
             </div>
           ))}

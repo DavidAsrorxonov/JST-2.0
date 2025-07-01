@@ -2,10 +2,18 @@ import { ChevronsUpDown } from "lucide-react";
 import { useRef, useState, useEffect } from "react";
 import gsap from "gsap";
 
-const Dropdown = ({ options, defaultValue, onSelect }) => {
+const Dropdown = ({ options, defaultValue, onSelect, currentValue }) => {
   const [optionModalOpen, setOptionModalOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(defaultValue);
+  const [selectedOption, setSelectedOption] = useState(
+    currentValue || defaultValue
+  );
   const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    if (currentValue !== undefined && currentValue !== selectedOption) {
+      setSelectedOption(currentValue);
+    }
+  }, [currentValue, selectedOption]);
 
   useEffect(() => {
     if (optionModalOpen && dropdownRef.current) {
