@@ -149,10 +149,12 @@ const CheckboxSelected = () => {
           className="fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center z-50"
           ref={confirmDeleteRef}
         >
-          <div className="bg-white rounded-xl p-6 shadow-lg w-[300px] text-center">
+          <div className="bg-white rounded-xl p-6 shadow-lg w-[500px] text-center">
             <h2 className="text-lg font-semibold mb-4">Are you sure?</h2>
             <p className="text-sm text-gray-600 mb-6">
-              This action will permanently delete the selected job(s).
+              {selectedJobId.length > 1
+                ? `${selectedJobId.length} selected jobs will be deleted on confirm`
+                : `${selectedJobId.length} selected job will be deleted on confirm`}
             </p>
             <div className="flex justify-center gap-4">
               <button
