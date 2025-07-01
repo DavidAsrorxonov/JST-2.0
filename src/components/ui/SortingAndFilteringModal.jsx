@@ -24,13 +24,13 @@ const SortingAndFilteringModal = ({
               <div className="mb-1 text-sm text-gray-700">{item}</div>
               <Dropdown
                 options={values[i] || []}
-                onSelect={(val) => onClick(i, val)}
+                onSelect={(val) => onClick(item, val)}
                 defaultValue="Select"
               />
             </div>
           ))}
         </div>
-        <div className="font-bold" onClick={onClear}>
+        <div className="font-bold m-3 cursor-pointer" onClick={onClear}>
           Clear selection
         </div>
       </div>
