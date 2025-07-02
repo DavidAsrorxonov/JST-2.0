@@ -6,7 +6,7 @@ const Logo = () => {
       <Tooltip content="Job Site Tracker">
         <div className="flex flex-col">
           <h1
-            className="text-5xl font-bold tracking-widest font-oswald"
+            className="text-5xl font-bold tracking-widest font-michroma"
             title="Job Site Tracker"
           >
             JST

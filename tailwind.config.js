@@ -11,6 +11,7 @@ export default {
       fontFamily: {
         oswald: ["Oswald", "sans-serif"],
         exo2: ["Exo 2", "sans-serif"],
+        michroma: ["Michroma", "sans-serif"],
       },
       keyframes: {
         wiggleX: {
