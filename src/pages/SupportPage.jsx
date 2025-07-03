@@ -1,12 +1,15 @@
 import SupportHeader from "../components/support/SupportHeader";
 import SupportBody from "../components/support/SupportBody";
+import PageWrapper from "../transition/PageWrapper";
 
 const SupportPage = () => {
   return (
-    <div>
-      <SupportHeader />
-      <SupportBody />
-    </div>
+    <PageWrapper>
+      <div>
+        <SupportHeader />
+        <SupportBody />
+      </div>
+    </PageWrapper>
   );
 };
 

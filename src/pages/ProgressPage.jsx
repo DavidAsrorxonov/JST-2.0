@@ -1,12 +1,15 @@
 import ProgressHeader from "../components/progress/ProgressHeader";
 import ProgressBody from "../components/progress/ProgressBody";
+import PageWrapper from "../transition/PageWrapper";
 
 const ProgressPage = () => {
   return (
-    <div>
-      <ProgressHeader />
-      <ProgressBody />
-    </div>
+    <PageWrapper>
+      <div>
+        <ProgressHeader />
+        <ProgressBody />
+      </div>
+    </PageWrapper>
   );
 };
 

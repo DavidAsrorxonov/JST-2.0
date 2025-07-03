@@ -1,10 +1,13 @@
 import CompaniesHeader from "../components/companies/CompaniesHeader";
+import PageWrapper from "../transition/PageWrapper";
 
 const CompaniesPage = () => {
   return (
-    <div>
-      <CompaniesHeader />
-    </div>
+    <PageWrapper>
+      <div>
+        <CompaniesHeader />
+      </div>
+    </PageWrapper>
   );
 };
 

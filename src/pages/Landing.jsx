@@ -8,6 +8,7 @@ import { useInView } from "react-intersection-observer";
 import Security from "../components/Security";
 import Contact from "../components/Contact";
 import Footer from "../components/ui/Footer";
+import PageWrapper from "../transition/PageWrapper";
 
 const Landing = () => {
   const [activeSections, setActiveSections] = useState("home");
@@ -42,28 +43,30 @@ const Landing = () => {
   });
 
   return (
-    <div>
-      <Header activeSections={activeSections} />
-      <div id="home" ref={homeRef}>
-        <Hero />
+    <PageWrapper>
+      <div>
+        <Header activeSections={activeSections} />
+        <div id="home" ref={homeRef}>
+          <Hero />
+        </div>
+        <div id="about" ref={aboutRef} className="w-full block">
+          <SecondPart />
+        </div>
+        <div id="offer" ref={offerRef} className="w-full block">
+          <Offer />
+        </div>
+        <div id="demo" ref={demoRef}>
+          <Demo />
+        </div>
+        <div id="security" ref={securityRef}>
+          <Security />
+        </div>
+        <div id="contact" ref={contactRef}>
+          <Contact />
+        </div>
+        <Footer />
       </div>
-      <div id="about" ref={aboutRef} className="w-full block">
-        <SecondPart />
-      </div>
-      <div id="offer" ref={offerRef} className="w-full block">
-        <Offer />
-      </div>
-      <div id="demo" ref={demoRef}>
-        <Demo />
-      </div>
-      <div id="security" ref={securityRef}>
-        <Security />
-      </div>
-      <div id="contact" ref={contactRef}>
-        <Contact />
-      </div>
-      <Footer />
-    </div>
+    </PageWrapper>
   );
 };
 

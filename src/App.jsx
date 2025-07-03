@@ -20,6 +20,40 @@ import ToDoPage from "./pages/ToDoPage";
 import ArchivePage from "./pages/ArchivePage";
 import PublicRoute from "./secure/PublicRoute";
 import ProtectedRoute from "./secure/ProtectedRoute";
+import { AnimatePresence } from "framer-motion";
+import { useLocation } from "react-router-dom";
+
+const AnimatedRoutes = () => {
+  const location = useLocation();
+
+  return (
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+        <Route element={<PublicRoute />}>
+          <Route path="/" element={<Landing />} />
+          <Route path="/auth" element={<AuthPage />} />
+          <Route path="/auth/login" element={<Login />} />
+          <Route path="/auth/register" element={<Register />} />
+        </Route>
+
+        <Route element={<ProtectedRoute />}>
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/companies" element={<CompaniesPage />} />
+          <Route path="/events" element={<EventsPage />} />
+          <Route path="/support" element={<SupportPage />} />
+          <Route path="/news" element={<NewsPage />} />
+          <Route path="/progress" element={<ApplicationPage />} />
+          <Route path="/todos" element={<ToDoPage />} />
+          <Route path="/archive" element={<ArchivePage />} />
+        </Route>
+
+        <Route path="/terms" element={<Terms />} />
+        <Route path="/privacy" element={<Privacy />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </AnimatePresence>
+  );
+};
 
 const App = () => {
   useEffect(() => {
@@ -31,29 +65,7 @@ const App = () => {
     <HeroUIProvider>
       <ToastProvider placement="top-center" toastProps={{ radius: "full" }} />
       <BrowserRouter>
-        <Routes>
-          <Route element={<PublicRoute />}>
-            <Route path="/" element={<Landing />} />
-            <Route path="/auth" element={<AuthPage />} />
-            <Route path="/auth/login" element={<Login />} />
-            <Route path="/auth/register" element={<Register />} />
-          </Route>
-
-          <Route element={<ProtectedRoute />}>
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/companies" element={<CompaniesPage />} />
-            <Route path="/events" element={<EventsPage />} />
-            <Route path="/support" element={<SupportPage />} />
-            <Route path="/news" element={<NewsPage />} />
-            <Route path="/progress" element={<ApplicationPage />} />
-            <Route path="/todos" element={<ToDoPage />} />
-            <Route path="/archive" element={<ArchivePage />} />
-          </Route>
-
-          <Route path="/terms" element={<Terms />} />
-          <Route path="/privacy" element={<Privacy />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <AnimatedRoutes />
       </BrowserRouter>
     </HeroUIProvider>
   );

@@ -1,12 +1,15 @@
 import NewsBody from "../components/news/NewsBody";
 import NewsHeader from "../components/news/NewsHeader";
+import PageWrapper from "../transition/PageWrapper";
 
 const NewsPage = () => {
   return (
-    <div>
-      <NewsHeader />
-      <NewsBody />
-    </div>
+    <PageWrapper>
+      <div>
+        <NewsHeader />
+        <NewsBody />
+      </div>
+    </PageWrapper>
   );
 };
 

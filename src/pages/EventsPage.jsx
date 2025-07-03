@@ -1,12 +1,15 @@
 import EventBody from "../components/events/EventBody";
 import EventHeader from "../components/events/EventHeader";
+import PageWrapper from "../transition/PageWrapper";
 
 const EventsPage = () => {
   return (
-    <div>
-      <EventHeader />
-      <EventBody />
-    </div>
+    <PageWrapper>
+      <div>
+        <EventHeader />
+        <EventBody />
+      </div>
+    </PageWrapper>
   );
 };
 
