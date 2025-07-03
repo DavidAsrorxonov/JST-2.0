@@ -195,8 +195,7 @@ const Terms = () => {
           className="w-full flex items-center justify-center mt-6 px-4"
           onClick={() =>
             Toast({
-              message: "Terms accepted",
-              type: "success",
+              desciption: "Terms saved successfully",
             })
           }
         >

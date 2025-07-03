@@ -190,8 +190,7 @@ const Privacy = () => {
           className="w-full flex items-center justify-center mt-6 px-4"
           onClick={() =>
             Toast({
-              message: "Privacy Policy terms accepted",
-              type: "success",
+              desciption: "Changes saved successfully",
             })
           }
         >
