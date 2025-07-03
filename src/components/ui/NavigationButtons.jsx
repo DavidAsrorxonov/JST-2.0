@@ -16,7 +16,7 @@ const NavigationButtons = () => {
         {t("Back")}
       </button>
       <button
-        onClick={() => navigate("/")}
+        onClick={() => navigate("/dashboard")}
         className="flex items-center px-4 py-2 bg-blue-200 hover:bg-blue-300 transition rounded-full border border-blue-500 gap-2 text-blue-600 hover:text-blue-700 font-semibold"
       >
         <House size={20} />
