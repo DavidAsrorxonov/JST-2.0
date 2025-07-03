@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
 import Dropdown from "../todo/Dropdown";
-import { CircleX } from "lucide-react";
+import { CircleX, X } from "lucide-react";
 
 const SortingAndFilteringModal = ({
   onClick,
@@ -23,7 +22,7 @@ const SortingAndFilteringModal = ({
         <div className="flex items-center justify-between">
           <div className="font-bold text-lg mb-2">{filteringType}</div>
           <span className="cursor-pointer" onClick={onClose}>
-            <CircleX size={20} />
+            <X size={20} />
           </span>
         </div>
         <div className="flex flex-col gap-4">
