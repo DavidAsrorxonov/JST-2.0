@@ -3,7 +3,7 @@ import SupportBody from "../components/support/SupportBody";
 
 const SupportPage = () => {
   return (
-    <div className="w-full h-screen">
+    <div>
       <SupportHeader />
       <SupportBody />
     </div>

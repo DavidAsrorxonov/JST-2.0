@@ -14,6 +14,8 @@ import axios from "axios";
 import { useTranslation } from "react-i18next";
 import { API_URL } from "../../constants/api";
 import Toast from "../ui/Toast";
+import { useUser } from "../../context/userContext";
+import { authChecker } from "../../lib/utils/authChecker";
 
 const Events = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -23,6 +25,8 @@ const Events = () => {
   const [eventName, setEventName] = useState("");
   const [eventDescription, setEventDescription] = useState("");
   const { id } = JSON.parse(localStorage.getItem("user"));
+
+  const { logout } = useUser();
 
   const { t } = useTranslation();
 
@@ -41,6 +45,12 @@ const Events = () => {
   };
 
   const handleAddEvent = async () => {
+    if (!authChecker(logout)) {
+      return;
+    }
+
+    const token = localStorage.getItem("token");
+
     if (!eventName || !eventDescription || !isDateChosen) {
       Toast({
         desciption: "All fields are required",
@@ -52,7 +62,7 @@ const Events = () => {
       const response = await axios.post(`${API_URL}/api/events`, payload, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          Authorization: `Bearer ${token}`,
         },
       });
 

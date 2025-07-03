@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { getTimeOfDay } from "../../lib/utils/getTimeOfDay";
 import { useTranslation } from "react-i18next";
 import { API_URL } from "../../constants/api";
+import { useUser } from "../../context/userContext";
+import { authChecker } from "../../lib/utils/authChecker";
 
 const statusColumns = ["Applied", "Interview", "Offer", "Rejected"];
 
@@ -16,13 +18,25 @@ const CompaniesHeader = () => {
   const { firstName, lastName, id: userId } = user || {};
   const navigate = useNavigate();
 
+  const { logout } = useUser();
+
   const { t } = useTranslation();
 
   useEffect(() => {
     const getJobs = async () => {
+      if (!authChecker(logout)) {
+        return;
+      }
+
+      const token = localStorage.getItem("token");
+
       try {
         const response = await axios.get(`${API_URL}/api/jobs`, {
           params: { user_id: userId },
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
         });
         setJobs(response.data);
       } catch (error) {

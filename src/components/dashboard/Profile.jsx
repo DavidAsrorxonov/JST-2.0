@@ -24,7 +24,6 @@ import { SunIcon } from "../../../public/icons/SunIcon";
 import { useTranslation } from "react-i18next";
 
 const Profile = () => {
-  const [imageURL, setImageURL] = useState(null);
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   const user = JSON.parse(localStorage.getItem("user"));

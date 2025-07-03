@@ -8,6 +8,8 @@ import gsap from "gsap";
 import JobEditModal from "./JobEditModal";
 import { API_URL } from "../../constants/api";
 import Toast from "../ui/Toast";
+import { useUser } from "../../context/userContext";
+import { authChecker } from "../../lib/utils/authChecker";
 
 const CheckboxSelected = () => {
   const { selectedJobId, setSelectedJobId } = useSelectedJobId();
@@ -18,15 +20,29 @@ const CheckboxSelected = () => {
 
   const [showEditModal, setShowEditModal] = useState(false);
   const [jobToEdit, setJobToEdit] = useState(null);
+  const { logout } = useUser();
 
   const deleteSelectedJob = async () => {
+    if (!authChecker(logout)) {
+      return;
+    }
+
+    const token = localStorage.getItem("token");
+
     if (selectedJobId.length === 0) return;
 
     setIsDeleting(true);
 
     try {
       await Promise.all(
-        selectedJobId.map((id) => axios.delete(`${API_URL}/api/jobs/${id}`))
+        selectedJobId.map((id) =>
+          axios.delete(`${API_URL}/api/jobs/${id}`, {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          })
+        )
       );
       fetchJobs();
       setSelectedJobId([]);
@@ -52,8 +68,19 @@ const CheckboxSelected = () => {
   };
 
   const handleSaveEdit = async (updatedJob) => {
+    if (!authChecker(logout)) {
+      return;
+    }
+
+    const token = localStorage.getItem("token");
+
     try {
-      await axios.patch(`${API_URL}/api/jobs/${updatedJob.id}`, updatedJob);
+      await axios.patch(`${API_URL}/api/jobs/${updatedJob.id}`, updatedJob, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
       await fetchJobs();
 
       Toast({

@@ -9,6 +9,8 @@ import { Clock, Loader, Tag, Trash2, Undo2 } from "lucide-react";
 import { API_URL } from "../../constants/api";
 import gsap from "gsap";
 import { addToast } from "@heroui/toast";
+import { useUser } from "../../context/userContext";
+import { authChecker } from "../../lib/utils/authChecker";
 
 const ArchiveLeft = () => {
   const [archivedToDos, setArchivedToDos] = useState([]);
@@ -16,12 +18,23 @@ const ArchiveLeft = () => {
   const [deleteConfirmationId, setDeleteConfirmationId] = useState(null);
   const { id } = user;
   const confirmDeleteRef = useRef(null);
+  const { logout } = useUser();
 
   const fetchArchivedToDos = async () => {
+    if (!authChecker(logout)) {
+      return;
+    }
+
+    const token = localStorage.getItem("token");
+
     try {
       const response = await axios.get(`${API_URL}/api/archive/todos`, {
         params: {
           user_id: id,
+        },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
       });
 
@@ -32,22 +45,23 @@ const ArchiveLeft = () => {
   };
 
   const deleteArchivedToDo = async (id) => {
-    const token = localStorage.getItem("token");
-
-    if (!token) {
-      addToast({
-        description: "You are not logged in",
-        color: "danger",
-        timeout: 2000,
-        shouldShowTimeoutProgress: true,
-      });
+    if (!authChecker(logout)) {
       return;
     }
+
+    const token = localStorage.getItem("token");
 
     if (!id) return;
 
     try {
-      await axios.delete(`${API_URL}/api/archive/todos/${id}`);
+      await axios.delete(`${API_URL}/api/archive/todos/${id}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      fetchArchivedToDos();
     } catch (error) {
       console.error("Error deleting archived To-Do:", error);
     }

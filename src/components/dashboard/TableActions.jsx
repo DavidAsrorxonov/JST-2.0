@@ -9,6 +9,8 @@ import Dropdown from "../todo/Dropdown";
 import { jobstatuses, jobtypes } from "../../constants/jobConstants";
 import ShowSelectedCategory from "../ui/showSelectedCategory";
 import Toast from "../ui/Toast";
+import { useUser } from "../../context/userContext";
+import { authChecker } from "../../lib/utils/authChecker";
 
 const TableActions = () => {
   const [addNewJobModal, setAddNewJobModal] = useState(false);
@@ -27,6 +29,8 @@ const TableActions = () => {
 
   const { fetchJobs, jobs } = useJob();
 
+  const { logout } = useUser();
+
   const payload = {
     job_title: newJobTitle,
     company: newCompany,
@@ -38,6 +42,12 @@ const TableActions = () => {
   };
 
   const handleAddJob = async () => {
+    if (!authChecker(logout)) {
+      return;
+    }
+
+    const token = localStorage.getItem("token");
+
     if (
       !newJobTitle ||
       !newCompany ||
@@ -56,7 +66,7 @@ const TableActions = () => {
       const response = await axios.post(`${API_URL}/api/jobs`, payload, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          Authorization: `Bearer ${token}`,
         },
       });
 

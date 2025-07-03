@@ -6,6 +6,8 @@ import { useToDo } from "../../context/todoContext";
 import { API_URL } from "../../constants/api";
 import { priority, status, category } from "../../constants/todoConstants";
 import Toast from "../ui/Toast";
+import { authChecker } from "../../lib/utils/authChecker";
+import { useUser } from "../../context/userContext";
 
 const ToDoBodyRight = () => {
   const [clickedYes, setClickedYes] = useState(false);
@@ -16,6 +18,7 @@ const ToDoBodyRight = () => {
   const [taskPriority, setTaskPriority] = useState("");
   const [taskStatus, setTaskStatus] = useState("");
   const { id } = JSON.parse(localStorage.getItem("user"));
+  const { logout } = useUser();
 
   const { fetchToDos } = useToDo();
 
@@ -30,6 +33,12 @@ const ToDoBodyRight = () => {
   };
 
   const handleAddTask = async () => {
+    if (!authChecker(logout)) {
+      return;
+    }
+
+    const token = localStorage.getItem("token");
+
     if (
       !taskTitle ||
       !taskDate ||
@@ -45,7 +54,12 @@ const ToDoBodyRight = () => {
     }
 
     try {
-      const response = await axios.post(`${API_URL}/api/todos`, payload);
+      const response = await axios.post(`${API_URL}/api/todos`, payload, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
       if (response.status === 201) {
         Toast({

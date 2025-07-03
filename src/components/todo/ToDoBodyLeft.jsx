@@ -10,19 +10,34 @@ import {
 import { API_URL } from "../../constants/api";
 import EmptyState from "../ui/EmptyState";
 import Toast from "../ui/Toast";
+import { useUser } from "../../context/userContext";
+import { authChecker } from "../../lib/utils/authChecker";
 
 const ToDoBodyLeft = () => {
   const { todos, fetchToDos } = useToDo();
   const [ellipsisClicked, setEllipsisClicked] = useState(false);
   const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 });
 
+  const { logout } = useUser();
+
   useEffect(() => {
     fetchToDos();
   }, []);
 
   const deleteToDo = async (id) => {
+    if (!authChecker(logout)) {
+      return;
+    }
+
+    const token = localStorage.getItem("token");
+
     if (!id) return;
-    const response = await axios.delete(`${API_URL}/api/todos/${id}`);
+    const response = await axios.delete(`${API_URL}/api/todos/${id}`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
     fetchToDos();
     Toast({
       desciption: "Task deleted successfully",
@@ -35,9 +50,20 @@ const ToDoBodyLeft = () => {
   };
 
   const handleMarkAsDone = async (id) => {
+    if (!authChecker(logout)) {
+      return;
+    }
+
+    const token = localStorage.getItem("token");
+
     if (!id) return;
     try {
-      await axios.delete(`${API_URL}/api/todos/${id}`);
+      await axios.delete(`${API_URL}/api/todos/${id}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
       fetchToDos();
       Toast({
@@ -64,8 +90,19 @@ const ToDoBodyLeft = () => {
   };
 
   const handleArchive = async (todoId) => {
+    if (!authChecker(logout)) {
+      return;
+    }
+
+    const token = localStorage.getItem("token");
+
     try {
-      await axios.post(`${API_URL}/api/archive/todos/${todoId}`);
+      await axios.post(`${API_URL}/api/archive/todos/${todoId}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
       Toast({
         desciption: "Task archived successfully",
         color: "success",
