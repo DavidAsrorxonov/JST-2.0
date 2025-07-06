@@ -113,6 +113,7 @@ const TableBody = () => {
               <td className="p-3">
                 <div className="flex items-center justify-between">
                   <input
+                    disabled
                     defaultValue={website_url}
                     className={`py-0.5 px-3 focus:outline-blue-300 cursor-text w-[90%] ${
                       selectedJobId.includes(id) ? "bg-blue-100" : ""

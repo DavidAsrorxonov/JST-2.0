@@ -193,14 +193,14 @@ const TableActions = () => {
 
       {jobs && jobs.length === 0 ? (
         <div className="absolute flex items-center justify-center gap-3 bottom-3 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-          <div className=" bg-blue-100 px-4 rounded-md border border-blue-500 text-blue-600">
+          <div className=" bg-blue-100 px-4 py-2 rounded-full border border-blue-500 text-blue-600">
             <div className="text-xl">No jobs found</div>
           </div>
           <div
             className="bg-blue-100 p-2 rounded-full border border-blue-500 text-blue-600 cursor-pointer"
             onClick={() => setAddNewJobModal(true)}
           >
-            <Plus />
+            <Plus className="hover:rotate-180 transition-all duration-300" />
           </div>
         </div>
       ) : null}
