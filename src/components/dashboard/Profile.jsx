@@ -22,6 +22,7 @@ import {
 import { MoonIcon } from "../../../public/icons/MoonIcon";
 import { SunIcon } from "../../../public/icons/SunIcon";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -37,6 +38,8 @@ const Profile = () => {
   const { logout } = useUser();
 
   const { t, i18n } = useTranslation();
+
+  const navigate = useNavigate();
 
   const languages = [
     { value: "en", label: "English", flag: "🇬🇧" },
@@ -146,7 +149,10 @@ const Profile = () => {
                     <Lock size={18} /> {t("Security")}
                   </h2>
                   <div className="mt-2 flex flex-col gap-2 text-sm">
-                    <button className="flex items-center gap-2 text-gray-700 hover:text-yellow-600 transition">
+                    <button
+                      className="flex items-center gap-2 text-gray-700 hover:text-yellow-600 transition"
+                      onClick={() => navigate("/password-reset")}
+                    >
                       <Lock size={16} /> {t("Change Password")}
                     </button>
                     <button className="flex items-center gap-2 text-gray-700 hover:text-green-600 transition">

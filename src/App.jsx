@@ -22,6 +22,7 @@ import PublicRoute from "./secure/PublicRoute";
 import ProtectedRoute from "./secure/ProtectedRoute";
 import { AnimatePresence } from "framer-motion";
 import { useLocation } from "react-router-dom";
+import PasswordChange from "./pages/PasswordChange";
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -45,6 +46,7 @@ const AnimatedRoutes = () => {
           <Route path="/progress" element={<ApplicationPage />} />
           <Route path="/todos" element={<ToDoPage />} />
           <Route path="/archive" element={<ArchivePage />} />
+          <Route path="/password-reset" element={<PasswordChange />} />
         </Route>
 
         <Route path="/terms" element={<Terms />} />
