@@ -155,7 +155,10 @@ const Profile = () => {
                     >
                       <Lock size={16} /> {t("Change Password")}
                     </button>
-                    <button className="flex items-center gap-2 text-gray-700 hover:text-green-600 transition">
+                    <button
+                      className="flex items-center gap-2 text-gray-700 hover:text-green-600 transition"
+                      onClick={() => navigate("/two-factor-auth")}
+                    >
                       <ShieldCheck size={16} /> {t("Two-Factor Authentication")}
                     </button>
                     <button
