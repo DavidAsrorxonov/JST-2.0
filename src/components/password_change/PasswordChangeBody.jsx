@@ -4,6 +4,7 @@ import axios from "axios";
 import { API_URL } from "../../constants/api";
 import { Eye, EyeClosed, EyeOff } from "lucide-react";
 import validatePassword from "../../lib/utils/passwordValidator";
+import { useNavigate } from "react-router-dom";
 
 const PasswordChangeBody = () => {
   const [oldPassword, setOldPassword] = useState("");
@@ -19,9 +20,16 @@ const PasswordChangeBody = () => {
   const email = JSON.parse(localStorage.getItem("user")).email;
   const token = localStorage.getItem("token");
 
+  const navigate = useNavigate();
+
   const payload = {
     email,
     password: oldPassword,
+  };
+
+  const newPasswordPayload = {
+    email,
+    password: newPassword,
   };
 
   const checkOldPassword = async (e) => {
@@ -70,6 +78,92 @@ const PasswordChangeBody = () => {
       }
     } finally {
       setLoading(false);
+    }
+  };
+
+  const updatePassword = async (e) => {
+    e.preventDefault();
+
+    if (!newPassword || !confirmPassword) {
+      Toast({
+        desciption: "All fields are required",
+        color: "danger",
+      });
+      return;
+    }
+
+    if (passwordErrors.length > 0) {
+      Toast({
+        desciption: "Password does not meet requirements",
+        color: "danger",
+      });
+      return;
+    }
+
+    if (newPassword !== confirmPassword) {
+      Toast({
+        desciption: "Passwords do not match",
+        color: "danger",
+      });
+      return;
+    }
+
+    if (oldPassword === newPassword) {
+      Toast({
+        desciption: "New password cannot be same as old password",
+        color: "danger",
+      });
+      return;
+    }
+
+    try {
+      const response = await axios.put(
+        `${API_URL}/auth/password-update`,
+        newPasswordPayload,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        Toast({
+          desciption: `Password updated successfully for
+
+            User: ${response.data.user.firstName} ${response.data.user.lastName}
+            Email: ${response.data.user.email}
+            ID: ${response.data.user.id}
+          `,
+          color: "success",
+        });
+      }
+
+      setIsOldPasswordCorrect(false);
+      setOldPassword("");
+
+      setTimeout(() => {
+        Toast({
+          desciption: "Redirecting to Dashboard in 3 seconds",
+          color: "primary",
+        });
+        setTimeout(() => {
+          navigate("/dashboard");
+        }, 3000);
+      }, 3000);
+    } catch (error) {
+      if (error.response?.status === 400) {
+        Toast({
+          desciption: error.response.data.message,
+          color: "danger",
+        });
+      } else {
+        Toast({
+          desciption: "Error updating password",
+          color: "danger",
+        });
+      }
     }
   };
 
@@ -168,7 +262,10 @@ const PasswordChangeBody = () => {
               )}
             </div>
 
-            <button className="w-full px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">
+            <button
+              className="w-full px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition"
+              onClick={updatePassword}
+            >
               Change Password
             </button>
           </div>
