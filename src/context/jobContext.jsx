@@ -4,6 +4,7 @@ import { API_URL } from "../constants/api";
 import Toast from "../components/ui/Toast";
 import { useUser } from "./userContext";
 import { authChecker } from "../lib/utils/authChecker";
+import capi from "../lib/CAPII";
 
 const JobContext = createContext();
 
@@ -21,13 +22,9 @@ export const JobProvider = ({ children }) => {
 
     const token = localStorage.getItem("token");
 
-    const response = await axios.get(`${API_URL}/api/jobs`, {
+    const response = await capi.get("/api/jobs", {
       params: {
         user_id: id,
-      },
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
       },
     });
 

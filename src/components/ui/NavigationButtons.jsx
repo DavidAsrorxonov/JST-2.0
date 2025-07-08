@@ -1,26 +1,43 @@
 import { ArrowLeft, House } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { useEffect, useState } from "react";
 
 const NavigationButtons = () => {
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const navigate = useNavigate();
   const { t } = useTranslation();
 
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const isMobile = windowWidth < 768;
+  const isLargeDesktop = windowWidth >= 1440;
+
   return (
-    <div className="absolute top-6 left-6 flex gap-2 z-50">
+    <div
+      className={`z-50 flex gap-2 ${
+        isLargeDesktop
+          ? "absolute top-6 left-6"
+          : "fixed bottom-6 left-1/2 transform -translate-x-1/2"
+      }`}
+    >
       <button
         onClick={() => navigate(-1)}
         className="flex items-center px-4 py-2 bg-blue-200 hover:bg-blue-300 transition rounded-full border border-blue-500 gap-2 text-blue-600 hover:text-blue-700 font-semibold"
       >
         <ArrowLeft size={20} />
-        {t("Back")}
+        {!isMobile && t("Back")}
       </button>
       <button
         onClick={() => navigate("/dashboard")}
         className="flex items-center px-4 py-2 bg-blue-200 hover:bg-blue-300 transition rounded-full border border-blue-500 gap-2 text-blue-600 hover:text-blue-700 font-semibold"
       >
         <House size={20} />
-        {t("Home")}
+        {!isMobile && t("Home")}
       </button>
     </div>
   );

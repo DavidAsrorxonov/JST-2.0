@@ -5,6 +5,7 @@ import { API_URL } from "../../constants/api";
 import { Eye, EyeClosed, EyeOff } from "lucide-react";
 import validatePassword from "../../lib/utils/passwordValidator";
 import { useNavigate } from "react-router-dom";
+import NavigationButtons from "../ui/NavigationButtons";
 
 const PasswordChangeBody = () => {
   const [oldPassword, setOldPassword] = useState("");
@@ -169,6 +170,7 @@ const PasswordChangeBody = () => {
 
   return (
     <div className="max-w-md mx-auto">
+      <NavigationButtons />
       <form className="flex flex-col gap-4 mt-4">
         <h1 className="font-bold text-3xl text-center">Password Change</h1>
         <div className="flex flex-col gap-5">
