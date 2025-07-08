@@ -24,6 +24,7 @@ import { AnimatePresence } from "framer-motion";
 import { useLocation } from "react-router-dom";
 import PasswordChange from "./pages/PasswordChange";
 import TwoFactorAuthPage from "./pages/TwoFactorAuthPage";
+import AccountDeletePage from "./pages/AccountDeletePage";
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -49,6 +50,7 @@ const AnimatedRoutes = () => {
           <Route path="/archive" element={<ArchivePage />} />
           <Route path="/password-reset" element={<PasswordChange />} />
           <Route path="/two-factor-auth" element={<TwoFactorAuthPage />} />
+          <Route path="/account-delete" element={<AccountDeletePage />} />
         </Route>
 
         <Route path="/terms" element={<Terms />} />

@@ -192,7 +192,10 @@ const Profile = () => {
                   <button className="flex items-center gap-2 text-yellow-600 hover:underline text-sm">
                     <ShieldCheck size={16} /> {t("Deactivate Account")}
                   </button>
-                  <button className="flex items-center gap-2 text-red-600 hover:underline text-sm">
+                  <button
+                    className="flex items-center gap-2 text-red-600 hover:underline text-sm"
+                    onClick={() => navigate("/account-delete")}
+                  >
                     <Trash2 size={16} /> {t("Delete Account Permanently")}
                   </button>
                 </div>
