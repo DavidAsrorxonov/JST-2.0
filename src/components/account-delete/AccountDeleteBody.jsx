@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import { Accordion, AccordionItem } from "@heroui/react";
+import NavigationButtons from "../ui/NavigationButtons";
 
 const AccountDeleteBody = () => {
   const [showDeletingWarning, setShowDeletingWarning] = useState(true);
+  const [showDeletingForm, setShowDeletingForm] = useState(false);
 
   const defaultContent =
     "Once you proceed, all of your data, including your personal information, saved settings preferences, job history, events, todos and notes will be permanently removed from our servers. This action cannot be undone, and we will not be able to help you recover any part of your account once it's deleted. Please make sure to save any important information before proceeding. If you're sure about your decision, confirm your password and proceed with the deletion. Otherwise, we recommend going back to your dashboard or contacting support if you need help.";
 
   return (
     <div>
+      <NavigationButtons />
       {showDeletingWarning && (
         <div className="flex items-center justify-center mt-10">
           <div className="w-[100%] md:w-[50%]">
@@ -24,14 +27,49 @@ const AccountDeleteBody = () => {
 
                 <div className="flex justify-center mt-4">
                   <button
-                    className="px-4 py-2 bg-red-500 text-white rounded-full shadow-md hover:bg-red-600 transition"
-                    onClick={() => setShowDeletingWarning(false)}
+                    className="px-4 py-1 border border-gray-400 rounded-full"
+                    onClick={() => {
+                      setShowDeletingWarning(false);
+                      setShowDeletingForm(true);
+                    }}
                   >
                     I have read the terms and I want to delete my account
                   </button>
                 </div>
               </AccordionItem>
             </Accordion>
+          </div>
+        </div>
+      )}
+
+      {showDeletingForm && (
+        <div className="flex items-center justify-center mt-10">
+          <div className="w-[100%] md:w-[50%] flex flex-col items-center justify-center">
+            <h1 className="text-3xl font-bold">Account Deleting</h1>
+
+            <div className="w-[70%]">
+              <div className="flex flex-col gap-2 mt-4">
+                <label htmlFor="email">Email</label>
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-500 transition"
+                />
+              </div>
+
+              <div className="flex flex-col gap-2 mt-4">
+                <label htmlFor="password">Password</label>
+                <input
+                  type="password"
+                  placeholder="Enter your password"
+                  className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-500 transition"
+                />
+              </div>
+
+              <button className="w-full mt-4 px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition">
+                Delete Account Permanently
+              </button>
+            </div>
           </div>
         </div>
       )}
