@@ -25,7 +25,7 @@ const ShortcutHelp = () => {
       { opacity: 0, y: -20 },
       { opacity: 1, y: 0, duration: 0.5 }
     );
-  });
+  }, [isOpen]);
 
   const Key = ({ children }) => (
     <kbd className="bg-white/60 border border-[#B0B3D6] px-2 py-0.5 rounded-md font-mono text-sm shadow-sm text-blue-600">
