@@ -189,7 +189,10 @@ const Profile = () => {
                   <h4 className="text-sm font-semibold text-gray-700 mb-2">
                     {t("Account Options")}
                   </h4>
-                  <button className="flex items-center gap-2 text-yellow-600 hover:underline text-sm">
+                  <button
+                    className="flex items-center gap-2 text-yellow-600 hover:underline text-sm"
+                    onClick={() => navigate("/deactivate-account")}
+                  >
                     <ShieldCheck size={16} /> {t("Deactivate Account")}
                   </button>
                   <button
