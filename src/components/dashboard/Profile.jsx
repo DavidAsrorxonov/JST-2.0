@@ -76,10 +76,6 @@ const Profile = () => {
                     </div>
                     <div className="text-sm text-gray-500">{userEmail}</div>
                   </div>
-                  <div className="ml-auto text-purple-600 hover:underline flex items-center gap-1 cursor-pointer">
-                    <UserRoundPen size={16} />
-                    {t("Edit")}
-                  </div>
                 </div>
               </DrawerHeader>
 
