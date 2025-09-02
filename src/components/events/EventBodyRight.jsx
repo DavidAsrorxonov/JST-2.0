@@ -54,52 +54,58 @@ const EventBodyRight = () => {
         </h1>
 
         <div className="border border-gray-200 rounded-lg max-h-[80vh] overflow-y-scroll p-3 shadow-inner bg-white">
-          {events.map(({ event_name, event_description, event_date }, idx) => (
-            <div
-              key={idx}
-              className="bg-gray-50 hover:bg-gray-100 transition-colors duration-200 p-4 rounded-xl shadow-sm mb-3"
-            >
-              <p className="flex items-center justify-center text-lg font-medium text-gray-800 mb-1">
-                📌 <span className="font-semibold">{t("Event name")}:</span>{" "}
-                &nbsp;
-                {event_name}
-                <div className="ml-auto flex gap-1 items-center justify-center">
-                  <div className="hover:bg-gray-200 rounded-md cursor-pointer transition-all px-2 py-1">
-                    <Tooltip content="Set reminder" showArrow={true}>
-                      <Bell
-                        onClick={() =>
-                          handleBellClick({ event_name, event_date })
-                        }
-                        className="outline-none focus:outline-none"
-                      />
-                    </Tooltip>
+          {events && events.length > 0 ? (
+            events.map(({ event_name, event_description, event_date }, idx) => (
+              <div
+                key={idx}
+                className="bg-gray-50 hover:bg-gray-100 transition-colors duration-200 p-4 rounded-xl shadow-sm mb-3"
+              >
+                <p className="flex items-center justify-center text-lg font-medium text-gray-800 mb-1">
+                  📌 <span className="font-semibold">{t("Event name")}:</span>{" "}
+                  &nbsp;
+                  {event_name}
+                  <div className="ml-auto flex gap-1 items-center justify-center">
+                    <div className="hover:bg-gray-200 rounded-md cursor-pointer transition-all px-2 py-1">
+                      <Tooltip content="Set reminder" showArrow={true}>
+                        <Bell
+                          onClick={() =>
+                            handleBellClick({ event_name, event_date })
+                          }
+                          className="outline-none focus:outline-none"
+                        />
+                      </Tooltip>
+                    </div>
+                    <div className="hover:bg-gray-200 rounded-md cursor-pointer transition-all px-2 py-1">
+                      <Ellipsis onClick={(e) => handleEllipsisClick(e, idx)} />
+                    </div>
                   </div>
-                  <div className="hover:bg-gray-200 rounded-md cursor-pointer transition-all px-2 py-1">
-                    <Ellipsis onClick={(e) => handleEllipsisClick(e, idx)} />
+                </p>
+                <p className="text-sm text-gray-600 mb-1">
+                  📝 <span className="font-medium">{t("Description")}:</span>{" "}
+                  {event_description}
+                </p>
+                <p className="text-sm text-gray-500">
+                  📅 <span className="font-medium">{t("Date")}:</span>{" "}
+                  {event_date}
+                </p>
+                {ellipsisOpen === idx && (
+                  <div
+                    className="absolute bg-white border rounded-md shadow-md p-2 w-40 z-10"
+                    style={{ top: modalPosition.top, left: modalPosition.left }}
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <p className="text-sm hover:bg-gray-100 px-2 py-1 cursor-pointer rounded">
+                      {t("Mark as completed")}
+                    </p>
                   </div>
-                </div>
-              </p>
-              <p className="text-sm text-gray-600 mb-1">
-                📝 <span className="font-medium">{t("Description")}:</span>{" "}
-                {event_description}
-              </p>
-              <p className="text-sm text-gray-500">
-                📅 <span className="font-medium">{t("Date")}:</span>{" "}
-                {event_date}
-              </p>
-              {ellipsisOpen === idx && (
-                <div
-                  className="absolute bg-white border rounded-md shadow-md p-2 w-40 z-10"
-                  style={{ top: modalPosition.top, left: modalPosition.left }}
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <p className="text-sm hover:bg-gray-100 px-2 py-1 cursor-pointer rounded">
-                    {t("Mark as completed")}
-                  </p>
-                </div>
-              )}
+                )}
+              </div>
+            ))
+          ) : (
+            <div>
+              <p className="text-gray-600">{t("No events recorded yet")}</p>
             </div>
-          ))}
+          )}
         </div>
       </div>
       <NavigationButtons />
