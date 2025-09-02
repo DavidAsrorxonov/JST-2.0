@@ -1,6 +1,4 @@
-import { useState, useEffect } from "react";
 import GetStartedButton from "./ui/GetStartedButton";
-import { ChevronsDown } from "lucide-react";
 import "../styles/Hero.css";
 import useTypingEffect from "../lib/utils/useTypingEffect";
 
