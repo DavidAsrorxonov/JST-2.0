@@ -6,36 +6,23 @@ import useTypingEffect from "../lib/utils/useTypingEffect";
 
 const Hero = () => {
   const animatedText = useTypingEffect("Job Site Tracker", 200);
-  const [showScrollIndicator, setShowScrollIndicator] = useState(true);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setShowScrollIndicator(window.scrollY < 100);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   return (
     <div
-      className="relative w-full min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-white via-white to-blue-50 px-6"
+      className="relative w-full min-h-screen flex flex-col items-center bg-[#0a0a0a] justify-center px-6"
       id="home"
     >
-      <div className="absolute w-96 h-96 bg-blue-50 opacity-30 rounded-full blur-3xl top-[-100px] left-[-100px] animate-pulse-slow"></div>
-      <div className="absolute w-96 h-96 bg-blue-50 opacity-20 rounded-full blur-3xl bottom-[-100px] right-[-100px] animate-pulse-slow"></div>
-
-      <h1 className="text-6xl md:text-9xl font-bold text-gray-900 w-full text-center m-7">
+      <h1 className="text-6xl md:text-7xl font-bold text-[#e5e5e5] w-full text-center m-7">
         JST | {animatedText}
       </h1>
       <div className="z-10 max-w-4xl text-center">
-        <h1 className="text-5xl md:text-6xl font-extrabold text-gray-900 leading-tight">
+        <h1 className="text-4xl md:text-5xl font-extrabold text-[#e5e5e5] leading-tight">
           Track Your Job Applications{" "}
-          <span className="glowing text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-amber-400">
+          <span className="font-bold underline text-5xl md:text-6xl">
             Effortlessly
           </span>
         </h1>
-        <p className="mt-6 text-lg md:text-xl text-gray-800 animate-fade-in">
+        <p className="mt-6 text-lg md:text-xl text-[#e5e5e5] animate-fade-in">
           Stay organized and on top of your job search with our smart
           application tracker. Visualize progress, manage tasks, and never miss
           an opportunity.
@@ -46,17 +33,6 @@ const Hero = () => {
           </div>
         </div>
       </div>
-
-      {showScrollIndicator && (
-        <div className="absolute md:bottom-16 bottom-7 w-full flex justify-center z-20">
-          <div className="flex flex-col items-center gap-2 animate-pulse text-gray-800">
-            <ChevronsDown size={48} className="text-gray-700 animate-bounce" />
-            <span className="text-sm tracking-wide uppercase text-gray-700">
-              Scroll to Explore
-            </span>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
