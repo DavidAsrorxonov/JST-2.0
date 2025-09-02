@@ -1,3 +1,7 @@
+html {
+  background-color: black;
+}
+
 .glowing {
   color: #f5e39e;
   text-shadow: 0 0 1px #f5e39e, 0 0 6px #e6b800, 0 0 9px #e6b800,

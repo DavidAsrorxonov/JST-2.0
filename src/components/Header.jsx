@@ -24,7 +24,7 @@ const Header = ({ activeSections }) => {
               <a
                 href={`#${option.toLowerCase()}`}
                 key={i}
-                className={`text-md capitalize px-2 py-1 rounded-md transition-all duration-200 ${
+                className={`text-md capitalize px-3 py-1 rounded-md transition-all duration-200 ${
                   activeSections === option
                     ? "underline text-[#e5e5e5]"
                     : "text-[#e5e5e5] hover:bg-[#262626]"

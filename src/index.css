@@ -3,11 +3,13 @@
 html {
   scroll-behavior: smooth;
   overflow-x: auto;
-  background-color: black;
+  background-color: #0a0a0a;
+  overscroll-behavior: none;
 }
 
 body {
   font-family: "Exo 2", sans-serif;
+  background-color: #0a0a0a;
 }
 
 @tailwind base;

@@ -7,9 +7,12 @@ const Hero = () => {
 
   return (
     <div
-      className="relative w-full min-h-screen flex flex-col items-center bg-[#0a0a0a] justify-center px-6"
+      className="relative w-full min-h-screen flex flex-col items-center justify-start px-6 pt-32"
       id="home"
     >
+      <div className="text-[#e5e5e5] text-xs px-4 py-1 rounded-full bg-[#262626]">
+        New Version Coming Soon &nbsp; 🚀
+      </div>
       <h1 className="text-6xl md:text-7xl font-bold text-[#e5e5e5] w-full text-center m-7">
         JST | {animatedText}
       </h1>
