@@ -4,7 +4,7 @@ const Offer = () => {
   return (
     <div
       className="w-full flex flex-col items-center justify-start px-6 mt-5 bg-[#0a0a0a]"
-      id="offer"
+      id="workflow"
     >
       <h1 className="w-full text-left text-4xl md:text-5xl font-extrabold text-[#e5e5e5] mb-12">
         The Workflow

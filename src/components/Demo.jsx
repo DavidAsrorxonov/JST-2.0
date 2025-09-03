@@ -8,7 +8,7 @@ const Demo = () => {
   return (
     <div
       className="w-full min-h-screen flex flex-col items-center justify-start mt-10 px-6"
-      id="demo"
+      id="offer"
     >
       <h1 className="text-4xl md:text-5xl font-extrabold mb-12 w-full text-left text-[#e5e5e5]">
         With <span className="text-[#22c55e] underline">JST</span>, you get

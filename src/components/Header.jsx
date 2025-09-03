@@ -6,7 +6,7 @@ const Header = ({ activeSections }) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [showMenu, setShowMenu] = useState(false);
 
-  const options = ["home", "about", "offer", "demo", "security", "contact"];
+  const options = ["home", "about", "workflow", "offer", "security", "contact"];
 
   return (
     <div className="flex justify-between items-center fixed top-0 left-0 w-full bg-[#0a0a0a] z-50 h-fit px-4 py-2 md:py-0.5">

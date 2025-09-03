@@ -27,11 +27,11 @@ const Landing = () => {
   });
   const [offerRef] = useInView({
     ...options,
-    onChange: (inView) => inView && setActiveSections("offer"),
+    onChange: (inView) => inView && setActiveSections("workflow"),
   });
   const [demoRef] = useInView({
     ...options,
-    onChange: (inView) => inView && setActiveSections("demo"),
+    onChange: (inView) => inView && setActiveSections("offer"),
   });
   const [securityRef] = useInView({
     ...options,
@@ -52,10 +52,10 @@ const Landing = () => {
         <div id="about" ref={aboutRef} className="w-full block">
           <SecondPart />
         </div>
-        <div id="offer" ref={offerRef} className="w-full block">
+        <div id="workflow" ref={offerRef} className="w-full block">
           <Offer />
         </div>
-        <div id="demo" ref={demoRef}>
+        <div id="offer" ref={demoRef}>
           <Demo />
         </div>
         <div id="security" ref={securityRef}>
