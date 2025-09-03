@@ -1,33 +1,55 @@
-import { SquareArrowOutUpRight } from "lucide-react";
-import { useState } from "react";
+import { offerOptions } from "../constants/offerOptions";
+import "../styles/Scroll.css";
 
 const Demo = () => {
-  const [demoClicked, setDemoClicked] = useState(true);
+  const firstRow = offerOptions.slice(0, 3);
+  const secondRow = offerOptions.slice(3);
 
   return (
     <div
-      className="w-full h-screen flex flex-col items-center justify-center py-20 px-6 text-black"
+      className="w-full min-h-screen flex flex-col items-center justify-start mt-10 px-6"
       id="demo"
     >
-      <h1 className="text-4xl md:text-5xl font-extrabold">
-        Seeing is believing
+      <h1 className="text-4xl md:text-5xl font-extrabold mb-12 w-full text-left text-[#e5e5e5]">
+        With <span className="text-[#22c55e] underline">JST</span>, you get
       </h1>
-      <div className="relative w-full h-full">
-        <img
-          src="/images/demo.jpg"
-          className={`w-full h-full rounded-xl object-cover mt-10 ${
-            demoClicked ? "blur-2xl rounded-xl" : ""
-          }`}
-        />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div
-            className="flex gap-4 items-center justify-center px-4 py-2 text-2xl text-white font-bold bg-gray-700 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 border border-white rounded-full cursor-pointer hover:scale-95 transition-all duration-300"
-            onClick={() => setDemoClicked(!demoClicked)}
-          >
-            Demo{" "}
-            <span>
-              <SquareArrowOutUpRight />
-            </span>
+
+      <div className="w-full space-y-16">
+        <div className="relative w-full overflow-hidden">
+          <div className="flex w-max animate-scroll-left">
+            {[...firstRow, ...firstRow].map(
+              ({ id, icon, title, content }, i) => (
+                <div
+                  key={id + "-top-" + i}
+                  className="shrink-0 w-[500px] md:w-[600px] h-[260px] bg-[#171717] border border-white/30 rounded-2xl p-6 mx-6 flex flex-col"
+                >
+                  <div className="text-5xl mb-4">{icon}</div>
+                  <h3 className="text-2xl font-bold text-[#e5e5e5] mb-2">
+                    {title}
+                  </h3>
+                  <p className="text-gray-400 text-base">{content}</p>
+                </div>
+              )
+            )}
+          </div>
+        </div>
+
+        <div className="relative w-full overflow-hidden">
+          <div className="flex w-max animate-scroll-right">
+            {[...secondRow, ...secondRow].map(
+              ({ id, icon, title, content }, i) => (
+                <div
+                  key={id + "-bottom-" + i}
+                  className="shrink-0 w-[500px] md:w-[600px] h-[260px] bg-[#171717] border border-white/30 rounded-2xl p-6 mx-6 flex flex-col"
+                >
+                  <div className="text-5xl mb-4">{icon}</div>
+                  <h3 className="text-2xl font-bold text-[#e5e5e5] mb-2">
+                    {title}
+                  </h3>
+                  <p className="text-gray-400 text-base">{content}</p>
+                </div>
+              )
+            )}
           </div>
         </div>
       </div>

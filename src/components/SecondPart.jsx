@@ -10,7 +10,7 @@ const SecondPart = () => {
     >
       <h1 className="w-full text-4xl md:text-5xl font-extrabold mb-12 text-[#e5e5e5] text-center">
         Take Control of Your&nbsp;{" "}
-        <span className="text-[#22c55e]">Job Hunt</span>
+        <span className="text-[#22c55e] underline">Job Hunt</span>
       </h1>
 
       <div
