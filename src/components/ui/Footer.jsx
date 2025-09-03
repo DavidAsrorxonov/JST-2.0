@@ -8,29 +8,29 @@ const Footer = () => {
           <h2 className="text-xl font-bold">
             <Logo />
           </h2>
-          <p className="text-sm mt-1">
-            © {new Date().getFullYear()} All rights reserved.
+          <p className="text-sm text-[#e5e5e5] mt-1">
+            © {new Date().getFullYear()} All rights reserved. JST Corp.
           </p>
         </div>
         <div className="w-full md:w-1/3">
-          <p className="font-semibold mb-2 text-center md:text-left">
+          <p className="font-semibold mb-2 text-center md:text-left text-[#e5e5e5]">
             Subscribe to our newsletter
           </p>
           <form className="flex flex-col sm:flex-row gap-3">
             <input
               type="email"
               placeholder="Enter your email"
-              className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+              className="bg-[#212121] w-full text-[#e5e5e5] p-2 rounded-lg border border-white/30 focus:outline-none focus:ring-2 focus:ring-white/40 transition placeholder:text-white/50"
             />
             <button
               type="submit"
-              className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition"
+              className="bg-[#e5e5e5] text-[#171717] font-medium rounded-lg px-2 transition"
             >
               Subscribe
             </button>
           </form>
         </div>
-        <div className="flex flex-col items-center md:items-end gap-2 text-sm underline underline-offset-2">
+        <div className="flex flex-col items-center md:items-end gap-2 text-sm underline underline-offset-2 text-[#e5e5e5]">
           <a
             href="/terms"
             className="hover:text-blue-500 transition"
