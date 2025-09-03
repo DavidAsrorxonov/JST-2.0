@@ -35,79 +35,57 @@ const Contact = () => {
   ];
 
   return (
-    <div className="w-full min-h-screen flex flex-col items-center justify-center py-20 px-6 text-black">
-      <h1 className="text-4xl md:text-5xl font-extrabold text-center tracking-tight mb-16">
+    <div className="w-full flex flex-col items-center justify-center mt-10 px-6">
+      <h1 className="text-4xl md:text-5xl font-extrabold text-left w-full text-[#e5e5e5] tracking-tight mb-16">
         Reach out to us
       </h1>
-      <div className="w-full min-h-screen flex flex-col md:flex-row items-center justify-around px-6 py-12 space-y-10 md:space-y-0 gap-4">
+      <div className="w-full flex flex-col md:flex-row items-start justify-start px-6 md:space-y-0 gap-4">
         <div className="flex flex-col items-center justify-center w-full">
-          <form className="flex flex-col gap-5 w-full max-w-md bg-white p-8 rounded-2xl shadow-xl border border-gray-200">
-            <h1 className="text-5xl font-extrabold text-gray-800 mb-4 text-center">
+          <form className="flex flex-col gap-5 w-full max-w-md bg-[#171717] p-8 rounded-lg shadow-xl border border-white/30">
+            <h1 className="text-5xl font-extrabold text-[#e5e5e5] mb-4 text-center">
               Talk to Us
             </h1>
 
             <div className="flex flex-col">
-              <label className="mb-1 text-gray-700 font-medium">
+              <label className="mb-1 text-[#e5e5e5] font-medium">
                 Your Name
               </label>
               <input
                 type="text"
                 placeholder="Type your name"
-                className="p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+                className="bg-[#212121] text-[#e5e5e5] p-2 rounded-lg border border-white/30 focus:outline-none focus:ring-2 focus:ring-white/40 transition placeholder:text-white/50"
               />
             </div>
 
             <div className="flex flex-col">
-              <label className="mb-1 text-gray-700 font-medium">
+              <label className="mb-1 text-[#e5e5e5] font-medium">
                 Your Email
               </label>
               <input
                 type="email"
                 placeholder="Type your email"
-                className="p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+                className="bg-[#212121] text-[#e5e5e5] p-2 rounded-lg border border-white/30 focus:outline-none focus:ring-2 focus:ring-white/40 transition placeholder:text-white/50"
               />
             </div>
 
             <div className="flex flex-col">
-              <label className="mb-1 text-gray-700 font-medium">
+              <label className="mb-1 text-[#e5e5e5] font-medium">
                 Your Message
               </label>
               <textarea
                 rows="4"
                 placeholder="Type your message"
-                className="p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition resize-none"
+                className="bg-[#212121] text-[#e5e5e5] p-2 rounded-lg border border-white/30 focus:outline-none focus:ring-2 focus:ring-white/40 transition placeholder:text-white/50"
               />
             </div>
 
             <button
               type="submit"
-              className="mt-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition"
+              className="mt-4 bg-[#e5e5e5] text-[#171717] font-medium py-2 rounded-lg transition"
             >
               Send Message
             </button>
           </form>
-        </div>
-        <div className="flex items-center justify-center w-full my-12">
-          <div className="border-t border-gray-300 w-full"></div>
-          <span className="px-4 text-gray-500 font-semibold transition-all duration-300 hover:text-gray-700">
-            or
-          </span>
-          <div className="border-t border-gray-300 w-full"></div>
-        </div>
-        <div className="flex flex-col items-center justify-center w-full mt-12 px-4">
-          <h1 className="text-2xl font-bold text-gray-800 mb-6">
-            Connect through:
-          </h1>
-          <div className="flex flex-col gap-4 w-full max-w-md">
-            {connectInfo.map(({ link, icon, label, labelStyle }, idx) => (
-              <a href={link} target="_blank" key={idx}>
-                <div className="flex items-center gap-3 px-4 py-3 bg-white rounded-xl shadow-md hover:shadow-lg transition cursor-pointer">
-                  {icon}
-                  <span className={labelStyle}>{label}</span>
-                </div>
-              </a>
-            ))}
-          </div>
         </div>
       </div>
     </div>
