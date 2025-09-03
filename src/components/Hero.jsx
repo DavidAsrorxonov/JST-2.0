@@ -10,7 +10,7 @@ const Hero = () => {
       className="relative w-full min-h-screen flex flex-col items-center justify-start px-6 pt-32"
       id="home"
     >
-      <div className="text-[#e5e5e5] text-xs px-4 py-1 rounded-full bg-[#262626]">
+      <div className="text-[#e5e5e5] text-xs px-4 py-1 rounded-full bg-[#262626] border border-white/65">
         New Version Coming Soon &nbsp; 🚀
       </div>
       <h1 className="text-6xl md:text-7xl font-bold text-[#e5e5e5] w-full text-center m-7">

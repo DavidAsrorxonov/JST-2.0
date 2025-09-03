@@ -1,15 +1,10 @@
 import { useState } from "react";
 import Logo from "./Logo";
 import { Menu, X } from "lucide-react";
-import GetStartedButton from "./ui/GetStartedButton";
-import { useNavigate } from "react-router-dom";
-import GithubLink from "./ui/GithubLink";
-import ThemeToggleUI from "./ui/ThemeToggleUI";
 
 const Header = ({ activeSections }) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [showMenu, setShowMenu] = useState(false);
-  const navigate = useNavigate();
 
   const options = ["home", "about", "offer", "demo", "security", "contact"];
 
