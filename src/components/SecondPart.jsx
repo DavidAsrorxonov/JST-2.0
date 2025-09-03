@@ -5,10 +5,13 @@ import Card from "./ui/Card";
 const SecondPart = () => {
   return (
     <div
-      className="w-full flex flex-col items-start justify-start min-h-screen px-6 py-12"
+      className="w-full flex flex-col items-start justify-start px-6 py-12"
       id="about"
     >
-      <h1 className="text-4xl md:text-5xl font-extrabold mb-12">About us</h1>
+      <h1 className="w-full text-4xl md:text-5xl font-extrabold mb-12 text-[#e5e5e5] text-center">
+        Take Control of Your&nbsp;{" "}
+        <span className="text-[#22c55e]">Job Hunt</span>
+      </h1>
 
       <div
         className="

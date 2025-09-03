@@ -1,6 +1,7 @@
 import GetStartedButton from "./ui/GetStartedButton";
 import "../styles/Hero.css";
 import useTypingEffect from "../lib/utils/useTypingEffect";
+import { ChevronDown } from "lucide-react";
 
 const Hero = () => {
   const animatedText = useTypingEffect("Job Site Tracker", 200);
@@ -33,6 +34,10 @@ const Hero = () => {
             <GetStartedButton />
           </div>
         </div>
+      </div>
+
+      <div className="hidden md:block absolute bottom-10 mx-auto">
+        <ChevronDown size={40} className="text-[#e5e5e5]" />
       </div>
     </div>
   );

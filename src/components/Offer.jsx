@@ -1,130 +1,65 @@
-import { useEffect, useRef } from "react";
-import {
-  Briefcase,
-  Filter,
-  BarChart,
-  CalendarClock,
-  CheckCircle2,
-  ClipboardList,
-} from "lucide-react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import gsap from "gsap";
-
-gsap.registerPlugin(ScrollTrigger);
+import { steps } from "../constants/steps";
 
 const Offer = () => {
-  const cardsRef = useRef([]);
-
-  const cardsInfo = [
-    {
-      icon: <Briefcase size={32} />,
-      title: "Unified Job Dashboard",
-      content:
-        "Say goodbye to scattered spreadsheets. Our platform centralizes your entire job search—track every application, note progress, and stay in control.",
-      bg: "bg-blue-100",
-      color: "text-blue-500",
-      border: "border-blue-400",
-    },
-    {
-      icon: <Filter size={32} />,
-      title: "Smart Filters & Alerts",
-      content:
-        "Instantly filter by company, status, or deadline. With timely alerts and clear visuals, you'll never miss an important follow-up again.",
-      bg: "bg-purple-100",
-      color: "text-purple-500",
-      border: "border-purple-400",
-    },
-    {
-      icon: <BarChart size={32} />,
-      title: "Visual Progress Insights",
-      content:
-        "Analyze trends with beautifully designed graphs and dashboards. See your wins, learn from patterns, and elevate your job-seeking strategy.",
-      bg: "bg-green-100",
-      color: "text-green-500",
-      border: "border-green-400",
-    },
-    {
-      icon: <CalendarClock size={32} />,
-      title: "Timely Interview Reminders",
-      content:
-        "Stay punctual and confident. We help you prepare by sending reminders for every important event or interview.",
-      bg: "bg-yellow-100",
-      color: "text-yellow-500",
-      border: "border-yellow-400",
-    },
-    {
-      icon: <CheckCircle2 size={32} />,
-      title: "Track Application Stages",
-      content:
-        "From 'Applied' to 'Offer Received'—track every phase of your applications with clarity and structure.",
-      bg: "bg-red-100",
-      color: "text-red-500",
-      border: "border-red-400",
-    },
-    {
-      icon: <ClipboardList size={32} />,
-      title: "Personalized To-Do System",
-      content:
-        "Stay organized with a custom task manager built for job seekers. Keep notes, to-dos, and priorities in sync.",
-      bg: "bg-indigo-100",
-      color: "text-indigo-500",
-      border: "border-indigo-400",
-    },
-  ];
-
-  useEffect(() => {
-    cardsRef.current.forEach((card, index) => {
-      gsap.fromTo(
-        card,
-        { y: 50, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.6,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: card,
-            start: "top 85%",
-            toggleActions: "play none none none",
-          },
-        }
-      );
-    });
-  }, []);
-
   return (
     <div
-      className="w-full min-h-screen flex flex-col items-center justify-center py-20 px-6 text-black mt-10"
+      className="w-full flex flex-col items-center justify-start px-6 mt-5 bg-[#0a0a0a]"
       id="offer"
     >
-      <h1 className="text-4xl md:text-5xl font-extrabold text-center tracking-tight">
-        What We Offer
+      <h1 className="w-full text-left text-4xl md:text-5xl font-extrabold text-[#e5e5e5] mb-12">
+        The Workflow
       </h1>
-      <p className="text-center max-w-2xl mb-16 text-gray-600 text-lg">
-        We go beyond just tracking applications. Our features are built to
-        empower job seekers with tools that simplify, organize, and improve
-        their journey toward landing that dream role.
-      </p>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-6xl mx-auto">
-        {cardsInfo.map((card, index) => (
-          <div
-            className={`backdrop-blur-md bg-white/60 border ${card.border} rounded-2xl p-8 shadow-lg hover:shadow-2xl transition duration-300`}
-            key={index}
-            ref={(el) => (cardsRef.current[index] = el)}
-          >
-            <div
-              className={`flex items-center justify-center w-16 h-16 rounded-full ${card.bg} ${card.color} border ${card.border} mb-6 mx-auto`}
-            >
-              {card.icon}
-            </div>
-            <h2 className="text-2xl font-bold text-center mb-3">
-              {card.title}
-            </h2>
-            <p className="text-center text-gray-700 leading-relaxed">
-              {card.content}
-            </p>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 w-full">
+        <div className="relative">
+          <div className="absolute left-6 top-0 bottom-0 w-[2px] bg-[#e5e5e5]/20" />
+          <div className="flex flex-col gap-12">
+            {steps.map((step) => (
+              <div key={step.id} className="relative flex items-start gap-6">
+                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-[#e5e5e5] text-[#0a0a0a] font-bold text-lg z-10">
+                  {step.id}
+                </div>
+
+                <div className="bg-[#171717] border border-[#e5e5e5]/20 rounded-lg p-6 flex-1">
+                  <h3 className="text-xl font-bold text-[#e5e5e5]">
+                    {step.title}
+                  </h3>
+                  <p className="mt-2 text-gray-400">{step.description}</p>
+                </div>
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
+
+        <div className="flex flex-col justify-center space-y-6 mb-auto">
+          <h2 className="text-3xl font-bold text-[#e5e5e5]">
+            Why This Workflow Works 🚀
+          </h2>
+
+          <div className="grid grid-cols-2 gap-4">
+            <div className="bg-[#171717] border border-[#e5e5e5]/20 rounded-xl p-6 text-center">
+              <h3 className="text-2xl font-bold text-[#e5e5e5]">80%</h3>
+              <p className="text-gray-400 text-sm">Less Stress</p>
+            </div>
+            <div className="bg-[#171717] border border-[#e5e5e5]/20 rounded-xl p-6 text-center">
+              <h3 className="text-2xl font-bold text-[#e5e5e5]">50%+</h3>
+              <p className="text-gray-400 text-sm">Time Saved</p>
+            </div>
+            <div className="bg-[#171717] border border-[#e5e5e5]/20 rounded-xl p-6 text-center">
+              <h3 className="text-2xl font-bold text-[#e5e5e5]">100%</h3>
+              <p className="text-gray-400 text-sm">Clarity</p>
+            </div>
+            <div className="bg-[#171717] border border-[#e5e5e5]/20 rounded-xl p-6 text-center">
+              <h3 className="text-2xl font-bold text-[#e5e5e5]">∞</h3>
+              <p className="text-gray-400 text-sm">Motivation</p>
+            </div>
+          </div>
+
+          <p className="text-lg text-gray-300 text-center md:text-left">
+            No more juggling spreadsheets or sticky notes — track, filter, and
+            visualize your job hunt in one smooth flow.
+          </p>
+        </div>
       </div>
     </div>
   );
