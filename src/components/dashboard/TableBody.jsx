@@ -5,11 +5,9 @@ import { useSearch } from "../../context/searchContext";
 import { useSelectedJobId } from "../../context/selectedJobIdContext";
 import { highlightMatch } from "../../lib/utils/highlightingText";
 import { dateParser } from "../../lib/utils/dateParser";
-import { dateSorting } from "../../lib/utils/dateSoritng";
 
 const TableBody = () => {
-  const { jobs, fetchJobs } = useJob();
-  const { id } = JSON.parse(localStorage.getItem("user"));
+  const { jobs } = useJob();
   const { searchTerm, jobStatus, jobType, sortingType, advancedSearchTerm } =
     useSearch();
   const { selectedJobId, setSelectedJobId } = useSelectedJobId();
@@ -29,20 +27,18 @@ const TableBody = () => {
   });
 
   const sortedJobs = [...filteredJobs].sort((a, b) => {
-    if (sortingType === "asc") {
-      return a.job_title.localeCompare(b.job_title);
-    } else if (sortingType === "desc") {
-      return b.job_title.localeCompare(a.job_title);
-    } else if (sortingType === "dateAsc") {
+    if (sortingType === "asc") return a.job_title.localeCompare(b.job_title);
+    if (sortingType === "desc") return b.job_title.localeCompare(a.job_title);
+    if (sortingType === "dateAsc")
       return new Date(a.applied_at) - new Date(b.applied_at);
-    } else if (sortingType === "dateDesc") {
+    if (sortingType === "dateDesc")
       return new Date(b.applied_at) - new Date(a.applied_at);
-    }
+    return 0;
   });
 
-  const changeTheBgOfSelectedRow = (idx) => {
+  const toggleRowSelection = (id) => {
     setSelectedJobId((prev) =>
-      prev.includes(idx) ? prev.filter((id) => id !== idx) : [...prev, idx]
+      prev.includes(id) ? prev.filter((jobId) => jobId !== id) : [...prev, id]
     );
   };
 
@@ -52,7 +48,7 @@ const TableBody = () => {
         <tr>
           <td
             colSpan="7"
-            className="text-center py-8 text-sm text-blue-600 bg-white/30 rounded-xl border border-[#cdd3f0] shadow-sm"
+            className="text-center py-8 text-sm text-blue-400 bg-white/5 rounded-xl border border-white/10"
           >
             No results found. Try adjusting your search or filters.
           </td>
@@ -70,54 +66,41 @@ const TableBody = () => {
           }) => (
             <tr
               key={id}
-              className={`text-black border-b-1.5 border-gray-500 border-r-gray-500 last:border-r-0 ${
-                selectedJobId.includes(id) ? "bg-blue-100" : ""
+              className={`border-b border-white/10 transition-colors ${
+                selectedJobId.includes(id) ? "bg-[#262626]" : "hover:bg-white/5"
               }`}
             >
-              <td className="border-r border-gray-500 last:border-r-0">
+              <td className="px-4 py-3">
                 <input
                   type="checkbox"
-                  className="cursor-pointer w-4 h-4"
+                  className="custom-checkbox"
                   checked={selectedJobId.includes(id)}
-                  onChange={() => changeTheBgOfSelectedRow(id)}
+                  onChange={() => toggleRowSelection(id)}
                 />
               </td>
-              <td className="border-r border-gray-500 last:border-r-0 relative group">
-                <div className={`px-3 py-0.5 w-[90%] cursor-text`}>
-                  {highlightMatch(job_title, searchTerm)}
-                </div>
+
+              <td className="px-4 py-3 text-left">
+                {highlightMatch(job_title, searchTerm)}
               </td>
-              <td className="border-r border-gray-500 last:border-r-0">
-                <div className={`py-0.5 px-3 cursor-text w-[90%]`}>
-                  {highlightMatch(company, advancedSearchTerm)}
-                </div>
+
+              <td className="px-4 py-3 text-left">
+                {highlightMatch(company, advancedSearchTerm)}
               </td>
-              <td className="p-3 border-r border-gray-500 last:border-r-0">
-                <div
-                  className="px-3 py-0.5 cursor-text w-[90%]"
-                  onClick={() => console.log(dateSorting(sortedJobs))}
-                >
-                  {dateParser(applied_at)}
-                </div>
+
+              <td className="px-4 py-3 text-left text-gray-400">
+                {dateParser(applied_at)}
               </td>
-              <td className="border-r border-gray-500 last:border-r-0">
-                <div className="py-0.5 px-3 cursor-text w-[90%]">
-                  {job_status}
-                </div>
-              </td>
-              <td className="border-r border-gray-500 last:border-r-0">
-                <div className="py-0.5 px-3 cursor-text w-[90%]">
-                  {job_type}
-                </div>
-              </td>
-              <td className="p-3">
-                <div className="flex items-center justify-between">
+
+              <td className="px-4 py-3 text-left capitalize">{job_status}</td>
+
+              <td className="px-4 py-3 text-left capitalize">{job_type}</td>
+
+              <td className="px-4 py-3">
+                <div className="flex items-center gap-2">
                   <input
                     disabled
                     defaultValue={website_url}
-                    className={`py-0.5 px-3 focus:outline-blue-300 cursor-text w-[90%] ${
-                      selectedJobId.includes(id) ? "bg-blue-100" : ""
-                    }`}
+                    className="w-full bg-transparent text-gray-300 text-sm border border-white/10 rounded px-2 py-1 cursor-text truncate"
                   />
                   <a
                     href={
@@ -127,8 +110,9 @@ const TableBody = () => {
                     }
                     target="_blank"
                     rel="noopener noreferrer"
+                    className="text-blue-400 hover:text-blue-300"
                   >
-                    <SquareArrowOutUpRight size={20} />
+                    <SquareArrowOutUpRight size={18} />
                   </a>
                 </div>
               </td>

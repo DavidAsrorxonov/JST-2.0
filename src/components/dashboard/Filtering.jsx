@@ -11,7 +11,6 @@ const Filtering = () => {
   const buttonRef = useRef(null);
 
   const { t } = useTranslation();
-
   const { jobStatus, setJobStatus, jobType, setJobType } = useSearch();
 
   const statuses = ["all", "Applied", "Interview", "Offer", "Rejected"];
@@ -40,17 +39,22 @@ const Filtering = () => {
     <div className="flex items-center">
       <div
         ref={buttonRef}
-        className="flex items-center justify-center gap-2 hover:bg-gray-100 border border-gray-300 px-4 py-1 rounded-full transition-all cursor-pointer"
+        className={`flex items-center justify-center gap-2 px-4 py-2 rounded-xl border transition-all cursor-pointer
+          ${
+            filteringChosen
+              ? "bg-[#2a2a2a] border-white/30 text-[#e5e5e5]"
+              : "bg-[#171717] border-white/30 text-[#e5e5e5] hover:bg-[#2a2a2a]"
+          }`}
         onClick={() => {
           setFilteringChosen(!filteringChosen);
           if (!filteringChosen) openModalPosition();
         }}
       >
         <ListFilter
-          className={`${filteringChosen ? "text-blue-600" : ""}`}
+          className={`${filteringChosen ? "text-white" : "text-[#e5e5e5]"}`}
           size={20}
-        />{" "}
-        {t("Filter")}
+        />
+        <span className="text-sm font-medium">{t("Filter")}</span>
       </div>
 
       {filteringChosen && (

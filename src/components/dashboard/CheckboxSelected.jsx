@@ -1,9 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useSelectedJobId } from "../../context/selectedJobIdContext";
 import { useJob } from "../../context/jobContext";
 import axios from "axios";
-import { useRef } from "react";
-import { useEffect } from "react";
 import gsap from "gsap";
 import JobEditModal from "./JobEditModal";
 import { API_URL } from "../../constants/api";
@@ -23,12 +21,8 @@ const CheckboxSelected = () => {
   const { logout } = useUser();
 
   const deleteSelectedJob = async () => {
-    if (!authChecker(logout)) {
-      return;
-    }
-
+    if (!authChecker(logout)) return;
     const token = localStorage.getItem("token");
-
     if (selectedJobId.length === 0) return;
 
     setIsDeleting(true);
@@ -46,10 +40,7 @@ const CheckboxSelected = () => {
       );
       fetchJobs();
       setSelectedJobId([]);
-      Toast({
-        desciption: "Job deleted successfully",
-        color: "success",
-      });
+      Toast({ desciption: "Job deleted successfully", color: "success" });
     } catch (error) {
       console.error("Error deleting job:", error);
     } finally {
@@ -68,10 +59,7 @@ const CheckboxSelected = () => {
   };
 
   const handleSaveEdit = async (updatedJob) => {
-    if (!authChecker(logout)) {
-      return;
-    }
-
+    if (!authChecker(logout)) return;
     const token = localStorage.getItem("token");
 
     try {
@@ -83,10 +71,7 @@ const CheckboxSelected = () => {
       });
       await fetchJobs();
 
-      Toast({
-        desciption: "Job updated successfully",
-        color: "success",
-      });
+      Toast({ desciption: "Job updated successfully", color: "success" });
       setSelectedJobId([]);
     } catch (error) {
       console.log(error);
@@ -94,30 +79,34 @@ const CheckboxSelected = () => {
   };
 
   useEffect(() => {
-    gsap.fromTo(
-      confirmDeleteRef.current,
-      { opacity: 0, y: -20 },
-      { opacity: 1, y: 0, duration: 0.5 }
-    );
-  });
+    if (confirmDeleteRef.current) {
+      gsap.fromTo(
+        confirmDeleteRef.current,
+        { opacity: 0, y: -20 },
+        { opacity: 1, y: 0, duration: 0.4 }
+      );
+    }
+  }, [confirmDelete]);
 
   return (
     <>
       {selectedJobId.length > 0 && (
         <div className="flex justify-between items-center mx-10 mb-4">
-          <div className="flex items-center gap-4 bg-gray-100 border border-gray-400 px-4 py-1 rounded-full shadow-sm text-sm text-gray-700">
-            <span className="font-medium text-blue-600">
+          <div className="flex items-center gap-4 bg-[#171717] border border-white/30 px-6 py-2 rounded-xl shadow-md text-sm text-gray-200">
+            <span className="font-medium text-blue-400">
               {selectedJobId.length} selected
             </span>
-            <div className="w-px h-4 bg-gray-400"></div>
+
+            <div className="w-px h-5 bg-white/30"></div>
+
             <button
-              className="text-red-500 hover:text-red-700 transition"
+              className="text-red-400 hover:text-red-500 transition"
               onClick={() => setConfirmDelete(true)}
               disabled={isDeleting}
             >
               {isDeleting ? (
                 <svg
-                  className="animate-spin h-4 w-4 text-red-600"
+                  className="animate-spin h-4 w-4 text-red-500"
                   viewBox="0 0 24 24"
                 >
                   <circle
@@ -139,26 +128,30 @@ const CheckboxSelected = () => {
                 "Delete Selected"
               )}
             </button>
-            <div className="w-px h-4 bg-gray-400"></div>
+
+            <div className="w-px h-5 bg-white/30"></div>
+
             {selectedJobId.length === 1 ? (
               <button
-                className="text-blue-500 hover:text-blue-700 transition"
+                className="text-blue-400 hover:text-blue-500 transition"
                 onClick={handleEditClick}
               >
                 Edit
               </button>
             ) : (
-              <span className="text-gray-400">Can't edit multiple jobs</span>
+              <span className="text-gray-500 italic">
+                Can’t edit multiple jobs
+              </span>
             )}
-            <div className="w-px h-4 bg-gray-400"></div>
-            <div className="ml-auto">
-              <button
-                className="text-blue-500 hover:text-blue-700 transition"
-                onClick={deselectAll}
-              >
-                Deselect All
-              </button>
-            </div>
+
+            <div className="w-px h-5 bg-white/30"></div>
+
+            <button
+              className="text-gray-300 hover:text-white transition"
+              onClick={deselectAll}
+            >
+              Deselect All
+            </button>
           </div>
         </div>
       )}
@@ -173,12 +166,14 @@ const CheckboxSelected = () => {
 
       {confirmDelete && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center z-50"
+          className="fixed inset-0 bg-black/40 flex items-center justify-center z-50 backdrop-blur-sm"
           ref={confirmDeleteRef}
         >
-          <div className="bg-white rounded-xl p-6 shadow-lg w-[500px] text-center">
-            <h2 className="text-lg font-semibold mb-4">Are you sure?</h2>
-            <p className="text-sm text-gray-600 mb-6">
+          <div className="bg-[#171717] border border-white/30 rounded-2xl p-6 shadow-lg w-[450px] text-center text-gray-200">
+            <h2 className="text-lg font-semibold mb-4 text-white">
+              Are you sure?
+            </h2>
+            <p className="text-sm text-gray-400 mb-6">
               {selectedJobId.length > 1
                 ? `${selectedJobId.length} selected jobs will be deleted on confirm`
                 : `${selectedJobId.length} selected job will be deleted on confirm`}
@@ -189,13 +184,13 @@ const CheckboxSelected = () => {
                   deleteSelectedJob();
                   setConfirmDelete(false);
                 }}
-                className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md"
+                className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-xl transition"
               >
                 Confirm
               </button>
               <button
                 onClick={() => setConfirmDelete(false)}
-                className="bg-gray-200 hover:bg-gray-300 text-gray-700 px-4 py-2 rounded-md"
+                className="bg-gray-800 border border-white/30 hover:bg-gray-700 text-gray-200 px-4 py-2 rounded-xl transition"
               >
                 Cancel
               </button>

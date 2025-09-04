@@ -1,5 +1,6 @@
 import { useSelectedJobId } from "../../context/selectedJobIdContext";
 import { useJob } from "../../context/jobContext";
+import "../../styles/TableBody.css";
 
 const TableHead = () => {
   const tableHead = [
@@ -35,7 +36,7 @@ const TableHead = () => {
             <div>
               <input
                 type="checkbox"
-                className="w-4 h-4 cursor-pointer"
+                className="custom-checkbox"
                 onChange={handleSelectAll}
                 checked={
                   selectedJobId.length === jobs.length && jobs.length > 0

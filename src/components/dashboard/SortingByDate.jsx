@@ -1,25 +1,12 @@
 import React, { useRef, useState } from "react";
 import { useSearch } from "../../context/searchContext";
-import { Clock, ClockArrowDown, ClockArrowUp } from "lucide-react";
+import { Clock } from "lucide-react";
 import SortingAndFilteringModal from "../ui/SortingAndFilteringModal";
 
 const SortingByDate = () => {
   const [sortingChosen, setSortingChosen] = useState(false);
-  const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 });
-  const [activeModal, setActiveModal] = useState("");
   const buttonRef = useRef(null);
   const { setSortingType, sortingType } = useSearch();
-
-  const openModalPosition = () => {
-    if (buttonRef.current) {
-      const rect = buttonRef.current.getBoundingClientRect();
-      setModalPosition({
-        top: rect.buttom + window.scrollY,
-        left: rect.left + window.scrollX,
-      });
-    }
-    setSortingChosen(true);
-  };
 
   const sortingOptions = [
     { value: "dateAsc", label: "Earliest" },
@@ -41,17 +28,16 @@ const SortingByDate = () => {
   return (
     <div className="flex items-center" ref={buttonRef}>
       <div
-        className="flex items-center justify-center gap-2 hover:bg-gray-100 border border-gray-300 px-4 py-1 rounded-full transition-all cursor-pointer"
-        onClick={() => {
-          setSortingChosen(!sortingChosen);
-          if (!sortingChosen) openModalPosition();
-        }}
+        className="flex items-center justify-center gap-2 px-4 py-2 rounded-xl 
+                   bg-[#171717] border border-white/30 
+                   text-white hover:bg-[#222] transition-all cursor-pointer"
+        onClick={() => setSortingChosen(!sortingChosen)}
       >
         <Clock
-          className={`${sortingChosen ? "text-blue-600" : ""}`}
+          className={`${sortingChosen ? "text-blue-400" : "text-gray-300"}`}
           size={20}
         />
-        By Date
+        <span className="text-sm">By Date</span>
       </div>
 
       {sortingChosen && (
@@ -60,7 +46,7 @@ const SortingByDate = () => {
           label={["Date"]}
           values={[sortingOptions.map((option) => option.label)]}
           filteringType="Sort By Date"
-          position={openModalPosition}
+          position={buttonRef}
           onClear={() => setSortingType(null)}
           selectedValues={[getLabelFromValue(sortingType)]}
           onClose={() => setSortingChosen(false)}

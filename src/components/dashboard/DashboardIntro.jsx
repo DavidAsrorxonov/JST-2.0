@@ -12,8 +12,10 @@ const DashboardIntro = () => {
 
   return (
     <div className="m-10">
-      <div className="text-5xl font-extrabold">{t("Dashboard")}</div>
-      <span className="text-lg text-[#47569E]">
+      <div className="text-5xl font-extrabold text-[#e5e5e5]">
+        {t("Dashboard")}
+      </div>
+      <span className="text-lg text-[#e5e5e5]">
         {t("Manage your job applications and track your progress")}
       </span>
     </div>

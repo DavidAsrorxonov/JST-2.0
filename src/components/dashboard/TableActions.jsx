@@ -22,13 +22,10 @@ const TableActions = () => {
   const [websiteUrl, setWebsiteUrl] = useState("");
 
   const { t } = useTranslation();
-
   const { id } = JSON.parse(localStorage.getItem("user"));
 
   const { sortingType, jobType, jobStatus } = useSearch();
-
   const { fetchJobs, jobs } = useJob();
-
   const { logout } = useUser();
 
   const payload = {
@@ -42,9 +39,7 @@ const TableActions = () => {
   };
 
   const handleAddJob = async () => {
-    if (!authChecker(logout)) {
-      return;
-    }
+    if (!authChecker(logout)) return;
 
     const token = localStorage.getItem("token");
 
@@ -60,6 +55,7 @@ const TableActions = () => {
         desciption: "All fields are required",
         color: "danger",
       });
+      return;
     }
 
     try {
@@ -85,70 +81,85 @@ const TableActions = () => {
 
   return (
     <div className="w-full flex justify-start pl-10">
+      {/* Add New Job Button */}
       <div
-        className="w-fit flex items-center gap-2 text-xl bg-blue-100 border border-blue-500 px-6 py-1 rounded-md text-blue-600 hover:bg-blue-200 cursor-pointer transition-all duration-300"
+        className="flex items-center gap-2 px-5 py-2 rounded-xl 
+                   bg-[#171717] border border-white/30 
+                   text-white hover:bg-[#222] cursor-pointer transition-all"
         onClick={() => setAddNewJobModal(true)}
       >
-        <PlusCircle size={20} />
-        {t("Add a new job")}
+        <PlusCircle size={20} className="text-blue-400" />
+        <span className="text-sm">{t("Add a new job")}</span>
       </div>
+
+      {/* Selected Filters */}
       <div className="ml-2">
         <ShowSelectedCategory selected={sortingType} />
       </div>
       <div className="ml-2">
         <ShowSelectedCategory selected={jobType} />
       </div>
-      <div className="flex items-center justify-center ml-2">
+      <div className="ml-2">
         <ShowSelectedCategory selected={jobStatus} />
       </div>
 
+      {/* Add New Job Modal */}
       {addNewJobModal && (
         <>
           <div
-            className="fixed inset-0 bg-black bg-opacity-50 z-50"
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40"
             onClick={() => setAddNewJobModal(false)}
           ></div>
 
-          <div className="fixed z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-md shadow-lg p-6 w-[90%] max-w-md">
+          <div
+            className="fixed z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
+                          bg-[#0a0a0a] text-white border border-white/30 rounded-2xl 
+                          shadow-xl p-6 w-[90%] max-w-md"
+          >
             <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-semibold">Add New Job</h2>
+              <h2 className="text-lg font-semibold">Add New Job</h2>
               <button onClick={() => setAddNewJobModal(false)}>
-                <X className="text-gray-600 hover:text-black" />
+                <X className="text-gray-400 hover:text-white transition" />
               </button>
             </div>
-            <div id="form" className="space-y-4 text-sm text-gray-700">
+
+            <div id="form" className="space-y-4 text-sm">
+              {/* Job Title */}
               <div>
                 <label className="block mb-1 font-medium">Job Title</label>
                 <input
                   value={newJobTitle}
                   onChange={(e) => setNewJobTitle(e.target.value)}
                   type="text"
-                  className="w-full p-2 border border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                  className="w-full p-2 rounded-lg bg-[#171717] border border-white/30 focus:outline-none focus:ring-2 focus:ring-white/30 transition-colors duration-300"
                   placeholder="Enter job title"
                 />
               </div>
 
+              {/* Company */}
               <div>
                 <label className="block mb-1 font-medium">Company</label>
                 <input
                   value={newCompany}
                   onChange={(e) => setNewCompany(e.target.value)}
                   type="text"
-                  className="w-full p-2 border border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                  className="w-full p-2 rounded-lg bg-[#171717] border border-white/30 focus:outline-none focus:ring-2 focus:ring-white/30 transition-colors duration-300"
                   placeholder="Enter company name"
                 />
               </div>
 
+              {/* Applied At */}
               <div>
                 <label className="block mb-1 font-medium">Applied At</label>
                 <input
                   value={appliedAt}
                   onChange={(e) => setAppliedAt(e.target.value)}
                   type="date"
-                  className="w-full p-2 border border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                  className="w-full p-2 rounded-lg bg-[#171717] border border-white/30 focus:outline-none focus:ring-2 focus:ring-white/30 transition-colors duration-300"
                 />
               </div>
 
+              {/* Job Status */}
               <div>
                 <label className="block mb-1 font-medium">Job Status</label>
                 <Dropdown
@@ -158,6 +169,7 @@ const TableActions = () => {
                 />
               </div>
 
+              {/* Job Type */}
               <div>
                 <label className="block mb-1 font-medium">Job Type</label>
                 <Dropdown
@@ -167,20 +179,22 @@ const TableActions = () => {
                 />
               </div>
 
+              {/* Website URL */}
               <div>
                 <label className="block mb-1 font-medium">Website URL</label>
                 <input
                   value={websiteUrl}
                   onChange={(e) => setWebsiteUrl(e.target.value)}
                   type="url"
-                  className="w-full p-2 border border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                  className="w-full p-2 rounded-lg bg-[#171717] border border-white/30 focus:outline-none focus:ring-2 focus:ring-white/30 transition-colors duration-300"
                   placeholder="Enter website URL"
                 />
               </div>
 
+              {/* Submit Button */}
               <div className="flex justify-end">
                 <button
-                  className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
+                  className="px-4 py-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition"
                   onClick={handleAddJob}
                 >
                   Add Job
@@ -191,16 +205,17 @@ const TableActions = () => {
         </>
       )}
 
+      {/* No Jobs Found State */}
       {jobs && jobs.length === 0 ? (
         <div className="absolute flex items-center justify-center gap-3 bottom-3 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-          <div className=" bg-blue-100 px-4 py-2 rounded-full border border-blue-500 text-blue-600">
-            <div className="text-xl">No jobs found</div>
+          <div className="bg-[#171717] border border-white/30 px-4 py-2 rounded-full text-gray-300">
+            <div className="text-sm">No jobs found</div>
           </div>
           <div
-            className="bg-blue-100 p-2 rounded-full border border-blue-500 text-blue-600 cursor-pointer"
+            className="bg-[#171717] border border-white/30 p-2 rounded-full text-gray-300 cursor-pointer hover:bg-[#222] transition"
             onClick={() => setAddNewJobModal(true)}
           >
-            <Plus className="hover:rotate-180 transition-all duration-300" />
+            <Plus className="hover:rotate-180 transition-transform duration-300" />
           </div>
         </div>
       ) : null}
