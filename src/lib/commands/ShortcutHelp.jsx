@@ -20,15 +20,17 @@ const ShortcutHelp = () => {
   ];
 
   useEffect(() => {
-    gsap.fromTo(
-      modalRef.current,
-      { opacity: 0, y: -20 },
-      { opacity: 1, y: 0, duration: 0.5 }
-    );
+    if (isOpen) {
+      gsap.fromTo(
+        modalRef.current,
+        { opacity: 0, y: -30, scale: 0.95 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: "power3.out" }
+      );
+    }
   }, [isOpen]);
 
   const Key = ({ children }) => (
-    <kbd className="bg-white/60 border border-[#B0B3D6] px-2 py-0.5 rounded-md font-mono text-sm shadow-sm text-blue-600">
+    <kbd className="bg-gradient-to-br from-[#1e1e1e] to-[#262626] border border-white/20 px-2 py-0.5 rounded-md font-mono text-sm shadow-sm text-gray-200">
       {children}
     </kbd>
   );
@@ -36,41 +38,41 @@ const ShortcutHelp = () => {
   return (
     <>
       <div
-        className="fixed bottom-4 right-5 z-40 bg-blue-100 hover:bg-blue-200 border border-blue-500 text-blue-600 shadow-md p-3 rounded-full cursor-pointer transition-colors"
+        className="fixed bottom-4 right-5 z-40 bg-[#212121] hover:bg-[#262626] border border-white/30 text-gray-200 shadow-lg p-3 rounded-full cursor-pointer transition-colors"
         onClick={() => setIsOpen(true)}
       >
-        <CircleHelp size={26} />
+        <CircleHelp size={24} />
       </div>
 
       {isOpen && (
-        <div
-          className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50"
-          ref={modalRef}
-        >
-          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-lg p-6 relative border border-gray-200">
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
+          <div
+            ref={modalRef}
+            className="bg-[#171717]/95 backdrop-blur-md rounded-2xl shadow-2xl w-full max-w-lg p-6 relative border border-white/20"
+          >
             <button
               onClick={() => setIsOpen(false)}
-              className="absolute top-3 right-3 text-gray-400 hover:text-gray-600 transition"
+              className="absolute top-3 right-3 text-gray-400 hover:text-gray-200 transition"
             >
-              <X size={22} />
+              <X size={20} />
             </button>
 
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">
+            <h2 className="text-2xl font-semibold text-white mb-6 flex items-center gap-2">
               ⌨️ {t("Keyboard Shortcuts")}
             </h2>
 
-            <ul className="space-y-4">
+            <ul className="space-y-3">
               {shortcuts.map((shortcut, idx) => (
                 <li
                   key={idx}
-                  className="flex items-center font-mono justify-between bg-blue-50 hover:bg-blue-100 border border-blue-500 p-3 rounded-lg transition"
+                  className="flex items-center font-mono justify-between bg-[#212121] hover:bg-[#262626] border border-white/20 p-3 rounded-lg transition"
                 >
                   <div className="flex items-center gap-1">
                     {shortcut.keys.map((key, i) => (
                       <Key key={i}>{key}</Key>
                     ))}
                   </div>
-                  <span className="text-gray-700 text-sm">
+                  <span className="text-gray-300 text-sm">
                     {t(shortcut.action)}
                   </span>
                 </li>
@@ -80,7 +82,7 @@ const ShortcutHelp = () => {
             <div className="mt-6 text-right">
               <button
                 onClick={() => setIsOpen(false)}
-                className="px-4 py-2 bg-blue-100 text-blue-600 border border-blue-500 text-sm hover:bg-blue-200 transition rounded-full"
+                className="px-4 py-2 bg-[#212121] text-gray-200 border border-white/20 text-sm hover:bg-[#262626] transition rounded-lg"
               >
                 {t("Close")}
               </button>
