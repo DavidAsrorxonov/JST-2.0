@@ -60,17 +60,24 @@ const Login = () => {
     } else {
       setAllFieldsFilled(false);
     }
-  });
+  }, [email, password]);
 
   return (
-    <div className="flex flex-col items-center justify-center py-20 px-6 text-black">
-      <div className="w-full md:w-[50%] h-full flex flex-col items-center justify-center py-10 px-6 rounded-lg shadow-lg border border-gray-200">
-        <NavigationButtons />
-        <div className="">
-          <h1 className="text-4xl font-extrabold mb-10">Welcome Back!</h1>
+    <div className="flex items-center justify-center min-h-screen px-4 py-10">
+      <div className="w-full max-w-md bg-[#171717] flex flex-col items-center py-10 px-8 rounded-lg shadow-lg border border-white/30 space-y-8">
+        {/* Navigation */}
+        <div className="w-full flex justify-start">
+          <NavigationButtons />
         </div>
-        <div className="flex flex-col w-full max-w-sm space-y-4">
-          <label htmlFor="email" className="font-bold">
+
+        {/* Header */}
+        <h1 className="text-4xl font-extrabold text-[#e5e5e5] text-center">
+          Welcome Back!
+        </h1>
+
+        {/* Email */}
+        <div className="flex flex-col w-full space-y-2">
+          <label htmlFor="email" className="font-bold text-[#e5e5e5]">
             Email
           </label>
           <input
@@ -79,15 +86,15 @@ const Login = () => {
             type="email"
             name="email"
             placeholder="Enter your email"
-            className="p-3 rounded-lg bg-blue-50 border-1 border-blue-300 outline-blue-500 focus:outline-blue-500 transition-all duration-300"
+            className="bg-[#212121] text-[#e5e5e5] p-2 rounded-lg border border-white/30 focus:outline-none focus:ring-2 focus:ring-white/40 transition placeholder:text-white/50"
           />
         </div>
 
-        <div className="flex flex-col w-full max-w-sm space-y-4 mt-4">
-          <label htmlFor="password" className="font-bold">
+        {/* Password */}
+        <div className="flex flex-col w-full space-y-2">
+          <label htmlFor="password" className="font-bold text-[#e5e5e5]">
             Password
           </label>
-
           <div className="relative">
             <input
               value={password}
@@ -95,33 +102,31 @@ const Login = () => {
               type={isPasswordVisible ? "text" : "password"}
               name="password"
               placeholder="Enter your password"
-              className="p-3 pr-10 rounded-lg bg-blue-50 border border-blue-300 outline-blue-500 focus:outline-blue-500 transition-all duration-300 w-full"
+              className="w-full bg-[#212121] text-[#e5e5e5] p-2 rounded-lg border border-white/30 focus:outline-none focus:ring-2 focus:ring-white/40 transition placeholder:text-white/50"
             />
             {isPasswordVisible ? (
               <Eye
-                className="absolute top-1/2 right-3 transform -translate-y-1/2 text-blue-400 cursor-pointer"
+                className="absolute top-1/2 right-3 transform -translate-y-1/2 text-[#e5e5e5] cursor-pointer"
                 onClick={() => setIsPasswordVisible(!isPasswordVisible)}
               />
             ) : (
               <EyeOff
-                className="absolute top-1/2 right-3 transform -translate-y-1/2 text-blue-400 cursor-pointer"
+                className="absolute top-1/2 right-3 transform -translate-y-1/2 text-[#e5e5e5] cursor-pointer"
                 onClick={() => setIsPasswordVisible(!isPasswordVisible)}
               />
             )}
           </div>
-        </div>
-
-        <div className="flex flex-col w-full max-w-sm space-y-4 mt-4">
-          <span className="text-sm underline cursor-pointer">
+          <span className="text-sm underline cursor-pointer text-[#e5e5e5] self-end">
             Forgot your password?
           </span>
         </div>
 
-        <div className="flex flex-col w-full max-w-sm space-y-4 mt-10">
+        {/* Button */}
+        <div className="w-full">
           <button
-            className={`p-3 w-full max-w-sm font-bold rounded-lg transition-all duration-300 border ${
+            className={`p-2 w-full font-bold rounded-lg transition-all duration-300 border ${
               allFieldsFilled
-                ? "bg-blue-100 border-blue-500 text-black hover:bg-blue-200 cursor-pointer"
+                ? "bg-[#e5e5e5] text-[#171717] cursor-pointer"
                 : "bg-gray-100 border-gray-300 text-gray-400 cursor-not-allowed hover:bg-gray-100"
             }`}
             onClick={handleSubmit}
@@ -137,17 +142,15 @@ const Login = () => {
 
 export const PasswordForgotEmailInput = () => {
   return (
-    <div className="flex flex-col w-full max-w-sm space-y-4">
+    <div className="flex flex-col w-full max-w-sm space-y-2">
       <label htmlFor="email" className="font-bold">
         Email
       </label>
       <input
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
         type="email"
         name="email"
         placeholder="Enter your email"
-        className="p-3 rounded-lg bg-blue-50 border-1 border-blue-300 outline-blue-500 focus:outline-blue-500 transition-all duration-300"
+        className="p-2 rounded-lg bg-blue-50 border-1 border-blue-300 outline-blue-500 focus:outline-blue-500 transition-all duration-300"
       />
     </div>
   );

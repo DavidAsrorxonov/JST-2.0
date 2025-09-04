@@ -183,17 +183,19 @@ const Register = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center py-20 px-6 text-black">
-      <div className="w-full md:w-[50%] h-full flex flex-col items-center justify-center py-10 px-6 rounded-lg shadow-lg border border-gray-200">
+    <div className="flex flex-col items-center justify-center py-20 px-6 min-h-screen">
+      <div className="w-full md:w-[400px] h-[350px] bg-[#171717] flex flex-col items-center justify-center py-10 px-6 rounded-lg shadow-lg border border-white/30">
         <NavigationButtons />
 
-        <h1 className="text-4xl font-extrabold mb-10">Register</h1>
+        <h1 className="text-4xl font-extrabold mb-10 text-[#e5e5e5]">
+          Register
+        </h1>
 
         {emailVerificationStage && (
           <>
             <div className="flex flex-col w-full max-w-sm space-y-4 mb-4">
               <div>
-                <label className="font-bold">Email</label>
+                <label className="font-bold text-[#e5e5e5]">Email</label>
               </div>
               <div>
                 <input
@@ -204,12 +206,12 @@ const Register = () => {
                   }}
                   type="text"
                   placeholder="Enter your email"
-                  className="p-3 w-full rounded-lg bg-blue-50 border border-blue-300 outline-blue-500 focus:outline-blue-500 transition-all duration-300"
+                  className="w-full bg-[#212121] text-[#e5e5e5] p-2 rounded-lg border border-white/30 focus:outline-none focus:ring-2 focus:ring-white/40 transition placeholder:text-white/50"
                 />
               </div>
 
               <button
-                className="p-3 bg-blue-100 rounded-lg border border-blue-500"
+                className="mt-4 bg-[#e5e5e5] text-[#171717] font-medium py-2 rounded-lg transition"
                 onClick={() => {
                   sendOTP();
                   console.log(email);
