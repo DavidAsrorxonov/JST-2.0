@@ -8,11 +8,13 @@ const NewsIcons = () => {
 
   return (
     <div
-      className="w-fit h-10 rounded-xl px-4 gap-2 flex items-center justify-center bg-gray-100 hover:bg-gray-200 transition-colors cursor-pointer"
+      className="w-full flex items-center gap-2 px-3 py-2 rounded-lg bg-[#171717] border border-white/30 cursor-pointer hover:bg-[#212121] transition"
       onClick={() => navigate("/news")}
     >
-      <Globe size={25} className="text-gray-600" />
-      <div className="text-gray-600">{t("Latest Dev News")}</div>
+      <Globe size={20} className="text-[#e5e5e5]" />
+      <span className="text-sm font-medium text-[#e5e5e5]">
+        {t("Dev News")}
+      </span>
     </div>
   );
 };

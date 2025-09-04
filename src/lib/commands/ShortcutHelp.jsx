@@ -36,7 +36,7 @@ const ShortcutHelp = () => {
   return (
     <>
       <div
-        className="fixed bottom-4 right-5 z-50 bg-blue-100 hover:bg-blue-200 border border-blue-500 text-blue-600 shadow-md p-3 rounded-full cursor-pointer transition-colors"
+        className="fixed bottom-4 right-5 z-40 bg-blue-100 hover:bg-blue-200 border border-blue-500 text-blue-600 shadow-md p-3 rounded-full cursor-pointer transition-colors"
         onClick={() => setIsOpen(true)}
       >
         <CircleHelp size={26} />

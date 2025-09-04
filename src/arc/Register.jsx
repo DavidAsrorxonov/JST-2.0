@@ -25,7 +25,6 @@ const handleSubmit = async () => {
     if (!firstName || !lastName || !email || !password || !confirmPassword) {
       Toast({
         desciption: "All fields are required",
-        color: "danger",
       });
       return;
     }

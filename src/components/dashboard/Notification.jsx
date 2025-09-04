@@ -7,10 +7,10 @@ const Notification = () => {
   return (
     <>
       <div
-        className=" w-10 h-10 rounded-xl flex items-center justify-center bg-gray-100 hover:bg-gray-200 transition-colors cursor-pointer"
+        className=" w-10 h-10 rounded-lg flex items-center justify-center bg-[#171717] border border-white/30 transition-colors cursor-pointer"
         onClick={() => setNotificationModal(!notificationModal)}
       >
-        <Bell size={25} className="text-gray-600" />
+        <Bell size={25} strokeWidth={1.5} className="text-[#e5e5e5]" />
       </div>
 
       {notificationModal && (

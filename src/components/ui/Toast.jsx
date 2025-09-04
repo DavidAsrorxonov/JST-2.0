@@ -2,15 +2,15 @@ import { addToast } from "@heroui/toast";
 
 const Toast = ({
   desciption,
-  color,
   duration = 2000,
   shouldShowTimeoutProgress = true,
 }) => {
   return addToast({
     description: desciption,
-    color: color,
+    color: "default",
     timeout: duration,
     shouldShowTimeoutProgress: shouldShowTimeoutProgress,
+    radius: "lg",
   });
 };
 

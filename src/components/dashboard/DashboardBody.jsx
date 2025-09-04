@@ -11,7 +11,7 @@ import SortingByDate from "./SortingByDate";
 
 const DashboardBody = () => {
   return (
-    <>
+    <div className="min-h-screen bg-[#0a0a0a]">
       <DashboardIntro />
       <div className="w-full">
         <Input />
@@ -26,7 +26,7 @@ const DashboardBody = () => {
       <Table />
       <EditingInfo />
       <ShortcutHelp />
-    </>
+    </div>
   );
 };
 
