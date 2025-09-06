@@ -184,13 +184,13 @@ const CheckboxSelected = () => {
                   deleteSelectedJob();
                   setConfirmDelete(false);
                 }}
-                className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-xl transition"
+                className="bg-[#e5e5e5] text-[#171717] px-4 py-1 rounded-lg"
               >
                 Confirm
               </button>
               <button
                 onClick={() => setConfirmDelete(false)}
-                className="bg-gray-800 border border-white/30 hover:bg-gray-700 text-gray-200 px-4 py-2 rounded-xl transition"
+                className="bg-[#171717] border border-white/30 text-[#e5e5e5] px-4 py-1 rounded-lg transition"
               >
                 Cancel
               </button>

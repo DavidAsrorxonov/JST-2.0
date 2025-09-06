@@ -27,14 +27,14 @@ const NavigationButtons = () => {
     >
       <button
         onClick={() => navigate(-1)}
-        className="flex items-center px-4 py-2 bg-[#171717] transition rounded-full border border-white/30 gap-2 text-[#e5e5e5] font-semibold"
+        className="flex items-center px-3 py-1 bg-[#171717] transition rounded-lg border border-white/30 gap-2 text-[#e5e5e5] font-semibold"
       >
         <ArrowLeft size={20} />
         {!isMobile && t("Back")}
       </button>
       <button
         onClick={() => navigate("/dashboard")}
-        className="flex items-center px-4 py-2 bg-[#171717] transition rounded-full border border-white/30 gap-2 text-[#e5e5e5] font-semibold"
+        className="flex items-center px-3 py-1 bg-[#171717] transition rounded-lg border border-white/30 gap-2 text-[#e5e5e5] font-semibold"
       >
         <House size={20} />
         {!isMobile && t("Home")}

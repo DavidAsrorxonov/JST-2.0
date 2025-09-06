@@ -23,3 +23,11 @@
 .animate-scroll-right {
   animation: scroll-right 40s linear infinite;
 }
+
+.animate-scroll-right:hover {
+  animation-play-state: paused;
+}
+
+.animate-scroll-left:hover {
+  animation-play-state: paused;
+}

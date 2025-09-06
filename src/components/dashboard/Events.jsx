@@ -95,23 +95,26 @@ const Events = () => {
         onOpenChange={onOpenChange}
         size="md"
         backdrop="opaque"
+        className="bg-[#171717]"
       >
         <DrawerContent>
           {(onClose) => (
             <>
               <DrawerHeader>
                 <h1
-                  className="text-4xl font-bold"
+                  className="text-4xl font-bold text-[#e5e5e5]"
                   onClick={() => console.log(typeof newFormatted)}
                 >
                   {t("Events")}
                 </h1>
               </DrawerHeader>
               <DrawerBody>
-                <h1 className="font-semibold text-xl">
+                <h1 className="font-semibold text-xl text-[#e5e5e5]">
                   {t("Create an event")}
                 </h1>
-                <span>{t("Choose a specific date to create an event")}</span>
+                <span className="text-[#e5e5e5]">
+                  {t("Choose a specific date to create an event")}
+                </span>
                 <div className="flex items-center justify-center">
                   <ProfileCalendar
                     date={date}
@@ -123,32 +126,36 @@ const Events = () => {
                 <div>
                   {isDateChosen && (
                     <>
-                      <div className="font-semibold text-center text-md">
+                      <div className="font-semibold text-center text-md text-[#e5e5e5]">
                         {t("Create an event for")}:{" "}
                       </div>
-                      <span className="flex items-center justify-center font-bold text-xl">
+                      <span className="flex items-center justify-center font-bold text-xl text-[#e5e5e5]">
                         {newFormatted}
                       </span>
                       <div className="mt-4 flex flex-col space-y-4">
-                        <label>{t("Event name")}</label>
+                        <label className="text-[#e5e5e5]">
+                          {t("Event name")}
+                        </label>
                         <input
                           type="text"
                           placeholder={t("Event title")}
-                          className="w-full p-2 border border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                          className="bg-[#212121] text-[#e5e5e5] p-2 rounded-lg border border-white/30 focus:outline-none focus:ring-2 focus:ring-white/40 transition placeholder:text-white/50"
                           value={eventName}
                           onChange={(e) => setEventName(e.target.value)}
                         />
 
-                        <label>{t("Event description")}</label>
+                        <label className="text-[#e5e5e5]">
+                          {t("Event description")}
+                        </label>
                         <textarea
-                          className="w-full p-2 border border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                          className="bg-[#212121] text-[#e5e5e5] p-2 rounded-lg border border-white/30 focus:outline-none focus:ring-2 focus:ring-white/40 transition placeholder:text-white/50"
                           placeholder={t("Event description")}
                           value={eventDescription}
                           onChange={(e) => setEventDescription(e.target.value)}
                         />
 
                         <button
-                          className="px-4 py-1 bg-blue-100 hover:bg-blue-200 transition-all border border-blue-500 text-blue-600 rounded-md"
+                          className="px-4 py-1 bg-[#e5e5e5] transition-all text-[#212121] rounded-md"
                           onClick={handleAddEvent}
                         >
                           {t("Create")}
@@ -167,7 +174,7 @@ const Events = () => {
               <DrawerFooter>
                 <button
                   onClick={onClose}
-                  className="px-4 py-2 bg-red-100 border border-red-500 text-red-600 rounded-full"
+                  className="px-4 py-1 bg-[#171717] text-[#e5e5e5] border border-white/30 rounded-lg"
                 >
                   {t("Close")}
                 </button>

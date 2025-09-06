@@ -1,6 +1,6 @@
 import axios from "axios";
 import { Plus, PlusCircle, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useJob } from "../../context/jobContext";
 import { useSearch } from "../../context/searchContext";
 import { useTranslation } from "react-i18next";
@@ -11,6 +11,7 @@ import ShowSelectedCategory from "../ui/showSelectedCategory";
 import Toast from "../ui/Toast";
 import { useUser } from "../../context/userContext";
 import { authChecker } from "../../lib/utils/authChecker";
+import gsap from "gsap";
 
 const TableActions = () => {
   const [addNewJobModal, setAddNewJobModal] = useState(false);
@@ -27,6 +28,18 @@ const TableActions = () => {
   const { sortingType, jobType, jobStatus } = useSearch();
   const { fetchJobs, jobs } = useJob();
   const { logout } = useUser();
+
+  const confirmAddJobModal = useRef(null);
+
+  useEffect(() => {
+    if (confirmAddJobModal.current) {
+      gsap.fromTo(
+        confirmAddJobModal.current,
+        { opacity: 0, y: -40 },
+        { opacity: 1, y: 0, duration: 0.4 }
+      );
+    }
+  }, [addNewJobModal]);
 
   const payload = {
     job_title: newJobTitle,
@@ -105,13 +118,14 @@ const TableActions = () => {
 
       {/* Add New Job Modal */}
       {addNewJobModal && (
-        <>
+        <div>
           <div
             className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40"
             onClick={() => setAddNewJobModal(false)}
           ></div>
 
           <div
+            ref={confirmAddJobModal}
             className="fixed z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
                           bg-[#0a0a0a] text-white border border-white/30 rounded-2xl 
                           shadow-xl p-6 w-[90%] max-w-md"
@@ -202,7 +216,7 @@ const TableActions = () => {
               </div>
             </div>
           </div>
-        </>
+        </div>
       )}
 
       {/* No Jobs Found State */}
