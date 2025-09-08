@@ -85,16 +85,16 @@ const ToDoBodyRight = () => {
   };
 
   return (
-    <div className="w-full m-4">
+    <div className="w-full ml-4">
       <NavigationButtons />
-      <div className="text-5xl font-bold">Add a task</div>
-      <div className="flex justify-center flex-col mt-4 gap-10">
+      <div className="text-4xl font-bold">Add a task</div>
+      <div className="flex justify-center flex-col mt-4 gap-6">
         <input
           type="text"
           value={taskTitle}
           onChange={(e) => setTaskTitle(e.target.value)}
           placeholder="Title of the task"
-          className="w-[70%] p-3 outline-none border-1 border-gray-400 rounded-lg shadow-inner focus:ring-1 focus:ring-blue-500 transition duration-300"
+          className="w-[70%] bg-[#212121] text-[#e5e5e5] p-2 rounded-lg border border-white/30 focus:outline-none focus:ring-2 focus:ring-white/40 transition placeholder:text-white/50"
         />
 
         <div className="flex gap-4 w-[70%]">
@@ -102,14 +102,14 @@ const ToDoBodyRight = () => {
             value={taskDate}
             onChange={(e) => setTaskDate(e.target.value)}
             type="date"
-            className="flex-1 p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 transition duration-300"
+            className="bg-[#212121] text-[#e5e5e5] flex-1 p-2 border border-white/30 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-white/40 transition duration-300 placeholder:text-white/50"
             placeholder="YYYY-MM-DD"
           />
           <input
             value={taskTime}
             onChange={(e) => setTaskTime(e.target.value)}
             type="time"
-            className="flex-1 p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 transition duration-300"
+            className="bg-[#212121] text-[#e5e5e5] flex-1 p-2 border border-white/30 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-white/40 placeholder:text-white/50 transition duration-300"
             placeholder="HH:MM"
           />
         </div>
@@ -144,7 +144,7 @@ const ToDoBodyRight = () => {
             <div
               className={`${
                 clickedYes
-                  ? "bg-blue-100 text-blue-600 border border-blue-500"
+                  ? "bg-[#e5e5e5] text-[#0a0a0a]"
                   : "border border-gray-400"
               } px-4 py-1 rounded-lg cursor-pointer`}
               onClick={() => setClickedYes(true)}
@@ -154,7 +154,7 @@ const ToDoBodyRight = () => {
             <div
               className={`${
                 !clickedYes
-                  ? "bg-blue-100 text-blue-600 border border-blue-500"
+                  ? "bg-[#e5e5e5] text-[#0a0a0a]"
                   : "border border-gray-400"
               } px-4 py-1 rounded-lg cursor-pointer`}
               onClick={() => setClickedYes(false)}
@@ -166,7 +166,7 @@ const ToDoBodyRight = () => {
 
         <button
           type="submit"
-          className="w-[70%] p-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300"
+          className="w-[70%] p-2 bg-[#171717] text-[#e5e5e5] rounded-lg border border-white/30"
           onClick={() => {
             handleAddTask();
             resetFields();

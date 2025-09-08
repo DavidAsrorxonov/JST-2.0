@@ -11,6 +11,7 @@ import gsap from "gsap";
 import { addToast } from "@heroui/toast";
 import { useUser } from "../../context/userContext";
 import { authChecker } from "../../lib/utils/authChecker";
+import Toast from "../ui/Toast";
 
 const ArchiveLeft = () => {
   const [archivedToDos, setArchivedToDos] = useState([]);
@@ -61,6 +62,10 @@ const ArchiveLeft = () => {
         },
       });
 
+      Toast({
+        desciption: "Task deleted successfully",
+      });
+
       fetchArchivedToDos();
     } catch (error) {
       console.error("Error deleting archived To-Do:", error);
@@ -81,9 +86,11 @@ const ArchiveLeft = () => {
 
   return (
     <div>
-      <h1 className="text-4xl font-bold text-gray-800 mb-4">Archived To-Dos</h1>
+      <h1 className="text-4xl font-bold text-[#e5e5e5] mb-4">
+        Archived To-Dos
+      </h1>
 
-      {archivedToDos &&
+      {archivedToDos && archivedToDos.length > 0 ? (
         archivedToDos.map(
           (
             {
@@ -99,9 +106,9 @@ const ArchiveLeft = () => {
             idx
           ) => (
             <div key={idx} className="w-full flex items-start gap-3 mb-4">
-              <div className="border border-gray-300 shadow-inner rounded-xl p-4 w-full bg-white space-y-2">
+              <div className="border border-white/30 shadow-inner rounded-xl p-4 w-full bg-[#171717] space-y-2">
                 <div className="flex items-center justify-between">
-                  <div className="text-2xl font-semibold text-gray-800">
+                  <div className="text-2xl font-semibold text-[#e5e5e5]">
                     {archived_todo_title}
                   </div>
                   {archived_is_important && (
@@ -111,14 +118,16 @@ const ArchiveLeft = () => {
                   )}
                 </div>
 
-                <div className="flex items-center justify-between text-sm text-gray-500">
+                <div className="flex items-center justify-between text-sm text-[#e5e5e5]/80">
                   <div>
                     Due:{" "}
                     {archived_todo_duetime.split("T")[0] +
                       " " +
                       archived_todo_duetime.split("T")[1].split(".")[0]}
                   </div>
-                  <div>Archived: {new Date(archived_at).toLocaleString()}</div>
+                  <div className="text-[#e5e5e5]/80">
+                    Archived: {new Date(archived_at).toLocaleString()}
+                  </div>
                 </div>
 
                 <div className="relative flex flex-wrap gap-4 text-sm text-gray-700 items-center pt-2">
@@ -144,8 +153,6 @@ const ArchiveLeft = () => {
                   </div>
 
                   <div className="ml-auto flex items-center justify-center gap-2">
-                    <div className="text-gray- cursor-pointer">Retrieve</div>
-                    <span>|</span>
                     <div
                       className="text-red-600 cursor-pointer"
                       onClick={() => setDeleteConfirmationId(id)}
@@ -160,21 +167,21 @@ const ArchiveLeft = () => {
                   className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40"
                   ref={confirmDeleteRef}
                 >
-                  <div className="bg-white rounded-lg shadow-lg p-6 w-[500px]">
-                    <h2 className="text-lg font-semibold text-gray-800 mb-4">
+                  <div className="bg-[#171717] border border-white/30 rounded-lg shadow-lg p-6 w-[500px]">
+                    <h2 className="text-lg font-semibold text-[#e5e5e5] mb-4">
                       Confirm Deletion
                     </h2>
-                    <p className="text-xl text-gray-600 mb-6 text-center">
+                    <p className="text-xl text-[#e5e5e5] mb-6 text-center">
                       Are you sure you want to permanently delete the task with
                       the title of{" "}
-                      <span className="font-semibold">
+                      <span className="font-semibold text-white">
                         {archived_todo_title}
                       </span>
                       ?
                     </p>
                     <div className="flex justify-end gap-3">
                       <button
-                        className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition"
+                        className="px-4 py-1 bg-[#e5e5e5] text-[#171717] rounded-lg"
                         onClick={() => {
                           deleteArchivedToDo(id);
                           setDeleteConfirmationId(null);
@@ -183,7 +190,7 @@ const ArchiveLeft = () => {
                         Delete
                       </button>
                       <button
-                        className="px-4 py-2 bg-gray-300 text-gray-800 rounded hover:bg-gray-400 transition"
+                        className="px-4 py-1 bg-[#171717] border border-white/30 text-[#e5e5e5] rounded-lg"
                         onClick={() => setDeleteConfirmationId(null)}
                       >
                         Cancel
@@ -194,7 +201,12 @@ const ArchiveLeft = () => {
               )}
             </div>
           )
-        )}
+        )
+      ) : (
+        <div className="text-lg font-semibold text-[#e5e5e5]">
+          No archived tasks found.
+        </div>
+      )}
     </div>
   );
 };

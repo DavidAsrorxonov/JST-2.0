@@ -97,12 +97,16 @@ const ToDoBodyLeft = () => {
     const token = localStorage.getItem("token");
 
     try {
-      await axios.post(`${API_URL}/api/archive/todos/${todoId}`, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      await axios.post(
+        `${API_URL}/api/archive/todos/${todoId}`,
+        {},
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       Toast({
         desciption: "Task archived successfully",
         color: "success",
@@ -135,9 +139,9 @@ const ToDoBodyLeft = () => {
             idx
           ) => (
             <div key={idx} className="w-full flex items-start gap-3 mb-4">
-              <div className="border border-gray-300 shadow-inner rounded-xl p-4 w-full bg-white space-y-2">
+              <div className="border border-white/30 shadow-inner rounded-xl p-4 w-full bg-[#171717] space-y-2">
                 <div className="flex items-center justify-between">
-                  <div className="text-2xl font-semibold text-gray-800">
+                  <div className="text-2xl font-semibold text-[#e5e5e5]">
                     {todo_title}
                   </div>
                   {is_important && (
@@ -147,7 +151,7 @@ const ToDoBodyLeft = () => {
                   )}
                 </div>
 
-                <div className="flex items-center justify-between text-sm text-gray-500">
+                <div className="flex items-center justify-between text-sm text-[#e5e5e5]/80">
                   <div>
                     Due:{" "}
                     {todo_duetime.split("T")[0] +
@@ -161,28 +165,28 @@ const ToDoBodyLeft = () => {
                     />
                     {ellipsisClicked === idx && (
                       <div className="absolute top-0 right-6 z-10">
-                        <div className="bg-white border border-gray-200 rounded-lg shadow-sm w-36 py-1 text-sm">
+                        <div className="bg-[#171717] border border-white/30 rounded-lg shadow-sm w-36 py-1 text-sm">
                           <button
-                            className="w-full text-left px-4 py-2 hover:bg-gray-50 text-gray-800"
+                            className="w-full text-left px-4 py-2 hover:bg-[#212121] text-[#e5e5e5]"
                             onClick={() => handleMarkAsDone(id)}
                           >
                             Mark as Done
                           </button>
                           {todo_status !== "Completed" ? (
                             <button
-                              className="w-full text-left px-4 py-2 hover:bg-gray-50 text-gray-800"
+                              className="w-full text-left px-4 py-2 hover:bg-[#212121] text-[#e5e5e5]"
                               onClick={() => handleArchive(id)}
                             >
                               Archive
                             </button>
                           ) : (
-                            <button className="w-full text-left px-4 py-2 hover:bg-gray-50 text-gray-800 cursor-not-allowed">
+                            <button className="w-full text-left px-4 py-2 hover:bg-[#212121] text-[#e5e5e5] cursor-not-allowed">
                               Can't archive
                             </button>
                           )}
 
                           <button
-                            className="w-full text-left px-4 py-2 hover:bg-gray-50 text-red-500"
+                            className="w-full text-left px-4 py-2 hover:bg-[#212121] text-red-500"
                             onClick={() => deleteToDo(id)}
                           >
                             Delete

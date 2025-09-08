@@ -6,7 +6,7 @@ const Archive = () => {
 
   return (
     <div
-      className="absolute bottom-3 right-4 p-3 rounded-full bg-blue-100 text-blue-600 border border-blue-500 cursor-pointer"
+      className="absolute bottom-3 right-4 p-3 rounded-full bg-[#171717] text-[#e5e5e5] border border-white/30 cursor-pointer"
       onClick={() => navigate("/archive")}
     >
       <ArchiveIcon />
