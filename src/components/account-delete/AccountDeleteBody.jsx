@@ -105,15 +105,15 @@ const AccountDeleteBody = () => {
     <div>
       <NavigationButtons />
       {showDeletingWarning && (
-        <div className="flex items-center justify-center mt-10">
-          <div className="w-[100%] md:w-[50%]">
-            <Accordion variant="splitted">
+        <div className="w-[500px] flex items-center justify-center mt-10">
+          <div className="w-[100%]">
+            <Accordion variant="splitted" className="w-full text-[#e5e5e5]">
               <AccordionItem
                 startContent={<InfoIcon />}
                 key={1}
                 aria-label="Delete Account Permanently"
                 subtitle="Press to see more"
-                title="Delete Account"
+                className="bg-[#212121] border border-white/30 text-[#e5e5e5]"
               >
                 {defaultContent}
 
@@ -135,11 +135,11 @@ const AccountDeleteBody = () => {
       )}
 
       {showDeletingForm && (
-        <div className="flex items-center justify-center mt-10">
-          <div className="w-[100%] md:w-[50%] flex flex-col items-center justify-center">
+        <div className="flex items-center justify-center mt-10 w-[500px]">
+          <div className="w-[100%] flex flex-col items-center justify-center">
             <h1 className="text-3xl font-bold">Account Deleting</h1>
 
-            <div className="w-[70%]">
+            <div className="w-full">
               <div className="flex flex-col gap-2 mt-4">
                 <label htmlFor="email">Email</label>
                 <input
@@ -147,7 +147,7 @@ const AccountDeleteBody = () => {
                   onChange={(e) => setEmail(e.target.value)}
                   type="email"
                   placeholder="Enter your email"
-                  className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-500 transition"
+                  className="w-full px-4 py-2 bg-[#212121] rounded-lg border border-white/30 focus:outline-none focus:ring-2 focus:ring-red-500 transition placeholder:text-white/40"
                 />
               </div>
 
@@ -158,12 +158,12 @@ const AccountDeleteBody = () => {
                   onChange={(e) => setPassword(e.target.value)}
                   type="password"
                   placeholder="Enter your password"
-                  className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-500 transition"
+                  className="w-full px-4 py-2 bg-[#212121] rounded-lg border border-white/30 focus:outline-none focus:ring-2 focus:ring-red-500 transition placeholder:text-white/40"
                 />
               </div>
 
               <button
-                className="w-full mt-4 px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition"
+                className="w-full mt-4 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition"
                 onClick={handleDeleteAccount}
               >
                 Delete Account Permanently
