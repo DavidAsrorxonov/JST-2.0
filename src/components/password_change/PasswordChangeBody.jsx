@@ -169,7 +169,7 @@ const PasswordChangeBody = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto">
+    <div className="w-[400px] mx-auto">
       <NavigationButtons />
       <form className="flex flex-col gap-4 mt-4">
         <h1 className="font-bold text-3xl text-center">Password Change</h1>
@@ -180,23 +180,23 @@ const PasswordChangeBody = () => {
               onChange={(e) => setOldPassword(e.target.value)}
               type={isPasswordVisible ? "text" : "password"}
               placeholder="Enter your old password"
-              className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+              className="bg-[#212121] border border-white/30 w-full px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-white/40 transition placeholder:text-white/50"
             />
             {isPasswordVisible ? (
               <Eye
-                className="absolute top-1/2 right-3 transform -translate-y-1/2 text-blue-400 cursor-pointer"
+                className="absolute top-1/2 right-3 transform -translate-y-1/2 text-[#e5e5e5] cursor-pointer"
                 onClick={() => setIsPasswordVisible(!isPasswordVisible)}
               />
             ) : (
               <EyeOff
-                className="absolute top-1/2 right-3 transform -translate-y-1/2 text-blue-400 cursor-pointer"
+                className="absolute top-1/2 right-3 transform -translate-y-1/2 text-[#e5e5e5] cursor-pointer"
                 onClick={() => setIsPasswordVisible(!isPasswordVisible)}
               />
             )}
           </div>
 
           <button
-            className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition"
+            className="px-4 py-2 bg-[#212121] text-[#e5e5e5] rounded-lg border border-white/30"
             onClick={checkOldPassword}
           >
             {loading ? "Checking..." : "Check Password"}
@@ -224,16 +224,16 @@ const PasswordChangeBody = () => {
                   }}
                   type={isPasswordVisible ? "text" : "password"}
                   placeholder="Enter your new password"
-                  className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+                  className="bg-[#212121] border border-white/30 w-full px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-white/40 transition placeholder:text-white/50"
                 />
                 {isPasswordVisible ? (
                   <Eye
-                    className="absolute top-1/2 right-3 transform -translate-y-1/2 text-blue-400 cursor-pointer"
+                    className="absolute top-1/2 right-3 transform -translate-y-1/2 text-[#e5e5e5] cursor-pointer"
                     onClick={() => setIsPasswordVisible(!isPasswordVisible)}
                   />
                 ) : (
                   <EyeOff
-                    className="absolute top-1/2 right-3 transform -translate-y-1/2 text-blue-400 cursor-pointer"
+                    className="absolute top-1/2 right-3 transform -translate-y-1/2 text-[#e5e5e5] cursor-pointer"
                     onClick={() => setIsPasswordVisible(!isPasswordVisible)}
                   />
                 )}
@@ -255,7 +255,7 @@ const PasswordChangeBody = () => {
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 type="password"
                 placeholder="Confirm your new password"
-                className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+                className="bg-[#212121] border border-white/30 w-full px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-white/40 transition placeholder:text-white/50"
               />
               {newPassword.length > 0 && newPassword !== confirmPassword && (
                 <div className="text-red-500 text-sm font-semibold">
@@ -265,7 +265,7 @@ const PasswordChangeBody = () => {
             </div>
 
             <button
-              className="w-full px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition"
+              className="w-full px-4 py-2 bg-[#212121] text-[#e5e5e5] rounded-lg border border-white/30"
               onClick={updatePassword}
             >
               Change Password

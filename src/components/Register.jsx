@@ -111,8 +111,6 @@ const Register = () => {
     } catch (error) {
       console.log(error);
     }
-
-    console.log("Payload", payload);
   };
 
   const sendOTP = async () => {
