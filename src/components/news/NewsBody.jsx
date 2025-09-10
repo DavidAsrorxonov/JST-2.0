@@ -45,7 +45,7 @@ const NewsPage = () => {
   if (loading) {
     return (
       <div className="flex justify-center items-center h-64">
-        <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+        <div className="w-12 h-12 border-4 border-white/30 border-t-transparent rounded-full animate-spin"></div>
       </div>
     );
   }
@@ -57,19 +57,19 @@ const NewsPage = () => {
           <button
             key={tag}
             onClick={() => handleTagClick(tag)}
-            className={`px-3 py-1 text-sm rounded-full border transition ${
+            className={`px-3 py-1 text-sm rounded-lg border transition ${
               selectedTag === tag
-                ? "bg-blue-600 text-white"
-                : "bg-gray-100 text-gray-800 hover:bg-blue-100"
+                ? "bg-[#e5e5e5] text-[#212121] border border-white/30"
+                : "bg-[#212121] text-[#e5e5e5] border border-white/30"
             }`}
           >
             #{tag}
           </button>
         ))}
-        <div className="flex items-center justify-center bg-blue-100 border border-blue-500 text-blue-600 cursor-pointer px-4 py-1 rounded-full">
+        <div className="flex items-center justify-center bg-[#e5e5e5] text-[#212121] cursor-pointer px-4 py-1 rounded-lg">
           <div>Showing {numberOfArticles} articles</div>
         </div>
-        <div className="flex items-center justify-center bg-blue-100 border border-blue-500 text-blue-600 cursor-pointer px-4 py-1 rounded-full">
+        <div className="flex items-center justify-center bg-[#e5e5e5] text-[#212121] cursor-pointer px-4 py-1 rounded-lg">
           <div
             onClick={() => {
               setNumberOfArticles(numberOfArticles + 10);
@@ -86,22 +86,22 @@ const NewsPage = () => {
         {filteredArticles.map((article) => (
           <div
             key={article.id}
-            className="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-xl transition"
+            className="bg-[#171717] border border-white/30 shadow-md rounded-lg overflow-hidden hover:shadow-xl transition"
           >
             <a href={article.url} target="_blank" rel="noopener noreferrer">
               <img
                 src={article.cover_image || article.social_image}
                 alt={article.title}
-                className="w-full h-48 object-cover"
+                className="w-full h-48 object-cover hover:scale-105 transition hover:opacity-50"
               />
             </a>
             <div className="p-4">
-              <h2 className="text-lg font-semibold hover:text-blue-600">
+              <h2 className="text-lg font-semibold hover:underline">
                 <a href={article.url} target="_blank" rel="noopener noreferrer">
                   {article.title}
                 </a>
               </h2>
-              <p className="text-sm text-gray-600 mt-1">
+              <p className="text-sm text-[#e5e5e5]/70 mt-1">
                 {article.description}
               </p>
               <div className="flex items-center mt-3">
@@ -112,12 +112,12 @@ const NewsPage = () => {
                 />
                 <div className="ml-2 text-sm">
                   <p className="font-medium">{article.user.name}</p>
-                  <p className="text-gray-400">
+                  <p className="text-xs text-[#e5e5e5]/70">
                     {article.readable_publish_date}
                   </p>
                 </div>
               </div>
-              <div className="flex justify-between text-xs text-gray-500 mt-3">
+              <div className="flex justify-between text-xs text-[#e5e5e5]/70 mt-3">
                 <span>🗨️ {article.comments_count}</span>
                 <span>❤️ {article.public_reactions_count}</span>
                 <span>⏱ {article.reading_time_minutes} min</span>
@@ -127,7 +127,7 @@ const NewsPage = () => {
                   <span
                     key={tag}
                     onClick={() => handleTagClick(tag)}
-                    className="text-xs inline-block bg-gray-100 text-gray-700 px-2 py-1 rounded mr-2 cursor-pointer hover:bg-gray-200"
+                    className="text-xs inline-block bg-[#171717] text-[#e5e5e5] px-2 py-1 rounded-lg border border-white/30 mr-2 cursor-pointer hover:bg-[#212121] transition"
                   >
                     #{tag}
                   </span>

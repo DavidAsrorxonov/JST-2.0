@@ -52,10 +52,7 @@ const Input = () => {
           {/* Keyboard Shortcuts */}
           <div className="absolute right-4 top-1/2 -translate-y-1/2 hidden md:flex items-center gap-1 text-xs text-gray-400 font-mono">
             <kbd className="bg-[#171717] border border-white/30 px-2 py-0.5 rounded">
-              ⌘
-            </kbd>
-            <kbd className="bg-[#171717] border border-white/30 px-2 py-0.5 rounded">
-              K
+              ⌘ K
             </kbd>
             <span>|</span>
             <kbd className="bg-[#171717] border border-white/30 px-2 py-0.5 rounded">
@@ -73,7 +70,7 @@ const Input = () => {
             } hover:bg-[#2a2a2a] transition`}
           >
             <GrSearchAdvanced size={20} />
-            <span className="font-medium text-sm">Advanced</span>
+            {/* <span className="font-medium text-sm">Advanced</span> */}
           </button>
         </Tooltip>
       </div>
