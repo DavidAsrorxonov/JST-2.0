@@ -122,8 +122,8 @@ const DashboardHeader = () => {
                   className="transition-transform duration-200 group-hover:rotate-180"
                 />
               </button>
-              <div className="absolute left-0 top-full w-[650px] bg-[#171717] border border-white/30 rounded-lg shadow-lg opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-200 pointer-events-none group-hover:pointer-events-auto">
-                <ul className="grid grid-cols-2 p-4">
+              <div className="absolute left-0 top-full w-[400px] bg-[#171717] border border-white/30 rounded-lg shadow-lg opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-200 pointer-events-none group-hover:pointer-events-auto">
+                <ul className="grid grid-cols-1 p-4">
                   {utilitiesOptions.map((opt, idx) => (
                     <li
                       key={idx}
